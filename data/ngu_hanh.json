@@ -1,0 +1,218 @@
+[
+ {
+  "hanh": "Kim",
+  "sinh": "Thủy",
+  "duoc_sinh_boi": "Thổ",
+  "khac": "Mộc",
+  "bi_khac_boi": "Hỏa",
+  "mau": [
+   "trắng",
+   "xám",
+   "ghi",
+   "bạc",
+   "vàng ánh kim"
+  ],
+  "mau_tuong_sinh": [
+   "vàng",
+   "nâu đất",
+   "be"
+  ],
+  "mau_ky": [
+   "đỏ",
+   "hồng",
+   "tím",
+   "cam"
+  ],
+  "huong": [
+   "Tây",
+   "Tây Bắc"
+  ],
+  "mua": "Mùa Thu",
+  "so": [
+   4,
+   9
+  ],
+  "tang_phu": "Phế (phổi), đại tràng",
+  "vi": "cay",
+  "hinh_dang": "tròn, vòm, kim loại",
+  "tinh_cach": "Quyết đoán, nguyên tắc, trọng danh dự, ưa trật tự; nhược điểm là cứng nhắc và khó thỏa hiệp.",
+  "nghe": [
+   "tài chính",
+   "ngân hàng",
+   "cơ khí",
+   "kim hoàn",
+   "luật",
+   "quân sự",
+   "kiểm toán"
+  ]
+ },
+ {
+  "hanh": "Mộc",
+  "sinh": "Hỏa",
+  "duoc_sinh_boi": "Thủy",
+  "khac": "Thổ",
+  "bi_khac_boi": "Kim",
+  "mau": [
+   "xanh lá",
+   "xanh lục"
+  ],
+  "mau_tuong_sinh": [
+   "đen",
+   "xanh nước biển"
+  ],
+  "mau_ky": [
+   "trắng",
+   "xám",
+   "ghi"
+  ],
+  "huong": [
+   "Đông",
+   "Đông Nam"
+  ],
+  "mua": "Mùa Xuân",
+  "so": [
+   3,
+   8
+  ],
+  "tang_phu": "Can (gan), đởm (mật)",
+  "vi": "chua",
+  "hinh_dang": "cao, thẳng, chữ nhật đứng",
+  "tinh_cach": "Nhân hậu, cầu tiến, giàu ý tưởng, thích phát triển; nhược điểm là nóng vội và ôm đồm.",
+  "nghe": [
+   "giáo dục",
+   "xuất bản",
+   "nội thất gỗ",
+   "nông lâm",
+   "y dược",
+   "thời trang",
+   "sáng tạo nội dung"
+  ]
+ },
+ {
+  "hanh": "Thủy",
+  "sinh": "Mộc",
+  "duoc_sinh_boi": "Kim",
+  "khac": "Hỏa",
+  "bi_khac_boi": "Thổ",
+  "mau": [
+   "đen",
+   "xanh dương",
+   "xanh nước biển"
+  ],
+  "mau_tuong_sinh": [
+   "trắng",
+   "xám",
+   "ghi"
+  ],
+  "mau_ky": [
+   "vàng",
+   "nâu đất"
+  ],
+  "huong": [
+   "Bắc"
+  ],
+  "mua": "Mùa Đông",
+  "so": [
+   1,
+   6
+  ],
+  "tang_phu": "Thận, bàng quang",
+  "vi": "mặn",
+  "hinh_dang": "uốn lượn, gợn sóng",
+  "tinh_cach": "Linh hoạt, khéo giao tiếp, giỏi thích nghi, nhiều mưu lược; nhược điểm là thiếu kiên định.",
+  "nghe": [
+   "truyền thông",
+   "du lịch",
+   "vận tải",
+   "thủy sản",
+   "ngoại giao",
+   "thương mại",
+   "dịch vụ"
+  ]
+ },
+ {
+  "hanh": "Hỏa",
+  "sinh": "Thổ",
+  "duoc_sinh_boi": "Mộc",
+  "khac": "Kim",
+  "bi_khac_boi": "Thủy",
+  "mau": [
+   "đỏ",
+   "hồng",
+   "tím",
+   "cam"
+  ],
+  "mau_tuong_sinh": [
+   "xanh lá"
+  ],
+  "mau_ky": [
+   "đen",
+   "xanh nước biển"
+  ],
+  "huong": [
+   "Nam"
+  ],
+  "mua": "Mùa Hạ",
+  "so": [
+   2,
+   7
+  ],
+  "tang_phu": "Tâm (tim), tiểu tràng",
+  "vi": "đắng",
+  "hinh_dang": "nhọn, tam giác, hình ngọn lửa",
+  "tinh_cach": "Nhiệt huyết, lôi cuốn, dám làm dám chịu; nhược điểm là nóng nảy và thiếu bền bỉ.",
+  "nghe": [
+   "marketing",
+   "giải trí",
+   "nhà hàng",
+   "điện",
+   "năng lượng",
+   "làm đẹp",
+   "bán hàng"
+  ]
+ },
+ {
+  "hanh": "Thổ",
+  "sinh": "Kim",
+  "duoc_sinh_boi": "Hỏa",
+  "khac": "Thủy",
+  "bi_khac_boi": "Mộc",
+  "mau": [
+   "vàng",
+   "nâu đất",
+   "be"
+  ],
+  "mau_tuong_sinh": [
+   "đỏ",
+   "hồng",
+   "tím",
+   "cam"
+  ],
+  "mau_ky": [
+   "xanh lá"
+  ],
+  "huong": [
+   "Trung cung",
+   "Đông Bắc",
+   "Tây Nam"
+  ],
+  "mua": "Bốn tháng cuối mùa (Thìn Tuất Sửu Mùi)",
+  "so": [
+   5,
+   10
+  ],
+  "tang_phu": "Tỳ (lá lách), vị (dạ dày)",
+  "vi": "ngọt",
+  "hinh_dang": "vuông, thấp, bè",
+  "tinh_cach": "Điềm đạm, trung hậu, đáng tin, giỏi vun vén; nhược điểm là bảo thủ và chậm đổi mới.",
+  "nghe": [
+   "bất động sản",
+   "xây dựng",
+   "nông nghiệp",
+   "bảo hiểm",
+   "kho vận",
+   "nhân sự",
+   "hành chính"
+  ]
+ }
+]

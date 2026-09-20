@@ -1,0 +1,23 @@
+{
+ "mo_ta": "Tam tai là ba năm hạn liên tiếp trong mỗi 12 năm, xác định theo nhóm tam hợp của tuổi. Dân gian gọi là \"tam hợp hóa tam tai\".",
+ "cach_tinh": "Xác định nhóm tam hợp của chi tuổi, tra ba năm tam tai tương ứng.",
+ "nhom": [
+  {"tam_hop": ["Thân", "Tý", "Thìn"], "nam_tam_tai": ["Dần", "Mão", "Thìn"]},
+  {"tam_hop": ["Dần", "Ngọ", "Tuất"], "nam_tam_tai": ["Thân", "Dậu", "Tuất"]},
+  {"tam_hop": ["Hợi", "Mão", "Mùi"], "nam_tam_tai": ["Tỵ", "Ngọ", "Mùi"]},
+  {"tam_hop": ["Tỵ", "Dậu", "Sửu"], "nam_tam_tai": ["Hợi", "Tý", "Sửu"]}
+ ],
+ "dien_bien": [
+  {"nam_thu": 1, "ten_dan_gian": "năm vào tam tai", "canh_bao": "Kỵ khởi sự lớn: xây nhà, cưới hỏi, khai trương, nhậm chức.", "muc_do": "nặng"},
+  {"nam_thu": 2, "ten_dan_gian": "năm giữa tam tai", "canh_bao": "Kỵ đầu tư lớn, hùn vốn, đứng tên vay nợ; dễ hao tài và thị phi.", "muc_do": "nặng nhất"},
+  {"nam_thu": 3, "ten_dan_gian": "năm ra tam tai", "canh_bao": "Kỵ kết thúc dở dang: nghỉ việc, ly hôn, thanh lý tài sản vội vàng.", "muc_do": "nhẹ dần"}
+ ],
+ "anh_huong_thuong_gap": ["hao tài", "thị phi kiện tụng", "sức khỏe sa sút", "công việc trắc trở", "tình cảm rạn nứt"],
+ "hoa_giai": [
+  "Lùi việc trọng đại sang năm ngoài tam tai, hoặc mượn tuổi người khác đứng ra làm.",
+  "Giữ nguyên hiện trạng: không mở rộng, không vay lớn, không đổi việc nếu chưa bắt buộc.",
+  "Làm lễ cúng tam tai đầu năm, đi lễ chùa, làm việc thiện.",
+  "Tăng cẩn trọng khi lái xe, khám sức khỏe định kỳ."
+ ],
+ "luu_y": "Tam tai chỉ tính theo chi năm sinh, không phân biệt nam nữ. Phạm tam tai không có nghĩa là năm đó chắc chắn xấu — cần xem thêm sao hạn, đại vận và lá số."
+}

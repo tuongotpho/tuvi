@@ -1,0 +1,613 @@
+[
+ {
+  "stt": 1,
+  "ten": "Giác",
+  "ten_day_du": "Giác Mộc Giao long",
+  "that_dieu": "Mộc",
+  "con_vat": "Giao long",
+  "tu_tuong": "Thanh Long",
+  "phuong": "Đông",
+  "thu_trong_tuan": "Thứ Năm",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "may áo",
+   "khai trương",
+   "xuất hành"
+  ],
+  "ky": [
+   "an táng",
+   "xây mộ"
+  ],
+  "mo_ta": "Sao đầu vòng, chủ về công danh khoa cử; ngày tốt cho việc khởi sự và hôn nhân."
+ },
+ {
+  "stt": 2,
+  "ten": "Cang",
+  "ten_day_du": "Cang Kim Rồng",
+  "that_dieu": "Kim",
+  "con_vat": "Rồng",
+  "tu_tuong": "Thanh Long",
+  "phuong": "Đông",
+  "thu_trong_tuan": "Thứ Sáu",
+  "tinh_chat": "xấu",
+  "nen": [
+   "cắt may",
+   "dựng cột"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "khai trương",
+   "kiện tụng"
+  ],
+  "mo_ta": "Sao hung, chủ tranh chấp tật bệnh; việc lớn nên tránh."
+ },
+ {
+  "stt": 3,
+  "ten": "Đê",
+  "ten_day_du": "Đê Thổ Lạc (cầy)",
+  "that_dieu": "Thổ",
+  "con_vat": "Lạc (cầy)",
+  "tu_tuong": "Thanh Long",
+  "phuong": "Đông",
+  "thu_trong_tuan": "Thứ Bảy",
+  "tinh_chat": "xấu",
+  "nen": [
+   "gieo trồng",
+   "chăn nuôi"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "xây dựng",
+   "xuất hành"
+  ],
+  "mo_ta": "Sao hung, dễ hao tài thị phi; chỉ hợp việc đồng áng."
+ },
+ {
+  "stt": 4,
+  "ten": "Phòng",
+  "ten_day_du": "Phòng Nhật Thỏ",
+  "that_dieu": "Nhật",
+  "con_vat": "Thỏ",
+  "tu_tuong": "Thanh Long",
+  "phuong": "Đông",
+  "thu_trong_tuan": "Chủ nhật",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "an táng",
+   "xuất hành"
+  ],
+  "ky": [
+   "đào giếng",
+   "kiện tụng"
+  ],
+  "mo_ta": "Sao cát bậc nhất, mọi việc hanh thông, con cháu hưng vượng."
+ },
+ {
+  "stt": 5,
+  "ten": "Tâm",
+  "ten_day_du": "Tâm Nguyệt Cáo",
+  "that_dieu": "Nguyệt",
+  "con_vat": "Cáo",
+  "tu_tuong": "Thanh Long",
+  "phuong": "Đông",
+  "thu_trong_tuan": "Thứ Hai",
+  "tinh_chat": "xấu",
+  "nen": [
+   "gieo trồng"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "xây dựng",
+   "kiện tụng"
+  ],
+  "mo_ta": "Sao hung, chủ tai họa bất ngờ và kiện cáo."
+ },
+ {
+  "stt": 6,
+  "ten": "Vĩ",
+  "ten_day_du": "Vĩ Hỏa Hổ",
+  "that_dieu": "Hỏa",
+  "con_vat": "Hổ",
+  "tu_tuong": "Thanh Long",
+  "phuong": "Đông",
+  "thu_trong_tuan": "Thứ Ba",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "đào giếng",
+   "an táng"
+  ],
+  "ky": [
+   "may áo mới",
+   "đi thuyền"
+  ],
+  "mo_ta": "Sao cát, chủ phúc lộc dài lâu, hợp hôn nhân và tạo tác."
+ },
+ {
+  "stt": 7,
+  "ten": "Cơ",
+  "ten_day_du": "Cơ Thủy Báo",
+  "that_dieu": "Thủy",
+  "con_vat": "Báo",
+  "tu_tuong": "Thanh Long",
+  "phuong": "Đông",
+  "thu_trong_tuan": "Thứ Tư",
+  "tinh_chat": "tốt",
+  "nen": [
+   "khai trương",
+   "xây dựng",
+   "cưới gả",
+   "đào giếng",
+   "cầu tài"
+  ],
+  "ky": [
+   "an táng"
+  ],
+  "mo_ta": "Sao cát, chủ tài lộc và mở mang cơ nghiệp."
+ },
+ {
+  "stt": 8,
+  "ten": "Đẩu",
+  "ten_day_du": "Đẩu Mộc Cua",
+  "that_dieu": "Mộc",
+  "con_vat": "Cua",
+  "tu_tuong": "Huyền Vũ",
+  "phuong": "Bắc",
+  "thu_trong_tuan": "Thứ Năm",
+  "tinh_chat": "tốt",
+  "nen": [
+   "khai trương",
+   "xây dựng",
+   "cưới gả",
+   "nhập kho",
+   "cầu tài"
+  ],
+  "ky": [
+   "kiện tụng"
+  ],
+  "mo_ta": "Sao cát, chủ giàu có sung túc, buôn bán thuận lợi."
+ },
+ {
+  "stt": 9,
+  "ten": "Ngưu",
+  "ten_day_du": "Ngưu Kim Trâu",
+  "that_dieu": "Kim",
+  "con_vat": "Trâu",
+  "tu_tuong": "Huyền Vũ",
+  "phuong": "Bắc",
+  "thu_trong_tuan": "Thứ Sáu",
+  "tinh_chat": "xấu",
+  "nen": [
+   "gieo trồng",
+   "chăn nuôi"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "khai trương",
+   "xuất hành"
+  ],
+  "mo_ta": "Sao hung, chủ chia ly hao tán."
+ },
+ {
+  "stt": 10,
+  "ten": "Nữ",
+  "ten_day_du": "Nữ Thổ Dơi",
+  "that_dieu": "Thổ",
+  "con_vat": "Dơi",
+  "tu_tuong": "Huyền Vũ",
+  "phuong": "Bắc",
+  "thu_trong_tuan": "Thứ Bảy",
+  "tinh_chat": "xấu",
+  "nen": [
+   "học nghề",
+   "may vá"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "kiện tụng",
+   "xây dựng"
+  ],
+  "mo_ta": "Sao hung, dễ sinh khẩu thiệt và bệnh tật."
+ },
+ {
+  "stt": 11,
+  "ten": "Hư",
+  "ten_day_du": "Hư Nhật Chuột",
+  "that_dieu": "Nhật",
+  "con_vat": "Chuột",
+  "tu_tuong": "Huyền Vũ",
+  "phuong": "Bắc",
+  "thu_trong_tuan": "Chủ nhật",
+  "tinh_chat": "xấu",
+  "nen": [
+   "tế tự"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "xây dựng",
+   "khai trương"
+  ],
+  "mo_ta": "Sao hung, chủ hư hao trống rỗng, việc gì cũng dở dang."
+ },
+ {
+  "stt": 12,
+  "ten": "Nguy",
+  "ten_day_du": "Nguy Nguyệt Én",
+  "that_dieu": "Nguyệt",
+  "con_vat": "Én",
+  "tu_tuong": "Huyền Vũ",
+  "phuong": "Bắc",
+  "thu_trong_tuan": "Thứ Hai",
+  "tinh_chat": "xấu",
+  "nen": [
+   "tế tự",
+   "cầu an"
+  ],
+  "ky": [
+   "cưới gả",
+   "xây dựng",
+   "lên cao",
+   "đi thuyền"
+  ],
+  "mo_ta": "Sao hung, chủ nguy hiểm tai nạn, kỵ việc trên cao sông nước."
+ },
+ {
+  "stt": 13,
+  "ten": "Thất",
+  "ten_day_du": "Thất Hỏa Lợn",
+  "that_dieu": "Hỏa",
+  "con_vat": "Lợn",
+  "tu_tuong": "Huyền Vũ",
+  "phuong": "Bắc",
+  "thu_trong_tuan": "Thứ Ba",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "an táng",
+   "cầu tài"
+  ],
+  "ky": [
+   "đi thuyền"
+  ],
+  "mo_ta": "Sao cát, chủ phú quý điền sản, hợp tạo tác nhà cửa."
+ },
+ {
+  "stt": 14,
+  "ten": "Bích",
+  "ten_day_du": "Bích Thủy Vượn",
+  "that_dieu": "Thủy",
+  "con_vat": "Vượn",
+  "tu_tuong": "Huyền Vũ",
+  "phuong": "Bắc",
+  "thu_trong_tuan": "Thứ Tư",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "an táng",
+   "nhập học"
+  ],
+  "ky": [
+   "đào giếng"
+  ],
+  "mo_ta": "Sao cát, chủ văn chương học hành và gia đạo êm ấm."
+ },
+ {
+  "stt": 15,
+  "ten": "Khuê",
+  "ten_day_du": "Khuê Mộc Sói",
+  "that_dieu": "Mộc",
+  "con_vat": "Sói",
+  "tu_tuong": "Bạch Hổ",
+  "phuong": "Tây",
+  "thu_trong_tuan": "Thứ Năm",
+  "tinh_chat": "trung bình",
+  "nen": [
+   "xây dựng",
+   "cắt may",
+   "nhập học"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "khai trương"
+  ],
+  "mo_ta": "Nửa cát nửa hung: tốt cho tạo tác, kỵ hôn nhân tang lễ."
+ },
+ {
+  "stt": 16,
+  "ten": "Lâu",
+  "ten_day_du": "Lâu Kim Chó",
+  "that_dieu": "Kim",
+  "con_vat": "Chó",
+  "tu_tuong": "Bạch Hổ",
+  "phuong": "Tây",
+  "thu_trong_tuan": "Thứ Sáu",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "xuất hành",
+   "cầu tài"
+  ],
+  "ky": [
+   "an táng"
+  ],
+  "mo_ta": "Sao cát, chủ hưng vượng, khởi sự đều thuận."
+ },
+ {
+  "stt": 17,
+  "ten": "Vị",
+  "ten_day_du": "Vị Thổ Trĩ",
+  "that_dieu": "Thổ",
+  "con_vat": "Trĩ",
+  "tu_tuong": "Bạch Hổ",
+  "phuong": "Tây",
+  "thu_trong_tuan": "Thứ Bảy",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "an táng",
+   "nhập kho",
+   "gieo trồng"
+  ],
+  "ky": [
+   "kiện tụng"
+  ],
+  "mo_ta": "Sao cát, chủ kho lẫm đầy đủ, ruộng vườn tốt tươi."
+ },
+ {
+  "stt": 18,
+  "ten": "Mão",
+  "ten_day_du": "Mão Nhật Gà",
+  "that_dieu": "Nhật",
+  "con_vat": "Gà",
+  "tu_tuong": "Bạch Hổ",
+  "phuong": "Tây",
+  "thu_trong_tuan": "Chủ nhật",
+  "tinh_chat": "xấu",
+  "nen": [
+   "an táng (theo một số sách)"
+  ],
+  "ky": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "xuất hành"
+  ],
+  "mo_ta": "Sao hung, chủ tai ương và bất hòa."
+ },
+ {
+  "stt": 19,
+  "ten": "Tất",
+  "ten_day_du": "Tất Nguyệt Quạ",
+  "that_dieu": "Nguyệt",
+  "con_vat": "Quạ",
+  "tu_tuong": "Bạch Hổ",
+  "phuong": "Tây",
+  "thu_trong_tuan": "Thứ Hai",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "an táng",
+   "đào giếng",
+   "cầu tài"
+  ],
+  "ky": [
+   "đi thuyền"
+  ],
+  "mo_ta": "Sao cát, chủ mưa thuận gió hòa, tài lộc dồi dào."
+ },
+ {
+  "stt": 20,
+  "ten": "Chủy",
+  "ten_day_du": "Chủy Hỏa Khỉ",
+  "that_dieu": "Hỏa",
+  "con_vat": "Khỉ",
+  "tu_tuong": "Bạch Hổ",
+  "phuong": "Tây",
+  "thu_trong_tuan": "Thứ Ba",
+  "tinh_chat": "xấu",
+  "nen": [
+   "phá dỡ"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "xây dựng",
+   "khai trương"
+  ],
+  "mo_ta": "Sao hung bậc nhất, mọi việc đều nên tránh."
+ },
+ {
+  "stt": 21,
+  "ten": "Sâm",
+  "ten_day_du": "Sâm Thủy Vượn",
+  "that_dieu": "Thủy",
+  "con_vat": "Vượn",
+  "tu_tuong": "Bạch Hổ",
+  "phuong": "Tây",
+  "thu_trong_tuan": "Thứ Tư",
+  "tinh_chat": "trung bình",
+  "nen": [
+   "xuất hành",
+   "khai trương",
+   "cầu tài",
+   "gieo trồng"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng"
+  ],
+  "mo_ta": "Nửa cát nửa hung: tốt cho đi xa và buôn bán."
+ },
+ {
+  "stt": 22,
+  "ten": "Tỉnh",
+  "ten_day_du": "Tỉnh Mộc Ngạn",
+  "that_dieu": "Mộc",
+  "con_vat": "Ngạn",
+  "tu_tuong": "Chu Tước",
+  "phuong": "Nam",
+  "thu_trong_tuan": "Thứ Năm",
+  "tinh_chat": "trung bình",
+  "nen": [
+   "gieo trồng",
+   "đào giếng",
+   "xây dựng"
+  ],
+  "ky": [
+   "an táng",
+   "cưới gả"
+  ],
+  "mo_ta": "Nửa cát nửa hung, thiên về việc ruộng vườn và nguồn nước."
+ },
+ {
+  "stt": 23,
+  "ten": "Quỷ",
+  "ten_day_du": "Quỷ Kim Dê",
+  "that_dieu": "Kim",
+  "con_vat": "Dê",
+  "tu_tuong": "Chu Tước",
+  "phuong": "Nam",
+  "thu_trong_tuan": "Thứ Sáu",
+  "tinh_chat": "xấu",
+  "nen": [
+   "an táng (đại cát riêng việc này)"
+  ],
+  "ky": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "xuất hành"
+  ],
+  "mo_ta": "Sao hung với việc dương, nhưng lại cát với việc âm phần."
+ },
+ {
+  "stt": 24,
+  "ten": "Liễu",
+  "ten_day_du": "Liễu Thổ Hoẵng",
+  "that_dieu": "Thổ",
+  "con_vat": "Hoẵng",
+  "tu_tuong": "Chu Tước",
+  "phuong": "Nam",
+  "thu_trong_tuan": "Thứ Bảy",
+  "tinh_chat": "xấu",
+  "nen": [
+   "phá dỡ",
+   "săn bắt"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "xây dựng",
+   "khai trương"
+  ],
+  "mo_ta": "Sao hung, chủ hao tài kiện tụng."
+ },
+ {
+  "stt": 25,
+  "ten": "Tinh",
+  "ten_day_du": "Tinh Nhật Ngựa",
+  "that_dieu": "Nhật",
+  "con_vat": "Ngựa",
+  "tu_tuong": "Chu Tước",
+  "phuong": "Nam",
+  "thu_trong_tuan": "Chủ nhật",
+  "tinh_chat": "xấu",
+  "nen": [
+   "cắt may",
+   "xây phòng mới"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "kiện tụng"
+  ],
+  "mo_ta": "Sao hung, dễ sinh tranh chấp và tai tiếng."
+ },
+ {
+  "stt": 26,
+  "ten": "Trương",
+  "ten_day_du": "Trương Nguyệt Hươu",
+  "that_dieu": "Nguyệt",
+  "con_vat": "Hươu",
+  "tu_tuong": "Chu Tước",
+  "phuong": "Nam",
+  "thu_trong_tuan": "Thứ Hai",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "an táng",
+   "cầu tài"
+  ],
+  "ky": [
+   "kiện tụng"
+  ],
+  "mo_ta": "Sao cát, chủ vinh hiển và tài lộc bền lâu."
+ },
+ {
+  "stt": 27,
+  "ten": "Dực",
+  "ten_day_du": "Dực Hỏa Rắn",
+  "that_dieu": "Hỏa",
+  "con_vat": "Rắn",
+  "tu_tuong": "Chu Tước",
+  "phuong": "Nam",
+  "thu_trong_tuan": "Thứ Ba",
+  "tinh_chat": "xấu",
+  "nen": [
+   "gieo trồng"
+  ],
+  "ky": [
+   "cưới gả",
+   "an táng",
+   "xây dựng",
+   "xuất hành"
+  ],
+  "mo_ta": "Sao hung, chủ ly tán xa cách."
+ },
+ {
+  "stt": 28,
+  "ten": "Chẩn",
+  "ten_day_du": "Chẩn Thủy Giun",
+  "that_dieu": "Thủy",
+  "con_vat": "Giun",
+  "tu_tuong": "Chu Tước",
+  "phuong": "Nam",
+  "thu_trong_tuan": "Thứ Tư",
+  "tinh_chat": "tốt",
+  "nen": [
+   "cưới gả",
+   "xây dựng",
+   "khai trương",
+   "xuất hành",
+   "an táng"
+  ],
+  "ky": [
+   "đi thuyền"
+  ],
+  "mo_ta": "Sao cát khép vòng, chủ vinh hoa và đường đi hanh thông."
+ }
+]

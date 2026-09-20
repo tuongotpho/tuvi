@@ -1,0 +1,112 @@
+[
+ {
+  "stt": 1,
+  "ten": "Giáp",
+  "hanh": "Mộc",
+  "am_duong": "Dương",
+  "tang_phu": "Đảm (mật)",
+  "hinh_tuong": "Cây đại thụ: khởi xướng, cương trực, ưa dẫn đầu.",
+  "hop": "Kỷ",
+  "xung": "Canh",
+  "ghi_chu": ""
+ },
+ {
+  "stt": 2,
+  "ten": "Ất",
+  "hanh": "Mộc",
+  "am_duong": "Âm",
+  "tang_phu": "Gan",
+  "hinh_tuong": "Cây cỏ mềm: mềm dẻo, khéo léo, biết luồn lách hoàn cảnh.",
+  "hop": "Canh",
+  "xung": "Tân",
+  "ghi_chu": ""
+ },
+ {
+  "stt": 3,
+  "ten": "Bính",
+  "hanh": "Hỏa",
+  "am_duong": "Dương",
+  "tang_phu": "Ruột non",
+  "hinh_tuong": "Mặt trời: rực rỡ, nhiệt tình, phô bày, thích được ghi nhận.",
+  "hop": "Tân",
+  "xung": "Nhâm",
+  "ghi_chu": ""
+ },
+ {
+  "stt": 4,
+  "ten": "Đinh",
+  "hanh": "Hỏa",
+  "am_duong": "Âm",
+  "tang_phu": "Tim",
+  "hinh_tuong": "Ngọn đèn: ấm áp, tinh tế, bền bỉ trong âm thầm.",
+  "hop": "Nhâm",
+  "xung": "Quý",
+  "ghi_chu": ""
+ },
+ {
+  "stt": 5,
+  "ten": "Mậu",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "tang_phu": "Dạ dày",
+  "hinh_tuong": "Đất núi: vững chãi, bao dung, trọng chữ tín.",
+  "hop": "Quý",
+  "xung": null,
+  "ghi_chu": "Mậu, Kỷ thuộc Thổ ở trung cung nên không kể tương xung."
+ },
+ {
+  "stt": 6,
+  "ten": "Kỷ",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "tang_phu": "Lá lách",
+  "hinh_tuong": "Đất ruộng: nhẫn nại, chăm lo, vun vén cho người khác.",
+  "hop": "Giáp",
+  "xung": null,
+  "ghi_chu": "Mậu, Kỷ thuộc Thổ ở trung cung nên không kể tương xung."
+ },
+ {
+  "stt": 7,
+  "ten": "Canh",
+  "hanh": "Kim",
+  "am_duong": "Dương",
+  "tang_phu": "Ruột già",
+  "hinh_tuong": "Kim loại thô: mạnh mẽ, quyết liệt, thích cạnh tranh.",
+  "hop": "Ất",
+  "xung": "Giáp",
+  "ghi_chu": ""
+ },
+ {
+  "stt": 8,
+  "ten": "Tân",
+  "hanh": "Kim",
+  "am_duong": "Âm",
+  "tang_phu": "Phổi",
+  "hinh_tuong": "Trang sức: chỉn chu, thẩm mỹ cao, coi trọng hình ảnh.",
+  "hop": "Bính",
+  "xung": "Ất",
+  "ghi_chu": ""
+ },
+ {
+  "stt": 9,
+  "ten": "Nhâm",
+  "hanh": "Thủy",
+  "am_duong": "Dương",
+  "tang_phu": "Bàng quang",
+  "hinh_tuong": "Biển lớn: phóng khoáng, nhiều mưu lược, tầm nhìn rộng.",
+  "hop": "Đinh",
+  "xung": "Bính",
+  "ghi_chu": ""
+ },
+ {
+  "stt": 10,
+  "ten": "Quý",
+  "hanh": "Thủy",
+  "am_duong": "Âm",
+  "tang_phu": "Thận",
+  "hinh_tuong": "Nước mưa: kín đáo, tư duy sâu, nhạy cảm và tận tụy.",
+  "hop": "Mậu",
+  "xung": "Đinh",
+  "ghi_chu": ""
+ }
+]

@@ -1,0 +1,272 @@
+[
+ {
+  "ten": "Hải Trung Kim",
+  "hanh": "Kim",
+  "cap_can_chi": [
+   "Giáp Tý",
+   "Ất Sửu"
+  ],
+  "y_nghia": "Vàng trong biển — tiềm ẩn, quý giá nhưng cần thời cơ mới lộ."
+ },
+ {
+  "ten": "Lư Trung Hỏa",
+  "hanh": "Hỏa",
+  "cap_can_chi": [
+   "Bính Dần",
+   "Đinh Mão"
+  ],
+  "y_nghia": "Lửa trong lò — ấm áp, có kiểm soát, cần người giữ lửa."
+ },
+ {
+  "ten": "Đại Lâm Mộc",
+  "hanh": "Mộc",
+  "cap_can_chi": [
+   "Mậu Thìn",
+   "Kỷ Tỵ"
+  ],
+  "y_nghia": "Cây rừng lớn — sức sống mạnh, cần không gian rộng để phát triển."
+ },
+ {
+  "ten": "Lộ Bàng Thổ",
+  "hanh": "Thổ",
+  "cap_can_chi": [
+   "Canh Ngọ",
+   "Tân Mùi"
+  ],
+  "y_nghia": "Đất ven đường — chịu đựng, nâng đỡ người qua lại, dễ bị coi nhẹ."
+ },
+ {
+  "ten": "Kiếm Phong Kim",
+  "hanh": "Kim",
+  "cap_can_chi": [
+   "Nhâm Thân",
+   "Quý Dậu"
+  ],
+  "y_nghia": "Vàng đầu kiếm — sắc bén, quyết liệt, dễ làm tổn thương."
+ },
+ {
+  "ten": "Sơn Đầu Hỏa",
+  "hanh": "Hỏa",
+  "cap_can_chi": [
+   "Giáp Tuất",
+   "Ất Hợi"
+  ],
+  "y_nghia": "Lửa trên núi — nổi bật từ xa, danh tiếng đến sớm."
+ },
+ {
+  "ten": "Giản Hạ Thủy",
+  "hanh": "Thủy",
+  "cap_can_chi": [
+   "Bính Tý",
+   "Đinh Sửu"
+  ],
+  "y_nghia": "Nước dưới khe — trong trẻo, bền bỉ, đi đường vòng mà tới đích."
+ },
+ {
+  "ten": "Thành Đầu Thổ",
+  "hanh": "Thổ",
+  "cap_can_chi": [
+   "Mậu Dần",
+   "Kỷ Mão"
+  ],
+  "y_nghia": "Đất đầu thành — vững chãi, che chở, có tính phòng thủ."
+ },
+ {
+  "ten": "Bạch Lạp Kim",
+  "hanh": "Kim",
+  "cap_can_chi": [
+   "Canh Thìn",
+   "Tân Tỵ"
+  ],
+  "y_nghia": "Vàng chân đèn — mềm, cần mài giũa và môi trường tốt."
+ },
+ {
+  "ten": "Dương Liễu Mộc",
+  "hanh": "Mộc",
+  "cap_can_chi": [
+   "Nhâm Ngọ",
+   "Quý Mùi"
+  ],
+  "y_nghia": "Gỗ dương liễu — mềm mại, duyên dáng, dễ thích ứng."
+ },
+ {
+  "ten": "Tuyền Trung Thủy",
+  "hanh": "Thủy",
+  "cap_can_chi": [
+   "Giáp Thân",
+   "Ất Dậu"
+  ],
+  "y_nghia": "Nước trong suối — tinh khiết, nuôi dưỡng, không ồn ào."
+ },
+ {
+  "ten": "Ốc Thượng Thổ",
+  "hanh": "Thổ",
+  "cap_can_chi": [
+   "Bính Tuất",
+   "Đinh Hợi"
+  ],
+  "y_nghia": "Đất nóc nhà — che chắn cho cả nhà, đề cao trách nhiệm."
+ },
+ {
+  "ten": "Tích Lịch Hỏa",
+  "hanh": "Hỏa",
+  "cap_can_chi": [
+   "Mậu Tý",
+   "Kỷ Sửu"
+  ],
+  "y_nghia": "Lửa sấm sét — bùng nổ, biến động lớn, thay đổi nhanh."
+ },
+ {
+  "ten": "Tùng Bách Mộc",
+  "hanh": "Mộc",
+  "cap_can_chi": [
+   "Canh Dần",
+   "Tân Mão"
+  ],
+  "y_nghia": "Gỗ tùng bách — kiên cường, chịu được nghịch cảnh."
+ },
+ {
+  "ten": "Trường Lưu Thủy",
+  "hanh": "Thủy",
+  "cap_can_chi": [
+   "Nhâm Thìn",
+   "Quý Tỵ"
+  ],
+  "y_nghia": "Nước chảy dài — kiên trì, đi xa, phúc lộc lâu bền."
+ },
+ {
+  "ten": "Sa Trung Kim",
+  "hanh": "Kim",
+  "cap_can_chi": [
+   "Giáp Ngọ",
+   "Ất Mùi"
+  ],
+  "y_nghia": "Vàng trong cát — quý mà lẫn, cần sàng lọc mới rõ giá trị."
+ },
+ {
+  "ten": "Sơn Hạ Hỏa",
+  "hanh": "Hỏa",
+  "cap_can_chi": [
+   "Bính Thân",
+   "Đinh Dậu"
+  ],
+  "y_nghia": "Lửa dưới núi — âm ỉ, hậu vận sáng hơn tiền vận."
+ },
+ {
+  "ten": "Bình Địa Mộc",
+  "hanh": "Mộc",
+  "cap_can_chi": [
+   "Mậu Tuất",
+   "Kỷ Hợi"
+  ],
+  "y_nghia": "Cây đồng bằng — phát triển đều, cần nhóm và cộng đồng."
+ },
+ {
+  "ten": "Bích Thượng Thổ",
+  "hanh": "Thổ",
+  "cap_can_chi": [
+   "Canh Tý",
+   "Tân Sửu"
+  ],
+  "y_nghia": "Đất trên vách — mỏng mà bám chắc, giỏi tận dụng thế."
+ },
+ {
+  "ten": "Kim Bạch Kim",
+  "hanh": "Kim",
+  "cap_can_chi": [
+   "Nhâm Dần",
+   "Quý Mão"
+  ],
+  "y_nghia": "Vàng pha bạc — sáng đẹp, chú trọng hình thức và uy tín."
+ },
+ {
+  "ten": "Phúc Đăng Hỏa",
+  "hanh": "Hỏa",
+  "cap_can_chi": [
+   "Giáp Thìn",
+   "Ất Tỵ"
+  ],
+  "y_nghia": "Lửa đèn dầu — soi đường cho người khác, bền nếu được chắn gió."
+ },
+ {
+  "ten": "Thiên Hà Thủy",
+  "hanh": "Thủy",
+  "cap_can_chi": [
+   "Bính Ngọ",
+   "Đinh Mùi"
+  ],
+  "y_nghia": "Nước trên trời — mưa móc, ban phát, tầm ảnh hưởng rộng."
+ },
+ {
+  "ten": "Đại Trạch Thổ",
+  "hanh": "Thổ",
+  "cap_can_chi": [
+   "Mậu Thân",
+   "Kỷ Dậu"
+  ],
+  "y_nghia": "Đất nền nhà — nền tảng gia sản, hợp bất động sản."
+ },
+ {
+  "ten": "Thoa Xuyến Kim",
+  "hanh": "Kim",
+  "cap_can_chi": [
+   "Canh Tuất",
+   "Tân Hợi"
+  ],
+  "y_nghia": "Vàng trang sức — tinh tế, giàu thẩm mỹ, coi trọng vẻ ngoài."
+ },
+ {
+  "ten": "Tang Đố Mộc",
+  "hanh": "Mộc",
+  "cap_can_chi": [
+   "Nhâm Tý",
+   "Quý Sửu"
+  ],
+  "y_nghia": "Gỗ cây dâu — hữu dụng, nuôi tằm dệt lụa, làm lợi cho người."
+ },
+ {
+  "ten": "Đại Khê Thủy",
+  "hanh": "Thủy",
+  "cap_can_chi": [
+   "Giáp Dần",
+   "Ất Mão"
+  ],
+  "y_nghia": "Nước khe lớn — dòng mạnh, gặp thác ghềnh vẫn tiến."
+ },
+ {
+  "ten": "Sa Trung Thổ",
+  "hanh": "Thổ",
+  "cap_can_chi": [
+   "Bính Thìn",
+   "Đinh Tỵ"
+  ],
+  "y_nghia": "Đất pha cát — linh hoạt nhưng cần liên kết mới vững."
+ },
+ {
+  "ten": "Thiên Thượng Hỏa",
+  "hanh": "Hỏa",
+  "cap_can_chi": [
+   "Mậu Ngọ",
+   "Kỷ Mùi"
+  ],
+  "y_nghia": "Lửa trên trời — mặt trời, uy thế lớn, dễ chói lóa."
+ },
+ {
+  "ten": "Thạch Lựu Mộc",
+  "hanh": "Mộc",
+  "cap_can_chi": [
+   "Canh Thân",
+   "Tân Dậu"
+  ],
+  "y_nghia": "Gỗ cây lựu — đơm hoa kết trái muộn nhưng bền."
+ },
+ {
+  "ten": "Đại Hải Thủy",
+  "hanh": "Thủy",
+  "cap_can_chi": [
+   "Nhâm Tuất",
+   "Quý Hợi"
+  ],
+  "y_nghia": "Nước biển lớn — bao la, dung nạp, sức chứa vô tận."
+ }
+]

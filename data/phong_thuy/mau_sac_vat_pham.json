@@ -1,0 +1,141 @@
+{
+ "mo_ta": "Bảng màu sắc, chất liệu và vật phẩm phong thủy theo ngũ hành bản mệnh (nạp âm).",
+ "nguyen_tac": "Ưu tiên màu tương sinh (hành sinh ra mệnh) và màu bản mệnh; hạn chế màu tương khắc.",
+ "theo_hanh": {
+  "Kim": {
+   "mau_ban_menh": [
+    "trắng",
+    "xám",
+    "ghi",
+    "bạc"
+   ],
+   "mau_tuong_sinh": [
+    "vàng",
+    "nâu đất",
+    "be"
+   ],
+   "mau_ky": [
+    "đỏ",
+    "hồng",
+    "cam",
+    "tím"
+   ],
+   "chat_lieu": [
+    "kim loại",
+    "đá trắng",
+    "thủy tinh"
+   ],
+   "vat_pham": [
+    "tỳ hưu đồng",
+    "chuông gió kim loại",
+    "thạch anh trắng"
+   ],
+   "hinh_dang": "tròn, vòm"
+  },
+  "Mộc": {
+   "mau_ban_menh": [
+    "xanh lá"
+   ],
+   "mau_tuong_sinh": [
+    "đen",
+    "xanh dương"
+   ],
+   "mau_ky": [
+    "trắng",
+    "xám",
+    "ghi"
+   ],
+   "chat_lieu": [
+    "gỗ",
+    "tre",
+    "cây xanh"
+   ],
+   "vat_pham": [
+    "cây kim tiền",
+    "tranh rừng cây",
+    "vòng gỗ hương"
+   ],
+   "hinh_dang": "cao, thẳng đứng"
+  },
+  "Thủy": {
+   "mau_ban_menh": [
+    "đen",
+    "xanh dương"
+   ],
+   "mau_tuong_sinh": [
+    "trắng",
+    "xám",
+    "ghi"
+   ],
+   "mau_ky": [
+    "vàng",
+    "nâu đất"
+   ],
+   "chat_lieu": [
+    "nước",
+    "gương",
+    "kính"
+   ],
+   "vat_pham": [
+    "bể cá",
+    "thác nước mini",
+    "thạch anh đen"
+   ],
+   "hinh_dang": "lượn sóng"
+  },
+  "Hỏa": {
+   "mau_ban_menh": [
+    "đỏ",
+    "hồng",
+    "tím",
+    "cam"
+   ],
+   "mau_tuong_sinh": [
+    "xanh lá"
+   ],
+   "mau_ky": [
+    "đen",
+    "xanh dương"
+   ],
+   "chat_lieu": [
+    "đèn",
+    "nến",
+    "đồ da"
+   ],
+   "vat_pham": [
+    "đèn muối",
+    "tranh mặt trời",
+    "thạch anh hồng"
+   ],
+   "hinh_dang": "nhọn, tam giác"
+  },
+  "Thổ": {
+   "mau_ban_menh": [
+    "vàng",
+    "nâu đất",
+    "be"
+   ],
+   "mau_tuong_sinh": [
+    "đỏ",
+    "hồng",
+    "tím",
+    "cam"
+   ],
+   "mau_ky": [
+    "xanh lá"
+   ],
+   "chat_lieu": [
+    "gốm",
+    "sứ",
+    "đá tự nhiên"
+   ],
+   "vat_pham": [
+    "cóc ngậm tiền",
+    "đá thạch anh vàng",
+    "bình gốm"
+   ],
+   "hinh_dang": "vuông, thấp"
+  }
+ },
+ "luu_y": "Mệnh ở đây là ngũ hành NẠP ÂM của năm sinh (ví dụ Canh Ngọ 1990 là Lộ Bàng Thổ, mệnh Thổ), không phải hành của thiên can."
+}

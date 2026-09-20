@@ -1,0 +1,106 @@
+{
+ "mo_ta": "Các loại ngày kiêng kỵ phổ biến trong dân gian Việt Nam.",
+ "loai": [
+  {
+   "ten": "Tam nương",
+   "cach_xac_dinh": "Ngày âm lịch mùng 3, 7, 13, 18, 22, 27 hằng tháng.",
+   "ngay": [
+    3,
+    7,
+    13,
+    18,
+    22,
+    27
+   ],
+   "kieng": [
+    "cưới hỏi",
+    "khai trương",
+    "động thổ",
+    "xuất hành xa",
+    "ký kết"
+   ],
+   "xuat_xu": "Gắn với tích ba người phụ nữ được cho là làm nghiêng đổ triều đại trong truyền thuyết Trung Hoa.",
+   "muc_do": "kiêng phổ biến nhất"
+  },
+  {
+   "ten": "Nguyệt kỵ",
+   "cach_xac_dinh": "Ngày âm lịch mùng 5, 14, 23 hằng tháng (cộng các chữ số đều ra 5).",
+   "ngay": [
+    5,
+    14,
+    23
+   ],
+   "kieng": [
+    "xuất hành",
+    "khởi sự",
+    "cưới hỏi"
+   ],
+   "xuat_xu": "Dân gian có câu \"mùng năm, mười bốn, hai ba; đi chơi cũng thiệt nữa là đi buôn\".",
+   "muc_do": "kiêng phổ biến"
+  },
+  {
+   "ten": "Thọ tử",
+   "cach_xac_dinh": "Ngày có can chi cố định theo từng tháng âm lịch.",
+   "bang": {
+    "1": "Bính Tuất",
+    "2": "Nhâm Thìn",
+    "3": "Tân Hợi",
+    "4": "Đinh Tỵ",
+    "5": "Mậu Tý",
+    "6": "Bính Ngọ",
+    "7": "Ất Sửu",
+    "8": "Quý Mùi",
+    "9": "Giáp Dần",
+    "10": "Mậu Thân",
+    "11": "Tân Mão",
+    "12": "Tân Dậu"
+   },
+   "kieng": [
+    "mọi việc lớn",
+    "cưới hỏi",
+    "khởi công",
+    "an táng"
+   ],
+   "muc_do": "kiêng nặng"
+  },
+  {
+   "ten": "Dương công kỵ nhật",
+   "cach_xac_dinh": "13 ngày âm lịch cố định trong năm theo Dương công (Dương Quân Tùng).",
+   "bang": {
+    "1": 13,
+    "2": 11,
+    "3": 9,
+    "4": 7,
+    "5": 5,
+    "6": 3,
+    "7": [
+     1,
+     29
+    ],
+    "8": 27,
+    "9": 25,
+    "10": 23,
+    "11": 21,
+    "12": 19
+   },
+   "kieng": [
+    "khởi công",
+    "động thổ",
+    "cưới hỏi",
+    "khai trương"
+   ],
+   "muc_do": "kiêng nặng trong giới xây dựng"
+  },
+  {
+   "ten": "Sát chủ",
+   "cach_xac_dinh": "Ngày xấu theo tháng, có nhiều dị bản giữa các sách lịch.",
+   "kieng": [
+    "động thổ",
+    "xây cất",
+    "an táng"
+   ],
+   "muc_do": "tùy sách",
+   "canh_bao": "Bộ dữ liệu này KHÔNG cung cấp bảng Sát chủ vì các nguồn phổ biến mâu thuẫn nhau. Nếu cần dùng, hãy chọn một cuốn lịch vạn niên làm chuẩn và ghi rõ trong bài."
+  }
+ ]
+}

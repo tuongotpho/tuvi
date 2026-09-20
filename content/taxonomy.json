@@ -1,0 +1,81 @@
+{
+ "mo_ta": "Bản đồ chủ đề nội dung: mỗi chủ đề gắn với bộ dữ liệu và hàm sinh dữ liệu tương ứng, dùng để lên lịch sản xuất content.",
+ "tru_cot": [
+  {
+   "ma": "TUVI",
+   "ten": "Tử vi",
+   "mo_ta": "Nội dung dựa trên lá số Tử Vi Đẩu Số và can chi năm sinh.",
+   "chu_de": [
+    {"ma": "TUVI-NAM", "ten": "Tử vi năm theo 12 con giáp", "tan_suat": "1 lần/năm + cập nhật quý",
+     "du_lieu": ["con_giap", "han/sao_han", "han/tam_tai", "luc_thap_hoa_giap"],
+     "ham": ["tuvi.han.ho_so_han"], "muc_dich": "Bài trụ cột hút traffic đầu năm", "do_kho": "trung bình"},
+    {"ma": "TUVI-THANG", "ten": "Tử vi tháng theo tuổi", "tan_suat": "12 lần/năm",
+     "du_lieu": ["con_giap", "dia_chi"], "ham": ["tuvi.canchi.can_chi_thang"],
+     "muc_dich": "Nội dung định kỳ giữ tần suất xuất bản", "do_kho": "dễ"},
+    {"ma": "TUVI-LASO", "ten": "Luận giải lá số cá nhân", "tan_suat": "theo yêu cầu",
+     "du_lieu": ["tu_vi/sao", "tu_vi/cung", "tu_vi/cach_cuc", "tu_vi/cuc"],
+     "ham": ["tuvi.la_so.lap_la_so"], "muc_dich": "Nội dung chuyển đổi cao, hợp sản phẩm trả phí", "do_kho": "khó"},
+    {"ma": "TUVI-SAO", "ten": "Giải nghĩa từng sao", "tan_suat": "109 bài kho nội dung",
+     "du_lieu": ["tu_vi/sao"], "ham": [], "muc_dich": "Phủ từ khóa dài, xây authority", "do_kho": "dễ"},
+    {"ma": "TUVI-CACH", "ten": "Các cách cục nổi tiếng", "tan_suat": "20 bài",
+     "du_lieu": ["tu_vi/cach_cuc"], "ham": [], "muc_dich": "Nội dung chuyên sâu giữ chân độc giả cũ", "do_kho": "trung bình"}
+   ]
+  },
+  {
+   "ma": "PT",
+   "ten": "Phong thủy",
+   "mo_ta": "Nội dung về cung phi, hướng nhà, bố trí không gian, màu sắc, vật phẩm.",
+   "chu_de": [
+    {"ma": "PT-HUONG", "ten": "Xem hướng nhà hợp tuổi", "tan_suat": "cập nhật hằng năm",
+     "du_lieu": ["phong_thuy/bat_trach", "phong_thuy/huong"],
+     "ham": ["tuvi.phong_thuy.ho_so_phong_thuy"], "muc_dich": "Chủ đề tìm kiếm nhiều nhất mảng phong thủy", "do_kho": "trung bình"},
+    {"ma": "PT-MAU", "ten": "Màu sắc hợp mệnh", "tan_suat": "30 bài theo nạp âm",
+     "du_lieu": ["nap_am", "phong_thuy/mau_sac_vat_pham"], "ham": ["tuvi.canchi.can_chi_nam"],
+     "muc_dich": "Dễ sản xuất, dễ chia sẻ trên mạng xã hội", "do_kho": "dễ"},
+    {"ma": "PT-BOTRI", "ten": "Bố trí nhà cửa, phòng ngủ, bếp, bàn làm việc", "tan_suat": "kho nội dung thường trực",
+     "du_lieu": ["phong_thuy/bo_tri_khong_gian"], "ham": [], "muc_dich": "Nội dung thực dụng, tỷ lệ lưu lại cao", "do_kho": "dễ"},
+    {"ma": "PT-PHITINH", "ten": "Phi tinh năm và cách hóa giải", "tan_suat": "1 lần/năm",
+     "du_lieu": ["phong_thuy/cuu_cung_phi_tinh"], "ham": ["tuvi.phong_thuy.phi_tinh_nam"],
+     "muc_dich": "Nội dung chuyên môn cao, tạo uy tín", "do_kho": "khó"}
+   ]
+  },
+  {
+   "ma": "HAN",
+   "ten": "Hạn và giải hạn",
+   "mo_ta": "Sao hạn cửu diệu, tam tai, kim lâu, hoang ốc, thái tuế.",
+   "chu_de": [
+    {"ma": "HAN-SAO", "ten": "Sao chiếu mệnh năm nay theo tuổi", "tan_suat": "1 lần/năm",
+     "du_lieu": ["han/sao_han"], "ham": ["tuvi.han.sao_han"], "muc_dich": "Đỉnh traffic tháng Giêng âm lịch", "do_kho": "dễ"},
+    {"ma": "HAN-TAMTAI", "ten": "Tuổi phạm tam tai và cách hóa giải", "tan_suat": "1 lần/năm",
+     "du_lieu": ["han/tam_tai"], "ham": ["tuvi.han.tam_tai"], "muc_dich": "Từ khóa mùa vụ rất mạnh", "do_kho": "dễ"},
+    {"ma": "HAN-LAMNHA", "ten": "Xem tuổi làm nhà (Kim Lâu, Hoang Ốc, Tam Tai)", "tan_suat": "thường trực",
+     "du_lieu": ["han/kim_lau", "han/hoang_oc", "han/tam_tai"], "ham": ["tuvi.han.tuoi_lam_nha"],
+     "muc_dich": "Nhu cầu tìm kiếm ổn định quanh năm, giá trị thương mại cao", "do_kho": "trung bình"},
+    {"ma": "HAN-THAITUE", "ten": "Phạm Thái Tuế và năm tuổi", "tan_suat": "1 lần/năm",
+     "du_lieu": ["han/han_khac"], "ham": ["tuvi.han.thai_tue"], "muc_dich": "Bổ trợ cho bài tử vi năm", "do_kho": "dễ"}
+   ]
+  },
+  {
+   "ma": "NGAY",
+   "ten": "Xem ngày giờ",
+   "mo_ta": "Ngày hoàng đạo, 12 trực, nhị thập bát tú, giờ tốt.",
+   "chu_de": [
+    {"ma": "NGAY-TOT", "ten": "Ngày tốt xấu hôm nay", "tan_suat": "hằng ngày",
+     "du_lieu": ["lich/truc", "lich/nhi_thap_bat_tu"], "ham": ["tuvi.ngay_gio.xem_ngay"],
+     "muc_dich": "Nội dung tự động hóa được 100%, nuôi traffic đều", "do_kho": "dễ"},
+    {"ma": "NGAY-VIEC", "ten": "Chọn ngày cho việc cụ thể (cưới, khai trương, động thổ)", "tan_suat": "thường trực",
+     "du_lieu": ["lich/truc", "lich/nhi_thap_bat_tu"], "ham": ["tuvi.ngay_gio.xem_ngay"],
+     "muc_dich": "Ý định tìm kiếm rõ, dễ chuyển đổi dịch vụ", "do_kho": "trung bình"},
+    {"ma": "NGAY-KIENG", "ten": "Ngày kiêng kỵ: tam nương, nguyệt kỵ, thọ tử", "tan_suat": "12 bài",
+     "du_lieu": ["lich/ngay_kieng"], "ham": ["tuvi.ngay_gio.ngay_kieng"], "muc_dich": "Chủ đề dễ lan truyền", "do_kho": "dễ"}
+  ]
+  }
+ ],
+ "quy_tac_bien_tap": [
+  "Luôn ghi rõ đây là tri thức văn hóa dân gian, không phải khoa học dự báo.",
+  "Không hứa hẹn kết quả, không dọa nạt để bán vật phẩm giải hạn.",
+  "Khi có nhiều trường phái khác nhau, nêu rõ đang dùng trường phái nào.",
+  "Mọi con số ngày tháng phải sinh từ hàm tính toán trong gói tuvi, không gõ tay.",
+  "Gắn nguồn tham khảo cho các bảng tra quan trọng (xem SOURCES.md)."
+ ]
+}

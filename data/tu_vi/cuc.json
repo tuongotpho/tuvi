@@ -1,0 +1,42 @@
+{
+ "mo_ta": "Ngũ hành Cục xác định bằng nạp âm của can chi cung Mệnh, quyết định cách an Tử Vi và mốc khởi đại hạn.",
+ "cuc": [
+  {
+   "so": 2,
+   "ten": "Thủy nhị cục",
+   "hanh": "Thủy",
+   "khoi_dai_han_nam_duong_nu_am": 2,
+   "y_nghia": "Khởi vận sớm, thông minh linh hoạt, đời người nhiều biến chuyển."
+  },
+  {
+   "so": 3,
+   "ten": "Mộc tam cục",
+   "hanh": "Mộc",
+   "khoi_dai_han_nam_duong_nu_am": 3,
+   "y_nghia": "Phát triển đều, nhân hậu, hợp nghề trí óc và giáo dục."
+  },
+  {
+   "so": 4,
+   "ten": "Kim tứ cục",
+   "hanh": "Kim",
+   "khoi_dai_han_nam_duong_nu_am": 4,
+   "y_nghia": "Cương nghị, có kỷ luật, hợp nghề tài chính, kỹ thuật, quân sự."
+  },
+  {
+   "so": 5,
+   "ten": "Thổ ngũ cục",
+   "hanh": "Thổ",
+   "khoi_dai_han_nam_duong_nu_am": 5,
+   "y_nghia": "Vững chãi, phát muộn mà bền, hợp bất động sản và quản trị."
+  },
+  {
+   "so": 6,
+   "ten": "Hỏa lục cục",
+   "hanh": "Hỏa",
+   "khoi_dai_han_nam_duong_nu_am": 6,
+   "y_nghia": "Phát nhanh, nhiệt huyết, dễ thăng trầm mạnh."
+  }
+ ],
+ "dai_han": "Mỗi đại hạn 10 năm, khởi từ số Cục tại cung Mệnh; nam Dương nữ Âm đi thuận, nam Âm nữ Dương đi nghịch.",
+ "tieu_han": "Tiểu hạn đi theo năm, khởi theo chi năm sinh; hạn tháng dùng sao Đẩu Quân."
+}

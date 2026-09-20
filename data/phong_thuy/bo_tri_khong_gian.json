@@ -1,0 +1,80 @@
+[
+ {
+  "khu_vuc": "Cửa chính",
+  "nguyen_tac": [
+   "Đặt vào một trong bốn hướng tốt của gia chủ",
+   "Tránh đối thẳng cửa sau hoặc cửa nhà vệ sinh (xuyên tâm sát)",
+   "Tránh bị cột điện, góc nhọn, cây lớn chĩa vào (hình sát)"
+  ],
+  "hoa_giai": [
+   "Đặt bình phong hoặc kệ cây ngăn dòng khí thẳng",
+   "Treo rèm, gương bát quái lồi khi bị hình sát chiếu"
+  ],
+  "goi_y_content": "Chủ đề phổ biến nhất khi tư vấn nhà phố: cửa chính hợp hướng và cách chắn xuyên tâm sát."
+ },
+ {
+  "khu_vuc": "Phòng ngủ",
+  "nguyen_tac": [
+   "Đầu giường dựa tường đặc, không dựa cửa sổ hay nhà vệ sinh",
+   "Hướng đầu giường quay về Sinh Khí, Thiên Y hoặc Diên Niên",
+   "Không kê giường dưới xà ngang, không đặt gương chiếu thẳng vào giường"
+  ],
+  "hoa_giai": [
+   "Làm trần giả che xà ngang",
+   "Che gương bằng rèm hoặc xoay hướng gương"
+  ],
+  "goi_y_content": "Nội dung dễ viral vì ai cũng kiểm chứng được ngay trong nhà mình."
+ },
+ {
+  "khu_vuc": "Bếp",
+  "nguyen_tac": [
+   "Tọa hung hướng cát: bếp đặt ở hướng xấu, miệng bếp quay về hướng tốt",
+   "Không đặt bếp sát bồn rửa hay tủ lạnh (Thủy Hỏa tương xung)",
+   "Không đặt bếp dưới nhà vệ sinh tầng trên"
+  ],
+  "hoa_giai": [
+   "Chèn khoảng đệm gỗ hoặc kệ cây giữa bếp và bồn rửa",
+   "Giữ bếp luôn sạch, đủ sáng"
+  ],
+  "goi_y_content": "Gắn với sức khỏe và tài khí của cả nhà, hợp dạng bài checklist."
+ },
+ {
+  "khu_vuc": "Bàn thờ",
+  "nguyen_tac": [
+   "Đặt ở nơi trang nghiêm, tựa tường vững, tránh dưới xà và sát nhà vệ sinh",
+   "Hướng bàn thờ thường đặt theo Phục Vị hoặc hướng hợp mệnh gia chủ",
+   "Không đặt bàn thờ đối diện cửa chính hoặc dưới cầu thang"
+  ],
+  "hoa_giai": [
+   "Dùng vách ngăn, rèm che",
+   "Nâng cao bàn thờ, đủ ánh sáng ấm"
+  ],
+  "goi_y_content": "Chủ đề nhạy cảm, nên viết ở giọng tôn trọng tín ngưỡng, tránh phán xét."
+ },
+ {
+  "khu_vuc": "Bàn làm việc",
+  "nguyen_tac": [
+   "Lưng tựa tường, không quay lưng ra cửa hay cửa sổ lớn",
+   "Hướng ngồi quay về Sinh Khí (công danh) hoặc Phục Vị (học hành)",
+   "Tránh ngồi đối diện thẳng cửa ra vào hoặc bị góc tường chĩa vào"
+  ],
+  "hoa_giai": [
+   "Kê ghế lưng cao",
+   "Đặt cây nhỏ chắn góc nhọn"
+  ],
+  "goi_y_content": "Rất hợp tệp văn phòng, dễ làm dạng ảnh sơ đồ minh họa."
+ },
+ {
+  "khu_vuc": "Nhà vệ sinh",
+  "nguyen_tac": [
+   "Nên rơi vào hướng xấu để trấn hung khí",
+   "Không đặt ở trung cung của nhà",
+   "Cửa nhà vệ sinh không đối cửa bếp, cửa phòng ngủ, bàn thờ"
+  ],
+  "hoa_giai": [
+   "Luôn đóng cửa, hút mùi tốt",
+   "Đặt cây chịu bóng, treo rèm cửa"
+  ],
+  "goi_y_content": "Lỗi hay gặp ở căn hộ chung cư, dễ làm nội dung 'sai lầm thường gặp'."
+ }
+]

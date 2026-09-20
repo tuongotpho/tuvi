@@ -1,0 +1,111 @@
+{
+ "mo_ta": "Tám hướng chính và 24 sơn hướng dùng trong la bàn phong thủy.",
+ "quy_uoc": "Hướng nhà là hướng mặt tiền nhìn ra; tọa là hướng lưng nhà dựa vào, đối 180 độ.",
+ "huong": [
+  {
+   "ten": "Bắc",
+   "quai": "Khảm",
+   "hanh": "Thủy",
+   "do_tu": 337.5,
+   "do_den": 22.5,
+   "son": [
+    "Nhâm",
+    "Tý",
+    "Quý"
+   ],
+   "cung_bat_trach": "Sự nghiệp, công danh"
+  },
+  {
+   "ten": "Đông Bắc",
+   "quai": "Cấn",
+   "hanh": "Thổ",
+   "do_tu": 22.5,
+   "do_den": 67.5,
+   "son": [
+    "Sửu",
+    "Cấn",
+    "Dần"
+   ],
+   "cung_bat_trach": "Tri thức, tu dưỡng"
+  },
+  {
+   "ten": "Đông",
+   "quai": "Chấn",
+   "hanh": "Mộc",
+   "do_tu": 67.5,
+   "do_den": 112.5,
+   "son": [
+    "Giáp",
+    "Mão",
+    "Ất"
+   ],
+   "cung_bat_trach": "Gia đạo, sức khỏe"
+  },
+  {
+   "ten": "Đông Nam",
+   "quai": "Tốn",
+   "hanh": "Mộc",
+   "do_tu": 112.5,
+   "do_den": 157.5,
+   "son": [
+    "Thìn",
+    "Tốn",
+    "Tỵ"
+   ],
+   "cung_bat_trach": "Tài lộc, thịnh vượng"
+  },
+  {
+   "ten": "Nam",
+   "quai": "Ly",
+   "hanh": "Hỏa",
+   "do_tu": 157.5,
+   "do_den": 202.5,
+   "son": [
+    "Bính",
+    "Ngọ",
+    "Đinh"
+   ],
+   "cung_bat_trach": "Danh tiếng, uy tín"
+  },
+  {
+   "ten": "Tây Nam",
+   "quai": "Khôn",
+   "hanh": "Thổ",
+   "do_tu": 202.5,
+   "do_den": 247.5,
+   "son": [
+    "Mùi",
+    "Khôn",
+    "Thân"
+   ],
+   "cung_bat_trach": "Hôn nhân, tình cảm"
+  },
+  {
+   "ten": "Tây",
+   "quai": "Đoài",
+   "hanh": "Kim",
+   "do_tu": 247.5,
+   "do_den": 292.5,
+   "son": [
+    "Canh",
+    "Dậu",
+    "Tân"
+   ],
+   "cung_bat_trach": "Con cái, sáng tạo"
+  },
+  {
+   "ten": "Tây Bắc",
+   "quai": "Càn",
+   "hanh": "Kim",
+   "do_tu": 292.5,
+   "do_den": 337.5,
+   "son": [
+    "Tuất",
+    "Càn",
+    "Hợi"
+   ],
+   "cung_bat_trach": "Quý nhân, du lịch"
+  }
+ ],
+ "cach_do": "Đứng trong nhà nhìn ra cửa chính, dùng la bàn đo độ phương vị của hướng nhìn; đối chiếu khoảng độ ở trên."
+}

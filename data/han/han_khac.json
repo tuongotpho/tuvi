@@ -1,0 +1,42 @@
+{
+ "thai_tue": {
+  "mo_ta": "Thái Tuế là vị thần cai quản năm. Tuổi có quan hệ xấu với chi của năm gọi là phạm Thái Tuế.",
+  "cac_dang": [
+   {"ten": "Bản mệnh Thái Tuế (năm tuổi)", "quan_he": "chi tuổi trùng chi năm",
+    "muc_do": "nặng", "canh_bao": "Năm tuổi nhiều biến động, dễ hao tài và thay đổi lớn; nên giữ ổn định, kiêng khoe khoang."},
+   {"ten": "Xung Thái Tuế", "quan_he": "chi tuổi xung chi năm (cách 6 cung)",
+    "muc_do": "nặng nhất", "canh_bao": "Dễ có biến cố về công việc, chỗ ở, quan hệ; hạn chế đổi việc, chuyển nhà, đầu tư lớn."},
+   {"ten": "Hình Thái Tuế", "quan_he": "chi tuổi tương hình với chi năm",
+    "muc_do": "vừa", "canh_bao": "Thị phi, kiện tụng, vướng mắc pháp lý; cần cẩn thận giấy tờ và lời nói."},
+   {"ten": "Hại Thái Tuế", "quan_he": "chi tuổi lục hại với chi năm",
+    "muc_do": "nhẹ", "canh_bao": "Dễ bị người thân cận gây phiền; giữ ranh giới trong hợp tác."},
+   {"ten": "Phá Thái Tuế", "quan_he": "chi tuổi tương phá với chi năm",
+    "muc_do": "nhẹ", "canh_bao": "Kế hoạch hay bị gián đoạn; nên có phương án dự phòng."}
+  ],
+  "hoa_giai": ["Đi lễ đầu năm, cúng sao giải hạn", "Đeo vật phẩm theo tuổi tam hợp hoặc lục hợp",
+               "Giữ nguyên hiện trạng, tránh quyết định lớn trong quý I", "Làm việc thiện, giúp người"]
+ },
+ "tuong_hinh": {
+  "mo_ta": "Tam hình và tự hình giữa các địa chi.",
+  "nhom": [
+   {"ten": "Vô ân chi hình", "chi": ["Dần", "Tỵ", "Thân"], "y_nghia": "Hình nhau vì lợi, dễ phản bội ân nghĩa."},
+   {"ten": "Thị thế chi hình", "chi": ["Sửu", "Tuất", "Mùi"], "y_nghia": "Hình nhau vì cậy thế, tranh chấp quyền lợi."},
+   {"ten": "Vô lễ chi hình", "chi": ["Tý", "Mão"], "y_nghia": "Hình nhau vì thiếu tôn trọng, bất hòa trong quan hệ gần."},
+   {"ten": "Tự hình", "chi": ["Thìn", "Ngọ", "Dậu", "Hợi"], "y_nghia": "Tự làm khổ mình, cố chấp với chính mình."}
+  ]
+ },
+ "tuong_pha": {
+  "mo_ta": "Lục phá — các cặp địa chi phá nhau, làm dở dang kế hoạch.",
+  "cap": [["Tý", "Dậu"], ["Ngọ", "Mão"], ["Thân", "Tỵ"], ["Dần", "Hợi"], ["Thìn", "Sửu"], ["Tuất", "Mùi"]]
+ },
+ "han_theo_tuoi": [
+  {"tuoi_mu": [49, 53], "ten": "Hạn 49 chưa qua, 53 đã tới",
+   "y_nghia": "Hai mốc tuổi dân gian cho là nhiều biến động về sức khỏe và công việc.",
+   "ly_giai": "49 và 53 đều rơi vào giai đoạn chuyển vận lớn của đời người; ngoài ý nghĩa huyền học, đây cũng là độ tuổi cơ thể bắt đầu suy giảm rõ.",
+   "loi_khuyen": ["Khám sức khỏe tổng quát", "Không đầu tư mạo hiểm", "Giảm cường độ làm việc", "Sắp xếp lại tài chính gia đình"]},
+  {"tuoi_mu": [13, 25, 37, 49, 61, 73], "ten": "Năm tuổi (bản mệnh niên)",
+   "y_nghia": "Năm có chi trùng chi tuổi, cứ 12 năm một lần.",
+   "ly_giai": "Được xem là năm phải \"đối diện Thái Tuế\", nhiều thay đổi.",
+   "loi_khuyen": ["Mặc đồ đỏ đầu năm theo tục lệ", "Giữ ổn định, tránh quyết định vội", "Chú ý sức khỏe"]}
+ ]
+}

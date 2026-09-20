@@ -1,0 +1,602 @@
+[
+ {
+  "stt": 1,
+  "can": "Giáp",
+  "chi": "Tý",
+  "ten": "Giáp Tý",
+  "nap_am": "Hải Trung Kim",
+  "hanh": "Kim",
+  "am_duong": "Dương",
+  "con_giap": "Chuột"
+ },
+ {
+  "stt": 2,
+  "can": "Ất",
+  "chi": "Sửu",
+  "ten": "Ất Sửu",
+  "nap_am": "Hải Trung Kim",
+  "hanh": "Kim",
+  "am_duong": "Âm",
+  "con_giap": "Trâu"
+ },
+ {
+  "stt": 3,
+  "can": "Bính",
+  "chi": "Dần",
+  "ten": "Bính Dần",
+  "nap_am": "Lư Trung Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Dương",
+  "con_giap": "Hổ"
+ },
+ {
+  "stt": 4,
+  "can": "Đinh",
+  "chi": "Mão",
+  "ten": "Đinh Mão",
+  "nap_am": "Lư Trung Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Âm",
+  "con_giap": "Mèo"
+ },
+ {
+  "stt": 5,
+  "can": "Mậu",
+  "chi": "Thìn",
+  "ten": "Mậu Thìn",
+  "nap_am": "Đại Lâm Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Dương",
+  "con_giap": "Rồng"
+ },
+ {
+  "stt": 6,
+  "can": "Kỷ",
+  "chi": "Tỵ",
+  "ten": "Kỷ Tỵ",
+  "nap_am": "Đại Lâm Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Âm",
+  "con_giap": "Rắn"
+ },
+ {
+  "stt": 7,
+  "can": "Canh",
+  "chi": "Ngọ",
+  "ten": "Canh Ngọ",
+  "nap_am": "Lộ Bàng Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "con_giap": "Ngựa"
+ },
+ {
+  "stt": 8,
+  "can": "Tân",
+  "chi": "Mùi",
+  "ten": "Tân Mùi",
+  "nap_am": "Lộ Bàng Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "con_giap": "Dê"
+ },
+ {
+  "stt": 9,
+  "can": "Nhâm",
+  "chi": "Thân",
+  "ten": "Nhâm Thân",
+  "nap_am": "Kiếm Phong Kim",
+  "hanh": "Kim",
+  "am_duong": "Dương",
+  "con_giap": "Khỉ"
+ },
+ {
+  "stt": 10,
+  "can": "Quý",
+  "chi": "Dậu",
+  "ten": "Quý Dậu",
+  "nap_am": "Kiếm Phong Kim",
+  "hanh": "Kim",
+  "am_duong": "Âm",
+  "con_giap": "Gà"
+ },
+ {
+  "stt": 11,
+  "can": "Giáp",
+  "chi": "Tuất",
+  "ten": "Giáp Tuất",
+  "nap_am": "Sơn Đầu Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Dương",
+  "con_giap": "Chó"
+ },
+ {
+  "stt": 12,
+  "can": "Ất",
+  "chi": "Hợi",
+  "ten": "Ất Hợi",
+  "nap_am": "Sơn Đầu Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Âm",
+  "con_giap": "Lợn"
+ },
+ {
+  "stt": 13,
+  "can": "Bính",
+  "chi": "Tý",
+  "ten": "Bính Tý",
+  "nap_am": "Giản Hạ Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Dương",
+  "con_giap": "Chuột"
+ },
+ {
+  "stt": 14,
+  "can": "Đinh",
+  "chi": "Sửu",
+  "ten": "Đinh Sửu",
+  "nap_am": "Giản Hạ Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Âm",
+  "con_giap": "Trâu"
+ },
+ {
+  "stt": 15,
+  "can": "Mậu",
+  "chi": "Dần",
+  "ten": "Mậu Dần",
+  "nap_am": "Thành Đầu Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "con_giap": "Hổ"
+ },
+ {
+  "stt": 16,
+  "can": "Kỷ",
+  "chi": "Mão",
+  "ten": "Kỷ Mão",
+  "nap_am": "Thành Đầu Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "con_giap": "Mèo"
+ },
+ {
+  "stt": 17,
+  "can": "Canh",
+  "chi": "Thìn",
+  "ten": "Canh Thìn",
+  "nap_am": "Bạch Lạp Kim",
+  "hanh": "Kim",
+  "am_duong": "Dương",
+  "con_giap": "Rồng"
+ },
+ {
+  "stt": 18,
+  "can": "Tân",
+  "chi": "Tỵ",
+  "ten": "Tân Tỵ",
+  "nap_am": "Bạch Lạp Kim",
+  "hanh": "Kim",
+  "am_duong": "Âm",
+  "con_giap": "Rắn"
+ },
+ {
+  "stt": 19,
+  "can": "Nhâm",
+  "chi": "Ngọ",
+  "ten": "Nhâm Ngọ",
+  "nap_am": "Dương Liễu Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Dương",
+  "con_giap": "Ngựa"
+ },
+ {
+  "stt": 20,
+  "can": "Quý",
+  "chi": "Mùi",
+  "ten": "Quý Mùi",
+  "nap_am": "Dương Liễu Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Âm",
+  "con_giap": "Dê"
+ },
+ {
+  "stt": 21,
+  "can": "Giáp",
+  "chi": "Thân",
+  "ten": "Giáp Thân",
+  "nap_am": "Tuyền Trung Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Dương",
+  "con_giap": "Khỉ"
+ },
+ {
+  "stt": 22,
+  "can": "Ất",
+  "chi": "Dậu",
+  "ten": "Ất Dậu",
+  "nap_am": "Tuyền Trung Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Âm",
+  "con_giap": "Gà"
+ },
+ {
+  "stt": 23,
+  "can": "Bính",
+  "chi": "Tuất",
+  "ten": "Bính Tuất",
+  "nap_am": "Ốc Thượng Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "con_giap": "Chó"
+ },
+ {
+  "stt": 24,
+  "can": "Đinh",
+  "chi": "Hợi",
+  "ten": "Đinh Hợi",
+  "nap_am": "Ốc Thượng Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "con_giap": "Lợn"
+ },
+ {
+  "stt": 25,
+  "can": "Mậu",
+  "chi": "Tý",
+  "ten": "Mậu Tý",
+  "nap_am": "Tích Lịch Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Dương",
+  "con_giap": "Chuột"
+ },
+ {
+  "stt": 26,
+  "can": "Kỷ",
+  "chi": "Sửu",
+  "ten": "Kỷ Sửu",
+  "nap_am": "Tích Lịch Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Âm",
+  "con_giap": "Trâu"
+ },
+ {
+  "stt": 27,
+  "can": "Canh",
+  "chi": "Dần",
+  "ten": "Canh Dần",
+  "nap_am": "Tùng Bách Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Dương",
+  "con_giap": "Hổ"
+ },
+ {
+  "stt": 28,
+  "can": "Tân",
+  "chi": "Mão",
+  "ten": "Tân Mão",
+  "nap_am": "Tùng Bách Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Âm",
+  "con_giap": "Mèo"
+ },
+ {
+  "stt": 29,
+  "can": "Nhâm",
+  "chi": "Thìn",
+  "ten": "Nhâm Thìn",
+  "nap_am": "Trường Lưu Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Dương",
+  "con_giap": "Rồng"
+ },
+ {
+  "stt": 30,
+  "can": "Quý",
+  "chi": "Tỵ",
+  "ten": "Quý Tỵ",
+  "nap_am": "Trường Lưu Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Âm",
+  "con_giap": "Rắn"
+ },
+ {
+  "stt": 31,
+  "can": "Giáp",
+  "chi": "Ngọ",
+  "ten": "Giáp Ngọ",
+  "nap_am": "Sa Trung Kim",
+  "hanh": "Kim",
+  "am_duong": "Dương",
+  "con_giap": "Ngựa"
+ },
+ {
+  "stt": 32,
+  "can": "Ất",
+  "chi": "Mùi",
+  "ten": "Ất Mùi",
+  "nap_am": "Sa Trung Kim",
+  "hanh": "Kim",
+  "am_duong": "Âm",
+  "con_giap": "Dê"
+ },
+ {
+  "stt": 33,
+  "can": "Bính",
+  "chi": "Thân",
+  "ten": "Bính Thân",
+  "nap_am": "Sơn Hạ Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Dương",
+  "con_giap": "Khỉ"
+ },
+ {
+  "stt": 34,
+  "can": "Đinh",
+  "chi": "Dậu",
+  "ten": "Đinh Dậu",
+  "nap_am": "Sơn Hạ Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Âm",
+  "con_giap": "Gà"
+ },
+ {
+  "stt": 35,
+  "can": "Mậu",
+  "chi": "Tuất",
+  "ten": "Mậu Tuất",
+  "nap_am": "Bình Địa Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Dương",
+  "con_giap": "Chó"
+ },
+ {
+  "stt": 36,
+  "can": "Kỷ",
+  "chi": "Hợi",
+  "ten": "Kỷ Hợi",
+  "nap_am": "Bình Địa Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Âm",
+  "con_giap": "Lợn"
+ },
+ {
+  "stt": 37,
+  "can": "Canh",
+  "chi": "Tý",
+  "ten": "Canh Tý",
+  "nap_am": "Bích Thượng Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "con_giap": "Chuột"
+ },
+ {
+  "stt": 38,
+  "can": "Tân",
+  "chi": "Sửu",
+  "ten": "Tân Sửu",
+  "nap_am": "Bích Thượng Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "con_giap": "Trâu"
+ },
+ {
+  "stt": 39,
+  "can": "Nhâm",
+  "chi": "Dần",
+  "ten": "Nhâm Dần",
+  "nap_am": "Kim Bạch Kim",
+  "hanh": "Kim",
+  "am_duong": "Dương",
+  "con_giap": "Hổ"
+ },
+ {
+  "stt": 40,
+  "can": "Quý",
+  "chi": "Mão",
+  "ten": "Quý Mão",
+  "nap_am": "Kim Bạch Kim",
+  "hanh": "Kim",
+  "am_duong": "Âm",
+  "con_giap": "Mèo"
+ },
+ {
+  "stt": 41,
+  "can": "Giáp",
+  "chi": "Thìn",
+  "ten": "Giáp Thìn",
+  "nap_am": "Phúc Đăng Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Dương",
+  "con_giap": "Rồng"
+ },
+ {
+  "stt": 42,
+  "can": "Ất",
+  "chi": "Tỵ",
+  "ten": "Ất Tỵ",
+  "nap_am": "Phúc Đăng Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Âm",
+  "con_giap": "Rắn"
+ },
+ {
+  "stt": 43,
+  "can": "Bính",
+  "chi": "Ngọ",
+  "ten": "Bính Ngọ",
+  "nap_am": "Thiên Hà Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Dương",
+  "con_giap": "Ngựa"
+ },
+ {
+  "stt": 44,
+  "can": "Đinh",
+  "chi": "Mùi",
+  "ten": "Đinh Mùi",
+  "nap_am": "Thiên Hà Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Âm",
+  "con_giap": "Dê"
+ },
+ {
+  "stt": 45,
+  "can": "Mậu",
+  "chi": "Thân",
+  "ten": "Mậu Thân",
+  "nap_am": "Đại Trạch Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "con_giap": "Khỉ"
+ },
+ {
+  "stt": 46,
+  "can": "Kỷ",
+  "chi": "Dậu",
+  "ten": "Kỷ Dậu",
+  "nap_am": "Đại Trạch Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "con_giap": "Gà"
+ },
+ {
+  "stt": 47,
+  "can": "Canh",
+  "chi": "Tuất",
+  "ten": "Canh Tuất",
+  "nap_am": "Thoa Xuyến Kim",
+  "hanh": "Kim",
+  "am_duong": "Dương",
+  "con_giap": "Chó"
+ },
+ {
+  "stt": 48,
+  "can": "Tân",
+  "chi": "Hợi",
+  "ten": "Tân Hợi",
+  "nap_am": "Thoa Xuyến Kim",
+  "hanh": "Kim",
+  "am_duong": "Âm",
+  "con_giap": "Lợn"
+ },
+ {
+  "stt": 49,
+  "can": "Nhâm",
+  "chi": "Tý",
+  "ten": "Nhâm Tý",
+  "nap_am": "Tang Đố Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Dương",
+  "con_giap": "Chuột"
+ },
+ {
+  "stt": 50,
+  "can": "Quý",
+  "chi": "Sửu",
+  "ten": "Quý Sửu",
+  "nap_am": "Tang Đố Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Âm",
+  "con_giap": "Trâu"
+ },
+ {
+  "stt": 51,
+  "can": "Giáp",
+  "chi": "Dần",
+  "ten": "Giáp Dần",
+  "nap_am": "Đại Khê Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Dương",
+  "con_giap": "Hổ"
+ },
+ {
+  "stt": 52,
+  "can": "Ất",
+  "chi": "Mão",
+  "ten": "Ất Mão",
+  "nap_am": "Đại Khê Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Âm",
+  "con_giap": "Mèo"
+ },
+ {
+  "stt": 53,
+  "can": "Bính",
+  "chi": "Thìn",
+  "ten": "Bính Thìn",
+  "nap_am": "Sa Trung Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "con_giap": "Rồng"
+ },
+ {
+  "stt": 54,
+  "can": "Đinh",
+  "chi": "Tỵ",
+  "ten": "Đinh Tỵ",
+  "nap_am": "Sa Trung Thổ",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "con_giap": "Rắn"
+ },
+ {
+  "stt": 55,
+  "can": "Mậu",
+  "chi": "Ngọ",
+  "ten": "Mậu Ngọ",
+  "nap_am": "Thiên Thượng Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Dương",
+  "con_giap": "Ngựa"
+ },
+ {
+  "stt": 56,
+  "can": "Kỷ",
+  "chi": "Mùi",
+  "ten": "Kỷ Mùi",
+  "nap_am": "Thiên Thượng Hỏa",
+  "hanh": "Hỏa",
+  "am_duong": "Âm",
+  "con_giap": "Dê"
+ },
+ {
+  "stt": 57,
+  "can": "Canh",
+  "chi": "Thân",
+  "ten": "Canh Thân",
+  "nap_am": "Thạch Lựu Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Dương",
+  "con_giap": "Khỉ"
+ },
+ {
+  "stt": 58,
+  "can": "Tân",
+  "chi": "Dậu",
+  "ten": "Tân Dậu",
+  "nap_am": "Thạch Lựu Mộc",
+  "hanh": "Mộc",
+  "am_duong": "Âm",
+  "con_giap": "Gà"
+ },
+ {
+  "stt": 59,
+  "can": "Nhâm",
+  "chi": "Tuất",
+  "ten": "Nhâm Tuất",
+  "nap_am": "Đại Hải Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Dương",
+  "con_giap": "Chó"
+ },
+ {
+  "stt": 60,
+  "can": "Quý",
+  "chi": "Hợi",
+  "ten": "Quý Hợi",
+  "nap_am": "Đại Hải Thủy",
+  "hanh": "Thủy",
+  "am_duong": "Âm",
+  "con_giap": "Lợn"
+ }
+]

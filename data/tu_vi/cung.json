@@ -1,0 +1,141 @@
+[
+ {
+  "stt": 1,
+  "ten": "Mệnh",
+  "chu_ve": "Bản thân, tính cách, vận mệnh tổng quát",
+  "cach_doc": "Đọc đầu tiên: quyết định khung tính cách và hướng đi cả đời.",
+  "noi_dung_xem": [
+   "tính cách cốt lõi",
+   "diện mạo",
+   "hướng phát triển",
+   "điểm mạnh điểm yếu"
+  ]
+ },
+ {
+  "stt": 2,
+  "ten": "Phụ Mẫu",
+  "chu_ve": "Cha mẹ, cấp trên, xuất thân",
+  "cach_doc": "Cũng là cung Tướng mạo, xem quan hệ với người trên và nền tảng gia đình.",
+  "noi_dung_xem": [
+   "quan hệ với cha mẹ",
+   "được cấp trên nâng đỡ hay không",
+   "sức khỏe cha mẹ"
+  ]
+ },
+ {
+  "stt": 3,
+  "ten": "Phúc Đức",
+  "chu_ve": "Phúc phần, tinh thần, hưởng thụ",
+  "cach_doc": "Cung quan trọng thứ hai sau Mệnh: xem tâm an hay bất an, phúc dày hay mỏng.",
+  "noi_dung_xem": [
+   "đời sống tinh thần",
+   "phúc ấm tổ tiên",
+   "mức độ hưởng thụ",
+   "tuổi thọ"
+  ]
+ },
+ {
+  "stt": 4,
+  "ten": "Điền Trạch",
+  "chu_ve": "Nhà cửa, đất đai, tài sản cố định",
+  "cach_doc": "Xem khả năng có nhà, giữ của và môi trường sống.",
+  "noi_dung_xem": [
+   "bất động sản",
+   "tài sản thừa kế",
+   "môi trường sống",
+   "kho chứa tiền"
+  ]
+ },
+ {
+  "stt": 5,
+  "ten": "Quan Lộc",
+  "chu_ve": "Sự nghiệp, công danh, học vấn",
+  "cach_doc": "Xem nghề nghiệp phù hợp và đỉnh cao sự nghiệp.",
+  "noi_dung_xem": [
+   "nghề nghiệp phù hợp",
+   "thăng tiến",
+   "học vấn",
+   "danh tiếng"
+  ]
+ },
+ {
+  "stt": 6,
+  "ten": "Nô Bộc",
+  "chu_ve": "Bạn bè, cấp dưới, đối tác",
+  "cach_doc": "Xem được người giúp hay bị người hại.",
+  "noi_dung_xem": [
+   "chất lượng bạn bè",
+   "nhân viên cấp dưới",
+   "đối tác làm ăn"
+  ]
+ },
+ {
+  "stt": 7,
+  "ten": "Thiên Di",
+  "chu_ve": "Đi xa, môi trường bên ngoài",
+  "cach_doc": "Xem vận ra ngoài, xuất ngoại, cơ hội ở xa nhà.",
+  "noi_dung_xem": [
+   "đi xa có lợi không",
+   "quan hệ xã hội",
+   "cơ hội nước ngoài",
+   "tai nạn đường đi"
+  ]
+ },
+ {
+  "stt": 8,
+  "ten": "Tật Ách",
+  "chu_ve": "Sức khỏe, bệnh tật, tai ách",
+  "cach_doc": "Xem thể chất bẩm sinh và những bệnh dễ mắc.",
+  "noi_dung_xem": [
+   "bệnh mãn tính",
+   "tai nạn",
+   "thể trạng",
+   "phẫu thuật"
+  ]
+ },
+ {
+  "stt": 9,
+  "ten": "Tài Bạch",
+  "chu_ve": "Tiền bạc, thu nhập, cách kiếm tiền",
+  "cach_doc": "Xem nguồn tiền và cách tiền vào ra.",
+  "noi_dung_xem": [
+   "nguồn thu nhập",
+   "khả năng giữ tiền",
+   "đầu tư",
+   "vận may tài chính"
+  ]
+ },
+ {
+  "stt": 10,
+  "ten": "Tử Tức",
+  "chu_ve": "Con cái, sáng tạo, học trò",
+  "cach_doc": "Cũng xem khả năng sinh sản và các \"đứa con tinh thần\".",
+  "noi_dung_xem": [
+   "số con",
+   "quan hệ với con",
+   "sản phẩm sáng tạo"
+  ]
+ },
+ {
+  "stt": 11,
+  "ten": "Phu Thê",
+  "chu_ve": "Hôn nhân, bạn đời",
+  "cach_doc": "Xem hình mẫu bạn đời và chất lượng hôn nhân.",
+  "noi_dung_xem": [
+   "mẫu người bạn đời",
+   "thời điểm kết hôn",
+   "hòa hợp hay trắc trở"
+  ]
+ },
+ {
+  "stt": 12,
+  "ten": "Huynh Đệ",
+  "chu_ve": "Anh chị em, cộng sự thân cận",
+  "cach_doc": "Xem quan hệ ruột thịt và sự hỗ trợ ngang hàng.",
+  "noi_dung_xem": [
+   "số anh chị em",
+   "mức độ giúp đỡ",
+   "hợp tác ngang hàng"
+  ]
+ }
+]

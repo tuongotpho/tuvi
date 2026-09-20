@@ -1,0 +1,312 @@
+{
+ "mo_ta": "Phong thủy Bát trạch: xác định cung phi của gia chủ rồi đối chiếu tám hướng theo Đại du niên bát biến.",
+ "cach_tinh_cung_phi": {
+  "buoc_1": "Lấy năm sinh ÂM LỊCH (sinh trước Tết thì tính năm trước).",
+  "buoc_2": "Cộng hai chữ số cuối của năm sinh, rút gọn về một chữ số a.",
+  "buoc_3_nam": "Sinh trước năm 2000: b = 10 - a. Từ năm 2000 trở đi: b = 9 - a.",
+  "buoc_3_nu": "Sinh trước năm 2000: c = 5 + a. Từ năm 2000 trở đi: c = 6 + a.",
+  "buoc_4": "Rút gọn kết quả về một chữ số rồi tra bảng số cung. Riêng số 5: nam là cung Khôn, nữ là cung Cấn."
+ },
+ "so_cung": {
+  "1": "Khảm",
+  "2": "Khôn",
+  "3": "Chấn",
+  "4": "Tốn",
+  "6": "Càn",
+  "7": "Đoài",
+  "8": "Cấn",
+  "9": "Ly"
+ },
+ "dong_tu_menh": [
+  "Khảm",
+  "Ly",
+  "Chấn",
+  "Tốn"
+ ],
+ "tay_tu_menh": [
+  "Càn",
+  "Khôn",
+  "Cấn",
+  "Đoài"
+ ],
+ "dong_tu_trach": [
+  "Bắc",
+  "Nam",
+  "Đông",
+  "Đông Nam"
+ ],
+ "tay_tu_trach": [
+  "Tây",
+  "Tây Bắc",
+  "Tây Nam",
+  "Đông Bắc"
+ ],
+ "du_nien": [
+  {
+   "ten": "Sinh Khí",
+   "tinh_chat": "tốt",
+   "xep_hang": 1,
+   "sao": "Tham Lang",
+   "hanh": "Mộc",
+   "y_nghia": "Hướng tốt nhất: thăng tiến, danh tiếng, con cái, sức sống dồi dào.",
+   "dung_cho": [
+    "hướng nhà",
+    "hướng cửa chính",
+    "hướng bàn làm việc",
+    "hướng giường ngủ"
+   ]
+  },
+  {
+   "ten": "Thiên Y",
+   "tinh_chat": "tốt",
+   "xep_hang": 2,
+   "sao": "Cự Môn",
+   "hanh": "Thổ",
+   "y_nghia": "Hướng của sức khỏe và quý nhân: bệnh tật thuyên giảm, được người giúp đỡ.",
+   "dung_cho": [
+    "hướng giường ngủ",
+    "hướng bếp nhìn về",
+    "phòng người già, người đau ốm"
+   ]
+  },
+  {
+   "ten": "Diên Niên",
+   "tinh_chat": "tốt",
+   "xep_hang": 3,
+   "sao": "Vũ Khúc",
+   "hanh": "Kim",
+   "y_nghia": "Hướng của quan hệ bền lâu: hôn nhân hòa thuận, đối tác gắn bó, sống thọ.",
+   "dung_cho": [
+    "hướng phòng ngủ vợ chồng",
+    "bàn tiếp khách",
+    "hướng cửa phòng"
+   ]
+  },
+  {
+   "ten": "Phục Vị",
+   "tinh_chat": "tốt",
+   "xep_hang": 4,
+   "sao": "Tả Phù",
+   "hanh": "Mộc",
+   "y_nghia": "Hướng của sự ổn định và học hành: củng cố nền tảng, hợp thi cử.",
+   "dung_cho": [
+    "bàn học",
+    "bàn thờ",
+    "hướng ngồi làm việc trí óc"
+   ]
+  },
+  {
+   "ten": "Tuyệt Mệnh",
+   "tinh_chat": "xấu",
+   "xep_hang": 8,
+   "sao": "Phá Quân",
+   "hanh": "Kim",
+   "y_nghia": "Hung nhất: tổn hại sức khỏe, tuyệt tự, phá sản, tai nạn.",
+   "dung_cho": [
+    "đặt bếp (tọa hung hướng cát)",
+    "nhà vệ sinh",
+    "kho"
+   ]
+  },
+  {
+   "ten": "Ngũ Quỷ",
+   "tinh_chat": "xấu",
+   "xep_hang": 7,
+   "sao": "Liêm Trinh",
+   "hanh": "Hỏa",
+   "y_nghia": "Hung: thị phi, mất trộm, cháy nổ, bất hòa trong nhà.",
+   "dung_cho": [
+    "nhà vệ sinh",
+    "kho",
+    "đặt bếp"
+   ]
+  },
+  {
+   "ten": "Lục Sát",
+   "tinh_chat": "xấu",
+   "xep_hang": 6,
+   "sao": "Văn Khúc",
+   "hanh": "Thủy",
+   "y_nghia": "Hung: kiện tụng, tình duyên trắc trở, hao tài vì chuyện tình cảm.",
+   "dung_cho": [
+    "nhà vệ sinh",
+    "kho",
+    "cầu thang"
+   ]
+  },
+  {
+   "ten": "Họa Hại",
+   "tinh_chat": "xấu",
+   "xep_hang": 5,
+   "sao": "Lộc Tồn",
+   "hanh": "Thổ",
+   "y_nghia": "Hung nhẹ nhất: cãi vã, thất bại nhỏ, hao tổn tinh thần.",
+   "dung_cho": [
+    "nhà vệ sinh",
+    "kho",
+    "lối đi phụ"
+   ]
+  }
+ ],
+ "cung": [
+  {
+   "ten": "Khảm",
+   "so": 1,
+   "hanh": "Thủy",
+   "huong": "Bắc",
+   "nhom": "Đông tứ mệnh",
+   "y_nghia": "Quẻ Khảm là nước, chủ trí tuệ và sự nghiệp; người cung Khảm giỏi xoay xở, hợp nghề trí óc.",
+   "nguoi": "Trung nam (con trai giữa)",
+   "du_nien": {
+    "Đông Nam": "Sinh Khí",
+    "Đông": "Thiên Y",
+    "Nam": "Diên Niên",
+    "Bắc": "Phục Vị",
+    "Tây Nam": "Tuyệt Mệnh",
+    "Đông Bắc": "Ngũ Quỷ",
+    "Tây Bắc": "Lục Sát",
+    "Tây": "Họa Hại"
+   }
+  },
+  {
+   "ten": "Cấn",
+   "so": 8,
+   "hanh": "Thổ",
+   "huong": "Đông Bắc",
+   "nhom": "Tây tứ mệnh",
+   "y_nghia": "Quẻ Cấn là núi, chủ tĩnh tại và tri thức; người cung Cấn điềm đạm, bền chí, hợp tích sản.",
+   "nguoi": "Thiếu nam (con trai út)",
+   "du_nien": {
+    "Tây Nam": "Sinh Khí",
+    "Tây Bắc": "Thiên Y",
+    "Tây": "Diên Niên",
+    "Đông Bắc": "Phục Vị",
+    "Đông Nam": "Tuyệt Mệnh",
+    "Bắc": "Ngũ Quỷ",
+    "Nam": "Lục Sát",
+    "Đông": "Họa Hại"
+   }
+  },
+  {
+   "ten": "Chấn",
+   "so": 3,
+   "hanh": "Mộc",
+   "huong": "Đông",
+   "nhom": "Đông tứ mệnh",
+   "y_nghia": "Quẻ Chấn là sấm, chủ khởi động và danh tiếng; người cung Chấn quyết đoán, ưa dẫn đầu.",
+   "nguoi": "Trưởng nam (con trai cả)",
+   "du_nien": {
+    "Nam": "Sinh Khí",
+    "Bắc": "Thiên Y",
+    "Đông Nam": "Diên Niên",
+    "Đông": "Phục Vị",
+    "Tây": "Tuyệt Mệnh",
+    "Tây Bắc": "Ngũ Quỷ",
+    "Tây Nam": "Lục Sát",
+    "Đông Bắc": "Họa Hại"
+   }
+  },
+  {
+   "ten": "Tốn",
+   "so": 4,
+   "hanh": "Mộc",
+   "huong": "Đông Nam",
+   "nhom": "Đông tứ mệnh",
+   "y_nghia": "Quẻ Tốn là gió, chủ văn chương và tài lộc; người cung Tốn khéo léo, giỏi lan tỏa ảnh hưởng.",
+   "nguoi": "Trưởng nữ (con gái cả)",
+   "du_nien": {
+    "Bắc": "Sinh Khí",
+    "Nam": "Thiên Y",
+    "Đông": "Diên Niên",
+    "Đông Nam": "Phục Vị",
+    "Đông Bắc": "Tuyệt Mệnh",
+    "Tây Nam": "Ngũ Quỷ",
+    "Tây": "Lục Sát",
+    "Tây Bắc": "Họa Hại"
+   }
+  },
+  {
+   "ten": "Ly",
+   "so": 9,
+   "hanh": "Hỏa",
+   "huong": "Nam",
+   "nhom": "Đông tứ mệnh",
+   "y_nghia": "Quẻ Ly là lửa, chủ danh vọng và sự rực rỡ; người cung Ly cuốn hút, hợp nghề xuất hiện trước công chúng.",
+   "nguoi": "Trung nữ (con gái giữa)",
+   "du_nien": {
+    "Đông": "Sinh Khí",
+    "Đông Nam": "Thiên Y",
+    "Bắc": "Diên Niên",
+    "Nam": "Phục Vị",
+    "Tây Bắc": "Tuyệt Mệnh",
+    "Tây": "Ngũ Quỷ",
+    "Đông Bắc": "Lục Sát",
+    "Tây Nam": "Họa Hại"
+   }
+  },
+  {
+   "ten": "Khôn",
+   "so": 2,
+   "hanh": "Thổ",
+   "huong": "Tây Nam",
+   "nhom": "Tây tứ mệnh",
+   "y_nghia": "Quẻ Khôn là đất, chủ bao dung và hôn nhân; người cung Khôn chu đáo, giỏi vun vén gia đình.",
+   "nguoi": "Mẹ (lão mẫu)",
+   "du_nien": {
+    "Đông Bắc": "Sinh Khí",
+    "Tây": "Thiên Y",
+    "Tây Bắc": "Diên Niên",
+    "Tây Nam": "Phục Vị",
+    "Bắc": "Tuyệt Mệnh",
+    "Đông Nam": "Ngũ Quỷ",
+    "Đông": "Lục Sát",
+    "Nam": "Họa Hại"
+   }
+  },
+  {
+   "ten": "Đoài",
+   "so": 7,
+   "hanh": "Kim",
+   "huong": "Tây",
+   "nhom": "Tây tứ mệnh",
+   "y_nghia": "Quẻ Đoài là đầm, chủ niềm vui và khẩu tài; người cung Đoài hoạt ngôn, hợp nghề giao tiếp.",
+   "nguoi": "Thiếu nữ (con gái út)",
+   "du_nien": {
+    "Tây Bắc": "Sinh Khí",
+    "Tây Nam": "Thiên Y",
+    "Đông Bắc": "Diên Niên",
+    "Tây": "Phục Vị",
+    "Đông": "Tuyệt Mệnh",
+    "Nam": "Ngũ Quỷ",
+    "Đông Nam": "Lục Sát",
+    "Bắc": "Họa Hại"
+   }
+  },
+  {
+   "ten": "Càn",
+   "so": 6,
+   "hanh": "Kim",
+   "huong": "Tây Bắc",
+   "nhom": "Tây tứ mệnh",
+   "y_nghia": "Quẻ Càn là trời, chủ quyền uy và quý nhân; người cung Càn có khí chất lãnh đạo.",
+   "nguoi": "Cha (lão phụ)",
+   "du_nien": {
+    "Tây": "Sinh Khí",
+    "Đông Bắc": "Thiên Y",
+    "Tây Nam": "Diên Niên",
+    "Tây Bắc": "Phục Vị",
+    "Nam": "Tuyệt Mệnh",
+    "Đông": "Ngũ Quỷ",
+    "Bắc": "Lục Sát",
+    "Đông Nam": "Họa Hại"
+   }
+  }
+ ],
+ "nguyen_tac": [
+  "Nhà hợp mệnh là nhà có TỌA (lưng nhà) thuộc nhóm trạch cùng nhóm mệnh của gia chủ.",
+  "Cửa chính, hướng nhà, hướng bàn làm việc, hướng đầu giường nên đặt vào bốn hướng tốt.",
+  "Bếp theo nguyên tắc \"tọa hung hướng cát\": đặt ở hướng xấu nhưng miệng bếp quay về hướng tốt.",
+  "Nhà vệ sinh, kho, cầu thang nên rơi vào bốn hướng xấu để trấn áp sát khí.",
+  "Khi vợ chồng khác nhóm mệnh, ưu tiên cung phi của người trụ cột kinh tế, rồi hóa giải bằng bố trí phòng riêng."
+ ]
+}

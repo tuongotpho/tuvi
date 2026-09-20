@@ -1,0 +1,18 @@
+{
+ "mo_ta": "Hoang Ốc (Hoàng Ốc) là phép xem tuổi làm nhà theo sáu cung, tính trên tuổi mụ.",
+ "cach_tinh": "Khởi 10 tuổi tại cung Nhất Cát, mỗi chục tuổi tiến một cung (20 ở Nhì Nghi, 30 ở Tam Địa Sát...), rồi đếm tiếp số hàng đơn vị. Công thức: cung = ((tuoi_mu // 10) - 1 + (tuoi_mu % 10)) mod 6.",
+ "cung": [
+  {"stt": 1, "ten": "Nhất Cát", "tot": true, "y_nghia": "Đại cát: làm nhà thuận lợi, gia đạo yên vui, tài lộc tăng tiến."},
+  {"stt": 2, "ten": "Nhì Nghi", "tot": true, "y_nghia": "Tốt: mọi việc hợp lẽ, con cháu hiếu thuận, làm ăn phát đạt."},
+  {"stt": 3, "ten": "Tam Địa Sát", "tot": false, "y_nghia": "Xấu: dễ đau ốm, hao tài, việc xây cất trắc trở."},
+  {"stt": 4, "ten": "Tứ Tấn Tài", "tot": true, "y_nghia": "Tốt: tiền của vào nhà, hợp làm nhà và mở mang cơ nghiệp."},
+  {"stt": 5, "ten": "Ngũ Thọ Tử", "tot": false, "y_nghia": "Xấu nhất: ảnh hưởng tới sức khỏe và tuổi thọ người trong nhà."},
+  {"stt": 6, "ten": "Lục Hoang Ốc", "tot": false, "y_nghia": "Xấu: nhà cửa hoang vắng, gia đạo ly tán, làm ăn sa sút."}
+ ],
+ "tuoi_xau_tham_khao": [12, 14, 15, 18, 21, 23, 24, 27, 29, 30, 32, 33, 36, 38, 39, 41, 42, 45, 47, 48, 50, 51, 54, 56, 57, 60, 63, 65, 66, 69, 72, 74, 75],
+ "hoa_giai": [
+  "Mượn tuổi người hợp để động thổ, làm lễ và nhập trạch.",
+  "Chờ sang tuổi khác hoặc chọn năm không phạm cả ba hạn Kim Lâu — Hoang Ốc — Tam Tai.",
+  "Nếu buộc phải làm, chọn ngày giờ hoàng đạo và tránh các tháng kỵ của sao hạn năm đó."
+ ]
+}

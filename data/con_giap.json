@@ -1,0 +1,734 @@
+[
+ {
+  "stt": 1,
+  "chi": "Tý",
+  "con_giap": "Chuột",
+  "hanh": "Thủy",
+  "am_duong": "Dương",
+  "tinh_cach": "Thông minh, lanh lợi và rất giỏi xoay xở. Người tuổi Tý nhìn ra cơ hội trước người khác một nhịp, nhưng cũng vì nghĩ nhiều mà hay do dự ở phút chót.",
+  "uu_diem": [
+   "Nhanh nhạy với cơ hội",
+   "Tiết kiệm, biết tích lũy",
+   "Giao tiếp khéo, nhiều mối quan hệ",
+   "Thích nghi tốt khi hoàn cảnh đổi thay"
+  ],
+  "nhuoc_diem": [
+   "Hay tính toán vụn vặt",
+   "Đa nghi, khó tin người",
+   "Dễ ôm đồm nhiều việc một lúc"
+  ],
+  "su_nghiep": "Hợp nghề cần đầu óc phân tích và quan hệ: kinh doanh, tài chính, môi giới, truyền thông, nghiên cứu thị trường.",
+  "tinh_yeu": "Chân thành nhưng kín đáo, cần thời gian mới mở lòng; hợp với người điềm đạm biết lắng nghe.",
+  "tai_chinh": "Giỏi giữ tiền hơn tiêu tiền; dễ khá lên nhờ tích lũy đều và đầu tư nhỏ nhưng liên tục.",
+  "suc_khoe": "Chú ý hệ tiêu hóa và giấc ngủ do thức khuya, suy nghĩ nhiều.",
+  "mau_hop": [
+   "đen",
+   "xanh dương",
+   "trắng",
+   "xám"
+  ],
+  "so_hop": [
+   1,
+   6
+  ],
+  "da_phong_thuy": [
+   "Thạch anh đen",
+   "Obsidian"
+  ],
+  "nam_sinh": [
+   1924,
+   1936,
+   1948,
+   1960,
+   1972,
+   1984,
+   1996,
+   2008,
+   2020,
+   2032,
+   2044
+  ],
+  "nam_can_chi": {
+   "1924": "Giáp Tý",
+   "1936": "Bính Tý",
+   "1948": "Mậu Tý",
+   "1960": "Canh Tý",
+   "1972": "Nhâm Tý",
+   "1984": "Giáp Tý",
+   "1996": "Bính Tý",
+   "2008": "Mậu Tý",
+   "2020": "Canh Tý",
+   "2032": "Nhâm Tý",
+   "2044": "Giáp Tý"
+  }
+ },
+ {
+  "stt": 2,
+  "chi": "Sửu",
+  "con_giap": "Trâu",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "tinh_cach": "Trầm tĩnh và kiên định. Người tuổi Sửu đi chậm nhưng chắc, thành quả thường đến ở nửa sau cuộc đời và rất bền.",
+  "uu_diem": [
+   "Bền bỉ, chịu khó",
+   "Đáng tin cậy",
+   "Có kỷ luật",
+   "Trọng lời hứa"
+  ],
+  "nhuoc_diem": [
+   "Bảo thủ, ngại thay đổi",
+   "Ít bộc lộ cảm xúc",
+   "Chậm nắm bắt cơ hội mới"
+  ],
+  "su_nghiep": "Hợp nghề cần tích lũy lâu dài: sản xuất, nông nghiệp, xây dựng, kế toán, hành chính, quản lý vận hành.",
+  "tinh_yeu": "Thực tế, xem trọng sự ổn định hơn lãng mạn; một khi đã gắn bó thì rất chung thủy.",
+  "tai_chinh": "Tiền vào đều, ít rủi ro; nên tránh đầu tư nóng vì không hợp nhịp đầu cơ.",
+  "suc_khoe": "Chú ý xương khớp, cột sống do làm việc nặng và ngồi lâu.",
+  "mau_hop": [
+   "vàng",
+   "nâu đất",
+   "đỏ",
+   "hồng"
+  ],
+  "so_hop": [
+   5,
+   10
+  ],
+  "da_phong_thuy": [
+   "Mã não vàng",
+   "Thạch anh vàng"
+  ],
+  "nam_sinh": [
+   1925,
+   1937,
+   1949,
+   1961,
+   1973,
+   1985,
+   1997,
+   2009,
+   2021,
+   2033
+  ],
+  "nam_can_chi": {
+   "1925": "Ất Sửu",
+   "1937": "Đinh Sửu",
+   "1949": "Kỷ Sửu",
+   "1961": "Tân Sửu",
+   "1973": "Quý Sửu",
+   "1985": "Ất Sửu",
+   "1997": "Đinh Sửu",
+   "2009": "Kỷ Sửu",
+   "2021": "Tân Sửu",
+   "2033": "Quý Sửu"
+  }
+ },
+ {
+  "stt": 3,
+  "chi": "Dần",
+  "con_giap": "Hổ",
+  "hanh": "Mộc",
+  "am_duong": "Dương",
+  "tinh_cach": "Mạnh mẽ, thích dẫn đầu và không ngại va chạm. Người tuổi Dần hợp vai trò mở đường hơn là giữ nhịp.",
+  "uu_diem": [
+   "Dũng cảm, dám quyết",
+   "Có khí chất thủ lĩnh",
+   "Hào phóng với người thân",
+   "Giàu năng lượng"
+  ],
+  "nhuoc_diem": [
+   "Nóng nảy",
+   "Khó chịu khi bị quản lý",
+   "Dễ bốc đồng trong chi tiêu"
+  ],
+  "su_nghiep": "Hợp nghề cạnh tranh và có quyền quyết: khởi nghiệp, kinh doanh, quản lý, thể thao, an ninh, bán hàng.",
+  "tinh_yeu": "Nồng nhiệt và chiếm hữu; cần bạn đời biết nhường nhịn và độc lập.",
+  "tai_chinh": "Kiếm nhiều tiêu mạnh; nên có người quản lý dòng tiền hộ hoặc chia tài khoản tích lũy riêng.",
+  "suc_khoe": "Chú ý gan, huyết áp, dễ căng thẳng do làm việc quá sức.",
+  "mau_hop": [
+   "xanh lá",
+   "đen",
+   "xanh dương"
+  ],
+  "so_hop": [
+   3,
+   8
+  ],
+  "da_phong_thuy": [
+   "Mắt hổ",
+   "Thạch anh xanh"
+  ],
+  "nam_sinh": [
+   1926,
+   1938,
+   1950,
+   1962,
+   1974,
+   1986,
+   1998,
+   2010,
+   2022,
+   2034
+  ],
+  "nam_can_chi": {
+   "1926": "Bính Dần",
+   "1938": "Mậu Dần",
+   "1950": "Canh Dần",
+   "1962": "Nhâm Dần",
+   "1974": "Giáp Dần",
+   "1986": "Bính Dần",
+   "1998": "Mậu Dần",
+   "2010": "Canh Dần",
+   "2022": "Nhâm Dần",
+   "2034": "Giáp Dần"
+  }
+ },
+ {
+  "stt": 4,
+  "chi": "Mão",
+  "con_giap": "Mèo",
+  "hanh": "Mộc",
+  "am_duong": "Âm",
+  "tinh_cach": "Nhã nhặn, tinh tế và giỏi làm người khác thấy dễ chịu. Điểm yếu lớn nhất là né tránh va chạm cần thiết.",
+  "uu_diem": [
+   "Ôn hòa, dễ mến",
+   "Thẩm mỹ tốt",
+   "Khéo léo trong ứng xử",
+   "Biết giữ hòa khí"
+  ],
+  "nhuoc_diem": [
+   "Ngại xung đột nên hay nhân nhượng",
+   "Thiếu quyết đoán",
+   "Dễ bị tác động bởi lời người khác"
+  ],
+  "su_nghiep": "Hợp nghề thiên về thẩm mỹ và con người: thiết kế, nội thất, giáo dục, nhân sự, tư vấn, chăm sóc khách hàng.",
+  "tinh_yeu": "Lãng mạn, coi trọng sự dịu dàng; hợp người chín chắn, biết ra quyết định thay mình khi cần.",
+  "tai_chinh": "Tiền bạc ổn định nhờ nhiều nguồn nhỏ; dễ tiêu cho cái đẹp và trải nghiệm.",
+  "suc_khoe": "Chú ý gan mật và tâm lý, dễ lo âu ngầm.",
+  "mau_hop": [
+   "xanh lá",
+   "đen",
+   "xanh dương"
+  ],
+  "so_hop": [
+   3,
+   8
+  ],
+  "da_phong_thuy": [
+   "Ngọc bích",
+   "Thạch anh hồng"
+  ],
+  "nam_sinh": [
+   1927,
+   1939,
+   1951,
+   1963,
+   1975,
+   1987,
+   1999,
+   2011,
+   2023,
+   2035
+  ],
+  "nam_can_chi": {
+   "1927": "Đinh Mão",
+   "1939": "Kỷ Mão",
+   "1951": "Tân Mão",
+   "1963": "Quý Mão",
+   "1975": "Ất Mão",
+   "1987": "Đinh Mão",
+   "1999": "Kỷ Mão",
+   "2011": "Tân Mão",
+   "2023": "Quý Mão",
+   "2035": "Ất Mão"
+  }
+ },
+ {
+  "stt": 5,
+  "chi": "Thìn",
+  "con_giap": "Rồng",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "tinh_cach": "Nổi bật và nhiều hoài bão. Người tuổi Thìn thường gặp quý nhân, nhưng cũng dễ tự phụ khi thuận lợi.",
+  "uu_diem": [
+   "Tham vọng lớn",
+   "Tự tin, có sức hút",
+   "May mắn hơn mức trung bình",
+   "Nghĩ lớn làm lớn"
+  ],
+  "nhuoc_diem": [
+   "Kiêu, khó nhận sai",
+   "Thiếu kiên nhẫn với việc nhỏ",
+   "Hay ôm việc quá sức"
+  ],
+  "su_nghiep": "Hợp vị trí lãnh đạo và nghề có sân khấu: quản trị, chính trị, truyền thông, công nghệ, dự án lớn.",
+  "tinh_yeu": "Yêu mãnh liệt, cần được ngưỡng mộ; hợp người tự tin và độc lập.",
+  "tai_chinh": "Dễ có bước nhảy tài chính lớn nhưng cũng dễ mất nhanh nếu đầu tư theo cảm hứng.",
+  "suc_khoe": "Chú ý tim mạch và stress, cần ngủ đủ.",
+  "mau_hop": [
+   "vàng",
+   "nâu đất",
+   "đỏ",
+   "hồng"
+  ],
+  "so_hop": [
+   5,
+   10
+  ],
+  "da_phong_thuy": [
+   "Thạch anh tím",
+   "Hổ phách"
+  ],
+  "nam_sinh": [
+   1928,
+   1940,
+   1952,
+   1964,
+   1976,
+   1988,
+   2000,
+   2012,
+   2024,
+   2036
+  ],
+  "nam_can_chi": {
+   "1928": "Mậu Thìn",
+   "1940": "Canh Thìn",
+   "1952": "Nhâm Thìn",
+   "1964": "Giáp Thìn",
+   "1976": "Bính Thìn",
+   "1988": "Mậu Thìn",
+   "2000": "Canh Thìn",
+   "2012": "Nhâm Thìn",
+   "2024": "Giáp Thìn",
+   "2036": "Bính Thìn"
+  }
+ },
+ {
+  "stt": 6,
+  "chi": "Tỵ",
+  "con_giap": "Rắn",
+  "hanh": "Hỏa",
+  "am_duong": "Âm",
+  "tinh_cach": "Trầm và khôn ngoan. Người tuổi Tỵ tính nhiều nước cờ trước khi hành động, ít khi để lộ ý định.",
+  "uu_diem": [
+   "Sâu sắc, nhìn xa",
+   "Kín đáo, biết giữ bí mật",
+   "Thẩm mỹ và trực giác tốt",
+   "Kiên trì theo đuổi mục tiêu"
+  ],
+  "nhuoc_diem": [
+   "Khó gần",
+   "Hay nghi ngờ",
+   "Ôm cảm xúc trong lòng quá lâu"
+  ],
+  "su_nghiep": "Hợp nghề cần chiều sâu và chiến lược: nghiên cứu, luật, tài chính, y học, phân tích dữ liệu, cố vấn.",
+  "tinh_yeu": "Chọn lọc và chung thủy; ghen ngầm, cần bạn đời minh bạch.",
+  "tai_chinh": "Giỏi tích lũy âm thầm, hợp đầu tư dài hạn hơn lướt sóng.",
+  "suc_khoe": "Chú ý nội tiết, tiêu hóa; nên vận động đều.",
+  "mau_hop": [
+   "đỏ",
+   "hồng",
+   "tím",
+   "xanh lá"
+  ],
+  "so_hop": [
+   2,
+   7
+  ],
+  "da_phong_thuy": [
+   "Ngọc lục bảo",
+   "Thạch anh khói"
+  ],
+  "nam_sinh": [
+   1929,
+   1941,
+   1953,
+   1965,
+   1977,
+   1989,
+   2001,
+   2013,
+   2025,
+   2037
+  ],
+  "nam_can_chi": {
+   "1929": "Kỷ Tỵ",
+   "1941": "Tân Tỵ",
+   "1953": "Quý Tỵ",
+   "1965": "Ất Tỵ",
+   "1977": "Đinh Tỵ",
+   "1989": "Kỷ Tỵ",
+   "2001": "Tân Tỵ",
+   "2013": "Quý Tỵ",
+   "2025": "Ất Tỵ",
+   "2037": "Đinh Tỵ"
+  }
+ },
+ {
+  "stt": 7,
+  "chi": "Ngọ",
+  "con_giap": "Ngựa",
+  "hanh": "Hỏa",
+  "am_duong": "Dương",
+  "tinh_cach": "Sôi nổi và tự do. Người tuổi Ngọ chạy rất nhanh ở đoạn đầu, vấn đề là giữ sức cho đoạn sau.",
+  "uu_diem": [
+   "Nhiệt tình, lạc quan",
+   "Hành động nhanh",
+   "Giao thiệp rộng",
+   "Truyền cảm hứng tốt"
+  ],
+  "nhuoc_diem": [
+   "Thiếu kiên nhẫn",
+   "Dễ chán việc lặp lại",
+   "Nói nhiều hơn làm khi hưng phấn"
+  ],
+  "su_nghiep": "Hợp nghề năng động: bán hàng, marketing, du lịch, sự kiện, thể thao, vận tải.",
+  "tinh_yeu": "Yêu nhanh, nhiệt thành; cần người đủ vững để giữ nhịp cho mối quan hệ.",
+  "tai_chinh": "Thu nhập lên xuống theo mùa; nên lập quỹ dự phòng trước khi mở rộng.",
+  "suc_khoe": "Chú ý tim mạch và chấn thương do vận động mạnh.",
+  "mau_hop": [
+   "đỏ",
+   "hồng",
+   "tím",
+   "xanh lá"
+  ],
+  "so_hop": [
+   2,
+   7
+  ],
+  "da_phong_thuy": [
+   "Ruby",
+   "Thạch anh đỏ"
+  ],
+  "nam_sinh": [
+   1930,
+   1942,
+   1954,
+   1966,
+   1978,
+   1990,
+   2002,
+   2014,
+   2026,
+   2038
+  ],
+  "nam_can_chi": {
+   "1930": "Canh Ngọ",
+   "1942": "Nhâm Ngọ",
+   "1954": "Giáp Ngọ",
+   "1966": "Bính Ngọ",
+   "1978": "Mậu Ngọ",
+   "1990": "Canh Ngọ",
+   "2002": "Nhâm Ngọ",
+   "2014": "Giáp Ngọ",
+   "2026": "Bính Ngọ",
+   "2038": "Mậu Ngọ"
+  }
+ },
+ {
+  "stt": 8,
+  "chi": "Mùi",
+  "con_giap": "Dê",
+  "hanh": "Thổ",
+  "am_duong": "Âm",
+  "tinh_cach": "Dịu dàng và tình cảm. Người tuổi Mùi làm tốt nhất khi được ở trong môi trường an toàn, có người ủng hộ.",
+  "uu_diem": [
+   "Hiền hòa, giàu lòng trắc ẩn",
+   "Sáng tạo",
+   "Chăm chút chi tiết",
+   "Gia đình là ưu tiên"
+  ],
+  "nhuoc_diem": [
+   "Hay lo xa",
+   "Thiếu tự tin",
+   "Phụ thuộc cảm xúc vào người thân"
+  ],
+  "su_nghiep": "Hợp nghề sáng tạo và chăm sóc: nghệ thuật, thủ công, ẩm thực, y tế, giáo dục mầm non, dịch vụ.",
+  "tinh_yeu": "Tận tụy, dễ hy sinh; cần bạn đời biết trấn an và ra quyết định.",
+  "tai_chinh": "Kiếm tiền từ tay nghề và sự tỉ mỉ; nên nhờ người thân quản lý khoản đầu tư lớn.",
+  "suc_khoe": "Chú ý dạ dày và tâm lý, dễ mất ngủ vì lo nghĩ.",
+  "mau_hop": [
+   "vàng",
+   "nâu đất",
+   "đỏ",
+   "hồng"
+  ],
+  "so_hop": [
+   5,
+   10
+  ],
+  "da_phong_thuy": [
+   "Ngọc trai",
+   "Thạch anh trắng"
+  ],
+  "nam_sinh": [
+   1931,
+   1943,
+   1955,
+   1967,
+   1979,
+   1991,
+   2003,
+   2015,
+   2027,
+   2039
+  ],
+  "nam_can_chi": {
+   "1931": "Tân Mùi",
+   "1943": "Quý Mùi",
+   "1955": "Ất Mùi",
+   "1967": "Đinh Mùi",
+   "1979": "Kỷ Mùi",
+   "1991": "Tân Mùi",
+   "2003": "Quý Mùi",
+   "2015": "Ất Mùi",
+   "2027": "Đinh Mùi",
+   "2039": "Kỷ Mùi"
+  }
+ },
+ {
+  "stt": 9,
+  "chi": "Thân",
+  "con_giap": "Khỉ",
+  "hanh": "Kim",
+  "am_duong": "Dương",
+  "tinh_cach": "Nhanh trí và đa tài. Người tuổi Thân làm được nhiều việc, khó ở chỗ chọn một việc để đi đến cùng.",
+  "uu_diem": [
+   "Thông minh, linh hoạt",
+   "Học nhanh",
+   "Hài hước, dễ tạo thiện cảm",
+   "Giỏi ứng biến khủng hoảng"
+  ],
+  "nhuoc_diem": [
+   "Thiếu kiên định",
+   "Hay bỏ dở",
+   "Đôi khi khôn lỏi"
+  ],
+  "su_nghiep": "Hợp nghề cần sáng tạo và tốc độ: công nghệ, quảng cáo, khởi nghiệp, môi giới, giải trí.",
+  "tinh_yeu": "Vui vẻ, nhiều màu sắc; cần người kiên nhẫn và không áp đặt.",
+  "tai_chinh": "Nhiều nguồn thu nhưng rời rạc; nên gom về một chiến lược tích lũy rõ ràng.",
+  "suc_khoe": "Chú ý thần kinh, mắt; hạn chế thức khuya dùng thiết bị.",
+  "mau_hop": [
+   "trắng",
+   "xám",
+   "ghi",
+   "vàng ánh kim"
+  ],
+  "so_hop": [
+   4,
+   9
+  ],
+  "da_phong_thuy": [
+   "Citrine",
+   "Thạch anh vàng"
+  ],
+  "nam_sinh": [
+   1932,
+   1944,
+   1956,
+   1968,
+   1980,
+   1992,
+   2004,
+   2016,
+   2028,
+   2040
+  ],
+  "nam_can_chi": {
+   "1932": "Nhâm Thân",
+   "1944": "Giáp Thân",
+   "1956": "Bính Thân",
+   "1968": "Mậu Thân",
+   "1980": "Canh Thân",
+   "1992": "Nhâm Thân",
+   "2004": "Giáp Thân",
+   "2016": "Bính Thân",
+   "2028": "Mậu Thân",
+   "2040": "Canh Thân"
+  }
+ },
+ {
+  "stt": 10,
+  "chi": "Dậu",
+  "con_giap": "Gà",
+  "hanh": "Kim",
+  "am_duong": "Âm",
+  "tinh_cach": "Ngăn nắp và có tiêu chuẩn cao. Người tuổi Dậu làm việc gì cũng muốn đẹp từ hình thức đến kết quả.",
+  "uu_diem": [
+   "Chỉn chu, kỷ luật",
+   "Thẳng thắn",
+   "Chăm chỉ",
+   "Có gu thẩm mỹ rõ ràng"
+  ],
+  "nhuoc_diem": [
+   "Cầu toàn quá mức",
+   "Nói thẳng dễ mất lòng",
+   "Hay soi chi tiết nhỏ"
+  ],
+  "su_nghiep": "Hợp nghề đòi hỏi chuẩn mực: kiểm toán, y tế, quân đội, thiết kế, quản lý chất lượng, làm đẹp.",
+  "tinh_yeu": "Yêu nghiêm túc, đòi hỏi cao; hợp người biết khen đúng lúc.",
+  "tai_chinh": "Chi tiêu có kế hoạch; dễ tích lũy nhưng cũng dễ tốn cho hình ảnh bản thân.",
+  "suc_khoe": "Chú ý phổi, hô hấp và căng thẳng do cầu toàn.",
+  "mau_hop": [
+   "trắng",
+   "xám",
+   "ghi",
+   "vàng ánh kim"
+  ],
+  "so_hop": [
+   4,
+   9
+  ],
+  "da_phong_thuy": [
+   "Thạch anh trắng",
+   "Kim sa"
+  ],
+  "nam_sinh": [
+   1933,
+   1945,
+   1957,
+   1969,
+   1981,
+   1993,
+   2005,
+   2017,
+   2029,
+   2041
+  ],
+  "nam_can_chi": {
+   "1933": "Quý Dậu",
+   "1945": "Ất Dậu",
+   "1957": "Đinh Dậu",
+   "1969": "Kỷ Dậu",
+   "1981": "Tân Dậu",
+   "1993": "Quý Dậu",
+   "2005": "Ất Dậu",
+   "2017": "Đinh Dậu",
+   "2029": "Kỷ Dậu",
+   "2041": "Tân Dậu"
+  }
+ },
+ {
+  "stt": 11,
+  "chi": "Tuất",
+  "con_giap": "Chó",
+  "hanh": "Thổ",
+  "am_duong": "Dương",
+  "tinh_cach": "Nghĩa khí và đáng tin. Người tuổi Tuất là chỗ dựa của tập thể, nhưng cũng tự gánh quá nhiều trách nhiệm.",
+  "uu_diem": [
+   "Trung thành",
+   "Có trách nhiệm",
+   "Bảo vệ người yếu thế",
+   "Đáng tin trong khủng hoảng"
+  ],
+  "nhuoc_diem": [
+   "Hay lo lắng",
+   "Cố chấp khi đã tin điều gì",
+   "Khó buông bỏ chuyện cũ"
+  ],
+  "su_nghiep": "Hợp nghề gắn với niềm tin và bảo vệ: pháp lý, an ninh, y tế, quản lý nhân sự, công tác xã hội.",
+  "tinh_yeu": "Chung thủy, che chở; cần bạn đời biết ghi nhận và không thử thách lòng tin.",
+  "tai_chinh": "Ổn định, ít mạo hiểm; hay giúp đỡ người khác nên cần giới hạn rõ.",
+  "suc_khoe": "Chú ý dạ dày và giấc ngủ do lo nghĩ.",
+  "mau_hop": [
+   "vàng",
+   "nâu đất",
+   "đỏ",
+   "hồng"
+  ],
+  "so_hop": [
+   5,
+   10
+  ],
+  "da_phong_thuy": [
+   "Mã não",
+   "Thạch anh tóc"
+  ],
+  "nam_sinh": [
+   1934,
+   1946,
+   1958,
+   1970,
+   1982,
+   1994,
+   2006,
+   2018,
+   2030,
+   2042
+  ],
+  "nam_can_chi": {
+   "1934": "Giáp Tuất",
+   "1946": "Bính Tuất",
+   "1958": "Mậu Tuất",
+   "1970": "Canh Tuất",
+   "1982": "Nhâm Tuất",
+   "1994": "Giáp Tuất",
+   "2006": "Bính Tuất",
+   "2018": "Mậu Tuất",
+   "2030": "Canh Tuất",
+   "2042": "Nhâm Tuất"
+  }
+ },
+ {
+  "stt": 12,
+  "chi": "Hợi",
+  "con_giap": "Lợn",
+  "hanh": "Thủy",
+  "am_duong": "Âm",
+  "tinh_cach": "Hậu hĩnh và dễ chịu. Người tuổi Hợi ít bon chen nhưng thường đủ đầy, phúc phần đến từ quan hệ tốt.",
+  "uu_diem": [
+   "Hiền lành, rộng lượng",
+   "Có phúc khí",
+   "Lạc quan",
+   "Dễ được giúp đỡ"
+  ],
+  "nhuoc_diem": [
+   "Cả tin",
+   "Ngại tranh giành",
+   "Dễ buông xuôi khi gặp áp lực"
+  ],
+  "su_nghiep": "Hợp nghề phục vụ và kết nối: ẩm thực, dịch vụ, bất động sản, từ thiện, giáo dục, hậu cần.",
+  "tinh_yeu": "Ấm áp, dễ tha thứ; cần bạn đời rõ ràng và biết định hướng.",
+  "tai_chinh": "Tiền đến đều, tiêu rộng tay; nên tự động hóa việc tiết kiệm.",
+  "suc_khoe": "Chú ý cân nặng, đường huyết và thận.",
+  "mau_hop": [
+   "đen",
+   "xanh dương",
+   "trắng",
+   "xám"
+  ],
+  "so_hop": [
+   1,
+   6
+  ],
+  "da_phong_thuy": [
+   "Thạch anh vàng",
+   "Ngọc trai"
+  ],
+  "nam_sinh": [
+   1935,
+   1947,
+   1959,
+   1971,
+   1983,
+   1995,
+   2007,
+   2019,
+   2031,
+   2043
+  ],
+  "nam_can_chi": {
+   "1935": "Ất Hợi",
+   "1947": "Đinh Hợi",
+   "1959": "Kỷ Hợi",
+   "1971": "Tân Hợi",
+   "1983": "Quý Hợi",
+   "1995": "Ất Hợi",
+   "2007": "Đinh Hợi",
+   "2019": "Kỷ Hợi",
+   "2031": "Tân Hợi",
+   "2043": "Quý Hợi"
+  }
+ }
+]

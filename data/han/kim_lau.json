@@ -1,0 +1,21 @@
+{
+ "mo_ta": "Kim Lâu là hạn tính theo tuổi mụ, dùng chủ yếu khi xem tuổi làm nhà và cưới hỏi. Truyền thống áp dụng cho nữ giới khi cưới và cho gia chủ khi xây nhà.",
+ "cach_tinh": "so_du = tuoi_mu mod 9. Nếu số dư là 1, 3, 6 hoặc 8 thì phạm Kim Lâu.",
+ "cac_loai": [
+  {"so_du": 1, "ten": "Kim Lâu Thân", "hai_den": "chính bản thân gia chủ",
+   "canh_bao": "Ảnh hưởng tới sức khỏe và vận trình của người đứng tuổi làm việc lớn."},
+  {"so_du": 3, "ten": "Kim Lâu Thê", "hai_den": "vợ (hoặc chồng)",
+   "canh_bao": "Ảnh hưởng tới người bạn đời, dễ sinh bất hòa hoặc đau ốm."},
+  {"so_du": 6, "ten": "Kim Lâu Tử", "hai_den": "con cái",
+   "canh_bao": "Ảnh hưởng tới con cái, đường con cái trắc trở."},
+  {"so_du": 8, "ten": "Kim Lâu Lục Súc", "hai_den": "vật nuôi, gia súc, tài sản sinh lợi",
+   "canh_bao": "Ảnh hưởng tới chăn nuôi và tài sản; được coi là nhẹ nhất trong bốn loại."}
+ ],
+ "so_du_dep": [2, 4, 5, 7, 0],
+ "hoa_giai": [
+  "Mượn tuổi người khác (nam giới, không phạm Kim Lâu — Hoang Ốc — Tam Tai) đứng ra động thổ và làm lễ.",
+  "Lùi sang năm không phạm, hoặc chờ sang năm mới âm lịch mới khởi công.",
+  "Chọn ngày giờ hoàng đạo hợp mệnh để giảm nhẹ."
+ ],
+ "luu_y": "Có ít nhất ba cách tính Kim Lâu đang lưu hành (theo số dư chia 9, theo hàng đơn vị của tuổi, theo bàn tay). Bộ dữ liệu này dùng cách chia 9 vì phổ biến nhất."
+}

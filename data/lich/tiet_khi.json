@@ -1,0 +1,175 @@
+{
+ "mo_ta": "24 tiết khí theo kinh độ mặt trời. Tiết khí quyết định nguyệt kiến (dùng tính 12 Trực) và mốc đổi năm trong phi tinh, tử bình.",
+ "ghi_chu": "Ngày dương lịch chỉ là khoảng thường gặp; ngày chính xác phải tính từ kinh độ mặt trời.",
+ "tiet_khi": [
+  {
+   "ten": "Lập xuân",
+   "kinh_do_mat_troi": 315,
+   "duong_lich_thuong_roi_vao": "04-05/02",
+   "y_nghia": "Bắt đầu mùa xuân; mốc đổi năm can chi trong tử bình và phi tinh.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Vũ thủy",
+   "kinh_do_mat_troi": 330,
+   "duong_lich_thuong_roi_vao": "18-20/02",
+   "y_nghia": "Mưa ẩm về, khí trời chuyển ấm.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Kinh trập",
+   "kinh_do_mat_troi": 345,
+   "duong_lich_thuong_roi_vao": "05-07/03",
+   "y_nghia": "Sâu bọ tỉnh giấc; khởi tháng Mão.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Xuân phân",
+   "kinh_do_mat_troi": 0,
+   "duong_lich_thuong_roi_vao": "20-21/03",
+   "y_nghia": "Ngày đêm bằng nhau, giữa mùa xuân.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Thanh minh",
+   "kinh_do_mat_troi": 15,
+   "duong_lich_thuong_roi_vao": "04-06/04",
+   "y_nghia": "Tiết tảo mộ; khởi tháng Thìn.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Cốc vũ",
+   "kinh_do_mat_troi": 30,
+   "duong_lich_thuong_roi_vao": "19-21/04",
+   "y_nghia": "Mưa rào cho lúa.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Lập hạ",
+   "kinh_do_mat_troi": 45,
+   "duong_lich_thuong_roi_vao": "05-07/05",
+   "y_nghia": "Bắt đầu mùa hè; khởi tháng Tỵ.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Tiểu mãn",
+   "kinh_do_mat_troi": 60,
+   "duong_lich_thuong_roi_vao": "20-22/05",
+   "y_nghia": "Lúa bắt đầu chắc hạt.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Mang chủng",
+   "kinh_do_mat_troi": 75,
+   "duong_lich_thuong_roi_vao": "05-07/06",
+   "y_nghia": "Gieo cấy chính vụ; khởi tháng Ngọ.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Hạ chí",
+   "kinh_do_mat_troi": 90,
+   "duong_lich_thuong_roi_vao": "21-22/06",
+   "y_nghia": "Ngày dài nhất năm.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Tiểu thử",
+   "kinh_do_mat_troi": 105,
+   "duong_lich_thuong_roi_vao": "06-08/07",
+   "y_nghia": "Bắt đầu nóng; khởi tháng Mùi.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Đại thử",
+   "kinh_do_mat_troi": 120,
+   "duong_lich_thuong_roi_vao": "22-24/07",
+   "y_nghia": "Nóng đỉnh điểm.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Lập thu",
+   "kinh_do_mat_troi": 135,
+   "duong_lich_thuong_roi_vao": "07-09/08",
+   "y_nghia": "Bắt đầu mùa thu; khởi tháng Thân.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Xử thử",
+   "kinh_do_mat_troi": 150,
+   "duong_lich_thuong_roi_vao": "22-24/08",
+   "y_nghia": "Hết nóng.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Bạch lộ",
+   "kinh_do_mat_troi": 165,
+   "duong_lich_thuong_roi_vao": "07-09/09",
+   "y_nghia": "Sương trắng; khởi tháng Dậu.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Thu phân",
+   "kinh_do_mat_troi": 180,
+   "duong_lich_thuong_roi_vao": "22-24/09",
+   "y_nghia": "Ngày đêm bằng nhau, giữa mùa thu.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Hàn lộ",
+   "kinh_do_mat_troi": 195,
+   "duong_lich_thuong_roi_vao": "08-09/10",
+   "y_nghia": "Sương lạnh; khởi tháng Tuất.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Sương giáng",
+   "kinh_do_mat_troi": 210,
+   "duong_lich_thuong_roi_vao": "23-24/10",
+   "y_nghia": "Sương muối xuống.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Lập đông",
+   "kinh_do_mat_troi": 225,
+   "duong_lich_thuong_roi_vao": "07-08/11",
+   "y_nghia": "Bắt đầu mùa đông; khởi tháng Hợi.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Tiểu tuyết",
+   "kinh_do_mat_troi": 240,
+   "duong_lich_thuong_roi_vao": "22-23/11",
+   "y_nghia": "Tuyết nhẹ ở xứ lạnh.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Đại tuyết",
+   "kinh_do_mat_troi": 255,
+   "duong_lich_thuong_roi_vao": "07-08/12",
+   "y_nghia": "Tuyết dày; khởi tháng Tý.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Đông chí",
+   "kinh_do_mat_troi": 270,
+   "duong_lich_thuong_roi_vao": "21-22/12",
+   "y_nghia": "Đêm dài nhất năm; mốc xác định tháng 11 âm lịch.",
+   "la_tiet_chinh": false
+  },
+  {
+   "ten": "Tiểu hàn",
+   "kinh_do_mat_troi": 285,
+   "duong_lich_thuong_roi_vao": "05-07/01",
+   "y_nghia": "Bắt đầu rét; khởi tháng Sửu.",
+   "la_tiet_chinh": true
+  },
+  {
+   "ten": "Đại hàn",
+   "kinh_do_mat_troi": 300,
+   "duong_lich_thuong_roi_vao": "20-21/01",
+   "y_nghia": "Rét đậm nhất.",
+   "la_tiet_chinh": false
+  }
+ ],
+ "giai_thich_tiet_chinh": "Tiết chính (12 tiết) mở đầu mỗi tháng tiết lệnh và quyết định nguyệt kiến; 12 tiết còn lại gọi là trung khí."
+}

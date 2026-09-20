@@ -1,0 +1,159 @@
+{
+ "mo_ta": "Cửu tinh trong Huyền không phi tinh, dùng cho phi tinh năm/tháng và bố trí không gian.",
+ "van_hien_tai": {
+  "ten": "Vận 9",
+  "tu_nam": 2024,
+  "den_nam": 2043,
+  "sao_duong_van": "Cửu Tử",
+  "sao_sinh_khi": "Nhất Bạch",
+  "ghi_chu": "Trong Vận 9, Cửu Tử là vượng khí, Nhất Bạch và Bát Bạch là sinh/thoái khí cần lưu ý."
+ },
+ "cach_tinh_nien_tinh": "Cộng các chữ số của năm (theo lịch tiết khí, đổi năm từ Lập Xuân), rút gọn về một chữ số n; sao nhập trung cung = 11 - n (nếu > 9 thì trừ 9).",
+ "lac_thu": {
+  "Bắc": 1,
+  "Tây Nam": 2,
+  "Đông": 3,
+  "Đông Nam": 4,
+  "Trung cung": 5,
+  "Tây Bắc": 6,
+  "Tây": 7,
+  "Đông Bắc": 8,
+  "Nam": 9
+ },
+ "sao": [
+  {
+   "so": 1,
+   "ten": "Nhất Bạch",
+   "sao_co": "Tham Lang",
+   "hanh": "Thủy",
+   "tinh_chat": "tốt",
+   "y_nghia": "Sao của công danh, học vấn và đào hoa chính duyên.",
+   "nen": [
+    "đặt bàn học, bàn làm việc",
+    "kê giường cho người cầu công danh"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Bày vật phẩm Thủy: bể cá nhỏ, tranh nước"
+   ]
+  },
+  {
+   "so": 2,
+   "ten": "Nhị Hắc",
+   "sao_co": "Cự Môn",
+   "hanh": "Thổ",
+   "tinh_chat": "xấu",
+   "y_nghia": "Bệnh Phù tinh — chủ bệnh tật, nhất là với phụ nữ và người già.",
+   "nen": [
+    "tránh kê giường, bàn ăn",
+    "không để bếp ở cung này"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Treo chuông gió kim loại 6 thanh để tiết khí Thổ",
+    "Giữ khô thoáng, hạn chế đỏ và vàng"
+   ]
+  },
+  {
+   "so": 3,
+   "ten": "Tam Bích",
+   "sao_co": "Lộc Tồn",
+   "hanh": "Mộc",
+   "tinh_chat": "xấu",
+   "y_nghia": "Thị phi tinh — chủ cãi vã, kiện tụng, tranh chấp.",
+   "nen": [
+    "tránh đặt cửa chính và bàn họp"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Dùng sắc đỏ/hồng để tiết Mộc sinh Hỏa",
+    "Giữ yên tĩnh, tránh treo chuông gió kim loại"
+   ]
+  },
+  {
+   "so": 4,
+   "ten": "Tứ Lục",
+   "sao_co": "Văn Khúc",
+   "hanh": "Mộc",
+   "tinh_chat": "tốt",
+   "y_nghia": "Văn Xương tinh — chủ học hành, thi cử, sáng tác, văn chương.",
+   "nen": [
+    "đặt bàn học của con",
+    "góc đọc sách, phòng làm việc sáng tạo"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Đặt 4 cây tre phú quý hoặc bút lông"
+   ]
+  },
+  {
+   "so": 5,
+   "ten": "Ngũ Hoàng",
+   "sao_co": "Liêm Trinh",
+   "hanh": "Thổ",
+   "tinh_chat": "rất xấu",
+   "y_nghia": "Đại sát tinh — hung nhất trong cửu tinh, chủ tai họa bất ngờ.",
+   "nen": [
+    "tuyệt đối tránh động thổ, đục phá, sửa chữa ở cung này"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Treo hồ lô đồng hoặc chuông gió 6 thanh kim loại",
+    "Giữ tĩnh: không khoan đục, không kê giường"
+   ]
+  },
+  {
+   "so": 6,
+   "ten": "Lục Bạch",
+   "sao_co": "Vũ Khúc",
+   "hanh": "Kim",
+   "tinh_chat": "tốt",
+   "y_nghia": "Quyền tinh — chủ quyền lực, quý nhân, sự nghiệp công chức.",
+   "nen": [
+    "đặt bàn làm việc của chủ nhà",
+    "két sắt"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Vật phẩm kim loại, màu trắng ánh kim"
+   ]
+  },
+  {
+   "so": 7,
+   "ten": "Thất Xích",
+   "sao_co": "Phá Quân",
+   "hanh": "Kim",
+   "tinh_chat": "xấu",
+   "y_nghia": "Đạo tặc tinh — chủ mất trộm, thị phi, tai nạn do vật sắc nhọn.",
+   "nen": [
+    "tránh đặt két sắt và cửa chính"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Dùng sắc xanh nước biển để tiết Kim",
+    "Tăng an ninh, khóa cẩn thận"
+   ]
+  },
+  {
+   "so": 8,
+   "ten": "Bát Bạch",
+   "sao_co": "Tả Phù",
+   "hanh": "Thổ",
+   "tinh_chat": "rất tốt",
+   "y_nghia": "Tài tinh của vận 8 — chủ tài lộc, bất động sản, tích sản.",
+   "nen": [
+    "đặt két sắt, bàn thu ngân, cửa chính"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Đá quý, thạch anh, vật phẩm Thổ; giữ sạch sẽ và có người qua lại"
+   ]
+  },
+  {
+   "so": 9,
+   "ten": "Cửu Tử",
+   "sao_co": "Hữu Bật",
+   "hanh": "Hỏa",
+   "tinh_chat": "tốt",
+   "y_nghia": "Hỷ khánh tinh — chủ hỷ sự, danh tiếng, đương vận của Vận 9 (2024-2043).",
+   "nen": [
+    "đặt phòng khách, nơi tiếp khách, khu vực thương hiệu"
+   ],
+   "hoa_giai_hoac_kich_hoat": [
+    "Ánh sáng mạnh, sắc đỏ tím, cây tươi"
+   ]
+  }
+ ]
+}
