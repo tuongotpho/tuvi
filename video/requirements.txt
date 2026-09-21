@@ -1,3 +1,5 @@
-# Chỉ cần khi muốn XUẤT video. Phần dựng kịch bản không cần gì thêm.
+# Chỉ cần khi muốn XUẤT video hoặc LỒNG TIẾNG.
+# Phần dựng kịch bản (--chi-kich-ban) không cần gì thêm.
 playwright>=1.40      # quay màn hình 1080x1920
 imageio-ffmpeg>=0.4   # ffmpeg kèm libx264, dùng khi máy chưa có ffmpeg sẵn
+edge-tts>=7.0         # giọng đọc tiếng Việt của Microsoft Edge, không cần khóa API

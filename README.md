@@ -11,7 +11,7 @@ web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      46 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      51 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -123,7 +123,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 46 bài kiểm thử
+python -m unittest discover -s tests -v   # 51 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
 ```
 
@@ -149,14 +149,37 @@ Cách làm: dựng danh sách cảnh → đổ vào `video/mau_video.html` → P
 màn hình ở khổ dọc → ffmpeg chuyển sang H.264. Bố cục chừa sẵn vùng an toàn cho
 thanh nút của TikTok ở đáy và cạnh phải.
 
-**Video không có tiếng.** Môi trường dựng không có bộ đọc giọng nói, nên lời thoại
-nằm trong tệp kịch bản với mốc thời gian khớp sẵn, để lồng tiếng hoặc chèn nhạc
-trên app.
+### Lồng tiếng
 
-Hai gói chỉ cần cho khâu xuất tệp (`pip install -r video/requirements.txt`):
-`playwright` để quay và `imageio-ffmpeg` để chuyển mã. Thiếu chúng thì lệnh vẫn
-chạy, chỉ bỏ bước xuất video và vẫn trả về kịch bản. Máy nào đã có `ffmpeg` trong
-PATH thì dùng luôn bản đó.
+Giọng đọc lấy từ **edge-tts** (bộ đọc của Microsoft Edge, giọng tiếng Việt, không
+cần khóa API). Mặc định dùng giọng nữ `vi-VN-HoaiMyNeural`; giọng nam là
+`vi-VN-NamMinhNeural`.
+
+```bash
+python video/lam_video.py han 1987 2026 --thang-am 9 --giong vi-VN-NamMinhNeural
+python video/lam_video.py han 1987 2026 --thang-am 9 --toc-do +12% --cao-do -2Hz
+python video/lam_video.py han 1987 2026 --thang-am 9 --khong-giong   # xuất câm
+```
+
+Khi có giọng đọc, **độ dài thật của câu đọc quyết định độ dài cảnh** (cộng một
+nhịp đệm 0,7 giây), thay cho cách ước lượng theo số chữ — chữ và tiếng khớp nhau
+thay vì lệch dần. Âm thanh từng cảnh được đệm im lặng cho đủ độ dài cảnh rồi mới
+ghép, nên tiếng của cảnh nào bắt đầu đúng lúc cảnh đó hiện lên.
+
+Nếu máy chạy sau proxy có TLS re-terminate, edge-tts sẽ báo
+`CERTIFICATE_VERIFY_FAILED` vì nó ghim cứng bộ CA của certifi. Đặt
+`TUVI_CA_BUNDLE` trỏ tới tệp CA của proxy là xong — kho này nạp thêm CA đó vào,
+không tắt xác thực chứng chỉ.
+
+Thiếu edge-tts, hoặc mạng không ra được `speech.platform.bing.com`, thì lệnh vẫn
+chạy và xuất video câm, có in rõ lý do; lời thoại nằm sẵn trong tệp kịch bản.
+
+### Phần phụ thuộc
+
+Ba gói chỉ cần cho khâu xuất tệp và lồng tiếng
+(`pip install -r video/requirements.txt`): `playwright` để quay,
+`imageio-ffmpeg` để chuyển mã, `edge-tts` để đọc. Thiếu gói nào thì bỏ đúng khâu
+đó chứ không hỏng cả lệnh. Máy nào đã có `ffmpeg` trong PATH thì dùng luôn bản đó.
 
 ## Làm content từ kho này
 

@@ -13,8 +13,10 @@ Hai phần phụ thuộc chỉ cần khi thật sự xuất video, phần dựng
 Playwright để quay và ffmpeg để chuyển mã. Không có chúng, lệnh vẫn chạy và trả
 về kịch bản kèm caption, chỉ bỏ bước xuất tệp.
 
-Video xuất ra KHÔNG CÓ TIẾNG: môi trường này không có bộ đọc giọng nói. Lời thoại
-nằm trong tệp kịch bản kèm mốc thời gian để lồng tiếng hoặc chèn nhạc trên app.
+Lồng tiếng bằng edge-tts (giọng tiếng Việt của Microsoft Edge). Khi có giọng đọc,
+độ dài thật của âm thanh quyết định độ dài từng cảnh thay cho ước lượng theo số
+chữ. Thiếu edge-tts hoặc không ra được mạng thì video vẫn xuất, chỉ là không có
+tiếng, và lời thoại nằm sẵn trong tệp kịch bản kèm mốc thời gian.
 """
 from __future__ import annotations
 
@@ -36,6 +38,7 @@ from tuvi.chon_ngay import chon_ngay  # noqa: E402
 from tuvi.han import ho_so_han  # noqa: E402
 from tuvi.ngay_gio import xem_ngay  # noqa: E402
 from tuvi.phong_thuy import cung_phi, phi_tinh_nam  # noqa: E402
+from video import giong_doc  # noqa: E402
 
 MAU = Path(__file__).resolve().parent / "mau_video.html"
 RONG, CAO = 1080, 1920
@@ -43,6 +46,8 @@ RONG, CAO = 1080, 1920
 # Tốc độ đọc tiếng Việt khoảng 2,6 âm tiết mỗi giây khi dẫn chuyện.
 AM_TIET_MOI_GIAY = 2.6
 GIAY_TOI_THIEU, GIAY_TOI_DA = 2.6, 6.5
+# Khi có giọng đọc, mỗi cảnh giữ thêm một nhịp sau khi đọc xong.
+DEM_CUOI_CANH = 0.7
 
 
 def _giay(loi_thoai: str) -> float:
@@ -254,8 +259,10 @@ def viet_kich_ban(kb: dict, thu_muc: Path) -> Path:
         moc = het
     noi_dung = (f"# {kb['tieu_de']}\n\n"
                 f"Tổng thời lượng: **{moc:.1f} giây**, {len(kb['canh'])} cảnh.\n\n"
-                f"Video xuất ra không có tiếng. Lời thoại dưới đây dùng để đọc lồng "
-                f"tiếng hoặc làm phụ đề; mốc thời gian đã khớp với video.\n\n"
+                f"Mốc thời gian dưới đây khớp với video đã xuất. Nếu video được "
+                f"lồng tiếng bằng edge-tts thì độ dài mỗi cảnh chính là độ dài "
+                f"câu đọc cộng một nhịp đệm; nếu không, lời thoại dùng để đọc "
+                f"lồng tiếng hoặc làm phụ đề.\n\n"
                 + "\n".join(dong)
                 + f"\n## Caption đăng bài\n\n```\n{kb['caption']}\n```\n")
     p = thu_muc / f"{kb['ten']}.md"
@@ -274,7 +281,28 @@ def _ffmpeg() -> str | None:
         return None
 
 
-def quay_video(kb: dict, thu_muc: Path) -> Path | None:
+def long_tieng(kb: dict, thu_muc: Path, giong: str, toc_do: str,
+               cao_do: str) -> list[tuple[Path, float]] | None:
+    """Đọc lời thoại và CHỈNH LẠI độ dài từng cảnh theo độ dài âm thanh thật.
+
+    Trả về None nếu không lồng tiếng được; khi đó video vẫn dựng, chỉ không tiếng.
+    """
+    try:
+        doan = giong_doc.doc_kich_ban(kb["canh"], thu_muc / "_tieng",
+                                      giong, toc_do, cao_do)
+    except giong_doc.KhongLongTiengDuoc as e:
+        print(f"Không lồng tiếng được: {e}\n"
+              f"Video sẽ xuất không tiếng, lời thoại nằm trong tệp kịch bản.",
+              file=sys.stderr)
+        return None
+    for c, (_, giay) in zip(kb["canh"], doan):
+        # Đệm thêm một nhịp để chữ kịp hiện xong trước khi chuyển cảnh.
+        c["giay"] = round(giay + DEM_CUOI_CANH, 2)
+    return doan
+
+
+def quay_video(kb: dict, thu_muc: Path,
+               doan_tieng: list[tuple[Path, float]] | None = None) -> Path | None:
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -308,13 +336,21 @@ def quay_video(kb: dict, thu_muc: Path) -> Path | None:
             trinh_duyet.close()
         thu_muc.mkdir(parents=True, exist_ok=True)
         ra = thu_muc / f"{kb['ten']}.mp4"
-        subprocess.run(
-            [ff, "-y", "-i", str(duong_webm),
-             "-vf", f"scale={RONG}:{CAO}:force_original_aspect_ratio=decrease,"
-                    f"pad={RONG}:{CAO}:(ow-iw)/2:(oh-ih)/2,fps=30,format=yuv420p",
-             "-c:v", "libx264", "-preset", "medium", "-crf", "20",
-             "-movflags", "+faststart", str(ra)],
-            check=True, capture_output=True)
+        loc_hinh = (f"scale={RONG}:{CAO}:force_original_aspect_ratio=decrease,"
+                    f"pad={RONG}:{CAO}:(ow-iw)/2:(oh-ih)/2,fps=30,format=yuv420p")
+        lenh = [ff, "-y", "-i", str(duong_webm)]
+        if doan_tieng:
+            dai = giong_doc.ghep_thanh_mot_dai(
+                doan_tieng, [c["giay"] for c in kb["canh"]],
+                tmp / "tieng.wav", ff)
+            lenh += ["-i", str(dai)]
+        lenh += ["-vf", loc_hinh,
+                 "-c:v", "libx264", "-preset", "medium", "-crf", "20"]
+        if doan_tieng:
+            lenh += ["-c:a", "aac", "-b:a", "128k", "-shortest",
+                     "-map", "0:v:0", "-map", "1:a:0"]
+        lenh += ["-movflags", "+faststart", str(ra)]
+        subprocess.run(lenh, check=True, capture_output=True)
         return ra
 
 
@@ -331,6 +367,14 @@ def main() -> int:
                    help="thư mục xuất")
     p.add_argument("--chi-kich-ban", action="store_true",
                    help="chỉ xuất kịch bản, không quay video")
+    p.add_argument("--giong", default=giong_doc.GIONG_MAC_DINH,
+                   help=f"giọng edge-tts, mặc định {giong_doc.GIONG_MAC_DINH} "
+                        f"(giọng nam: {giong_doc.GIONG_NAM})")
+    p.add_argument("--toc-do", default="+0%",
+                   help="tốc độ đọc, ví dụ +10%% cho nhanh hơn")
+    p.add_argument("--cao-do", default="+0Hz", help="cao độ giọng, ví dụ -2Hz")
+    p.add_argument("--khong-giong", action="store_true",
+                   help="bỏ lồng tiếng, xuất video câm")
     sub = p.add_subparsers(dest="loai", required=True)
 
     s = sub.add_parser("han", help="Video hạn của một tuổi trong một năm")
@@ -351,11 +395,18 @@ def main() -> int:
 
     ra = Path(a.ra)
     ra.mkdir(parents=True, exist_ok=True)
+
+    # Lồng tiếng trước, vì âm thanh quyết định độ dài từng cảnh.
+    doan = None
+    if not a.chi_kich_ban and not a.khong_giong:
+        doan = long_tieng(kb, ra, a.giong, a.toc_do, a.cao_do)
+
     tep_kb = viet_kich_ban(kb, ra)
     tong = sum(c["giay"] for c in kb["canh"])
-    print(f"Kịch bản: {tep_kb}  ({len(kb['canh'])} cảnh, {tong:.1f} giây)")
+    print(f"Kịch bản: {tep_kb}  ({len(kb['canh'])} cảnh, {tong:.1f} giây"
+          + (f", lồng tiếng {a.giong})" if doan else ", không tiếng)"))
     if not a.chi_kich_ban:
-        tep = quay_video(kb, ra)
+        tep = quay_video(kb, ra, doan)
         if tep:
             print(f"Video:    {tep}  ({tep.stat().st_size / 1e6:.1f} MB)")
     return 0

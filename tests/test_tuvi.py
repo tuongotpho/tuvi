@@ -5,7 +5,9 @@
 """
 from __future__ import annotations
 
+import os
 import sys
+import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
@@ -342,6 +344,98 @@ class TestKichBanVideo(unittest.TestCase):
                    self.lv.kich_ban_ngay(20, 9, 2026)):
             cuoi = kb["canh"][-1]
             self.assertIn("tham khảo", (cuoi.get("phu", "") + cuoi["loi_thoai"]).lower())
+
+
+class TestLongTieng(unittest.TestCase):
+    """Phần lồng tiếng: kiểm phần ghép và tính giờ, không gọi mạng."""
+
+    def setUp(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from video import giong_doc, lam_video
+        self.gd, self.lv = giong_doc, lam_video
+        self.goc = giong_doc.doc_kich_ban
+
+    def tearDown(self):
+        self.gd.doc_kich_ban = self.goc
+        self.lv.giong_doc.doc_kich_ban = self.goc
+
+    def _ffmpeg(self):
+        ff = self.lv._ffmpeg()
+        if not ff:
+            self.skipTest("Không có ffmpeg trong môi trường này")
+        return ff
+
+    def _gia_lap(self, do_dai):
+        """Thay edge-tts bằng các tệp mp3 thật có độ dài định trước."""
+        import subprocess
+        ff = self._ffmpeg()
+
+        def gia(canh, thu_muc, giong, toc_do, cao_do):
+            thu_muc.mkdir(parents=True, exist_ok=True)
+            ra = []
+            for i, d in enumerate(do_dai[:len(canh)], 1):
+                tep = thu_muc / f"canh{i:02d}.mp3"
+                subprocess.run([ff, "-y", "-loglevel", "error", "-f", "lavfi",
+                                "-i", f"sine=frequency=440:duration={d}",
+                                "-c:a", "libmp3lame", str(tep)],
+                               check=True, capture_output=True)
+                ra.append((tep, d))
+            return ra
+        self.lv.giong_doc.doc_kich_ban = gia
+
+    def test_do_dai_canh_theo_am_thanh_that(self):
+        """Có giọng đọc thì độ dài cảnh phải theo audio, không theo số chữ."""
+        do_dai = [4.3, 7.1, 6.4, 3.2, 5.0, 6.8, 4.1, 5.6]
+        self._gia_lap(do_dai)
+        kb = self.lv.kich_ban_han(1987, 2026, "nam", 9)
+        uoc_luong = [c["giay"] for c in kb["canh"]]
+        with tempfile.TemporaryDirectory() as tmp:
+            doan = self.lv.long_tieng(kb, Path(tmp), "vi-VN-HoaiMyNeural",
+                                      "+0%", "+0Hz")
+        self.assertIsNotNone(doan)
+        moi = [c["giay"] for c in kb["canh"]]
+        self.assertEqual(
+            moi, [round(d + self.lv.DEM_CUOI_CANH, 2) for d in do_dai[:len(moi)]])
+        self.assertNotEqual(moi, uoc_luong)
+
+    def test_ghep_dai_dung_tung_moc(self):
+        """Mỗi đoạn phải được đệm im lặng cho đủ đúng độ dài cảnh."""
+        ff = self._ffmpeg()
+        do_dai = [2.0, 3.5, 1.5]
+        self._gia_lap(do_dai)
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            doan = self.lv.giong_doc.doc_kich_ban(
+                [{"loi_thoai": "x"}] * 3, tmp / "t", "v", "+0%", "+0Hz")
+            giay = [d + 1.0 for d in do_dai]
+            dai = self.gd.ghep_thanh_mot_dai(doan, giay, tmp / "dai.wav", ff)
+            self.assertAlmostEqual(self.gd.do_dai_am_thanh(dai, ff),
+                                   sum(giay), delta=0.15)
+
+    def test_that_bai_thi_van_xuat_video_cam(self):
+        """Mạng bị chặn hay thiếu gói thì không được làm hỏng cả lệnh."""
+        def hong(*a, **kw):
+            raise self.gd.KhongLongTiengDuoc("giả lập bị chặn")
+        self.lv.giong_doc.doc_kich_ban = hong
+        kb = self.lv.kich_ban_han(1987, 2026, "nam", 9)
+        truoc = [c["giay"] for c in kb["canh"]]
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertIsNone(self.lv.long_tieng(kb, Path(tmp), "v", "+0%", "+0Hz"))
+        self.assertEqual([c["giay"] for c in kb["canh"]], truoc)
+
+    def test_nap_ca_proxy_khong_no(self):
+        """Không khai báo CA thì hàm phải im lặng bỏ qua."""
+        cu = {k: os.environ.pop(k, None)
+              for k in ("TUVI_CA_BUNDLE", "SSL_CERT_FILE", "REQUESTS_CA_BUNDLE")}
+        try:
+            self.gd.nap_ca_proxy()
+        finally:
+            os.environ.update({k: v for k, v in cu.items() if v})
+
+    def test_giong_tieng_viet(self):
+        self.assertTrue(self.gd.GIONG_NU.startswith("vi-VN"))
+        self.assertTrue(self.gd.GIONG_NAM.startswith("vi-VN"))
+        self.assertEqual(self.gd.GIONG_MAC_DINH, self.gd.GIONG_NU)
 
 
 class TestDuLieu(unittest.TestCase):
