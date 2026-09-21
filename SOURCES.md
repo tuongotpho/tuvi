@@ -11,7 +11,7 @@ một nguồn độc lập, bảng nào chỉ chép tay thì phải ghi rõ là 
 | Mã | Nguồn | Giấy phép | Dùng vào việc gì |
 |---|---|---|---|
 | S-01 | Hồ Ngọc Đức — *Âm lịch Việt Nam*, `informatik.uni-leipzig.de/~duc/amlich/` | Công bố công khai, được cài lại rộng rãi | Thuật toán đổi âm — dương lịch theo múi giờ UTC+7 trong `tuvi/amlich.py` |
-| S-02 | [doanguyen/lasotuvi](https://github.com/doanguyen/lasotuvi) — an sao tử vi bằng Python | MIT | Đối chiếu vị trí sao trong `tuvi/la_so.py`; trích danh mục 109 sao và ma trận miếu vượng đắc hãm cho `data/tu_vi/sao.json` |
+| S-02 | [doanguyen/lasotuvi](https://github.com/doanguyen/lasotuvi) — an sao tử vi bằng Python | MIT | Đối chiếu tự động vị trí 109 sao trong `tuvi/la_so.py` (`tests/fixtures/lasotuvi_mau.json`, 60 lá số); trích danh mục sao và ma trận miếu vượng đắc hãm cho `data/tu_vi/sao.json`. Lưu ý S-02 ghi id 38 là "Quan phù" — thực ra là Quan Phủ vòng Lộc Tồn, kho này đã sửa |
 | S-03 | [SylarLong/iztro](https://github.com/SylarLong/iztro) — thư viện Tử Vi Đẩu Số đa ngôn ngữ | MIT | Tham khảo cấu trúc dữ liệu lá số |
 | S-04 | [airicyu/fortel-ziweidoushu](https://github.com/airicyu/fortel-ziweidoushu) — theo phái Trung Châu | Mã nguồn mở | Tham khảo biến thể trường phái |
 | S-05 | [Renhuai123/ziwei-doushu](https://github.com/Renhuai123/ziwei-doushu) — engine kèm kho cổ tịch và hệ tứ hóa | Mã nguồn mở | Tham khảo hệ tứ hóa và kho cách cục |
@@ -93,4 +93,8 @@ Khi các trường phái khác nhau, kho này chọn như sau và ghi chú ngay 
 | Vòng Tràng Sinh | Dương nam / Âm nữ an thuận | Phái Thiên Lương: nam thuận, nữ nghịch |
 | Tứ Hóa can Canh | Thái Dương — Vũ Khúc — Thái Âm — Thiên Đồng | Một số phái đổi chỗ Khoa và Kỵ |
 | Sát chủ | Không cung cấp | Mỗi cuốn lịch một bảng |
+| Hỏa Tinh — Linh Tinh tuổi Tỵ Dậu Sửu | Hỏa khởi Mão, Linh khởi Tuất | S-02 khởi Hỏa Tuất, Linh Mão |
+| Phá Toái | Tý Ngọ Mão Dậu tại Tỵ; Dần Thân Tỵ Hợi tại Dậu; Thìn Tuất Sửu Mùi tại Sửu | S-02 đảo hai nhóm đầu |
+| Thiên Giải | Khởi Thân là tháng Giêng, đếm thuận từng cung đến tháng sinh | S-02 đếm nhảy hai cung một tháng |
+| Thai — Dưỡng | Thứ tự Tuyệt — Thai — Dưỡng — Tràng Sinh | S-02 đặt Dưỡng trước Thai |
 | Sinh tháng nhuận | Cả tháng nhuận tính theo số tháng chính khi an Mệnh — Thân | Nửa đầu về tháng trước, nửa sau về tháng sau |

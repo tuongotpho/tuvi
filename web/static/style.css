@@ -136,6 +136,7 @@ input:focus, select:focus { outline: 2px solid var(--nhan); outline-offset: 1px;
   font-size: 11px; color: var(--chu-mo); display: flex; justify-content: space-between; gap: 6px;
 }
 .nhan-than { color: var(--nhan); font-weight: 700; }
+.nhan-tuan { color: var(--hung); font-weight: 700; letter-spacing: .04em; }
 .thien-ban {
   grid-column: 2 / 4; grid-row: 2 / 4;
   background: var(--nhan-nhat); border: 1px solid var(--vien); border-radius: 8px;

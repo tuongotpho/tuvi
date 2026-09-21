@@ -61,6 +61,8 @@ function veCung(c, laMenh) {
     <div class="cung-sao">${sao || '<span class="cung-chi">—</span>'}</div>
     <div class="cung-chan">
       <span>Đại hạn ${esc(c.dai_han)}</span>
+      ${c.tuan ? '<span class="nhan-tuan" title="Tuần không vong án ngữ">TUẦN</span>' : ""}
+      ${c.triet ? '<span class="nhan-tuan" title="Triệt lộ án ngữ">TRIỆT</span>' : ""}
       ${c.la_cung_than ? '<span class="nhan-than">THÂN</span>' : ""}
     </div>
   </div>`;
@@ -77,6 +79,7 @@ function veLaSo(d) {
     ["Thân cư", d.cung_than_tai],
     ["Chính tinh Mệnh", d.chinh_tinh_menh.length ? d.chinh_tinh_menh.join(" + ") : "Vô chính diệu"],
     ["Đại hạn đi", `${d.chieu_di_han} (${d.am_duong_nam_sinh} ${d.gioi_tinh})`],
+    ["Tuần / Triệt", `${d.tuan.join("–")} / ${d.triet.join("–")}`],
   ].map(([k, v]) => `<div class="o-tom-tat"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join("");
 
   const cung = d.bo_cuc.flat().filter(Boolean);
@@ -100,8 +103,7 @@ function veLaSo(d) {
             <td data-nhan="Cách"><b>${esc(c.ten)}</b><br><span class="cung-chi">${esc(c.dieu_kien)}</span></td>
             <td data-nhan="Tính chất"><span class="nhan-tt ${c.tinh_chat.startsWith("xấu") ? "xau" : c.tinh_chat.startsWith("trung") ? "vua" : "tot"}">${esc(c.tinh_chat)}</span></td>
             <td data-nhan="Luận giải">${esc(c.luan_giai)}</td></tr>`).join("") + "</tbody></table>"
-      : "<p class=\"goi-y\">Lá số này không khớp cách cục nào trong bộ 20 cách đang có. " +
-        "Lưu ý bộ an sao rút gọn chỉ có 55 sao nên một số cách cần sao phụ chưa nhận ra được.</p>");
+      : "<p class=\"goi-y\">Lá số này không khớp cách cục nào trong bộ 20 cách đang có.</p>");
 
   $("#ls-ket-qua").hidden = false;
   $("#ls-goi-y").hidden = true;
@@ -127,7 +129,7 @@ function veCungLuan(c, mo) {
   const danhSach = (tieuDe, ds) => ds.length
     ? `<h4>${tieuDe}</h4><ul>${ds.map((s) => `<li><b>${esc(s.ten)}</b> — ${esc(s.y_nghia)}</li>`).join("")}</ul>` : "";
   return `<details class="lg-cung"${mo ? " open" : ""}>
-    <summary><b>${esc(c.ten_cung)}</b>${c.la_cung_than ? '<span class="than">THÂN</span>' : ""}${nhan}
+    <summary><b>${esc(c.ten_cung)}</b>${c.la_cung_than ? '<span class="than">THÂN</span>' : ""}${c.tuan ? '<span class="than">TUẦN</span>' : ""}${c.triet ? '<span class="than">TRIỆT</span>' : ""}${nhan}
       <span class="cung-chi">${esc(c.can)} ${esc(c.chi)} · đại hạn ${esc(c.dai_han)}</span></summary>
     <div class="lg-than">
       <p>${esc(c.luan)}</p>

@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-"""An sao Tử Vi ở mức cốt lõi: 12 cung, Cục, 14 chính tinh, Tứ Hóa,
-vòng Tràng Sinh, vòng Thái Tuế, bộ Lộc Tồn — Kình — Đà và đại hạn.
+"""An sao Tử Vi: 12 cung, Cục, đủ 109 sao, Tứ Hóa, Tuần — Triệt và đại hạn.
 
-Đây là bản rút gọn phục vụ sinh nội dung, không phải bộ an sao đầy đủ 109 sao.
-Muốn an đủ sao, xem dự án mã nguồn mở ``doanguyen/lasotuvi`` (MIT) nêu trong
-SOURCES.md mục [S-02].
+Quy tắc an sao lấy theo sách phổ thông và được đối chiếu tự động với dự án
+mã nguồn mở ``doanguyen/lasotuvi`` (MIT, SOURCES.md mục [S-02]) trong
+``tests/``. Những chỗ hai bên khác trường phái liệt kê ở SOURCES.md mục E.
 """
 from __future__ import annotations
 
@@ -64,6 +63,39 @@ _TAM_HOP_MA = {0: 2, 4: 2, 8: 2, 2: 8, 6: 8, 10: 8,
                5: 11, 9: 11, 1: 11, 11: 5, 3: 5, 7: 5}
 _DAO_HOA = {8: 9, 0: 9, 4: 9, 2: 3, 6: 3, 10: 3,
             5: 6, 9: 6, 1: 6, 11: 0, 3: 0, 7: 0}
+
+VONG_BAC_SI = ["Bác Sĩ", "Lực Sĩ", "Thanh Long", "Tiểu Hao", "Tướng Quân", "Tấu Thư",
+               "Phi Liêm", "Hỷ Thần", "Bệnh Phù", "Đại Hao", "Phục Binh", "Quan Phủ"]
+
+# Cung khởi Hỏa Tinh, Linh Tinh theo tam hợp chi năm sinh (kể là giờ Tý).
+# Tuổi Tỵ Dậu Sửu có hai phái; ở đây theo bản phổ thông "Hỏa Mão, Linh Tuất".
+_KHOI_HOA_LINH = {2: (1, 3), 6: (1, 3), 10: (1, 3),      # Dần Ngọ Tuất: Sửu, Mão
+                  8: (2, 10), 0: (2, 10), 4: (2, 10),    # Thân Tý Thìn: Dần, Tuất
+                  5: (3, 10), 9: (3, 10), 1: (3, 10),    # Tỵ Dậu Sửu: Mão, Tuất
+                  11: (9, 10), 3: (9, 10), 7: (9, 10)}   # Hợi Mão Mùi: Dậu, Tuất
+
+# Cô Thần, Quả Tú theo tam hợp chi năm sinh.
+_CO_QUA = {11: (2, 10), 0: (2, 10), 1: (2, 10),        # Hợi Tý Sửu: Dần, Tuất
+           2: (5, 1), 3: (5, 1), 4: (5, 1),            # Dần Mão Thìn: Tỵ, Sửu
+           5: (8, 4), 6: (8, 4), 7: (8, 4),            # Tỵ Ngọ Mùi: Thân, Thìn
+           8: (11, 7), 9: (11, 7), 10: (11, 7)}        # Thân Dậu Tuất: Hợi, Mùi
+
+# Phá Toái: Tý Ngọ Mão Dậu tại Tỵ; Dần Thân Tỵ Hợi tại Dậu; Thìn Tuất Sửu Mùi tại Sửu.
+_PHA_TOAI = {0: 5, 6: 5, 3: 5, 9: 5, 2: 9, 8: 9, 5: 9, 11: 9, 4: 1, 10: 1, 1: 1, 7: 1}
+
+# Các sao an theo can năm sinh (chỉ số địa chi, Tý = 0).
+_THIEN_QUAN = {"Giáp": 7, "Ất": 4, "Bính": 5, "Đinh": 2, "Mậu": 3,
+               "Kỷ": 9, "Canh": 11, "Tân": 9, "Nhâm": 10, "Quý": 6}
+_THIEN_PHUC = {"Giáp": 9, "Ất": 8, "Bính": 0, "Đinh": 11, "Mậu": 3,
+               "Kỷ": 2, "Canh": 6, "Tân": 5, "Nhâm": 6, "Quý": 5}
+_LUU_HA = {"Giáp": 9, "Ất": 10, "Bính": 7, "Đinh": 4, "Mậu": 5,
+           "Kỷ": 6, "Canh": 8, "Tân": 3, "Nhâm": 11, "Quý": 2}
+_THIEN_TRU = {"Giáp": 5, "Ất": 6, "Bính": 0, "Đinh": 5, "Mậu": 6,
+              "Kỷ": 8, "Canh": 2, "Tân": 6, "Nhâm": 9, "Quý": 10}
+# Triệt: Giáp Kỷ — Thân Dậu; Ất Canh — Ngọ Mùi; Bính Tân — Thìn Tỵ;
+# Đinh Nhâm — Dần Mão; Mậu Quý — Tý Sửu.
+_TRIET = {"Giáp": 8, "Kỷ": 8, "Ất": 6, "Canh": 6, "Bính": 4, "Tân": 4,
+          "Đinh": 2, "Nhâm": 2, "Mậu": 0, "Quý": 0}
 
 
 def _vi_tri_tu_vi(cuc: int, ngay: int) -> int:
@@ -170,7 +202,89 @@ def lap_la_so(ngay: int, thang: int, nam: int, gio: int, phut: int = 0,
                 dat(hoa, vi_tri, "Tứ Hóa")
                 break
 
-    # 11. Đại hạn 10 năm
+    # 11. Vòng Bác Sĩ (12 sao theo Lộc Tồn), chiều như vòng Tràng Sinh
+    for i, ten in enumerate(VONG_BAC_SI):
+        dat(ten, lt + i if thuan else lt - i, "Vòng Bác Sĩ")
+
+    # 12. Sao đi kèm vòng Thái Tuế: Thiên Không (sau Thái Tuế), Nguyệt Đức
+    #     (khởi Tỵ), Thiên Đức (khởi Dậu), cả hai đếm thuận theo chi năm.
+    chi_nam = nam_cc.chi_idx
+    dat("Thiên Không", chi_nam + 1, "Sát tinh")
+    dat("Nguyệt Đức", 5 + chi_nam, "Phúc tinh")
+    dat("Thiên Đức", 9 + chi_nam, "Phúc tinh")
+
+    # 13. Lục sát còn lại: Không Kiếp (khởi Hợi theo giờ), Hỏa Linh
+    dat("Địa Kiếp", 11 + chi_gio, "Sát tinh")
+    dat("Địa Không", 11 - chi_gio, "Sát tinh")
+    khoi_hoa, khoi_linh = _KHOI_HOA_LINH[chi_nam]
+    if thuan:  # Dương nam, Âm nữ: Hỏa thuận, Linh nghịch
+        dat("Hỏa Tinh", khoi_hoa + chi_gio, "Sát tinh")
+        dat("Linh Tinh", khoi_linh - chi_gio, "Sát tinh")
+    else:
+        dat("Hỏa Tinh", khoi_hoa - chi_gio, "Sát tinh")
+        dat("Linh Tinh", khoi_linh + chi_gio, "Sát tinh")
+
+    # 14. Các cặp sao đối nhau qua trục Sửu — Mùi
+    dat("Long Trì", 4 + chi_nam, "Quý tinh")            # khởi Thìn theo chi năm
+    dat("Phượng Các", 10 - chi_nam, "Quý tinh")
+    dat("Giải Thần", 10 - chi_nam, "Phúc tinh")         # đồng cung Phượng Các
+    ta_phu, huu_bat = 4 + (thang_am - 1), 10 - (thang_am - 1)
+    dat("Tam Thai", ta_phu + (ngay_am - 1), "Đài các")    # từ Tả Phù đếm thuận
+    dat("Bát Tọa", huu_bat - (ngay_am - 1), "Đài các")    # từ Hữu Bật đếm nghịch
+    van_xuong, van_khuc = 10 - chi_gio, 4 + chi_gio
+    dat("Ân Quang", van_xuong + (ngay_am - 1) - 1, "Quý tinh")  # từ Xương, lùi 1
+    dat("Thiên Quý", van_khuc - (ngay_am - 1) + 1, "Quý tinh")  # từ Khúc, ngược lại
+    dat("Thiên Khốc", 6 - chi_nam, "Bại tinh")   # khởi Ngọ, nghịch
+    dat("Thiên Hư", 6 + chi_nam, "Bại tinh")     # khởi Ngọ, thuận
+
+    # 15. Theo cung Mệnh / Thân và chi năm
+    dat("Thiên Tài", cung_menh + chi_nam, "Phụ tinh")
+    dat("Thiên Thọ", cung_than + chi_nam, "Phúc tinh")
+
+    # 16. Theo can năm sinh
+    dat("Thiên Quan", _THIEN_QUAN[nam_cc.can], "Phúc tinh")
+    dat("Thiên Phúc", _THIEN_PHUC[nam_cc.can], "Phúc tinh")
+    dat("Lưu Hà", _LUU_HA[nam_cc.can], "Bại tinh")
+    dat("Thiên Trù", _THIEN_TRU[nam_cc.can], "Phúc tinh")
+    dat("Văn Tinh", lt + 3, "Văn tinh")          # Kình Dương + 2
+    dat("Đường Phù", lt + 5, "Quyền tinh")       # Văn Tinh + 2
+    dat("Quốc Ấn", lt + 8, "Văn tinh")           # Đường Phù + 3
+
+    # 17. Theo tháng sinh
+    dat("Thiên Hình", 9 + (thang_am - 1), "Hình tinh")   # khởi Dậu
+    dat("Thiên Riêu", 1 + (thang_am - 1), "Ám tinh")     # khởi Sửu
+    dat("Thiên Y", 1 + (thang_am - 1), "Phúc tinh")      # đồng cung Thiên Riêu
+    dat("Thiên Giải", 8 + (thang_am - 1), "Phúc tinh")   # khởi Thân
+    dat("Địa Giải", 7 + (thang_am - 1), "Phúc tinh")     # khởi Mùi
+
+    # 18. Theo giờ sinh (quanh Văn Khúc)
+    dat("Thai Phụ", van_khuc + 2, "Văn tinh")
+    dat("Phong Cáo", van_khuc - 2, "Quyền tinh")
+
+    # 19. Theo chi năm sinh
+    co_than, qua_tu = _CO_QUA[chi_nam]
+    dat("Cô Thần", co_than, "Ám tinh")
+    dat("Quả Tú", qua_tu, "Ám tinh")
+    ma = _TAM_HOP_MA[chi_nam]
+    dat("Hoa Cái", ma + 2, "Phụ tinh")
+    dat("Kiếp Sát", ma + 3, "Sát tinh")
+    dat("Phá Toái", _PHA_TOAI[chi_nam], "Bại tinh")
+    # Đẩu Quân: từ cung Thái Tuế kể là tháng Giêng đếm nghịch đến tháng sinh,
+    # rồi từ đó kể là giờ Tý đếm thuận đến giờ sinh.
+    dat("Đẩu Quân", chi_nam - (thang_am - 1) + chi_gio, "Phúc tinh")
+
+    # 20. Sao cố định và theo cung chức
+    dat("Thiên La", 4, "Bại tinh")               # luôn ở Thìn
+    dat("Địa Võng", 10, "Bại tinh")              # luôn ở Tuất
+    dat("Thiên Thương", cung_menh + 5, "Bại tinh")   # cung Nô Bộc
+    dat("Thiên Sứ", cung_menh + 7, "Bại tinh")       # cung Tật Ách
+
+    # 21. Tuần, Triệt (không phải sao, đánh dấu lên cung)
+    cuoi_tuan = (chi_nam + 9 - THIEN_CAN.index(nam_cc.can)) % 12
+    tuan = {(cuoi_tuan + 1) % 12, (cuoi_tuan + 2) % 12}
+    triet = {_TRIET[nam_cc.can], _TRIET[nam_cc.can] + 1}
+
+    # 22. Đại hạn 10 năm
     dai_han = {}
     for i in range(12):
         vi_tri = (cung_menh + i) % 12 if thuan else (cung_menh - i) % 12
@@ -186,6 +300,8 @@ def lap_la_so(ngay: int, thang: int, nam: int, gio: int, phut: int = 0,
             "ten_cung": ten_cung,
             "chu_ve": cung_info[ten_cung]["chu_ve"],
             "la_cung_than": i == cung_than,
+            "tuan": i in tuan,
+            "triet": i in triet,
             "dai_han": dai_han[i],
             "sao": sorted(sao_o_cung[i], key=lambda s: s["nhom"] != "Chính tinh"),
         })
@@ -203,6 +319,8 @@ def lap_la_so(ngay: int, thang: int, nam: int, gio: int, phut: int = 0,
         "cuc": f"{hanh_cuc} {so_cuc} cục",
         "so_cuc": so_cuc,
         "tu_hoa": tu_hoa,
+        "tuan": [DIA_CHI[i] for i in sorted(tuan)],
+        "triet": [DIA_CHI[i] for i in sorted(triet)],
         "cac_cung": cung_list,
     }
 

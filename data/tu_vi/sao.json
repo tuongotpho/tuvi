@@ -522,7 +522,7 @@
  },
  {
   "id": 109,
-  "ten": "Bác sỹ",
+  "ten": "Bác sĩ",
   "nhom": "Vòng Lộc Tồn (Bác Sĩ)",
   "hanh": "Thủy",
   "loai": "Phúc tinh",
@@ -675,17 +675,17 @@
  },
  {
   "id": 38,
-  "ten": "Quan phù",
-  "nhom": "Vòng Thái Tuế",
+  "ten": "Quan phủ",
+  "nhom": "Vòng Lộc Tồn (Bác Sĩ)",
   "hanh": "Hỏa",
   "loai": "Bại tinh",
   "phuong_vi": null,
   "am_duong": null,
   "thuoc_vong_trang_sinh": false,
   "tinh_chat": "hung",
-  "y_nghia": "Sao kiện tụng giấy tờ, chủ vướng mắc pháp lý và thủ tục.",
+  "y_nghia": "Sao cuối vòng Lộc Tồn, chủ thị phi, kiện cáo, bị bới móc chuyện cũ; đi với Quan Phù (vòng Thái Tuế) thì việc quan càng nặng.",
   "mieu_vuong_dac_ham": {},
-  "ten_hien_thi": "Quan phù (Vòng Thái Tuế)"
+  "ten_hien_thi": "Quan phủ (Vòng Lộc Tồn)"
  },
  {
   "id": 39,

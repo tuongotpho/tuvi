@@ -56,7 +56,8 @@ tháng 1 hoặc đầu tháng 2. Hãy đổi sang năm âm lịch bằng `solar_
 
 ### Tử vi
 
-- **`tu_vi/sao.json`** — 109 sao. `id` khớp với id trong `doanguyen/lasotuvi` nên
+- **`tu_vi/sao.json`** — 109 sao. `id` khớp với id trong `doanguyen/lasotuvi` (riêng id 38
+  bên đó ghi nhầm "Quan phù", kho này là Quan Phủ vòng Lộc Tồn) nên
   ghép được với bộ an sao đầy đủ của thư viện đó. Trường `mieu_vuong_dac_ham` là
   dict `{chi: "Miếu"|"Vượng"|"Đắc"|"Bình"|"Hãm"}`, chỉ 29 sao có bảng này.
   Tên "Quan phù" xuất hiện ở hai vòng sao khác nhau nên có thêm `ten_hien_thi`.

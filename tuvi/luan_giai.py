@@ -332,12 +332,17 @@ def _luan_mot_cung(ls: dict, i: int) -> dict:
                 f"{xung['ten_cung']} ({' + '.join(_ten_chinh_tinh(xung)) or 'vô chính diệu'}).")
     if c["la_cung_than"]:
         doan.append("Đây cũng là cung an Thân, ảnh hưởng mạnh từ trung niên trở đi.")
+    an_ngu = [t for t, co in (("Tuần", c.get("tuan")), ("Triệt", c.get("triet"))) if co]
+    if an_ngu:
+        doan.append(f"Cung bị {' và '.join(an_ngu)} án ngữ: sao tốt bị giảm lực, sao xấu "
+                    "cũng bớt hung; việc ở cung này thường đến muộn hoặc phải qua trắc trở.")
 
     return {
         "ten_cung": c["ten_cung"], "chi": c["chi"], "can": c["can"],
         "chu_ve": c["chu_ve"], "cach_doc": info["cach_doc"],
         "noi_dung_xem": info["noi_dung_xem"],
         "la_cung_than": c["la_cung_than"], "dai_han": c["dai_han"],
+        "tuan": bool(c.get("tuan")), "triet": bool(c.get("triet")),
         "vo_chinh_dieu": not chinh,
         "chinh_tinh": [{"ten": s["ten"], "dac_tinh": s.get("dac_tinh"),
                         "y_nghia": s["y_nghia"]} for s in chinh],
@@ -408,8 +413,9 @@ def luan_giai_la_so(ls: dict, nam_xem: int | None = None) -> dict:
             "so_cung_vo_chinh_dieu": sum(1 for c in cac_cung if c["vo_chinh_dieu"]),
         },
         "luu_y": [
-            "Bản an sao rút gọn có 55 sao, chưa đủ 109 sao; các cách cục cần sao "
-            "phụ (Hỏa, Linh, Không, Kiếp...) chưa nhận ra được.",
+            "Đủ 109 sao và Tuần — Triệt; vị trí sao đã đối chiếu tự động với thư viện "
+            "mở lasotuvi. Những sao có nhiều trường phái (Khôi Việt, Tứ Hóa can Canh, "
+            "Hỏa Linh tuổi Tỵ Dậu Sửu, Phá Toái, Thiên Giải) chọn theo bản phổ thông.",
             "Điểm từng cung chỉ để xếp thứ tự đáng chú ý, các khoản cộng trừ được "
             "liệt kê để kiểm lại; không phải thước đo số phận.",
             "Đây là tri thức văn hóa dân gian, dùng để tham khảo; không thay thế "

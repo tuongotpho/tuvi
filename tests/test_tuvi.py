@@ -5,6 +5,7 @@
 """
 from __future__ import annotations
 
+import json
 import os
 import sys
 import tempfile
@@ -229,6 +230,50 @@ class TestLaSo(unittest.TestCase):
         ls = la_so.lap_la_so(20, 9, 1990, 14, gioi_tinh="nam")
         self.assertEqual(set(ls["tu_hoa"]),
                          {"Hóa Lộc", "Hóa Quyền", "Hóa Khoa", "Hóa Kỵ"})
+
+
+class TestAnSaoDoiChieuLasotuvi(unittest.TestCase):
+    """99 sao × 60 lá số phải trùng vị trí với doanguyen/lasotuvi (MIT).
+
+    Bộ mẫu sinh sẵn ở tests/fixtures/lasotuvi_mau.json; 8 sao khác trường phái
+    và cặp Thai — Dưỡng (lasotuvi đảo) được ghi trong tệp đó và SOURCES.md.
+    """
+
+    MAU = Path(__file__).parent / "fixtures" / "lasotuvi_mau.json"
+
+    def test_khop_vi_tri_sao(self):
+        bo = json.loads(self.MAU.read_text(encoding="utf-8"))
+        so_sao = 0
+        for m in bo["la_so"]:
+            d, t, n = m["am_lich"]
+            ls = la_so.lap_la_so(d, t, n, DIA_CHI.index(m["gio"]) * 2, 0,
+                                 gioi_tinh=m["gioi_tinh"], duong_lich=False)
+            vi_tri = {s["ten"].lower(): c["chi"] for c in ls["cac_cung"] for s in c["sao"]}
+            self.assertEqual(len(vi_tri), 109, m)
+            for ten, chi in m["sao"].items():
+                self.assertEqual(vi_tri.get(ten), chi, f"{ten} — {m['am_lich']} {m['gio']}")
+                so_sao += 1
+            self.assertEqual(set(ls["tuan"]), set(m["tuan"]), m)
+            self.assertEqual(set(ls["triet"]), set(m["triet"]), m)
+        self.assertEqual(so_sao, 60 * bo["so_sao_moi_la_so"])
+
+    def test_du_109_sao_khong_trung(self):
+        for d, m, y, g, gt in [(20, 9, 1990, 14, "nam"), (1, 1, 1985, 6, "nu"),
+                               (22, 8, 1987, 10, "nam"), (5, 7, 1992, 2, "nu")]:
+            ls = la_so.lap_la_so(d, m, y, g, gioi_tinh=gt)
+            ten = [s["ten"].lower() for c in ls["cac_cung"] for s in c["sao"]]
+            self.assertEqual(len(ten), 109)
+            self.assertEqual(len(set(ten)), 109)
+            self.assertEqual(set(ten), {s["ten"].lower() for s in load("tu_vi/sao")})
+
+    def test_vong_trang_sinh_dung_thu_tu(self):
+        # Tuyệt — Thai — Dưỡng — Tràng Sinh phải nối tiếp nhau một cung một.
+        ls = la_so.lap_la_so(20, 9, 1990, 14, gioi_tinh="nam")
+        vi_tri = {s["ten"]: DIA_CHI.index(c["chi"]) for c in ls["cac_cung"] for s in c["sao"]}
+        buoc = 1 if ls["chieu_di_han"] == "thuận" else -1
+        self.assertEqual((vi_tri["Thai"] - vi_tri["Tuyệt"]) % 12, buoc % 12)
+        self.assertEqual((vi_tri["Dưỡng"] - vi_tri["Thai"]) % 12, buoc % 12)
+        self.assertEqual((vi_tri["Tràng Sinh"] - vi_tri["Dưỡng"]) % 12, buoc % 12)
 
 
 class TestQuanHeChi(unittest.TestCase):
