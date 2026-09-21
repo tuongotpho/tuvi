@@ -377,6 +377,42 @@ class TestCachCuc(unittest.TestCase):
                                         luan_giai._BoiCanh(ls)))
 
 
+class TestKiemTraDauVao(unittest.TestCase):
+    """Tầng thư viện phải tự chặn đầu vào rác, không trông vào máy chủ web."""
+
+    def test_la_so_chan_ngay_khong_co_that(self):
+        from tuvi.kiem_tra import LoiDauVao
+        for args in [(31, 2, 1990, 14), (29, 2, 2023, 14), (0, 0, 0, 0), (1, 1, 1700, 14),
+                     (1, 1, 2200, 14), (20, 9, 1990, 99), (20, 9, 1990, -5), (20, 9, 1990, 14, 60)]:
+            with self.assertRaises(LoiDauVao, msg=args):
+                la_so.lap_la_so(*args)
+        with self.assertRaises(LoiDauVao):
+            la_so.lap_la_so(20, 9, 1990, 14, gioi_tinh="<script>")
+        with self.assertRaises(LoiDauVao):
+            la_so.lap_la_so(31, 12, 1990, 14, duong_lich=False)   # ngày âm tối đa 30
+
+    def test_gioi_tinh_chuan_hoa(self):
+        from tuvi.kiem_tra import gioi_tinh_hop_le
+        self.assertEqual(gioi_tinh_hop_le("Nữ"), "nu")
+        self.assertEqual(gioi_tinh_hop_le(" NAM "), "nam")
+        self.assertEqual(la_so.lap_la_so(20, 9, 1990, 14, gioi_tinh="Nữ")["gioi_tinh"], "Nữ")
+
+    def test_han_va_phong_thuy_chan_rac(self):
+        from tuvi.kiem_tra import LoiDauVao
+        with self.assertRaises(LoiDauVao):
+            han.ho_so_han(2030, 2026, "nam")
+        with self.assertRaises(LoiDauVao):
+            han.sao_han(1990, 2026, "khac")
+        with self.assertRaises(LoiDauVao):
+            phong_thuy.ho_so_phong_thuy(1990, "nam", "Bắc Cực")
+        with self.assertRaises(LoiDauVao):
+            ngay_gio.xem_ngay(31, 4, 2026)
+        with self.assertRaises(LoiDauVao):
+            chon_ngay.chon_ngay(1987, date(2026, 1, 1), date(2026, 2, 1), so_luong=10_000)
+        with self.assertRaises(LoiDauVao):
+            chon_ngay.chon_ngay(1987, date(2026, 1, 1), date(2026, 2, 1), viec="khong_co")
+
+
 class TestQuanHeChi(unittest.TestCase):
     def test_luc_xung(self):
         for a, b in [("Tý", "Ngọ"), ("Sửu", "Mùi"), ("Dần", "Thân"),

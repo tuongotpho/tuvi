@@ -20,7 +20,11 @@ from .canchi import (can_chi_ngay, can_chi_nam, luc_xung, quan_he_chi,
                      thien_khac_dia_xung)
 from .han import sao_han
 from .ngay_gio import gio_hoang_dao, xem_ngay
+from .kiem_tra import LoiDauVao, gioi_tinh_hop_le, nam_hop_le, so_nguyen
 from .store import load
+
+KHOANG_TOI_DA = 400     # ngày quét tối đa một lượt
+SO_LUONG_TOI_DA = 60    # số ngày tốt trả về tối đa, tránh trả cả năm
 
 THU_VN = ["Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm",
           "Thứ Sáu", "Thứ Bảy", "Chủ nhật"]
@@ -39,8 +43,8 @@ def _viec(ma: str | None) -> dict | None:
     try:
         return next(v for v in ds if v["ma"] == ma)
     except StopIteration:
-        raise ValueError(f"Không có việc mã {ma}. Có: "
-                         f"{', '.join(v['ma'] for v in ds)}") from None
+        raise LoiDauVao(f"Không có việc mã '{ma}'. Có: "
+                        f"{', '.join(v['ma'] for v in ds)}.") from None
 
 
 def danh_sach_viec() -> list[dict]:
@@ -146,10 +150,15 @@ def chon_ngay(nam_sinh_am: int, tu_ngay: date, den_ngay: date,
               viec: str | None = None, gioi_tinh: str = "nam",
               so_luong: int = 10) -> dict:
     """Quét một khoảng ngày, loại ngày xung tuổi rồi xếp hạng phần còn lại."""
+    nam_sinh_am = nam_hop_le(nam_sinh_am, "Năm sinh")
+    gioi_tinh = gioi_tinh_hop_le(gioi_tinh)
+    so_luong = so_nguyen(so_luong, "Số ngày muốn lấy", 1, SO_LUONG_TOI_DA)
     if den_ngay < tu_ngay:
-        raise ValueError("Ngày kết thúc phải sau ngày bắt đầu")
-    if (den_ngay - tu_ngay).days > 400:
-        raise ValueError("Khoảng thời gian tối đa là 400 ngày")
+        raise LoiDauVao("Ngày kết thúc phải sau ngày bắt đầu.")
+    if (den_ngay - tu_ngay).days > KHOANG_TOI_DA:
+        raise LoiDauVao(f"Khoảng thời gian tối đa là {KHOANG_TOI_DA} ngày.")
+    for d in (tu_ngay, den_ngay):
+        nam_hop_le(d.year, "Năm")
 
     tat_ca = []
     d = tu_ngay

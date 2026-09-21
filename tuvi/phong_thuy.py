@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .canchi import can_chi_nam
+from .kiem_tra import LoiDauVao, gioi_tinh_hop_le, nam_hop_le
 from .store import load
 
 SO_CUNG = {1: "Khảm", 2: "Khôn", 3: "Chấn", 4: "Tốn",
@@ -21,7 +22,8 @@ def _rut_gon(n: int) -> int:
 
 def cung_phi(nam_sinh_am: int, gioi_tinh: str) -> dict:
     """Cung phi Bát trạch từ năm sinh âm lịch và giới tính."""
-    la_nam = gioi_tinh.lower().startswith("nam")
+    nam_sinh_am = nam_hop_le(nam_sinh_am, "Năm sinh")
+    la_nam = gioi_tinh_hop_le(gioi_tinh) == "nam"
     a = _rut_gon(sum(int(c) for c in f"{nam_sinh_am % 100:02d}"))
     if nam_sinh_am < 2000:
         so = (10 - a) if la_nam else (5 + a)
@@ -74,7 +76,11 @@ def hop_huong_nha(cung: str, huong_nha: str) -> dict:
     """Đánh giá một hướng nhà cụ thể với cung phi của gia chủ."""
     ds = load("phong_thuy/bat_trach")
     dn_info = {d["ten"]: d for d in ds["du_nien"]}
-    ten = du_nien(cung)[huong_nha]
+    bang = du_nien(cung)
+    if huong_nha not in bang:
+        raise LoiDauVao(f"Hướng nhà '{huong_nha}' không hợp lệ; dùng một trong: "
+                        f"{', '.join(bang)}.")
+    ten = bang[huong_nha]
     d = dn_info[ten]
     return {"cung_phi": cung, "huong_nha": huong_nha, "du_nien": ten,
             "tinh_chat": d["tinh_chat"], "xep_hang": d["xep_hang"],

@@ -5,6 +5,7 @@ from __future__ import annotations
 from .amlich import jd_from_date, solar_to_lunar
 from .canchi import (DIA_CHI, can_chi_gio, can_chi_ngay, chi_thang_theo_tiet,
                      tiet_khi_cua_ngay)
+from .kiem_tra import ngay_duong_hop_le
 from .store import load
 
 TRUC = ["Kiến", "Trừ", "Mãn", "Bình", "Định", "Chấp",
@@ -106,6 +107,7 @@ def ngay_kieng(lunar_day: int, lunar_month: int, jd: int) -> list[str]:
 
 def xem_ngay(dd: int, mm: int, yy: int) -> dict:
     """Hồ sơ đầy đủ của một ngày dương lịch — đầu vào chuẩn để dựng content."""
+    ngay_duong_hop_le(dd, mm, yy)
     am = solar_to_lunar(dd, mm, yy)
     jd = am.jd
     than, la_hoang_dao = than_truc_nhat(am.month, jd)

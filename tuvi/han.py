@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .canchi import can_chi_nam, quan_he_chi, tuoi_mu
+from .kiem_tra import gioi_tinh_hop_le, nam_sinh_va_nam_xem
 from .store import load
 
 HOANG_OC_CUNG = ["Nhất Cát", "Nhì Nghi", "Tam Địa Sát",
@@ -21,13 +22,12 @@ def sao_han(nam_sinh_am: int, nam_xem: int, gioi_tinh: str) -> dict:
 
     ``gioi_tinh`` nhận "nam" hoặc "nu".
     """
+    nam_sinh_am, nam_xem = nam_sinh_va_nam_xem(nam_sinh_am, nam_xem)
     ds = load("han/sao_han")
     tuoi = tuoi_mu(nam_sinh_am, nam_xem)
-    if tuoi < 10:
-        # Dưới 10 tuổi vẫn quay vòng ngược lại theo đúng chu kỳ 9 năm.
-        pass
+    # Dưới 10 tuổi phép chia dư của Python vẫn quay đúng vòng 9 năm.
     idx = (tuoi - 10) % 9
-    key = "thu_tu_nam" if gioi_tinh.lower().startswith("nam") else "thu_tu_nu"
+    key = "thu_tu_nam" if gioi_tinh_hop_le(gioi_tinh) == "nam" else "thu_tu_nu"
     ten = ds[key][idx]
     chi_tiet = next(s for s in ds["sao"] if s["ten"] == ten)
     return {"tuoi_mu": tuoi, "sao": ten, **chi_tiet}
@@ -84,6 +84,7 @@ def thai_tue(chi_tuoi: str, chi_nam: str) -> dict:
 
 def tuoi_lam_nha(nam_sinh_am: int, nam_lam: int) -> dict:
     """Bộ ba Kim Lâu — Hoang Ốc — Tam Tai, phép xem tuổi làm nhà kinh điển."""
+    nam_sinh_am, nam_lam = nam_sinh_va_nam_xem(nam_sinh_am, nam_lam)
     tuoi = tuoi_mu(nam_sinh_am, nam_lam)
     chi_tuoi = can_chi_nam(nam_sinh_am).chi
     chi_nam = can_chi_nam(nam_lam).chi
@@ -104,6 +105,8 @@ def tuoi_lam_nha(nam_sinh_am: int, nam_lam: int) -> dict:
 
 def ho_so_han(nam_sinh_am: int, nam_xem: int, gioi_tinh: str = "nam") -> dict:
     """Hồ sơ hạn đầy đủ của một người trong một năm — đầu vào chuẩn cho content."""
+    nam_sinh_am, nam_xem = nam_sinh_va_nam_xem(nam_sinh_am, nam_xem)
+    gioi_tinh = gioi_tinh_hop_le(gioi_tinh)
     chi_tuoi = can_chi_nam(nam_sinh_am).chi
     chi_nam = can_chi_nam(nam_xem).chi
     tuoi = tuoi_mu(nam_sinh_am, nam_xem)

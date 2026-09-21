@@ -10,6 +10,8 @@ from __future__ import annotations
 from .amlich import solar_to_lunar
 from .canchi import (AM_DUONG_CAN, DIA_CHI, THIEN_CAN, can_chi_nam,
                      chi_gio_tu_gio_phut, nap_am)
+from .kiem_tra import (gio_phut_hop_le, gioi_tinh_hop_le, ngay_am_hop_le,
+                       ngay_duong_hop_le)
 from .store import load
 
 TEN_CUNG = ["Mệnh", "Phụ Mẫu", "Phúc Đức", "Điền Trạch", "Quan Lộc", "Nô Bộc",
@@ -122,18 +124,26 @@ def _can_cung(can_nam: str, chi_cung: int) -> str:
 
 def lap_la_so(ngay: int, thang: int, nam: int, gio: int, phut: int = 0,
               gioi_tinh: str = "nam", duong_lich: bool = True) -> dict:
-    """Lập lá số Tử Vi rút gọn từ ngày giờ sinh."""
+    """Lập lá số Tử Vi từ ngày giờ sinh.
+
+    Đầu vào được kiểm trước: ngày phải có thật, năm 1800–2199, giờ 0–23,
+    giới tính nam/nu — sai thì ném ``kiem_tra.LoiDauVao``.
+    """
+    gio, phut = gio_phut_hop_le(gio, phut)
+    gioi_tinh = gioi_tinh_hop_le(gioi_tinh)
     if duong_lich:
+        ngay_duong_hop_le(ngay, thang, nam)
         am = solar_to_lunar(ngay, thang, nam)
         ngay_am, thang_am, nam_am, nhuan = am.day, am.month, am.year, am.leap
     else:
-        ngay_am, thang_am, nam_am, nhuan = ngay, thang, nam, False
+        ngay_am, thang_am, nam_am = ngay_am_hop_le(ngay, thang, nam)
+        nhuan = False
     # Sinh vào tháng nhuận: an Mệnh theo số tháng của tháng chính (cả tháng
     # nhuận coi như tháng đó). Một số phái chia nửa đầu về tháng trước, nửa sau
     # về tháng sau; xem SOURCES.md mục E.
     chi_gio = chi_gio_tu_gio_phut(gio, phut)
     nam_cc = can_chi_nam(nam_am)
-    la_nam = gioi_tinh.lower().startswith("nam")
+    la_nam = gioi_tinh == "nam"
     duong_nam_sinh = AM_DUONG_CAN[nam_cc.can_idx] == 1
 
     # 1. Cung Mệnh và cung Thân

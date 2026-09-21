@@ -11,9 +11,10 @@ với phần đã kiểm thử.
 from __future__ import annotations
 
 import json
+import socket
 import sys
 import traceback
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -22,15 +23,24 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
-from tuvi.canchi import CON_GIAP, DIA_CHI, can_chi_nam  # noqa: E402
+from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
+from tuvi.kiem_tra import (LoiDauVao, canh_gio_hop_le, gio_phut_hop_le,  # noqa: E402
+                           gioi_tinh_hop_le, nam_hop_le, ngay_duong_hop_le,
+                           so_nguyen)
 from tuvi.luan_giai import (bo_sung_y_nghia_sao, goi_y_cach_cuc,  # noqa: E402
                             luan_giai_la_so, tra_sao)
 
 bat_utf8()
 
 STATIC = Path(__file__).resolve().parent / "static"
+GIO_VN = timezone(timedelta(hours=7))
+
+
+def hom_nay_vn() -> date:
+    """Ngày hôm nay theo giờ Việt Nam, không phụ thuộc múi giờ máy chủ."""
+    return datetime.now(GIO_VN).date()
 
 # Bố cục địa bàn truyền thống: 4x4, 12 cung vây quanh, giữa là thiên bàn.
 BO_CUC = [["Tỵ", "Ngọ", "Mùi", "Thân"],
@@ -50,7 +60,7 @@ def api_laso(q: dict) -> dict:
 def api_luangiai(q: dict) -> dict:
     """Luận giải chi tiết; cùng tham số với /api/laso, thêm nam_xem (mặc định năm nay)."""
     ls = _la_so_tu_query(q)
-    nam_xem = int(q.get("nam_xem") or date.today().year)
+    nam_xem = nam_hop_le(q.get("nam_xem") or hom_nay_vn().year, "Năm xem")
     return luan_giai_la_so(ls, nam_xem)
 
 
@@ -62,16 +72,15 @@ def _gio_tu_query(q: dict) -> tuple[int, int]:
     """
     canh = (q.get("canh") or "").strip()
     if canh:
-        idx = int(canh) if canh.isdigit() else DIA_CHI.index(canh.capitalize())
-        return idx * 2, 0
-    return int(q.get("gio", 12)), int(q.get("phut", 0))
+        return canh_gio_hop_le(canh) * 2, 0
+    return gio_phut_hop_le(q.get("gio", 12), q.get("phut", 0))
 
 
 def _la_so_tu_query(q: dict) -> dict:
-    ngay, thang, nam = int(q["ngay"]), int(q["thang"]), int(q["nam"])
+    d = ngay_duong_hop_le(q.get("ngay"), q.get("thang"), q.get("nam"))
     gio, phut = _gio_tu_query(q)
-    gt = q.get("gioi_tinh", "nam")
-    ls = la_so.lap_la_so(ngay, thang, nam, gio, phut, gioi_tinh=gt)
+    gt = gioi_tinh_hop_le(q.get("gioi_tinh", "nam"))
+    ls = la_so.lap_la_so(d.day, d.month, d.year, gio, phut, gioi_tinh=gt)
     ls["cac_cung"] = [bo_sung_y_nghia_sao(c) for c in ls["cac_cung"]]
     ls["chinh_tinh_menh"] = la_so.chinh_tinh_cung_menh(ls)
     ls["con_giap"] = CON_GIAP[can_chi_nam(ls["am_lich"]["nam"]).chi_idx]
@@ -79,35 +88,48 @@ def _la_so_tu_query(q: dict) -> dict:
 
 
 def api_han(q: dict) -> dict:
-    ho_so = han.ho_so_han(int(q["nam_sinh"]), int(q["nam_xem"]),
-                          q.get("gioi_tinh", "nam"))
-    ho_so["lam_nha"] = han.tuoi_lam_nha(int(q["nam_sinh"]), int(q["nam_xem"]))
+    ns, nx = _nam_sinh(q), nam_hop_le(q.get("nam_xem") or hom_nay_vn().year, "Năm xem")
+    ho_so = han.ho_so_han(ns, nx, gioi_tinh_hop_le(q.get("gioi_tinh", "nam")))
+    ho_so["lam_nha"] = han.tuoi_lam_nha(ns, nx)
     return ho_so
 
 
+def _nam_sinh(q: dict) -> int:
+    """Năm sinh âm lịch: nhận thẳng ``nam_sinh`` hoặc suy từ ``ngay_sinh=yyyy-mm-dd`` dương lịch.
+
+    Người sinh tháng 1–2 dương trước Tết thuộc năm âm trước đó, nên giao diện
+    gửi ngày sinh dương để máy tự đổi, tránh gõ nhầm năm âm.
+    """
+    ngay_sinh = q.get("ngay_sinh")
+    if ngay_sinh:
+        d = _doc_ngay(ngay_sinh, hom_nay_vn())
+        return la_so.solar_to_lunar(d.day, d.month, d.year).year
+    return nam_hop_le(q.get("nam_sinh"), "Năm sinh")
+
+
 def api_phongthuy(q: dict) -> dict:
-    return phong_thuy.ho_so_phong_thuy(int(q["nam_sinh"]),
-                                       q.get("gioi_tinh", "nam"),
-                                       q.get("huong") or None)
+    return phong_thuy.ho_so_phong_thuy(_nam_sinh(q),
+                                       gioi_tinh_hop_le(q.get("gioi_tinh", "nam")),
+                                       (q.get("huong") or "").strip() or None)
 
 
 def api_ngay(q: dict) -> dict:
-    hom_nay = date.today()
-    return ngay_gio.xem_ngay(int(q.get("ngay", hom_nay.day)),
-                             int(q.get("thang", hom_nay.month)),
-                             int(q.get("nam", hom_nay.year)))
+    hom_nay = hom_nay_vn()
+    d = ngay_duong_hop_le(q.get("ngay", hom_nay.day), q.get("thang", hom_nay.month),
+                          q.get("nam", hom_nay.year))
+    return ngay_gio.xem_ngay(d.day, d.month, d.year)
 
 
 def api_phitinh(q: dict) -> dict:
-    return phong_thuy.phi_tinh_nam(int(q.get("nam", date.today().year)))
+    return phong_thuy.phi_tinh_nam(nam_hop_le(q.get("nam") or hom_nay_vn().year, "Năm"))
 
 
 def api_sao(q: dict) -> dict:
-    ten = (q.get("ten") or "").lower()
+    ten = (q.get("ten") or "").strip().lower()
     if ten:
         s = tra_sao(ten)
         if not s:
-            raise KeyError(f"Không có sao tên {ten}")
+            raise LoiDauVao(f"Không có sao tên '{ten}'.")
         return s
     return {"sao": load("tu_vi/sao")}
 
@@ -116,21 +138,24 @@ def _doc_ngay(s: str | None, mac_dinh: date) -> date:
     """Nhận 'yyyy-mm-dd' từ ô <input type=date> hoặc 'dd/mm/yyyy' từ dòng lệnh."""
     if not s:
         return mac_dinh
-    if "-" in s:
-        nam, thang, ngay = (int(x) for x in s.split("-"))
-    else:
-        ngay, thang, nam = (int(x) for x in s.split("/"))
-    return date(nam, thang, ngay)
+    try:
+        if "-" in s:
+            nam, thang, ngay = s.split("-")
+        else:
+            ngay, thang, nam = s.split("/")
+    except ValueError:
+        raise LoiDauVao(f"Ngày '{s}' phải có dạng yyyy-mm-dd hoặc dd/mm/yyyy.") from None
+    return ngay_duong_hop_le(ngay, thang, nam)
 
 
 def api_chonngay(q: dict) -> dict:
-    hom_nay = date.today()
-    tu = _doc_ngay(q.get("tu_ngay"), hom_nay)
+    tu = _doc_ngay(q.get("tu_ngay"), hom_nay_vn())
     den = _doc_ngay(q.get("den_ngay"), tu + timedelta(days=60))
-    return chon_ngay.chon_ngay(int(q["nam_sinh"]), tu, den,
-                               q.get("viec") or None,
-                               q.get("gioi_tinh", "nam"),
-                               int(q.get("so_luong", 12)))
+    return chon_ngay.chon_ngay(_nam_sinh(q), tu, den,
+                               (q.get("viec") or "").strip() or None,
+                               gioi_tinh_hop_le(q.get("gioi_tinh", "nam")),
+                               so_nguyen(q.get("so_luong", 12), "Số ngày muốn lấy",
+                                         1, chon_ngay.SO_LUONG_TOI_DA))
 
 
 def api_viec(q: dict) -> dict:
@@ -154,12 +179,16 @@ class Handler(SimpleHTTPRequestHandler):
                  parse_qs(urlparse(self.path).query).items()}
             try:
                 self._json(200, TUYEN[duong_dan](q))
-            except (KeyError, ValueError, TypeError):
+            except LoiDauVao as e:
+                # Thông báo do chính kho này viết, an toàn để hiện cho người dùng.
+                self._json(400, {"loi": str(e)})
+            except (KeyError, ValueError, TypeError, OverflowError):
                 self._json(400, {"loi": "Tham số không hợp lệ — kiểm tra lại "
                                         "ngày, giờ, năm sinh và giới tính."})
-            except Exception as e:  # noqa: BLE001
+            except Exception:  # noqa: BLE001
+                # Chi tiết chỉ ghi vào log máy chủ, không trả cho client.
                 traceback.print_exc()
-                self._json(500, {"loi": f"Lỗi máy chủ: {e}"})
+                self._json(500, {"loi": "Lỗi máy chủ. Thử lại sau."})
             return
         super().do_GET()
 
@@ -169,19 +198,42 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
         self.wfile.write(body)
 
-    def log_message(self, fmt, *args):  # bớt ồn, chỉ in lỗi
+    def end_headers(self):  # noqa: D102 — thêm header chung cho cả file tĩnh
+        self.send_header("Referrer-Policy", "no-referrer")
+        super().end_headers()
+
+    def log_message(self, fmt, *args):  # chỉ in lỗi, và không in query string
+        # Query chứa ngày giờ sinh (dữ liệu cá nhân) nên cắt bỏ trước khi ghi log.
         if not str(args[1] if len(args) > 1 else "").startswith("2"):
+            args = tuple(a.split("?")[0] if isinstance(a, str) else a for a in args)
             super().log_message(fmt, *args)
+
+
+def _mo_may_chu(cong: int) -> ThreadingHTTPServer:
+    class KepGiao(ThreadingHTTPServer):
+        address_family = socket.AF_INET6
+
+        def server_bind(self):
+            self.socket.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
+            super().server_bind()
+
+    try:
+        return KepGiao(("::", cong), Handler)
+    except OSError:  # máy không có IPv6
+        return ThreadingHTTPServer(("0.0.0.0", cong), Handler)
 
 
 def main() -> int:
     cong = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
     # Đa luồng: trình duyệt hay mở sẵn kết nối dự phòng mà chưa gửi yêu cầu,
     # bản một luồng sẽ kẹt chờ kết nối đó và mọi yêu cầu thật đứng hình theo.
-    may_chu = ThreadingHTTPServer(("0.0.0.0", cong), Handler)
+    # Lắng nghe cả IPv6 lẫn IPv4: trình duyệt gọi "localhost" thử ::1 trước,
+    # nếu chỉ mở IPv4 thì mỗi lượt gọi phải chờ hết giờ ~2 giây mới quay lại.
+    may_chu = _mo_may_chu(cong)
     print(f"Giao diện tử vi đang chạy tại http://localhost:{cong}", flush=True)
     print("Nhấn Ctrl+C để dừng.", flush=True)
     try:

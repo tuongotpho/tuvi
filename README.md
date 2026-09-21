@@ -11,7 +11,7 @@ web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      75 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      84 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -45,13 +45,17 @@ Năm tab, tất cả gọi thẳng gói `tuvi` nên số trên màn hình luôn 
   giải thích từng khoản cộng trừ.
 
 Máy chủ chỉ dùng `http.server` của thư viện chuẩn, không cài thêm gì. API trả JSON
-nên dùng lại được cho ứng dụng khác:
+nên dùng lại được cho ứng dụng khác. Đầu vào sai (ngày không có thật, giờ ngoài 0–23,
+năm ngoài 1800–2199, giới tính lạ...) bị chặn ở tầng thư viện `tuvi.kiem_tra` và trả
+mã 400 kèm câu báo tiếng Việt; các API theo tuổi nhận `ngay_sinh=yyyy-mm-dd` dương lịch
+để máy tự đổi ra năm âm:
 
 ```
 GET /api/laso?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam
 GET /api/laso?ngay=20&thang=9&nam=1990&canh=Mùi&gioi_tinh=nam   # chỉ nhớ canh giờ
 GET /api/luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam&nam_xem=2026
 GET /api/han?nam_sinh=1987&nam_xem=2026&gioi_tinh=nam
+GET /api/han?ngay_sinh=1990-01-15&nam_xem=2026&gioi_tinh=nam   # tự đổi ra Kỷ Tỵ 1989
 GET /api/phongthuy?nam_sinh=1990&gioi_tinh=nam&huong=Đông Nam
 GET /api/ngay?ngay=20&thang=9&nam=2026
 GET /api/phitinh?nam=2026
@@ -133,7 +137,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 75 bài kiểm thử
+python -m unittest discover -s tests -v   # 84 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
 ```
 
