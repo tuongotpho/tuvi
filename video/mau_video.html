@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Khung video dọc</title>
+<style>
+  :root {
+    --nen: #14120f; --the: #1d1a16; --vien: #3a332a;
+    --chu: #f4ece0; --mo: #a89c88; --nhan: #e0796a;
+    --cat: #79c79a; --hung: #e58b7f; --vang: #d9b25c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(1200px 900px at 50% 12%, #241f19 0%, transparent 70%),
+      var(--nen);
+    color: var(--chu);
+    font-family: "Noto Sans", "DejaVu Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Vùng an toàn: TikTok phủ nút ở đáy và cạnh phải. */
+  .san-khau {
+    position: absolute; inset: 0;
+    padding: 190px 110px 460px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .canh { position: absolute; inset: 0; padding: 190px 110px 460px;
+          display: none; flex-direction: column; justify-content: center; }
+  .canh.hien { display: flex; }
+
+  .nhan {
+    align-self: flex-start; font-size: 30px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--nhan); font-weight: 700;
+    border: 2px solid var(--nhan); border-radius: 999px; padding: 12px 28px;
+    margin-bottom: 44px;
+  }
+  h1 { font-size: 104px; line-height: 1.08; letter-spacing: -.02em; font-weight: 800; }
+  h2 { font-size: 78px; line-height: 1.14; letter-spacing: -.01em; font-weight: 800; }
+  .phu { font-size: 40px; color: var(--mo); line-height: 1.45; margin-top: 34px; }
+
+  .dong-ds { display: flex; flex-direction: column; gap: 26px; margin-top: 52px; }
+  .muc {
+    background: var(--the); border: 2px solid var(--vien); border-radius: 26px;
+    padding: 34px 38px; display: flex; gap: 26px; align-items: flex-start;
+  }
+  .muc .so {
+    flex: 0 0 auto; width: 66px; height: 66px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px; font-weight: 800; background: var(--nhan); color: #17120f;
+  }
+  .muc .noi { flex: 1; min-width: 0; }
+  .muc b { display: block; font-size: 46px; line-height: 1.2; font-weight: 800; }
+  .muc span { display: block; font-size: 33px; color: var(--mo); margin-top: 10px; line-height: 1.4; }
+  .muc.tot { border-color: color-mix(in srgb, var(--cat) 55%, var(--vien)); }
+  .muc.tot .so { background: var(--cat); }
+  .muc.xau { border-color: color-mix(in srgb, var(--hung) 55%, var(--vien)); }
+  .muc.xau .so { background: var(--hung); }
+
+  .to { color: var(--nhan); }
+  .to-cat { color: var(--cat); }
+  .to-hung { color: var(--hung); }
+  .to-vang { color: var(--vang); }
+
+  .chan {
+    position: absolute; left: 110px; right: 110px; bottom: 360px;
+    font-size: 28px; color: var(--mo); border-top: 2px solid var(--vien);
+    padding-top: 22px; display: flex; justify-content: space-between;
+  }
+  .thanh { position: absolute; left: 0; top: 0; height: 10px; background: var(--nhan); width: 0; }
+
+  /* Hiệu ứng vào: chữ trượt lên, các mục hiện lần lượt. */
+  .canh.hien .nhan, .canh.hien h1, .canh.hien h2, .canh.hien .phu {
+    animation: len .55s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .canh.hien h1, .canh.hien h2 { animation-delay: .06s; }
+  .canh.hien .phu { animation-delay: .16s; }
+  .canh.hien .muc { animation: len .5s cubic-bezier(.2,.8,.2,1) both; }
+  .canh.hien .muc:nth-child(1) { animation-delay: .22s; }
+  .canh.hien .muc:nth-child(2) { animation-delay: .40s; }
+  .canh.hien .muc:nth-child(3) { animation-delay: .58s; }
+  .canh.hien .muc:nth-child(4) { animation-delay: .76s; }
+  @keyframes len { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div class="thanh" id="thanh"></div>
+<div id="san"></div>
+<script>
+const CANH = window.__CANH__ || [];
+const san = document.getElementById("san");
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g,
+  (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// Cho phép đánh dấu nhấn bằng *chữ* trong nội dung cảnh.
+const nhan = (t) => esc(t)
+  .replace(/\*(.+?)\*/g, '<span class="to">$1</span>')
+  .replace(/\n/g, "<br>");   // xuống dòng do kịch bản đặt, không phải do tự ngắt
+
+CANH.forEach((c, i) => {
+  const el = document.createElement("div");
+  el.className = "canh";
+  el.dataset.giay = c.giay;
+  const ds = (c.dong || []).map((d, k) => `
+    <div class="muc ${d.loai || ""}">
+      <div class="so">${esc(d.so ?? k + 1)}</div>
+      <div class="noi"><b>${nhan(d.chinh)}</b>${d.phu ? `<span>${nhan(d.phu)}</span>` : ""}</div>
+    </div>`).join("");
+  el.innerHTML = `
+    ${c.nhan ? `<div class="nhan">${esc(c.nhan)}</div>` : ""}
+    ${c.tieu_de ? (c.lon ? `<h1>${nhan(c.tieu_de)}</h1>` : `<h2>${nhan(c.tieu_de)}</h2>`) : ""}
+    ${c.phu ? `<div class="phu">${nhan(c.phu)}</div>` : ""}
+    ${ds ? `<div class="dong-ds">${ds}</div>` : ""}
+    ${c.chan ? `<div class="chan"><span>${esc(c.chan)}</span><span>${i + 1}/${CANH.length}</span></div>` : ""}`;
+  san.appendChild(el);
+});
+
+const tong = CANH.reduce((t, c) => t + c.giay, 0);
+window.__TONG__ = tong;
+let da = 0;
+CANH.forEach((c, i) => {
+  const moc = da;
+  setTimeout(() => {
+    [...document.querySelectorAll(".canh")].forEach((e, k) => e.classList.toggle("hien", k === i));
+  }, moc * 1000);
+  da += c.giay;
+});
+const thanh = document.getElementById("thanh");
+const bat_dau = performance.now();
+(function chay() {
+  const t = (performance.now() - bat_dau) / 1000;
+  thanh.style.width = Math.min(100, (t / tong) * 100) + "%";
+  if (t < tong) requestAnimationFrame(chay);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+# Chỉ cần khi muốn XUẤT video. Phần dựng kịch bản không cần gì thêm.
+playwright>=1.40      # quay màn hình 1080x1920
+imageio-ffmpeg>=0.4   # ffmpeg kèm libx264, dùng khi máy chưa có ffmpeg sẵn

@@ -289,6 +289,61 @@ class TestChonNgay(unittest.TestCase):
             chon_ngay.chon_ngay(1987, date(2026, 5, 1), date(2026, 4, 1))
 
 
+class TestKichBanVideo(unittest.TestCase):
+    """Kịch bản video phải bám đúng số liệu engine, không được tự chế."""
+
+    def setUp(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from video import lam_video
+        self.lv = lam_video
+
+    def test_canh_day_du(self):
+        kb = self.lv.kich_ban_han(1987, 2026, "nam", 9)
+        self.assertTrue(kb["canh"])
+        self.assertTrue(kb["caption"].strip())
+        for c in kb["canh"]:
+            self.assertTrue(c["loi_thoai"].strip())
+            self.assertGreater(c["giay"], 0)
+            self.assertLessEqual(c["giay"], self.lv.GIAY_TOI_DA)
+
+    def test_thoi_luong_hop_ly(self):
+        tong = sum(c["giay"] for c in self.lv.kich_ban_han(1987, 2026, "nam", 9)["canh"])
+        self.assertTrue(20 <= tong <= 90, f"{tong} giây")
+
+    def test_so_ngay_dung_duoc_dung_thuc_te(self):
+        """Chân cảnh từng ghi nhầm số ngày HIỂN THỊ thành số ngày DÙNG ĐƯỢC."""
+        from datetime import date as _d
+        from tuvi.amlich import lunar_to_solar
+        kb = self.lv.kich_ban_han(1987, 2026, "nam", 9)
+        chan = next(c["chan"] for c in kb["canh"] if c.get("nhan") == "Ngày nên chọn")
+        d1, d2 = lunar_to_solar(1, 9, 2026), lunar_to_solar(30, 9, 2026)
+        kq = chon_ngay.chon_ngay(1987, _d(d1.year, d1.month, d1.day),
+                                 _d(d2.year, d2.month, d2.day), "cau_tai", "nam", 3)
+        that = kq["tong_so_ngay"] - kq["so_ngay_bi_chan"]
+        self.assertEqual(chan, f"{that}/{kq['tong_so_ngay']} ngày dùng được")
+        self.assertNotEqual(that, len(kq["ngay_tot"]),
+                            "Ca kiểm thử này chỉ có nghĩa khi hai số khác nhau")
+
+    def test_ngay_trong_canh_khong_phai_ngay_bi_chan(self):
+        kb = self.lv.kich_ban_han(1987, 2026, "nam", 9)
+        tot = next(c for c in kb["canh"] if c.get("nhan") == "Ngày nên chọn")
+        tranh = next(c for c in kb["canh"] if c.get("nhan") == "Ngày phải tránh")
+        ngay_tot = {d["chinh"] for d in tot["dong"]}
+        ngay_tranh = {d["chinh"] for d in tranh["dong"]}
+        self.assertFalse(ngay_tot & ngay_tranh)
+
+    def test_kich_ban_ngay(self):
+        kb = self.lv.kich_ban_ngay(20, 9, 2026)
+        self.assertIn("20/09/2026", kb["canh"][0]["tieu_de"])
+        self.assertTrue(all(c["giay"] > 0 for c in kb["canh"]))
+
+    def test_luon_co_canh_mien_tru(self):
+        for kb in (self.lv.kich_ban_han(1987, 2026, "nam", 9),
+                   self.lv.kich_ban_ngay(20, 9, 2026)):
+            cuoi = kb["canh"][-1]
+            self.assertIn("tham khảo", (cuoi.get("phu", "") + cuoi["loi_thoai"]).lower())
+
+
 class TestDuLieu(unittest.TestCase):
     def test_moi_tep_json_doc_duoc(self):
         for ten in all_datasets():

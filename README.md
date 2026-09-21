@@ -8,14 +8,16 @@ thủy, hạn và chọn ngày giờ. Dữ liệu tách khỏi mã, mọi con s�
 data/       26 bộ dữ liệu JSON — tri thức thuần, không lẫn mã
 tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, xem ngày, chọn ngày
 web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 tab
+video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      40 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      46 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
 
 Không phụ thuộc thư viện ngoài. Chỉ cần Python 3.10 trở lên.
+Riêng khâu xuất tệp video cần thêm hai gói, nêu ở mục cuối.
 
 ## Giao diện web
 
@@ -121,13 +123,40 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 40 bài kiểm thử
+python -m unittest discover -s tests -v   # 46 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
 ```
 
 Những chỗ các trường phái khác nhau (Kim Lâu, Thiên Khôi — Thiên Việt, vòng Tràng
 Sinh, Tứ Hóa can Canh) đều được ghi chú ngay trong mã và liệt kê ở mục E của
 [SOURCES.md](SOURCES.md).
+
+## Video dọc cho TikTok
+
+```bash
+python video/lam_video.py han 1987 2026 --gioi-tinh nam --thang-am 9
+python video/lam_video.py ngay 20/09/2026
+python video/lam_video.py --chi-kich-ban han 1987 2026   # chỉ kịch bản, không quay
+```
+
+Xuất ra `build/video/`: một tệp **MP4 dọc 1080×1920, 30fps** và một tệp kịch bản
+Markdown kèm mốc thời gian từng cảnh, lời thoại và caption có sẵn hashtag.
+
+Cảnh được dựng từ chính các hàm trong gói `tuvi`, nên con số trên màn hình là con
+số đã qua kiểm thử — không có khâu gõ tay nào giữa engine và video.
+
+Cách làm: dựng danh sách cảnh → đổ vào `video/mau_video.html` → Playwright quay
+màn hình ở khổ dọc → ffmpeg chuyển sang H.264. Bố cục chừa sẵn vùng an toàn cho
+thanh nút của TikTok ở đáy và cạnh phải.
+
+**Video không có tiếng.** Môi trường dựng không có bộ đọc giọng nói, nên lời thoại
+nằm trong tệp kịch bản với mốc thời gian khớp sẵn, để lồng tiếng hoặc chèn nhạc
+trên app.
+
+Hai gói chỉ cần cho khâu xuất tệp (`pip install -r video/requirements.txt`):
+`playwright` để quay và `imageio-ffmpeg` để chuyển mã. Thiếu chúng thì lệnh vẫn
+chạy, chỉ bỏ bước xuất video và vẫn trả về kịch bản. Máy nào đã có `ffmpeg` trong
+PATH thì dùng luôn bản đó.
 
 ## Làm content từ kho này
 
