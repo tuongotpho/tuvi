@@ -107,6 +107,36 @@ def main() -> int:
     thieu = [s["ten"] for s in sao if not s["y_nghia"].strip()]
     check(not thieu, f"Các sao chưa có ý nghĩa: {thieu}")
 
+    # 7b. Cách cục: quy tắc máy đọc được phải nhắc đúng tên sao và đúng khóa
+    KHOA_QUY_TAC = {"noi", "co_du", "co_mot", "khong_co", "menh_chi", "sao_tai",
+                    "vo_chinh_dieu", "chinh_tinh_menh", "tuan_triet_menh",
+                    "menh_than_dong_cung", "hoac", "va", "dong_cung", "hai_ben"}
+    VUNG = {"menh", "hoi_menh", "than", "giap_menh", "dien_trach", "phuc_duc"}
+    ten_sao = {x["ten"].lower() for x in sao}
+    chi_hop_le = set(DIA_CHI)
+
+    def kiem_quy_tac(qt: dict, ten_cach: str) -> None:
+        check(set(qt) <= KHOA_QUY_TAC,
+              f"Cách '{ten_cach}' dùng khóa lạ: {set(qt) - KHOA_QUY_TAC}")
+        check(qt.get("noi", "menh") in VUNG, f"Cách '{ten_cach}': vùng '{qt.get('noi')}' không hợp lệ")
+        nhac = list(qt.get("co_du", [])) + list(qt.get("co_mot", [])) + \
+            list(qt.get("khong_co", [])) + list(qt.get("chinh_tinh_menh", [])) + \
+            list(qt.get("dong_cung", [])) + list(qt.get("sao_tai", {}))
+        for ben in qt.get("hai_ben", []):
+            nhac += list(ben)
+        la = [t for t in nhac if t.lower() not in ten_sao]
+        check(not la, f"Cách '{ten_cach}' nhắc sao không có trong sao.json: {la}")
+        for chi in list(qt.get("menh_chi", [])) + [c for v in qt.get("sao_tai", {}).values() for c in v]:
+            check(chi in chi_hop_le, f"Cách '{ten_cach}': chi '{chi}' không hợp lệ")
+        for con in list(qt.get("hoac", [])) + list(qt.get("va", [])):
+            kiem_quy_tac(con, ten_cach)
+
+    cach_cuc = load("tu_vi/cach_cuc")
+    check(len({c["ten"] for c in cach_cuc}) == len(cach_cuc), "Tên cách cục bị trùng")
+    for c in cach_cuc:
+        check(bool(c.get("quy_tac")), f"Cách '{c['ten']}' chưa có quy tắc máy đọc được")
+        kiem_quy_tac(c["quy_tac"], c["ten"])
+
     # 8. Lá số: 14 chính tinh mỗi sao xuất hiện đúng một lần
     for ngay, thang, nam, gio, gt in [(20, 9, 1990, 14, "nam"),
                                       (1, 1, 2000, 2, "nu"),

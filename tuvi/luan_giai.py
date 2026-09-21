@@ -126,62 +126,83 @@ def _da_bo_sung(ls: dict) -> bool:
 
 
 # ----------------------------------------------------------------------------
-# Cách cục
+# Cách cục — quy tắc nằm trong data/tu_vi/cach_cuc.json, ở đây chỉ có bộ đọc
 # ----------------------------------------------------------------------------
+class _BoiCanh:
+    """Các tập sao của một lá số, tính một lần rồi tra nhiều lần."""
+
+    def __init__(self, ls: dict):
+        cac = ls["cac_cung"]
+        theo_ten = {c["ten_cung"]: c for c in cac}
+        chi_list = [c["chi"] for c in cac]
+        i_menh = chi_list.index(theo_ten["Mệnh"]["chi"])
+        sao = lambda c: {s["ten"] for s in c["sao"]}  # noqa: E731
+        self.menh = theo_ten["Mệnh"]
+        self.menh_chi = self.menh["chi"]
+        self.ke_menh = [sao(cac[(i_menh - 1) % 12]), sao(cac[(i_menh + 1) % 12])]
+        self.vung = {
+            "menh": sao(self.menh),
+            "than": sao(next(c for c in cac if c["la_cung_than"])),
+            "hoi_menh": set().union(*(sao(theo_ten[k]) for k in
+                                      ("Mệnh", "Quan Lộc", "Tài Bạch", "Thiên Di"))),
+            "giap_menh": self.ke_menh[0] | self.ke_menh[1],
+            "dien_trach": sao(theo_ten["Điền Trạch"]),
+            "phuc_duc": sao(theo_ten["Phúc Đức"]),
+        }
+        self.chi_cua_sao = {s["ten"]: c["chi"] for c in cac for s in c["sao"]}
+        self.chinh_tinh_menh = set(chinh_tinh_cung_menh(ls))
+        self.tuan_triet_menh = bool(self.menh.get("tuan") or self.menh.get("triet"))
+        self.menh_than_dong_cung = ls["cung_than_tai"] == "Mệnh"
+
+
+def _khop(qt: dict, bc: _BoiCanh) -> bool:
+    """Một quy tắc đúng khi MỌI khóa của nó đúng (xem docstring cach_cuc.json)."""
+    noi = qt.get("noi", "menh")
+    vung = bc.vung[noi]
+    if "co_du" in qt:
+        can = set(qt["co_du"])
+        if not can <= vung:
+            return False
+        # Giáp Mệnh: mỗi bên phải có ít nhất một sao trong bộ, không dồn cả về một bên.
+        if noi == "giap_menh" and not all(can & ben for ben in bc.ke_menh):
+            return False
+    if "co_mot" in qt and not (set(qt["co_mot"]) & vung):
+        return False
+    if "khong_co" in qt and (set(qt["khong_co"]) & vung):
+        return False
+    if "menh_chi" in qt and bc.menh_chi not in qt["menh_chi"]:
+        return False
+    for sao, cac_chi in qt.get("sao_tai", {}).items():
+        if bc.chi_cua_sao.get(sao) not in cac_chi:
+            return False
+    if "vo_chinh_dieu" in qt and bool(bc.chinh_tinh_menh) == qt["vo_chinh_dieu"]:
+        return False
+    if "chinh_tinh_menh" in qt and bc.chinh_tinh_menh != set(qt["chinh_tinh_menh"]):
+        return False
+    if qt.get("tuan_triet_menh") and not bc.tuan_triet_menh:
+        return False
+    if qt.get("menh_than_dong_cung") and not bc.menh_than_dong_cung:
+        return False
+    if "dong_cung" in qt:
+        chi = {bc.chi_cua_sao.get(sao) for sao in qt["dong_cung"]}
+        if len(chi) != 1 or None in chi:
+            return False
+    if "hai_ben" in qt:
+        a, b = (set(x) for x in qt["hai_ben"])
+        trai, phai = bc.ke_menh
+        if not ((a & trai and b & phai) or (a & phai and b & trai)):
+            return False
+    if "hoac" in qt and not any(_khop(q, bc) for q in qt["hoac"]):
+        return False
+    if "va" in qt and not all(_khop(q, bc) for q in qt["va"]):
+        return False
+    return True
+
+
 def goi_y_cach_cuc(ls: dict) -> list[dict]:
-    """Cách cục nhận ra được, dựa trên chính tinh tại Mệnh và tam hợp Mệnh."""
-    cung = {c["ten_cung"]: c for c in ls["cac_cung"]}
-    menh = cung["Mệnh"]
-    ten_sao = {s["ten"] for s in menh["sao"]}
-    # Tam hợp Mệnh: Mệnh, Quan Lộc, Tài Bạch, cộng cung Thiên Di đối chiếu.
-    hoi = set()
-    for k in ("Mệnh", "Quan Lộc", "Tài Bạch", "Thiên Di"):
-        hoi |= {s["ten"] for s in cung[k]["sao"]}
-    ra = []
-    for c in load("tu_vi/cach_cuc"):
-        t = c["ten"]
-        khop = False
-        if t == "Sát Phá Tham":
-            khop = {"Thất Sát", "Phá Quân", "Tham Lang"} <= hoi
-        elif t == "Cơ Nguyệt Đồng Lương":
-            khop = {"Thiên Cơ", "Thái Âm", "Thiên Đồng", "Thiên Lương"} <= hoi
-        elif t == "Tử Phủ Vũ Tướng":
-            khop = {"Tử Vi", "Thiên Phủ", "Vũ Khúc", "Thiên Tướng"} <= hoi
-        elif t == "Phủ Tướng triều viên":
-            khop = {"Thiên Phủ", "Thiên Tướng"} <= hoi
-        elif t == "Lộc Mã giao trì":
-            khop = {"Lộc Tồn", "Thiên Mã"} <= hoi or {"Hóa Lộc", "Thiên Mã"} <= hoi
-        elif t == "Song Lộc triều viên":
-            khop = {"Lộc Tồn", "Hóa Lộc"} <= hoi
-        elif t == "Tam hóa liên châu":
-            khop = {"Hóa Lộc", "Hóa Quyền", "Hóa Khoa"} <= hoi
-        elif t == "Tham Vũ đồng hành":
-            khop = {"Tham Lang", "Vũ Khúc"} <= hoi
-        elif t == "Mệnh vô chính diệu":
-            khop = not chinh_tinh_cung_menh(ls)
-        elif t == "Thạch trung ẩn ngọc":
-            khop = "Cự Môn" in ten_sao and menh["chi"] in ("Tý", "Ngọ")
-        elif t == "Mã đầu đới kiếm":
-            khop = "Kình Dương" in ten_sao and menh["chi"] == "Ngọ"
-        elif t == "Hỏa Tham / Linh Tham":
-            khop = "Tham Lang" in ten_sao and bool(
-                {"Hỏa Tinh", "Linh Tinh"} & ten_sao)
-        elif t == "Khôi Việt giáp Mệnh":
-            khop = _giap(ls, menh, {"Thiên Khôi", "Thiên Việt"})
-        elif t == "Xương Khúc giáp Mệnh":
-            khop = _giap(ls, menh, {"Văn Xương", "Văn Khúc"})
-        if khop:
-            ra.append(c)
-    return ra
-
-
-def _giap(ls: dict, menh: dict, cap: set[str]) -> bool:
-    """Hai sao nằm ở hai cung kề trái phải của cung Mệnh."""
-    chi_list = [c["chi"] for c in ls["cac_cung"]]
-    i = chi_list.index(menh["chi"])
-    ben = [ls["cac_cung"][(i - 1) % 12], ls["cac_cung"][(i + 1) % 12]]
-    co = {s["ten"] for c in ben for s in c["sao"]}
-    return cap <= co
+    """Những cách cục trong data/tu_vi/cach_cuc.json mà lá số này khớp quy tắc."""
+    bc = _BoiCanh(ls)
+    return [c for c in load("tu_vi/cach_cuc") if _khop(c["quy_tac"], bc)]
 
 
 # ----------------------------------------------------------------------------

@@ -298,6 +298,85 @@ class TestGioSinh(unittest.TestCase):
         self.assertEqual(ls, la_so.lap_la_so(20, 9, 1990, 0, 0, gioi_tinh="nam"))
 
 
+class TestCachCuc(unittest.TestCase):
+    def _cach(self, d, m, y, g, gt):
+        return {c["ten"] for c in luan_giai.goi_y_cach_cuc(la_so.lap_la_so(d, m, y, g, gioi_tinh=gt))}
+
+    def test_moi_cach_deu_co_the_khop(self):
+        """Không cách nào 'chết': quét lưới lá số, mỗi cách phải khớp ít nhất một lần."""
+        import random
+        rnd = random.Random(3)
+        gap = set()
+        for _ in range(1500):
+            ls = la_so.lap_la_so(rnd.randint(1, 28), rnd.randint(1, 12), rnd.randint(1940, 2020),
+                                 rnd.randint(0, 23), gioi_tinh=rnd.choice(["nam", "nu"]))
+            gap |= {c["ten"] for c in luan_giai.goi_y_cach_cuc(ls)}
+        # Bốn cách hiếm (dưới 1/1000 lá số) khóa bằng lá số cụ thể ở dưới.
+        hiem = {"Quân thần khánh hội", "Lục cát hội Mệnh",
+                "Tử Vi cư Ngọ (Cực hướng ly minh)", "Lộc hợp uyên ương"}
+        chua = {c["ten"] for c in load("tu_vi/cach_cuc")} - gap - hiem
+        self.assertFalse(chua, f"Cách không bao giờ khớp: {chua}")
+
+    def test_cach_hiem_bang_la_so_cu_the(self):
+        self.assertIn("Quân thần khánh hội", self._cach(28, 4, 1985, 8, "nam"))
+        self.assertIn("Lục cát hội Mệnh", self._cach(12, 4, 1951, 4, "nam"))
+        self.assertIn("Tử Vi cư Ngọ (Cực hướng ly minh)", self._cach(3, 4, 1950, 18, "nam"))
+        self.assertIn("Lộc hợp uyên ương", self._cach(28, 1, 1951, 10, "nam"))
+
+    def test_la_so_mau(self):
+        # 20/09/1990 14h nam: Mệnh Dần vô chính diệu, Cơ Nguyệt Đồng Lương hội.
+        cc = self._cach(20, 9, 1990, 14, "nam")
+        self.assertIn("Mệnh vô chính diệu", cc)
+        self.assertIn("Cơ Nguyệt Đồng Lương", cc)
+        self.assertNotIn("Sát Phá Tham", cc)
+        # 22/08/1987 12h nam: Thất Sát thủ Mệnh tại Dần, Mệnh Thân đồng cung, Mệnh bị Triệt.
+        cc = self._cach(22, 8, 1987, 12, "nam")
+        self.assertIn("Thất Sát triều đẩu", cc)
+        self.assertIn("Sát Phá Tham", cc)
+        self.assertIn("Mệnh Thân đồng cung", cc)
+        self.assertIn("Tuần Triệt án Mệnh", cc)
+
+    def test_bo_doc_quy_tac(self):
+        """Kiểm từng khóa của bộ đọc trên một lá số đã biết vị trí sao."""
+        ls = la_so.lap_la_so(22, 8, 1987, 12, gioi_tinh="nam")
+        bc = luan_giai._BoiCanh(ls)
+        khop = lambda **qt: luan_giai._khop(qt, bc)  # noqa: E731
+        self.assertTrue(khop(co_du=["Thất Sát"]))
+        self.assertTrue(khop(chinh_tinh_menh=["Thất Sát"]))
+        self.assertFalse(khop(chinh_tinh_menh=["Thất Sát", "Tử Vi"]))
+        self.assertTrue(khop(menh_chi=["Dần"]))
+        self.assertFalse(khop(menh_chi=["Ngọ"]))
+        self.assertTrue(khop(noi="hoi_menh", co_du=["Thất Sát", "Phá Quân", "Tham Lang"]))
+        self.assertFalse(khop(noi="menh", co_du=["Phá Quân"]))
+        self.assertTrue(khop(khong_co=["Tử Vi"]))
+        self.assertTrue(khop(sao_tai={"Thất Sát": ["Dần"]}))
+        self.assertTrue(khop(vo_chinh_dieu=False))
+        self.assertFalse(khop(vo_chinh_dieu=True))
+        self.assertTrue(khop(menh_than_dong_cung=True))
+        self.assertTrue(khop(tuan_triet_menh=True))
+        self.assertTrue(khop(hoac=[{"menh_chi": ["Ngọ"]}, {"menh_chi": ["Dần"]}]))
+        self.assertFalse(khop(va=[{"menh_chi": ["Ngọ"]}, {"menh_chi": ["Dần"]}]))
+        # dong_cung: Thất Sát ở Dần, Phá Quân ở Tuất -> không cùng cung.
+        self.assertFalse(khop(dong_cung=["Thất Sát", "Phá Quân"]))
+        self.assertTrue(khop(dong_cung=["Thất Sát"]))
+
+    def test_giap_menh_phai_moi_ben_mot_sao(self):
+        """Hai sao cùng nằm một bên thì không phải 'giáp'."""
+        import copy
+        ls = copy.deepcopy(la_so.lap_la_so(22, 8, 1987, 12, gioi_tinh="nam"))
+        cac = ls["cac_cung"]; i = [c["chi"] for c in cac].index("Dần")
+        trai, phai = cac[(i - 1) % 12], cac[(i + 1) % 12]
+        for c in cac:
+            c["sao"] = [s for s in c["sao"] if s["ten"] not in ("Thiên Khôi", "Thiên Việt")]
+        trai["sao"] += [{"ten": "Thiên Khôi", "nhom": "Quý nhân"}, {"ten": "Thiên Việt", "nhom": "Quý nhân"}]
+        self.assertFalse(luan_giai._khop({"noi": "giap_menh", "co_du": ["Thiên Khôi", "Thiên Việt"]},
+                                         luan_giai._BoiCanh(ls)))
+        trai["sao"] = [s for s in trai["sao"] if s["ten"] != "Thiên Việt"]
+        phai["sao"].append({"ten": "Thiên Việt", "nhom": "Quý nhân"})
+        self.assertTrue(luan_giai._khop({"noi": "giap_menh", "co_du": ["Thiên Khôi", "Thiên Việt"]},
+                                        luan_giai._BoiCanh(ls)))
+
+
 class TestQuanHeChi(unittest.TestCase):
     def test_luc_xung(self):
         for a, b in [("Tý", "Ngọ"), ("Sửu", "Mùi"), ("Dần", "Thân"),

@@ -125,7 +125,7 @@ function veLaSo(d) {
             <td data-nhan="Cách"><b>${esc(c.ten)}</b><br><span class="cung-chi">${esc(c.dieu_kien)}</span></td>
             <td data-nhan="Tính chất"><span class="nhan-tt ${c.tinh_chat.startsWith("xấu") ? "xau" : c.tinh_chat.startsWith("trung") ? "vua" : "tot"}">${esc(c.tinh_chat)}</span></td>
             <td data-nhan="Luận giải">${esc(c.luan_giai)}</td></tr>`).join("") + "</tbody></table>"
-      : "<p class=\"goi-y\">Lá số này không khớp cách cục nào trong bộ 20 cách đang có.</p>");
+      : "<p class=\"goi-y\">Lá số này không khớp cách cục nào trong bộ 92 cách đang có.</p>");
 
   $("#ls-ket-qua").hidden = false;
   $("#ls-goi-y").hidden = true;

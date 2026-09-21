@@ -1,122 +1,1393 @@
 [
  {
-  "ten": "Sát Phá Tham",
-  "dieu_kien": "Thất Sát, Phá Quân, Tham Lang tam hợp chiếu nhau",
-  "tinh_chat": "tốt có điều kiện",
-  "luan_giai": "Bộ sao của biến động và khai phá: người có cách này đời nhiều sóng gió nhưng bản lĩnh, hợp khởi nghiệp, nghề tự do, kỹ thuật. Cần cát tinh hỗ trợ, nếu gặp thêm sát tinh thì thăng trầm dữ dội."
+  "ten": "Tử Phủ đồng cung",
+  "dieu_kien": "Tử Vi và Thiên Phủ cùng đóng cung Mệnh tại Dần hoặc Thân",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Đế tinh gặp Nam Đẩu chủ tinh: nền tảng vững, được nâng đỡ, đời ít thiếu thốn; hợp quản lý, hành chính. Cần Tả Hữu, Xương Khúc mới phát lớn, nếu không dễ an phận.",
+  "quy_tac": {
+   "co_du": [
+    "Tử Vi",
+    "Thiên Phủ"
+   ],
+   "menh_chi": [
+    "Dần",
+    "Thân"
+   ]
+  }
  },
  {
-  "ten": "Cơ Nguyệt Đồng Lương",
-  "dieu_kien": "Thiên Cơ, Thái Âm, Thiên Đồng, Thiên Lương hội hợp",
+  "ten": "Tử Vi cư Ngọ (Cực hướng ly minh)",
+  "dieu_kien": "Tử Vi độc tọa Mệnh tại Ngọ, không gặp Kình Dương, Hóa Kỵ",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Tử Vi ở cung miếu địa Ngọ như vua ngồi chính điện: uy tín, dễ lên vị trí đứng đầu. Câu phú \"Tử Vi cư Ngọ vô Hình Kỵ, vị chí công khanh\".",
+  "quy_tac": {
+   "co_du": [
+    "Tử Vi"
+   ],
+   "khong_co": [
+    "Kình Dương",
+    "Hóa Kỵ"
+   ],
+   "menh_chi": [
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Tử Phá Sửu Mùi",
+  "dieu_kien": "Tử Vi và Phá Quân đồng cung Mệnh tại Sửu hoặc Mùi",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Vua đi với tướng phá trận: quyết đoán, dám làm, nhưng đời nhiều biến động và hay đổi nghề. Có Tả Hữu, Khoa Quyền thì thành công lớn; gặp sát tinh thì thăng trầm.",
+  "quy_tac": {
+   "co_du": [
+    "Tử Vi",
+    "Phá Quân"
+   ],
+   "menh_chi": [
+    "Sửu",
+    "Mùi"
+   ]
+  }
+ },
+ {
+  "ten": "Tử Tham Mão Dậu (Đào hoa phạm chủ)",
+  "dieu_kien": "Tử Vi và Tham Lang đồng cung Mệnh tại Mão hoặc Dậu",
+  "tinh_chat": "trung tính",
+  "luan_giai": "Đế tinh bị sao ham muốn kéo xuống: tài hoa, giao thiệp rộng nhưng dễ vướng tình cảm, hưởng thụ. Gặp Không Kiếp, Tuần Triệt lại thành người hướng đạo, tu tập.",
+  "quy_tac": {
+   "co_du": [
+    "Tử Vi",
+    "Tham Lang"
+   ],
+   "menh_chi": [
+    "Mão",
+    "Dậu"
+   ]
+  }
+ },
+ {
+  "ten": "Tử Sát Tỵ Hợi (Hóa sát vi quyền)",
+  "dieu_kien": "Tử Vi và Thất Sát đồng cung Mệnh tại Tỵ hoặc Hợi",
   "tinh_chat": "tốt",
-  "luan_giai": "Bộ sao của người làm công ăn lương, tham mưu, chuyên môn: tính ôn hòa, cẩn thận, hợp nghề ổn định, giáo dục, y tế, hành chính. Ít hợp kinh doanh mạo hiểm."
+  "luan_giai": "Vua cầm gươm: sát khí được hóa thành quyền uy, hợp quân đội, công an, kỹ thuật, điều hành. Cương quyết, đôi khi độc đoán.",
+  "quy_tac": {
+   "co_du": [
+    "Tử Vi",
+    "Thất Sát"
+   ],
+   "menh_chi": [
+    "Tỵ",
+    "Hợi"
+   ]
+  }
+ },
+ {
+  "ten": "Tử Tướng Thìn Tuất",
+  "dieu_kien": "Tử Vi và Thiên Tướng đồng cung Mệnh tại Thìn hoặc Tuất",
+  "tinh_chat": "tốt",
+  "luan_giai": "Vua có tướng hầu, đóng ở Thiên La Địa Võng: có tài lãnh đạo nhưng hay bị ràng buộc, cần thời gian mới thoát ra; trung hậu, được người tin.",
+  "quy_tac": {
+   "co_du": [
+    "Tử Vi",
+    "Thiên Tướng"
+   ],
+   "menh_chi": [
+    "Thìn",
+    "Tuất"
+   ]
+  }
  },
  {
   "ten": "Tử Phủ Vũ Tướng",
-  "dieu_kien": "Tử Vi, Thiên Phủ, Vũ Khúc, Thiên Tướng hội hợp",
+  "dieu_kien": "Tử Vi, Thiên Phủ, Vũ Khúc, Thiên Tướng cùng hội về Mệnh",
   "tinh_chat": "rất tốt",
-  "luan_giai": "Bộ sao quản trị và tài chính: có tố chất lãnh đạo, giỏi quản lý nguồn lực, đời sống ổn định và dễ có địa vị."
- },
- {
-  "ten": "Cự Nhật",
-  "dieu_kien": "Cự Môn và Thái Dương đồng cung hoặc chiếu, đẹp nhất tại Dần hoặc Thân",
-  "tinh_chat": "tốt",
-  "luan_giai": "Cách của người nói có người nghe: hợp nghề dùng lời (luật sư, giảng viên, truyền thông, bán hàng), dễ nổi danh nhưng cũng nhiều thị phi."
+  "luan_giai": "Bộ sao của người có nền tảng và địa vị: ổn định, được nâng đỡ, hợp quản lý — hành chính — tài chính. Đi kèm Tả Hữu, Xương Khúc thì phú quý song toàn.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Tử Vi",
+    "Thiên Phủ",
+    "Vũ Khúc",
+    "Thiên Tướng"
+   ]
+  }
  },
  {
   "ten": "Quân thần khánh hội",
-  "dieu_kien": "Tử Vi gặp đủ Tả Phù, Hữu Bật, Văn Xương, Văn Khúc, Thiên Khôi, Thiên Việt",
+  "dieu_kien": "Tử Vi tại Mệnh, hội đủ Tả Phù, Hữu Bật, Văn Xương, Văn Khúc, Thiên Khôi, Thiên Việt",
   "tinh_chat": "rất tốt",
-  "luan_giai": "Vua có quần thần: cách quý hiển bậc nhất, chủ địa vị cao và được nhiều người phò tá."
+  "luan_giai": "Vua có đủ văn võ bá quan: lãnh đạo có người tài phò tá, làm gì cũng có người giúp. Cách hiếm gặp, chủ về địa vị cao.",
+  "quy_tac": {
+   "va": [
+    {
+     "noi": "menh",
+     "co_du": [
+      "Tử Vi"
+     ]
+    },
+    {
+     "noi": "hoi_menh",
+     "co_du": [
+      "Tả Phù",
+      "Hữu Bật",
+      "Văn Xương",
+      "Văn Khúc",
+      "Thiên Khôi",
+      "Thiên Việt"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "ten": "Tử Phủ giáp Mệnh",
+  "dieu_kien": "Tử Vi và Thiên Phủ kẹp hai bên cung Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Hai chủ tinh đứng hai bên hộ vệ: được cha mẹ, anh em che chở, đời ít gặp hiểm nguy lớn. Bản thân cần tự lực vì phúc ở người thân nhiều hơn ở mình.",
+  "quy_tac": {
+   "noi": "giap_menh",
+   "co_du": [
+    "Tử Vi",
+    "Thiên Phủ"
+   ]
+  }
+ },
+ {
+  "ten": "Cơ Nguyệt Đồng Lương",
+  "dieu_kien": "Thiên Cơ, Thái Âm, Thiên Đồng, Thiên Lương hội hợp về Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Bộ sao của người làm công ăn lương, tham mưu, chuyên môn: tính ôn hòa, cẩn thận, hợp nghề ổn định, giáo dục, y tế, hành chính. Ít hợp kinh doanh mạo hiểm.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thiên Cơ",
+    "Thái Âm",
+    "Thiên Đồng",
+    "Thiên Lương"
+   ]
+  }
+ },
+ {
+  "ten": "Cơ Lương Thìn Tuất",
+  "dieu_kien": "Thiên Cơ và Thiên Lương đồng cung Mệnh tại Thìn hoặc Tuất",
+  "tinh_chat": "tốt",
+  "luan_giai": "Cơ mưu gặp ấm tinh: giỏi bàn bạc, tham mưu, dạy học, tôn giáo; câu phú \"Cơ Lương thiện đàm binh\". Hợp làm cố vấn hơn là người đứng mũi chịu sào.",
+  "quy_tac": {
+   "co_du": [
+    "Thiên Cơ",
+    "Thiên Lương"
+   ],
+   "menh_chi": [
+    "Thìn",
+    "Tuất"
+   ]
+  }
+ },
+ {
+  "ten": "Cự Cơ Mão Dậu",
+  "dieu_kien": "Cự Môn và Thiên Cơ đồng cung Mệnh tại Mão hoặc Dậu",
+  "tinh_chat": "tốt",
+  "luan_giai": "Miệng lưỡi gặp mưu trí: ăn nói sắc, phân tích giỏi, hợp luật, truyền thông, buôn bán. Tại Mão đẹp hơn Dậu; dễ thị phi vì lời nói.",
+  "quy_tac": {
+   "co_du": [
+    "Cự Môn",
+    "Thiên Cơ"
+   ],
+   "menh_chi": [
+    "Mão",
+    "Dậu"
+   ]
+  }
+ },
+ {
+  "ten": "Thiên Lương cư Ngọ (Thọ tinh nhập miếu)",
+  "dieu_kien": "Thiên Lương độc tọa Mệnh tại Ngọ",
+  "tinh_chat": "tốt",
+  "luan_giai": "Ấm tinh ở nơi miếu địa: nhân hậu, được che chở, gặp nạn có người cứu, sống thọ; hợp y dược, giáo dục, công tác xã hội.",
+  "quy_tac": {
+   "chinh_tinh_menh": [
+    "Thiên Lương"
+   ],
+   "menh_chi": [
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Thiên Lương Tỵ Hợi (Phiêu bồng)",
+  "dieu_kien": "Thiên Lương tại Mệnh ở Tỵ hoặc Hợi",
+  "tinh_chat": "xấu",
+  "luan_giai": "Ấm tinh lạc hãm: đời hay đổi chỗ, phiêu bạt, sống xa quê; dễ mắc bệnh mãn tính, cần có sao tốt hội mới đỡ.",
+  "quy_tac": {
+   "co_du": [
+    "Thiên Lương"
+   ],
+   "menh_chi": [
+    "Tỵ",
+    "Hợi"
+   ]
+  }
+ },
+ {
+  "ten": "Nhật Nguyệt tịnh minh",
+  "dieu_kien": "Mệnh tại Sửu, Thái Dương ở Tỵ và Thái Âm ở Dậu cùng chiếu",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Mặt trời mặt trăng cùng sáng chiếu về Mệnh: trí tuệ, thanh danh, được cả cha lẫn mẹ phù trợ; hợp học thuật, công quyền.",
+  "quy_tac": {
+   "menh_chi": [
+    "Sửu"
+   ],
+   "sao_tai": {
+    "Thái Dương": [
+     "Tỵ"
+    ],
+    "Thái Âm": [
+     "Dậu"
+    ]
+   }
+  }
+ },
+ {
+  "ten": "Minh châu xuất hải",
+  "dieu_kien": "Mệnh tại Mùi vô chính diệu, Thái Dương ở Mão và Thái Âm ở Hợi chiếu",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Ngọc sáng nổi lên từ biển: xuất thân bình thường nhưng càng lớn càng phát, danh tiếng đến muộn mà bền. Câu phú \"Nhật Mão Nguyệt Hợi, Mệnh an Mùi, minh châu xuất hải\".",
+  "quy_tac": {
+   "menh_chi": [
+    "Mùi"
+   ],
+   "vo_chinh_dieu": true,
+   "sao_tai": {
+    "Thái Dương": [
+     "Mão"
+    ],
+    "Thái Âm": [
+     "Hợi"
+    ]
+   }
+  }
+ },
+ {
+  "ten": "Nhật Nguyệt đồng lâm",
+  "dieu_kien": "Thái Dương và Thái Âm đồng cung Mệnh tại Sửu hoặc Mùi",
+  "tinh_chat": "trung tính",
+  "luan_giai": "Nhật Nguyệt cùng cung, một sáng một tối: tính cách hai mặt, sáng nắng chiều mưa, tài năng có nhưng hay dao động. Tại Mùi Nhật còn sáng nên khá hơn Sửu.",
+  "quy_tac": {
+   "co_du": [
+    "Thái Dương",
+    "Thái Âm"
+   ],
+   "menh_chi": [
+    "Sửu",
+    "Mùi"
+   ]
+  }
+ },
+ {
+  "ten": "Nhật Nguyệt phản bối",
+  "dieu_kien": "Thái Dương ở Tuất và Thái Âm ở Thìn (cả hai hãm) tại Mệnh hoặc chiếu Mệnh",
+  "tinh_chat": "xấu",
+  "luan_giai": "Mặt trời lặn, mặt trăng ban ngày: cha mẹ sớm xa cách hoặc bản thân phải tự lập sớm; mắt kém, công danh trắc trở. Gặp Tuần Triệt lại đảo thành tốt (phản vi kỳ cách).",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_mot": [
+    "Thái Dương",
+    "Thái Âm"
+   ],
+   "sao_tai": {
+    "Thái Dương": [
+     "Tuất"
+    ],
+    "Thái Âm": [
+     "Thìn"
+    ]
+   }
+  }
+ },
+ {
+  "ten": "Nhật Nguyệt giáp Mệnh",
+  "dieu_kien": "Thái Dương và Thái Âm kẹp hai bên cung Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Cha mẹ, anh em hai bên nâng đỡ; thường Mệnh có Thiên Phủ ở Sửu Mùi. Được lộc từ gia đình, nhưng tự thân phải có cát tinh mới giữ được.",
+  "quy_tac": {
+   "noi": "giap_menh",
+   "co_du": [
+    "Thái Dương",
+    "Thái Âm"
+   ]
+  }
+ },
+ {
+  "ten": "Nhật xuất lôi môn",
+  "dieu_kien": "Thái Dương tại Mệnh ở Mão",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Mặt trời mọc ở cửa sấm: khí thế đi lên, sớm có danh, hợp công chức, chính trị, truyền thông. Nam mệnh hưởng trọn; nữ mệnh cũng quý nhưng vất vả hơn.",
+  "quy_tac": {
+   "co_du": [
+    "Thái Dương"
+   ],
+   "menh_chi": [
+    "Mão"
+   ]
+  }
+ },
+ {
+  "ten": "Nhật lệ trung thiên (Kim xán quang huy)",
+  "dieu_kien": "Thái Dương tại Mệnh ở Ngọ",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Mặt trời giữa trưa: rực rỡ, quyền uy, hào phóng; dễ nổi tiếng nhưng cũng dễ hao vì quá sáng. Hợp người sinh ban ngày.",
+  "quy_tac": {
+   "co_du": [
+    "Thái Dương"
+   ],
+   "menh_chi": [
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Nguyệt lãng thiên môn",
+  "dieu_kien": "Thái Âm tại Mệnh ở Hợi",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Trăng sáng trên cửa trời: thanh tú, giàu tình cảm, tài lộc âm thầm mà dồi dào; hợp nghề liên quan tài chính, bất động sản, nghệ thuật. Hợp người sinh ban đêm.",
+  "quy_tac": {
+   "co_du": [
+    "Thái Âm"
+   ],
+   "menh_chi": [
+    "Hợi"
+   ]
+  }
+ },
+ {
+  "ten": "Nguyệt sinh thương hải",
+  "dieu_kien": "Thái Âm tại Mệnh ở Tý",
+  "tinh_chat": "tốt",
+  "luan_giai": "Trăng mọc trên biển xanh: tâm hồn phong phú, giàu trí tưởng tượng, tiền bạc đến từ nhiều nguồn. Dễ đa sầu đa cảm.",
+  "quy_tac": {
+   "co_du": [
+    "Thái Âm"
+   ],
+   "menh_chi": [
+    "Tý"
+   ]
+  }
+ },
+ {
+  "ten": "Thủy trừng quế ngạc",
+  "dieu_kien": "Thiên Đồng và Thái Âm đồng cung Mệnh tại Tý",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Nước trong in bóng quế: thanh nhã, thông minh, hưởng phúc, hợp học vấn và nghề nghiệp nhàn nhã. Nữ mệnh đặc biệt đẹp.",
+  "quy_tac": {
+   "co_du": [
+    "Thiên Đồng",
+    "Thái Âm"
+   ],
+   "menh_chi": [
+    "Tý"
+   ]
+  }
+ },
+ {
+  "ten": "Nhật Nguyệt chiếu bích",
+  "dieu_kien": "Thái Dương và Thái Âm đồng cung tại cung Điền Trạch ở Sửu hoặc Mùi",
+  "tinh_chat": "tốt",
+  "luan_giai": "Nhật Nguyệt soi vách nhà: nhà cửa, đất đai khang trang, được hưởng gia sản hoặc tự tạo dựng được bất động sản.",
+  "quy_tac": {
+   "noi": "dien_trach",
+   "co_du": [
+    "Thái Dương",
+    "Thái Âm"
+   ]
+  }
+ },
+ {
+  "ten": "Cự Nhật Dần Thân",
+  "dieu_kien": "Cự Môn và Thái Dương đồng cung Mệnh tại Dần hoặc Thân",
+  "tinh_chat": "tốt",
+  "luan_giai": "Miệng lưỡi được mặt trời soi: nói năng có trọng lượng, hợp luật sư, giảng dạy, ngoại giao; dễ nổi tiếng nhờ lời nói. Tại Dần đẹp hơn Thân.",
+  "quy_tac": {
+   "co_du": [
+    "Cự Môn",
+    "Thái Dương"
+   ],
+   "menh_chi": [
+    "Dần",
+    "Thân"
+   ]
+  }
+ },
+ {
+  "ten": "Thạch trung ẩn ngọc",
+  "dieu_kien": "Cự Môn độc tọa Mệnh tại Tý hoặc Ngọ",
+  "tinh_chat": "tốt phát muộn",
+  "luan_giai": "Ngọc giấu trong đá: tài năng không lộ sớm, trải va đập rồi mới sáng; hậu vận tốt hơn tiền vận. Cần kiên nhẫn, tránh tranh cãi.",
+  "quy_tac": {
+   "chinh_tinh_menh": [
+    "Cự Môn"
+   ],
+   "menh_chi": [
+    "Tý",
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Cự Môn Thìn Tuất",
+  "dieu_kien": "Cự Môn tại Mệnh ở Thìn hoặc Tuất (hãm địa)",
+  "tinh_chat": "xấu",
+  "luan_giai": "Ám tinh vào lưới trời: hay bị hiểu lầm, thị phi, kiện tụng; nói nhiều hỏng việc. Gặp Hóa Lộc, Hóa Quyền hoặc Tuần Triệt thì hóa giải đáng kể.",
+  "quy_tac": {
+   "co_du": [
+    "Cự Môn"
+   ],
+   "menh_chi": [
+    "Thìn",
+    "Tuất"
+   ]
+  }
+ },
+ {
+  "ten": "Cự Kỵ đồng cung",
+  "dieu_kien": "Cự Môn và Hóa Kỵ cùng đóng cung Mệnh",
+  "tinh_chat": "xấu",
+  "luan_giai": "Miệng lưỡi gặp sao kỵ: dễ lỡ lời, bị ganh ghét, vướng thị phi kéo dài; cần giữ mồm giữ miệng, tránh việc giấy tờ mập mờ.",
+  "quy_tac": {
+   "co_du": [
+    "Cự Môn",
+    "Hóa Kỵ"
+   ]
+  }
+ },
+ {
+  "ten": "Đồng Lương Dần Thân",
+  "dieu_kien": "Thiên Đồng và Thiên Lương đồng cung Mệnh tại Dần hoặc Thân",
+  "tinh_chat": "tốt",
+  "luan_giai": "Phúc tinh gặp ấm tinh: hiền lành, được người thương, đời ít sóng gió; hợp nghề phục vụ, giáo dục, y tế. Thiếu quyết liệt trong cạnh tranh.",
+  "quy_tac": {
+   "co_du": [
+    "Thiên Đồng",
+    "Thiên Lương"
+   ],
+   "menh_chi": [
+    "Dần",
+    "Thân"
+   ]
+  }
+ },
+ {
+  "ten": "Đồng Cự Sửu Mùi",
+  "dieu_kien": "Thiên Đồng và Cự Môn đồng cung Mệnh tại Sửu hoặc Mùi",
+  "tinh_chat": "xấu",
+  "luan_giai": "Phúc tinh bị ám tinh che: tâm hay bất an, việc làm trầy trật, tình cảm lận đận; được cát tinh hội thì tuổi già mới yên.",
+  "quy_tac": {
+   "co_du": [
+    "Thiên Đồng",
+    "Cự Môn"
+   ],
+   "menh_chi": [
+    "Sửu",
+    "Mùi"
+   ]
+  }
+ },
+ {
+  "ten": "Tham Vũ đồng hành",
+  "dieu_kien": "Tham Lang và Vũ Khúc đồng cung Mệnh tại Sửu hoặc Mùi",
+  "tinh_chat": "tốt phát muộn",
+  "luan_giai": "Sao tiền gặp sao ham muốn ở Tứ Mộ: ba mươi tuổi trở đi mới phát, nhưng phát mạnh về tài lộc; câu phú \"Tham Vũ đồng hành, tiên bần hậu phú\".",
+  "quy_tac": {
+   "co_du": [
+    "Tham Lang",
+    "Vũ Khúc"
+   ],
+   "menh_chi": [
+    "Sửu",
+    "Mùi"
+   ]
+  }
+ },
+ {
+  "ten": "Vũ Phủ Tý Ngọ",
+  "dieu_kien": "Vũ Khúc và Thiên Phủ đồng cung Mệnh tại Tý hoặc Ngọ",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Hai sao tài tinh cùng ngồi: giỏi giữ tiền, sinh lợi, hợp tài chính, ngân hàng, kinh doanh ổn định. Tính thực tế, đôi khi khô khan.",
+  "quy_tac": {
+   "co_du": [
+    "Vũ Khúc",
+    "Thiên Phủ"
+   ],
+   "menh_chi": [
+    "Tý",
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Vũ Tướng Dần Thân",
+  "dieu_kien": "Vũ Khúc và Thiên Tướng đồng cung Mệnh tại Dần hoặc Thân",
+  "tinh_chat": "tốt",
+  "luan_giai": "Tài tinh có ấn tướng: kiếm tiền bằng chuyên môn, uy tín; hợp kỹ thuật, quản lý sản xuất. Cần tránh Hóa Kỵ, Kình Đà làm hỏng.",
+  "quy_tac": {
+   "co_du": [
+    "Vũ Khúc",
+    "Thiên Tướng"
+   ],
+   "menh_chi": [
+    "Dần",
+    "Thân"
+   ]
+  }
+ },
+ {
+  "ten": "Vũ Sát Mão Dậu",
+  "dieu_kien": "Vũ Khúc và Thất Sát đồng cung Mệnh tại Mão hoặc Dậu",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Kim gặp kim, sắc bén: quyết đoán, giỏi kỹ thuật, quân sự, phẫu thuật; dễ tổn thương tay chân, cần cát tinh để bớt cô độc.",
+  "quy_tac": {
+   "co_du": [
+    "Vũ Khúc",
+    "Thất Sát"
+   ],
+   "menh_chi": [
+    "Mão",
+    "Dậu"
+   ]
+  }
+ },
+ {
+  "ten": "Vũ Phá Tỵ Hợi",
+  "dieu_kien": "Vũ Khúc và Phá Quân đồng cung Mệnh tại Tỵ hoặc Hợi",
+  "tinh_chat": "xấu",
+  "luan_giai": "Tài tinh gặp hao tinh: tiền vào rồi ra, hay đầu tư mạo hiểm; câu phú \"Vũ Phá Tỵ Hợi, tài lai tài khứ\". Hợp nghề kỹ thuật, tự do hơn buôn bán.",
+  "quy_tac": {
+   "co_du": [
+    "Vũ Khúc",
+    "Phá Quân"
+   ],
+   "menh_chi": [
+    "Tỵ",
+    "Hợi"
+   ]
+  }
+ },
+ {
+  "ten": "Liêm Trinh Dần Thân (Hùng tú kiền nguyên)",
+  "dieu_kien": "Liêm Trinh độc tọa Mệnh tại Dần hoặc Thân",
+  "tinh_chat": "tốt",
+  "luan_giai": "Sao tù ở nơi miếu địa: ngay thẳng, có nguyên tắc, hợp pháp luật, công an, kiểm tra; nóng tính nhưng làm việc công tâm.",
+  "quy_tac": {
+   "chinh_tinh_menh": [
+    "Liêm Trinh"
+   ],
+   "menh_chi": [
+    "Dần",
+    "Thân"
+   ]
+  }
+ },
+ {
+  "ten": "Liêm Tham Tỵ Hợi",
+  "dieu_kien": "Liêm Trinh và Tham Lang đồng cung Mệnh tại Tỵ hoặc Hợi",
+  "tinh_chat": "xấu",
+  "luan_giai": "Hai sao đào hoa gặp nhau nơi hãm địa: dễ sa đà tửu sắc, cờ bạc, vướng pháp luật; câu phú \"Liêm Tham Tỵ Hợi, nam lãng đãng nữ đa dâm\". Gặp Không Kiếp, Tuần Triệt lại tốt.",
+  "quy_tac": {
+   "co_du": [
+    "Liêm Trinh",
+    "Tham Lang"
+   ],
+   "menh_chi": [
+    "Tỵ",
+    "Hợi"
+   ]
+  }
+ },
+ {
+  "ten": "Liêm Sát Sửu Mùi",
+  "dieu_kien": "Liêm Trinh và Thất Sát đồng cung Mệnh tại Sửu hoặc Mùi",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Tù tinh gặp sát tinh ở Tứ Mộ: cương nghị, chịu khổ, hợp quân đội, công an, thể thao; gặp thêm sát tinh thì hình thương, tai nạn.",
+  "quy_tac": {
+   "co_du": [
+    "Liêm Trinh",
+    "Thất Sát"
+   ],
+   "menh_chi": [
+    "Sửu",
+    "Mùi"
+   ]
+  }
+ },
+ {
+  "ten": "Liêm Phá Mão Dậu",
+  "dieu_kien": "Liêm Trinh và Phá Quân đồng cung Mệnh tại Mão hoặc Dậu",
+  "tinh_chat": "xấu",
+  "luan_giai": "Sao tù gặp sao phá: đời nhiều đổi thay, dễ phạm kỷ luật, tổn hại vì nóng vội. Hợp nghề kỹ thuật nặng, khai phá; cần cát tinh chế hóa.",
+  "quy_tac": {
+   "co_du": [
+    "Liêm Trinh",
+    "Phá Quân"
+   ],
+   "menh_chi": [
+    "Mão",
+    "Dậu"
+   ]
+  }
+ },
+ {
+  "ten": "Liêm Tướng Tý Ngọ",
+  "dieu_kien": "Liêm Trinh và Thiên Tướng đồng cung Mệnh tại Tý hoặc Ngọ",
+  "tinh_chat": "tốt",
+  "luan_giai": "Sao tù có ấn tướng kiềm chế: làm việc công, giữ chức có quyền chế tài; ngay thẳng, được tin cậy.",
+  "quy_tac": {
+   "co_du": [
+    "Liêm Trinh",
+    "Thiên Tướng"
+   ],
+   "menh_chi": [
+    "Tý",
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Liêm Phủ Thìn Tuất",
+  "dieu_kien": "Liêm Trinh và Thiên Phủ đồng cung Mệnh tại Thìn hoặc Tuất",
+  "tinh_chat": "tốt",
+  "luan_giai": "Kho tiền có người canh: giữ của tốt, sự nghiệp ổn định trong tổ chức lớn; hơi bảo thủ.",
+  "quy_tac": {
+   "co_du": [
+    "Liêm Trinh",
+    "Thiên Phủ"
+   ],
+   "menh_chi": [
+    "Thìn",
+    "Tuất"
+   ]
+  }
  },
  {
   "ten": "Phủ Tướng triều viên",
   "dieu_kien": "Thiên Phủ và Thiên Tướng cùng chiếu về cung Mệnh",
   "tinh_chat": "tốt",
-  "luan_giai": "Chủ đời sống đầy đủ, có người giúp, sự nghiệp vững; hợp vị trí quản lý trung cao."
+  "luan_giai": "Kho và ấn cùng chầu về: được nâng đỡ, có nền tảng, đời no đủ; hợp quản lý, hành chính. Thiếu chút táo bạo để bứt phá.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thiên Phủ",
+    "Thiên Tướng"
+   ]
+  }
+ },
+ {
+  "ten": "Tài Ấm giáp Ấn",
+  "dieu_kien": "Thiên Tướng thủ Mệnh, một bên là Thiên Lương, bên kia là Lộc Tồn hoặc Hóa Lộc",
+  "tinh_chat": "tốt",
+  "luan_giai": "Sao lộc (tài) và sao che chở (ấm) kẹp lấy ấn tướng: có địa vị, được người trên nâng đỡ, tài lộc đi theo chức vụ. Thiên Lương luôn đứng cạnh Thiên Tướng nên mấu chốt là bên kia có Lộc.",
+  "quy_tac": {
+   "va": [
+    {
+     "noi": "menh",
+     "co_du": [
+      "Thiên Tướng"
+     ]
+    },
+    {
+     "hai_ben": [
+      [
+       "Thiên Lương"
+      ],
+      [
+       "Lộc Tồn",
+       "Hóa Lộc"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "ten": "Sát Phá Tham",
+  "dieu_kien": "Thất Sát, Phá Quân, Tham Lang tam hợp chiếu nhau về Mệnh",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Bộ sao của biến động và khai phá: đời nhiều sóng gió nhưng bản lĩnh, hợp khởi nghiệp, nghề tự do, kỹ thuật. Cần cát tinh hỗ trợ; gặp thêm sát tinh thì thăng trầm dữ dội.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thất Sát",
+    "Phá Quân",
+    "Tham Lang"
+   ]
+  }
+ },
+ {
+  "ten": "Thất Sát triều đẩu",
+  "dieu_kien": "Thất Sát độc tọa Mệnh tại Dần, Thân, Tý hoặc Ngọ",
+  "tinh_chat": "tốt",
+  "luan_giai": "Sao tướng chầu về Bắc Đẩu: uy dũng, quyết đoán, hợp quân đội, công an, quản lý cứng; câu phú \"Thất Sát triều đẩu, tước lộc vinh xương\". Đời không êm nhưng thành đạt.",
+  "quy_tac": {
+   "chinh_tinh_menh": [
+    "Thất Sát"
+   ],
+   "menh_chi": [
+    "Dần",
+    "Thân",
+    "Tý",
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Phá Quân Tý Ngọ (Anh tinh nhập miếu)",
+  "dieu_kien": "Phá Quân độc tọa Mệnh tại Tý hoặc Ngọ",
+  "tinh_chat": "tốt",
+  "luan_giai": "Sao phá trận ở nơi miếu địa: dám nghĩ dám làm, khai sơn phá thạch, thành công từ tay trắng; tính bốc đồng, cần người kìm.",
+  "quy_tac": {
+   "chinh_tinh_menh": [
+    "Phá Quân"
+   ],
+   "menh_chi": [
+    "Tý",
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Tham Lang cư Tứ Mộ",
+  "dieu_kien": "Tham Lang tại Mệnh ở Thìn, Tuất, Sửu hoặc Mùi",
+  "tinh_chat": "tốt phát muộn",
+  "luan_giai": "Sao ham muốn bị chôn trong mộ khố: tuổi trẻ lận đận, ngoài ba mươi mới phát; giỏi giao tiếp, hợp kinh doanh, giải trí. Gặp Hỏa Linh càng mạnh.",
+  "quy_tac": {
+   "co_du": [
+    "Tham Lang"
+   ],
+   "menh_chi": [
+    "Thìn",
+    "Tuất",
+    "Sửu",
+    "Mùi"
+   ]
+  }
+ },
+ {
+  "ten": "Hỏa Tham / Linh Tham",
+  "dieu_kien": "Hỏa Tinh hoặc Linh Tinh đồng cung với Tham Lang tại Mệnh",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Lửa đốt sao ham muốn thành sức bật: phát nhanh, phát bất ngờ, hợp kinh doanh, đầu tư, quân sự; câu phú \"Hỏa Tham, Linh Tham, uy chấn biên di\". Phát nhanh thì cũng cần giữ.",
+  "quy_tac": {
+   "co_du": [
+    "Tham Lang"
+   ],
+   "co_mot": [
+    "Hỏa Tinh",
+    "Linh Tinh"
+   ]
+  }
  },
  {
   "ten": "Lộc Mã giao trì",
-  "dieu_kien": "Lộc Tồn (hoặc Hóa Lộc) đồng cung hay hội với Thiên Mã",
+  "dieu_kien": "Lộc Tồn hoặc Hóa Lộc hội với Thiên Mã tại Mệnh hoặc tam hợp",
   "tinh_chat": "rất tốt",
-  "luan_giai": "Tiền theo bước chân: rất hợp kinh doanh xa nhà, xuất nhập khẩu, làm việc quốc tế."
+  "luan_giai": "Tiền theo bước chân: càng đi xa càng phát, hợp kinh doanh, xuất nhập khẩu, việc lưu động, làm việc với nước ngoài.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thiên Mã"
+   ],
+   "co_mot": [
+    "Lộc Tồn",
+    "Hóa Lộc"
+   ]
+  }
  },
  {
   "ten": "Song Lộc triều viên",
   "dieu_kien": "Lộc Tồn và Hóa Lộc cùng hội chiếu cung Mệnh",
   "tinh_chat": "rất tốt",
-  "luan_giai": "Hai nguồn lộc cùng về, chủ giàu có, nhiều nguồn thu nhập."
+  "luan_giai": "Hai nguồn lộc cùng về: tiền bạc dồi dào, có nhiều nguồn thu, được người giúp về tài chính.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Lộc Tồn",
+    "Hóa Lộc"
+   ]
+  }
  },
  {
-  "ten": "Khôi Việt giáp Mệnh",
-  "dieu_kien": "Thiên Khôi và Thiên Việt kẹp hai bên cung Mệnh",
-  "tinh_chat": "tốt",
-  "luan_giai": "Quý nhân hai bên nâng đỡ, việc khó đều có người gỡ giúp; rất tốt cho thi cử và thăng tiến."
- },
- {
-  "ten": "Xương Khúc giáp Mệnh",
-  "dieu_kien": "Văn Xương và Văn Khúc kẹp hai bên cung Mệnh",
-  "tinh_chat": "tốt",
-  "luan_giai": "Chủ thông minh, học giỏi, có tài văn chương nghệ thuật."
- },
- {
-  "ten": "Nhật Nguyệt tịnh minh",
-  "dieu_kien": "Thái Dương và Thái Âm đều sáng sủa, hội chiếu Mệnh",
+  "ten": "Lộc hợp uyên ương",
+  "dieu_kien": "Lộc Tồn và Hóa Lộc cùng đóng một cung với Mệnh",
   "tinh_chat": "rất tốt",
-  "luan_giai": "Âm dương đều đắc: chủ phú quý song toàn, cha mẹ song hưởng, đời sống viên mãn."
- },
- {
-  "ten": "Tham Vũ đồng hành",
-  "dieu_kien": "Tham Lang và Vũ Khúc đồng cung hoặc hội chiếu",
-  "tinh_chat": "tốt phát muộn",
-  "luan_giai": "Cách phát về hậu vận, thường sau tuổi 30-35 mới thực sự lên; hợp kinh doanh và tài chính."
- },
- {
-  "ten": "Thạch trung ẩn ngọc",
-  "dieu_kien": "Cự Môn cư Tý hoặc Ngọ, gặp cát tinh",
-  "tinh_chat": "tốt",
-  "luan_giai": "Ngọc trong đá: tài năng tiềm ẩn, cần thời gian và cơ hội mới lộ sáng; thành công đến muộn nhưng chắc."
- },
- {
-  "ten": "Mã đầu đới kiếm",
-  "dieu_kien": "Kình Dương cư cung Ngọ",
-  "tinh_chat": "tốt có điều kiện",
-  "luan_giai": "Gươm trên lưng ngựa: uy quyền trong nghề võ, công an, y khoa ngoại; nhưng đời nhiều va chạm."
- },
- {
-  "ten": "Hỏa Tham / Linh Tham",
-  "dieu_kien": "Hỏa Tinh hoặc Linh Tinh đồng cung với Tham Lang",
-  "tinh_chat": "tốt",
-  "luan_giai": "Phát như lửa gặp dầu: chủ phát tài đột ngột, hợp cơ hội bất ngờ; nhưng cũng đến nhanh đi nhanh."
+  "luan_giai": "Song lộc như đôi uyên ương ngồi cùng tổ: giàu có, giữ được của; câu phú \"Lộc hợp uyên ương, phú quý song toàn\". Coi chừng Kình Đà kẹp hai bên.",
+  "quy_tac": {
+   "co_du": [
+    "Lộc Tồn",
+    "Hóa Lộc"
+   ]
+  }
  },
  {
   "ten": "Tam hóa liên châu",
   "dieu_kien": "Hóa Lộc, Hóa Quyền, Hóa Khoa cùng hội về Mệnh hoặc tam hợp",
   "tinh_chat": "rất tốt",
-  "luan_giai": "Ba hóa nối nhau: danh, quyền, lợi đủ cả; một trong những cách quý nhất."
+  "luan_giai": "Ba viên ngọc xâu chuỗi: tiền, quyền, danh cùng đến; ít khi thiếu cơ hội, dễ được đề bạt. Hóa Kỵ đi lạc vào thì giảm hẳn.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Hóa Lộc",
+    "Hóa Quyền",
+    "Hóa Khoa"
+   ]
+  }
  },
  {
-  "ten": "Mệnh vô chính diệu",
-  "dieu_kien": "Cung Mệnh không có chính tinh nào",
+  "ten": "Khoa Quyền Lộc Kỵ hội",
+  "dieu_kien": "Đủ bốn Hóa cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Có đủ tốt xấu của Tứ Hóa: cơ hội nhiều mà rắc rối cũng nhiều; thành công đi kèm thị phi. Xem Hóa Kỵ đóng cung nào để biết chỗ hao.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Hóa Lộc",
+    "Hóa Quyền",
+    "Hóa Khoa",
+    "Hóa Kỵ"
+   ]
+  }
+ },
+ {
+  "ten": "Hóa Kỵ thủ Mệnh",
+  "dieu_kien": "Hóa Kỵ đóng ngay cung Mệnh",
+  "tinh_chat": "xấu",
+  "luan_giai": "Sao kỵ ngồi giữa nhà: hay bị hiểu lầm, đố kỵ, việc gì cũng có trục trặc nhỏ; làm việc phải rõ ràng giấy tờ. Gặp Tuần Triệt hoặc Hóa Khoa thì bớt.",
+  "quy_tac": {
+   "co_du": [
+    "Hóa Kỵ"
+   ]
+  }
+ },
+ {
+  "ten": "Chiết túc mã",
+  "dieu_kien": "Thiên Mã và Đà La cùng đóng một cung, cung đó là Mệnh hoặc tam hợp — xung chiếu Mệnh",
+  "tinh_chat": "xấu",
+  "luan_giai": "Ngựa gãy chân: đi xa hay trục trặc, việc dở dang, dễ tai nạn giao thông; nên đi chậm mà chắc, kiểm tra xe cộ.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thiên Mã",
+    "Đà La"
+   ],
+   "dong_cung": [
+    "Thiên Mã",
+    "Đà La"
+   ]
+  }
+ },
+ {
+  "ten": "Khôi Việt giáp Mệnh",
+  "dieu_kien": "Thiên Khôi và Thiên Việt kẹp hai bên cung Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Quý nhân đứng hai bên: gặp khó có người đỡ, thi cử, xin việc thuận; hợp con đường công quyền.",
+  "quy_tac": {
+   "noi": "giap_menh",
+   "co_du": [
+    "Thiên Khôi",
+    "Thiên Việt"
+   ]
+  }
+ },
+ {
+  "ten": "Thiên Ất củng Mệnh",
+  "dieu_kien": "Thiên Khôi và Thiên Việt cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "tốt",
+  "luan_giai": "Hai quý nhân chầu về: đời được người trên nâng đỡ, gặp thầy gặp thợ; học hành, công danh thuận.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thiên Khôi",
+    "Thiên Việt"
+   ]
+  }
+ },
+ {
+  "ten": "Xương Khúc giáp Mệnh",
+  "dieu_kien": "Văn Xương và Văn Khúc kẹp hai bên cung Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Hai văn tinh kẹp Mệnh: thông minh, học giỏi, hợp văn chương, nghiên cứu, nghệ thuật.",
+  "quy_tac": {
+   "noi": "giap_menh",
+   "co_du": [
+    "Văn Xương",
+    "Văn Khúc"
+   ]
+  }
+ },
+ {
+  "ten": "Văn tinh củng Mệnh",
+  "dieu_kien": "Văn Xương và Văn Khúc cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "tốt",
+  "luan_giai": "Xương Khúc chầu về: có tài ăn nói và chữ nghĩa, thi cử đỗ đạt, hợp giáo dục, truyền thông, nghệ thuật.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Văn Xương",
+    "Văn Khúc"
+   ]
+  }
+ },
+ {
+  "ten": "Tả Hữu giáp Mệnh",
+  "dieu_kien": "Tả Phù và Hữu Bật kẹp hai bên cung Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Tả Hữu hai bên phò tá: có người giúp việc, bạn bè, anh em đắc lực; làm quản lý thuận.",
+  "quy_tac": {
+   "noi": "giap_menh",
+   "co_du": [
+    "Tả Phù",
+    "Hữu Bật"
+   ]
+  }
+ },
+ {
+  "ten": "Tả Hữu đồng cung",
+  "dieu_kien": "Tả Phù và Hữu Bật cùng đóng cung Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Hai trợ tinh cùng ngồi với Mệnh: nhân duyên tốt, được người giúp đỡ suốt đời; câu phú \"Tả Hữu đồng cung, phiêu y tử bào\".",
+  "quy_tac": {
+   "co_du": [
+    "Tả Phù",
+    "Hữu Bật"
+   ]
+  }
+ },
+ {
+  "ten": "Tả Hữu củng Mệnh",
+  "dieu_kien": "Tả Phù và Hữu Bật cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "tốt",
+  "luan_giai": "Trợ tinh chầu về: việc lớn có người chung tay, hợp tổ chức, lãnh đạo tập thể.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Tả Phù",
+    "Hữu Bật"
+   ]
+  }
+ },
+ {
+  "ten": "Lục cát hội Mệnh",
+  "dieu_kien": "Tả Phù, Hữu Bật, Văn Xương, Văn Khúc, Thiên Khôi, Thiên Việt đều hội về Mệnh",
+  "tinh_chat": "rất tốt",
+  "luan_giai": "Sáu cát tinh cùng chầu: quý nhân, trợ lực, học vấn đủ cả; cách hiếm, chủ phú quý, nhất là khi Mệnh có chính tinh sáng.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Tả Phù",
+    "Hữu Bật",
+    "Văn Xương",
+    "Văn Khúc",
+    "Thiên Khôi",
+    "Thiên Việt"
+   ]
+  }
+ },
+ {
+  "ten": "Kình Đà giáp Mệnh",
+  "dieu_kien": "Kình Dương và Đà La kẹp hai bên cung Mệnh (Lộc Tồn đóng Mệnh)",
   "tinh_chat": "trung tính",
-  "luan_giai": "Phải mượn chính tinh cung đối chiếu để luận. Người có cách này thường linh hoạt, sống nhờ hoàn cảnh; nếu được cát tinh hội thì càng về sau càng tốt."
+  "luan_giai": "Có Lộc Tồn giữa nhà nhưng hai sát tinh canh cửa: có của nhưng khó tiêu thoải mái, hay bị ràng buộc, cô độc; câu phú \"Kình Đà giáp Lộc, thủ tài nô\".",
+  "quy_tac": {
+   "noi": "giap_menh",
+   "co_du": [
+    "Kình Dương",
+    "Đà La"
+   ]
+  }
  },
  {
   "ten": "Kình Đà giáp Kỵ",
-  "dieu_kien": "Kình Dương và Đà La kẹp cung có Hóa Kỵ",
+  "dieu_kien": "Kình Dương và Đà La kẹp cung Mệnh có Hóa Kỵ",
   "tinh_chat": "xấu",
-  "luan_giai": "Trước sau đều vướng: chủ trắc trở kéo dài, dễ mắc kẹt trong chính vấn đề mình chấp niệm."
+  "luan_giai": "Sao kỵ bị hai sát tinh kẹp: trở ngại chồng chất, dễ bệnh tật, kiện tụng; cần đặc biệt cẩn thận trong đại hạn đi qua cung này.",
+  "quy_tac": {
+   "va": [
+    {
+     "noi": "menh",
+     "co_du": [
+      "Hóa Kỵ"
+     ]
+    },
+    {
+     "noi": "giap_menh",
+     "co_du": [
+      "Kình Dương",
+      "Đà La"
+     ]
+    }
+   ]
+  }
  },
  {
-  "ten": "Nhật Nguyệt phản bối",
-  "dieu_kien": "Thái Dương và Thái Âm đều hãm địa",
-  "tinh_chat": "xấu",
-  "luan_giai": "Âm dương đều tối: chủ vất vả, công sức bỏ ra khó được ghi nhận, sớm xa cách cha mẹ."
+  "ten": "Mã đầu đới kiếm",
+  "dieu_kien": "Kình Dương độc thủ cung Mệnh tại Ngọ",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Ngựa đeo kiếm: uy mãnh, hợp võ nghiệp, biên cương, kỹ thuật nguy hiểm; thành công lớn nhưng dễ hình thương. Tuổi Bính, Mậu hợp cách này.",
+  "quy_tac": {
+   "co_du": [
+    "Kình Dương"
+   ],
+   "menh_chi": [
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Kình Dương cư Tứ Mộ",
+  "dieu_kien": "Kình Dương tại Mệnh ở Thìn, Tuất, Sửu hoặc Mùi",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Dao sắc cất trong kho: sát tinh đắc địa, thành người quyết đoán, dám chịu trách nhiệm; hợp quân đội, phẫu thuật, kỹ thuật. Vẫn cần cát tinh.",
+  "quy_tac": {
+   "co_du": [
+    "Kình Dương"
+   ],
+   "menh_chi": [
+    "Thìn",
+    "Tuất",
+    "Sửu",
+    "Mùi"
+   ]
+  }
  },
  {
   "ten": "Không Kiếp giáp Mệnh",
   "dieu_kien": "Địa Không và Địa Kiếp kẹp hai bên cung Mệnh",
   "tinh_chat": "xấu",
-  "luan_giai": "Chủ hao tán, dự định dễ đổ vỡ; tuy nhiên hợp người theo nghệ thuật, tôn giáo, nghiên cứu trừu tượng."
+  "luan_giai": "Hai sao trống rỗng kẹp Mệnh: tiền bạc khó giữ, kế hoạch hay đổ giữa chừng; hợp đời sống tinh thần, nghiên cứu, tôn giáo hơn kinh doanh.",
+  "quy_tac": {
+   "noi": "giap_menh",
+   "co_du": [
+    "Địa Không",
+    "Địa Kiếp"
+   ]
+  }
+ },
+ {
+  "ten": "Không Kiếp Tỵ Hợi",
+  "dieu_kien": "Địa Không và Địa Kiếp đồng cung Mệnh tại Tỵ hoặc Hợi",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Không Kiếp ở nơi đắc địa: tư duy khác người, hợp phát minh, kỹ thuật, huyền học; phát nhanh bại nhanh, câu phú \"Không Kiếp Tỵ Hợi, mãnh hổ xuất sơn\".",
+  "quy_tac": {
+   "co_du": [
+    "Địa Không",
+    "Địa Kiếp"
+   ],
+   "menh_chi": [
+    "Tỵ",
+    "Hợi"
+   ]
+  }
+ },
+ {
+  "ten": "Hỏa Linh giáp Mệnh",
+  "dieu_kien": "Hỏa Tinh và Linh Tinh kẹp hai bên cung Mệnh",
+  "tinh_chat": "xấu",
+  "luan_giai": "Hai ngọn lửa kẹp hai bên: nóng nảy, hay gặp chuyện bất ngờ, tai nạn về lửa, điện; cần điềm tĩnh, tránh tranh chấp.",
+  "quy_tac": {
+   "noi": "giap_menh",
+   "co_du": [
+    "Hỏa Tinh",
+    "Linh Tinh"
+   ]
+  }
+ },
+ {
+  "ten": "Tứ sát hội Mệnh",
+  "dieu_kien": "Kình Dương, Đà La, Hỏa Tinh, Linh Tinh đều hội về Mệnh và tam hợp",
+  "tinh_chat": "xấu",
+  "luan_giai": "Bốn sát tinh cùng chầu: đời nhiều va vấp, bệnh tật, tai nạn; chỉ hợp nghề mạo hiểm, kỹ thuật nặng. Cần chính tinh miếu vượng và Tuần Triệt chế ngự.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Kình Dương",
+    "Đà La",
+    "Hỏa Tinh",
+    "Linh Tinh"
+   ]
+  }
+ },
+ {
+  "ten": "Tuần Triệt án Mệnh",
+  "dieu_kien": "Cung Mệnh bị Tuần hoặc Triệt án ngữ",
+  "tinh_chat": "trung tính",
+  "luan_giai": "Cửa nhà có chốt chặn: tốt xấu đều giảm, tuổi trẻ trắc trở, ngoài ba mươi mới thông; Mệnh xấu gặp Tuần Triệt lại thành đỡ.",
+  "quy_tac": {
+   "tuan_triet_menh": true
+  }
+ },
+ {
+  "ten": "Mệnh vô chính diệu đắc Tam Không",
+  "dieu_kien": "Mệnh không có chính tinh nhưng có Tuần, Triệt hoặc Thiên Không, Địa Không",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Nhà trống mà có khóa: người ứng biến giỏi, phát về đường tinh thần hoặc bất ngờ; câu phú \"Mệnh vô chính diệu đắc Tam Không, phú quý khả kỳ\". Thọ không dài nếu thiếu cát tinh.",
+  "quy_tac": {
+   "vo_chinh_dieu": true,
+   "hoac": [
+    {
+     "tuan_triet_menh": true
+    },
+    {
+     "noi": "menh",
+     "co_mot": [
+      "Thiên Không",
+      "Địa Không"
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "ten": "Mệnh vô chính diệu",
+  "dieu_kien": "Cung Mệnh không có chính tinh nào",
+  "tinh_chat": "trung tính",
+  "luan_giai": "Phải mượn chính tinh cung đối chiếu để luận. Người có cách này thường linh hoạt, sống nhờ hoàn cảnh; nếu được cát tinh hội thì càng về sau càng tốt.",
+  "quy_tac": {
+   "vo_chinh_dieu": true
+  }
+ },
+ {
+  "ten": "Mệnh Thân đồng cung",
+  "dieu_kien": "Cung Thân trùng cung Mệnh",
+  "tinh_chat": "trung tính",
+  "luan_giai": "Trước sau như một: tính cách và đường đời nhất quán, tự lực là chính; tốt xấu của cung Mệnh ảnh hưởng gấp đôi.",
+  "quy_tac": {
+   "menh_than_dong_cung": true
+  }
+ },
+ {
+  "ten": "Tứ Linh hội Mệnh",
+  "dieu_kien": "Long Trì, Phượng Các, Bạch Hổ, Hoa Cái cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "tốt",
+  "luan_giai": "Long — Phượng — Hổ — Cái đủ bộ: có uy, có danh, được nể trọng; hợp làm việc công, nghi lễ, quản lý. Bạch Hổ đơn lẻ thì xấu, đủ bộ lại thành đẹp.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Long Trì",
+    "Phượng Các",
+    "Bạch Hổ",
+    "Hoa Cái"
+   ]
+  }
+ },
+ {
+  "ten": "Long Phượng hội Mệnh",
+  "dieu_kien": "Long Trì và Phượng Các cùng hội về Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Đôi đài các chầu về: thanh cao, có duyên với thi cử, lễ nghi, hôn nhân đẹp.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Long Trì",
+    "Phượng Các"
+   ]
+  }
+ },
+ {
+  "ten": "Tam Minh hội Mệnh",
+  "dieu_kien": "Đào Hoa, Hồng Loan, Thiên Hỷ cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "tốt",
+  "luan_giai": "Ba sao sáng về nhân duyên: có duyên, dễ mến, hợp nghề giao tiếp, nghệ thuật, dịch vụ; tình cảm phong phú, cần giữ chừng mực.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Đào Hoa",
+    "Hồng Loan",
+    "Thiên Hỷ"
+   ]
+  }
+ },
+ {
+  "ten": "Đào Hồng hội Mệnh",
+  "dieu_kien": "Đào Hoa và Hồng Loan cùng hội về Mệnh",
+  "tinh_chat": "trung tính",
+  "luan_giai": "Hai sao đào hoa: nhan sắc, duyên dáng, dễ được yêu mến nhưng cũng dễ vướng chuyện tình cảm; gặp Thiên Hình, Tuần Triệt thì đứng đắn hơn.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Đào Hoa",
+    "Hồng Loan"
+   ]
+  }
+ },
+ {
+  "ten": "Tứ Đức hội Mệnh",
+  "dieu_kien": "Thiên Đức, Nguyệt Đức, Long Đức, Phúc Đức cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "tốt",
+  "luan_giai": "Bốn sao đức chầu về: hiền lành, được phúc che chở, gặp dữ hóa lành; hợp việc thiện, cộng đồng.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thiên Đức",
+    "Nguyệt Đức",
+    "Long Đức",
+    "Phúc Đức"
+   ]
+  }
+ },
+ {
+  "ten": "Quang Quý hội Mệnh",
+  "dieu_kien": "Ân Quang và Thiên Quý cùng hội về Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Ân huệ và quý nhân: được ban ơn, khen thưởng, thi cử có bổng lộc; hợp công chức, học thuật.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Ân Quang",
+    "Thiên Quý"
+   ]
+  }
+ },
+ {
+  "ten": "Thai Tọa hội Mệnh",
+  "dieu_kien": "Tam Thai và Bát Tọa cùng hội về Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Đôi đài các: có địa vị, được người kính, hợp ngồi ghế quản lý, chủ tọa.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Tam Thai",
+    "Bát Tọa"
+   ]
+  }
+ },
+ {
+  "ten": "Quan Phúc hội Mệnh",
+  "dieu_kien": "Thiên Quan và Thiên Phúc cùng hội về Mệnh",
+  "tinh_chat": "tốt",
+  "luan_giai": "Hai sao phúc lộc quý nhân: gặp hạn có người cứu, đường công danh có lối; hợp làm việc nhà nước.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thiên Quan",
+    "Thiên Phúc"
+   ]
+  }
+ },
+ {
+  "ten": "Song Hao Mão Dậu",
+  "dieu_kien": "Đại Hao và Tiểu Hao cùng hội về Mệnh tại Mão hoặc Dậu",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Hao ở nơi đắc địa: tiền ra để tiền vào, hợp buôn bán lưu chuyển, dịch vụ; không hợp tích trữ.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Đại Hao",
+    "Tiểu Hao"
+   ],
+   "menh_chi": [
+    "Mão",
+    "Dậu"
+   ]
+  }
+ },
+ {
+  "ten": "Song Hao thủ Mệnh",
+  "dieu_kien": "Đại Hao hoặc Tiểu Hao đóng cung Mệnh (không ở Mão Dậu)",
+  "tinh_chat": "xấu",
+  "luan_giai": "Sao hao ngồi nhà: tiền bạc khó giữ, hay tiêu pha, mất mát; nên lập quỹ riêng, tránh cho vay.",
+  "quy_tac": {
+   "co_mot": [
+    "Đại Hao",
+    "Tiểu Hao"
+   ],
+   "menh_chi": [
+    "Tý",
+    "Sửu",
+    "Dần",
+    "Thìn",
+    "Tỵ",
+    "Ngọ",
+    "Mùi",
+    "Thân",
+    "Tuất",
+    "Hợi"
+   ]
+  }
+ },
+ {
+  "ten": "Cô Quả thủ Mệnh",
+  "dieu_kien": "Cô Thần hoặc Quả Tú đóng ngay cung Mệnh",
+  "tinh_chat": "xấu",
+  "luan_giai": "Sao cô đơn ngồi nhà: tính độc lập, ít bạn tâm giao, hôn nhân muộn hoặc xa cách người thân; hợp nghề cần một mình, nghiên cứu, tu tập. (Cô Thần và Quả Tú luôn tam hợp nhau nên không xét \"hội\".)",
+  "quy_tac": {
+   "co_mot": [
+    "Cô Thần",
+    "Quả Tú"
+   ]
+  }
+ },
+ {
+  "ten": "Tang Hổ Khốc Hư",
+  "dieu_kien": "Tang Môn, Bạch Hổ, Thiên Khốc, Thiên Hư cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "xấu",
+  "luan_giai": "Bộ sao tang chế: hay buồn phiền, gia đạo có chuyện, sức khỏe người thân kém; hợp nghề liên quan y tế, tang lễ, pháp y thì lại đắc dụng.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Tang Môn",
+    "Bạch Hổ",
+    "Thiên Khốc",
+    "Thiên Hư"
+   ]
+  }
+ },
+ {
+  "ten": "Riêu Đà Kỵ",
+  "dieu_kien": "Thiên Riêu, Đà La, Hóa Kỵ cùng hội về Mệnh và tam hợp",
+  "tinh_chat": "xấu",
+  "luan_giai": "Bộ ba ám muội: dễ vướng tình ái rắc rối, tai nạn sông nước, bệnh khó chữa; cần tránh nơi sông hồ khi đại hạn xấu.",
+  "quy_tac": {
+   "noi": "hoi_menh",
+   "co_du": [
+    "Thiên Riêu",
+    "Đà La",
+    "Hóa Kỵ"
+   ]
+  }
+ },
+ {
+  "ten": "Thiên Riêu thủ Mệnh",
+  "dieu_kien": "Thiên Riêu đóng ngay cung Mệnh",
+  "tinh_chat": "trung tính",
+  "luan_giai": "Sao đa tình, mê tín ngồi nhà: có duyên ngầm, thích huyền học, nghệ thuật; tình cảm dễ rối, cần tránh nơi sông nước khi hạn xấu. Đắc địa tại Mão, Dậu, Tuất, Hợi thì thành tài hoa.",
+  "quy_tac": {
+   "co_du": [
+    "Thiên Riêu"
+   ]
+  }
+ },
+ {
+  "ten": "Khốc Hư Tý Ngọ",
+  "dieu_kien": "Thiên Khốc và Thiên Hư đồng cung Mệnh tại Tý hoặc Ngọ",
+  "tinh_chat": "tốt có điều kiện",
+  "luan_giai": "Hai bại tinh ở nơi đắc địa: tiếng khóc thành tiếng vang, hợp nghề dùng giọng nói, âm nhạc, diễn thuyết; câu phú \"Khốc Hư Tý Ngọ, tiếng tăm lừng lẫy\".",
+  "quy_tac": {
+   "co_du": [
+    "Thiên Khốc",
+    "Thiên Hư"
+   ],
+   "menh_chi": [
+    "Tý",
+    "Ngọ"
+   ]
+  }
+ },
+ {
+  "ten": "Thiên Hình thủ Mệnh",
+  "dieu_kien": "Thiên Hình đóng ngay cung Mệnh",
+  "tinh_chat": "trung tính",
+  "luan_giai": "Sao hình pháp ngồi nhà: nghiêm khắc với mình và người, hợp luật, quân đội, y khoa; cứng quá dễ va chạm, dễ có vết mổ.",
+  "quy_tac": {
+   "co_du": [
+    "Thiên Hình"
+   ]
+  }
  }
 ]

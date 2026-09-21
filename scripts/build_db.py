@@ -74,7 +74,8 @@ CREATE TABLE cung_tu_vi (
 
 DROP TABLE IF EXISTS cach_cuc;
 CREATE TABLE cach_cuc (
-  ten TEXT PRIMARY KEY, dieu_kien TEXT, tinh_chat TEXT, luan_giai TEXT);
+  ten TEXT PRIMARY KEY, dieu_kien TEXT, tinh_chat TEXT, luan_giai TEXT,
+  quy_tac TEXT);  -- JSON, xem docs/DATA_MODEL.md
 
 DROP TABLE IF EXISTS sao_han;
 CREATE TABLE sao_han (
@@ -203,8 +204,9 @@ def build(dest: Path) -> Path:
                      j(r["noi_dung_xem"])))
 
     for r in load("tu_vi/cach_cuc"):
-        con.execute("INSERT INTO cach_cuc VALUES (?,?,?,?)",
-                    (r["ten"], r["dieu_kien"], r["tinh_chat"], r["luan_giai"]))
+        con.execute("INSERT INTO cach_cuc VALUES (?,?,?,?,?)",
+                    (r["ten"], r["dieu_kien"], r["tinh_chat"], r["luan_giai"],
+                     json.dumps(r["quy_tac"], ensure_ascii=False)))
 
     sh = load("han/sao_han")
     for r in sh["sao"]:

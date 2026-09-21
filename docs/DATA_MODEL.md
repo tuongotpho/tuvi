@@ -62,11 +62,14 @@ tháng 1 hoặc đầu tháng 2. Hãy đổi sang năm âm lịch bằng `solar_
   dict `{chi: "Miếu"|"Vượng"|"Đắc"|"Bình"|"Hãm"}`, chỉ 29 sao có bảng này.
   Tên "Quan phù" xuất hiện ở hai vòng sao khác nhau nên có thêm `ten_hien_thi`.
 - **`tu_vi/cung.json`** — 12 cung chức theo thứ tự ngược chiều kim đồng hồ kể từ Mệnh.
-- **`tu_vi/cach_cuc.json`** — 20 cách cục, mỗi cách có `dieu_kien` viết bằng lời để
-  người biên tập tự đối chiếu (chưa mã hóa thành luật máy).
-
-### Hạn
-
+- **`tu_vi/cach_cuc.json`** — 92 cách cục. Ngoài `dieu_kien` viết bằng lời còn có
+  `quy_tac` máy đọc được, `tuvi.luan_giai.goi_y_cach_cuc` chỉ là bộ đọc quy tắc. Các khóa:
+  `noi` (vùng lấy sao: `menh` mặc định, `hoi_menh` = Mệnh + Quan + Tài + Di, `than`,
+  `giap_menh` = hai cung kề Mệnh, `dien_trach`, `phuc_duc`), `co_du`, `co_mot`, `khong_co`,
+  `menh_chi`, `sao_tai` ({sao: [chi]}), `vo_chinh_dieu`, `chinh_tinh_menh`, `tuan_triet_menh`,
+  `menh_than_dong_cung`, `dong_cung`, `hai_ben` ([[A], [B]]: mỗi cung kề một bộ), `hoac`, `va`.
+  Mọi khóa trong một quy tắc phải cùng đúng. Với `giap_menh` + `co_du`, mỗi cung kề phải có
+  ít nhất một sao của bộ. `validate_data.py` kiểm tên sao và khóa của từng quy tắc.
 - **`han/sao_han.json`** — `thu_tu_nam` và `thu_tu_nu` là hai mảng 9 phần tử, tra
   bằng `(tuoi_mu - 10) % 9`. Hai giới dùng chung mốc tuổi, chỉ khác thứ tự sao.
 - **`han/hoang_oc.json`** — `tuoi_xau_tham_khao` là danh sách 33 tuổi do các nguồn

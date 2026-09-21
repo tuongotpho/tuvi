@@ -11,7 +11,7 @@ web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      70 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      75 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -108,7 +108,7 @@ sqlite3 build/tuvi.db "SELECT huong, du_nien FROM du_nien WHERE cung_phi='Khảm
 |---|---|---|
 | Nền tảng | `ngu_hanh`, `thien_can`, `dia_chi`, `luc_thap_hoa_giap`, `nap_am` | 5 hành và quan hệ sinh khắc, 10 can, 12 chi với tam hợp — tứ hành xung — lục hợp — lục xung — lục hại, 60 hoa giáp, 30 nạp âm |
 | Con giáp | `con_giap` | 12 con giáp: tính cách, sự nghiệp, tình cảm, tài chính, sức khỏe, màu hợp, năm sinh 1924–2044 |
-| Tử vi | `tu_vi/sao`, `tu_vi/cung`, `tu_vi/cuc`, `tu_vi/cach_cuc` | 109 sao kèm ngũ hành, loại sao, ý nghĩa và bảng miếu vượng đắc hãm; 12 cung chức; 5 cục; 20 cách cục nổi tiếng |
+| Tử vi | `tu_vi/sao`, `tu_vi/cung`, `tu_vi/cuc`, `tu_vi/cach_cuc` | 109 sao kèm ngũ hành, loại sao, ý nghĩa và bảng miếu vượng đắc hãm; 12 cung chức; 5 cục; 92 cách cục kèm quy tắc nhận diện máy đọc được |
 | Hạn | `han/sao_han`, `han/tam_tai`, `han/kim_lau`, `han/hoang_oc`, `han/han_khac` | 9 sao cửu diệu với bảng tra nam nữ và cách cúng; tam tai; 4 loại Kim Lâu; 6 cung Hoang Ốc; Thái Tuế, tam hình, lục phá |
 | Phong thủy | `phong_thuy/bat_trach`, `cuu_cung_phi_tinh`, `huong`, `mau_sac_vat_pham`, `bo_tri_khong_gian` | 8 cung phi và ma trận du niên 8×8; 9 sao phi tinh và Vận 9; 8 hướng, 24 sơn; màu và vật phẩm theo nạp âm; nguyên tắc bố trí 6 khu vực |
 | Lịch | `lich/truc`, `nhi_thap_bat_tu`, `tiet_khi`, `ngay_kieng` | 12 Trực, 28 tú, 24 tiết khí, các ngày kiêng dân gian |
@@ -129,10 +129,11 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Bát trạch | Ma trận du niên 8×8 phải đối xứng | khớp |
 | Phi tinh năm | 2024 Tam Bích, 2025 Nhị Hắc, 2026 Nhất Bạch | khớp |
 | Quan hệ địa chi | Bảng 12×12 phải đối xứng; kiểm các cặp đã biết | khớp |
+| Cách cục | 92 quy tắc quét trên 1.500 lá số ngẫu nhiên: cách nào không khớp lần nào là test đỏ (bắt quy tắc viết sai); bộ đọc quy tắc có test từng khóa | khớp |
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 70 bài kiểm thử
+python -m unittest discover -s tests -v   # 75 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
 ```
 
