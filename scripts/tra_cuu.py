@@ -8,18 +8,21 @@
     python scripts/tra_cuu.py phongthuy 1990 nam --huong "Đông Nam"
     python scripts/tra_cuu.py laso 20/09/1990 14 nam
     python scripts/tra_cuu.py phitinh 2026
+    python scripts/tra_cuu.py chonngay 1987 01/10/2026 30/11/2026 --viec dong_tho
+    python scripts/tra_cuu.py viec
 """
 from __future__ import annotations
 
 import argparse
 import json
 import sys
+from datetime import date, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tuvi import han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 
 
 def _ngay(s: str) -> tuple[int, int, int]:
@@ -60,6 +63,16 @@ def main() -> int:
     s = sub.add_parser("phitinh", help="Cửu cung phi tinh của một năm")
     s.add_argument("nam", type=int)
 
+    s = sub.add_parser("chonngay", help="Chọn ngày tốt theo tuổi, loại ngày xung")
+    s.add_argument("nam_sinh", type=int, help="năm sinh âm lịch")
+    s.add_argument("tu_ngay", help="dd/mm/yyyy")
+    s.add_argument("den_ngay", help="dd/mm/yyyy")
+    s.add_argument("--viec", default=None, help="mã việc, xem lệnh 'viec'")
+    s.add_argument("--gioi-tinh", default="nam", choices=["nam", "nu"])
+    s.add_argument("--so-luong", type=int, default=10)
+
+    sub.add_parser("viec", help="Liệt kê các việc chọn ngày đang hỗ trợ")
+
     a = p.parse_args()
 
     if a.lenh == "ngay":
@@ -75,6 +88,13 @@ def main() -> int:
         _in(la_so.lap_la_so(d, m, y, a.gio, gioi_tinh=a.gioi_tinh))
     elif a.lenh == "phitinh":
         _in(phong_thuy.phi_tinh_nam(a.nam))
+    elif a.lenh == "chonngay":
+        ngay = lambda s: date(*reversed([int(x) for x in s.split("/")]))  # noqa: E731
+        _in(chon_ngay.chon_ngay(a.nam_sinh, ngay(a.tu_ngay), ngay(a.den_ngay),
+                                a.viec, a.gioi_tinh, a.so_luong))
+    elif a.lenh == "viec":
+        _in([{k: v[k] for k in ("ma", "ten", "so_truc_khop", "so_tu_khop", "ghi_chu")}
+             for v in chon_ngay.danh_sach_viec()])
     return 0
 
 

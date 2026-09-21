@@ -180,3 +180,79 @@ def thong_tin_ngay(dd: int, mm: int, yy: int) -> dict:
         "nap_am_nam": nam.nap_am,
         "tiet_khi": tiet_khi_cua_ngay(am.jd),
     }
+
+# --------------------------------------------------------------------------
+# Quan hệ giữa các địa chi — dùng chung cho xem hạn, chọn ngày và xem tuổi.
+# --------------------------------------------------------------------------
+
+TAM_HOP = [["Thân", "Tý", "Thìn"], ["Dần", "Ngọ", "Tuất"],
+           ["Hợi", "Mão", "Mùi"], ["Tỵ", "Dậu", "Sửu"]]
+
+LUC_HOP = {"Tý": "Sửu", "Sửu": "Tý", "Dần": "Hợi", "Hợi": "Dần",
+           "Mão": "Tuất", "Tuất": "Mão", "Thìn": "Dậu", "Dậu": "Thìn",
+           "Tỵ": "Thân", "Thân": "Tỵ", "Ngọ": "Mùi", "Mùi": "Ngọ"}
+
+LUC_HAI = {"Tý": "Mùi", "Mùi": "Tý", "Sửu": "Ngọ", "Ngọ": "Sửu",
+           "Dần": "Tỵ", "Tỵ": "Dần", "Mão": "Thìn", "Thìn": "Mão",
+           "Thân": "Hợi", "Hợi": "Thân", "Dậu": "Tuất", "Tuất": "Dậu"}
+
+LUC_PHA = {"Tý": "Dậu", "Dậu": "Tý", "Ngọ": "Mão", "Mão": "Ngọ",
+           "Thân": "Tỵ", "Tỵ": "Thân", "Dần": "Hợi", "Hợi": "Dần",
+           "Thìn": "Sửu", "Sửu": "Thìn", "Tuất": "Mùi", "Mùi": "Tuất"}
+
+TAM_HINH = [{"Dần", "Tỵ", "Thân"}, {"Sửu", "Tuất", "Mùi"}, {"Tý", "Mão"}]
+TU_HINH = {"Thìn", "Ngọ", "Dậu", "Hợi"}
+
+
+def luc_xung(chi: str) -> str:
+    """Địa chi xung với ``chi`` (cách sáu cung)."""
+    return DIA_CHI[(DIA_CHI.index(chi) + 6) % 12]
+
+
+def nhom_tam_hop(chi: str) -> list[str]:
+    """Nhóm tam hợp chứa ``chi``."""
+    return next(n for n in TAM_HOP if chi in n)
+
+
+def quan_he_chi(chi_tuoi: str, chi_khac: str) -> list[str]:
+    """Mọi quan hệ giữa hai địa chi, từ tốt tới xấu.
+
+    Một cặp có thể mang nhiều quan hệ cùng lúc — ví dụ Dần và Hợi vừa lục hợp
+    vừa lục phá — nên hàm trả về danh sách chứ không trả về một nhãn.
+    """
+    if chi_tuoi not in DIA_CHI or chi_khac not in DIA_CHI:
+        raise ValueError(f"Địa chi không hợp lệ: {chi_tuoi}, {chi_khac}")
+    ra = []
+    if chi_tuoi == chi_khac:
+        ra.append("Trùng chi")
+        if chi_tuoi in TU_HINH:
+            ra.append("Tự hình")
+    else:
+        if chi_khac in nhom_tam_hop(chi_tuoi):
+            ra.append("Tam hợp")
+        if LUC_HOP[chi_tuoi] == chi_khac:
+            ra.append("Lục hợp")
+        if luc_xung(chi_tuoi) == chi_khac:
+            ra.append("Lục xung")
+        if LUC_HAI[chi_tuoi] == chi_khac:
+            ra.append("Lục hại")
+        if LUC_PHA[chi_tuoi] == chi_khac:
+            ra.append("Lục phá")
+        for nhom in TAM_HINH:
+            if chi_tuoi in nhom and chi_khac in nhom:
+                ra.append("Tương hình")
+                break
+    return ra
+
+
+def can_khac(can_a: str, can_b: str) -> bool:
+    """Ngũ hành của ``can_a`` có khắc ngũ hành của ``can_b`` không."""
+    khac = {"Kim": "Mộc", "Mộc": "Thổ", "Thổ": "Thủy",
+            "Thủy": "Hỏa", "Hỏa": "Kim"}
+    return khac[HANH_CAN[THIEN_CAN.index(can_a)]] == HANH_CAN[THIEN_CAN.index(can_b)]
+
+
+def thien_khac_dia_xung(can_chi_ngay: "CanChi", can_chi_tuoi: "CanChi") -> bool:
+    """Ngày vừa có can khắc can tuổi vừa có chi xung chi tuổi — đại kỵ."""
+    return (can_khac(can_chi_ngay.can, can_chi_tuoi.can)
+            and luc_xung(can_chi_tuoi.chi) == can_chi_ngay.chi)

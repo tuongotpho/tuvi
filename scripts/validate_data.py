@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tuvi import han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.canchi import (DIA_CHI, NAP_AM_60, THIEN_CAN, can_chi_nam,  # noqa: E402
                          luc_thap_hoa_giap)
 from tuvi.store import all_datasets, load  # noqa: E402
@@ -143,7 +143,41 @@ def main() -> int:
         check(phong_thuy.phi_tinh_nam(nam)["sao_nhap_trung_cung"] == so,
               f"Phi tinh năm {nam} phải nhập trung cung số {so}")
 
-    # 11. Cảnh báo mềm: trường dài bất thường hoặc thiếu mô tả
+    # 11. Chọn ngày theo tuổi
+    kho_cum_tu = set()
+    for r in load("lich/truc"):
+        kho_cum_tu |= set(r["nen"]) | set(r["ky"])
+    for r in load("lich/nhi_thap_bat_tu"):
+        kho_cum_tu |= set(r["nen"]) | set(r["ky"])
+    kieng_hop_le = {"Tam nương", "Nguyệt kỵ", "Thọ tử", "Dương công kỵ nhật"}
+    for v in load("lich/viec")["viec"]:
+        for c in v["cum_tu"]:
+            check(c in kho_cum_tu,
+                  f"Việc {v['ma']}: cụm từ '{c}' không khớp mục nên/kỵ nào "
+                  f"của 12 Trực hay 28 tú")
+        check(set(v["kieng"]) <= kieng_hop_le,
+              f"Việc {v['ma']}: loại ngày kiêng không hợp lệ "
+              f"{set(v['kieng']) - kieng_hop_le}")
+        if not any(set(v["cum_tu"]) & (set(r["nen"]) | set(r["ky"]))
+                   for r in load("lich/nhi_thap_bat_tu")):
+            canh_bao.append(f"Việc {v['ma']} chưa có mục nào trong bộ 28 tú — "
+                            f"điểm sẽ chỉ dựa vào 12 Trực")
+
+    # Ngày xung tuổi phải bị loại dù điểm chung rất cao.
+    r = chon_ngay.xem_ngay_theo_tuoi(20, 9, 2026, 1987, "nam")
+    check(r["diem_chung"] == 95 and r["bi_chan"] and r["diem_ca_nhan"] == 0,
+          "Ngày 20/09/2026 (95 điểm chung) phải bị loại với tuổi Đinh Mão 1987")
+
+    from datetime import date as _date
+    kq = chon_ngay.chon_ngay(1987, _date(2026, 10, 10), _date(2026, 11, 7),
+                             "dong_tho", "nam", 30)
+    check(all(not x["bi_chan"] for x in kq["ngay_tot"]),
+          "Kết quả chọn ngày không được chứa ngày đã bị loại")
+    check(all(not set(x["ngay_kieng"]) & set(kq["ngay_kieng_cua_viec"])
+              for x in kq["ngay_tot"]),
+          "Kết quả chọn ngày không được chứa ngày kiêng của chính việc đó")
+
+    # 12. Cảnh báo mềm: trường dài bất thường hoặc thiếu mô tả
     for ten in all_datasets():
         d = load(ten)
         if isinstance(d, list) and not d:

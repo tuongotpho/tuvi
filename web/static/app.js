@@ -300,6 +300,74 @@ $("#form-ngay").addEventListener("submit", async (e) => {
   catch (err) { baoLoi($("#ngay-ket-qua"), err); }
 });
 
+
+/* ---------------------------- chọn ngày ---------------------------- */
+function veChonNgay(d) {
+  const chan = d.ngay_bi_chan;
+  const dong = (x, i) => {
+    const khoan = x.khoan_cong_tru.map((k) =>
+      `<span class="khoan ${k.diem > 0 ? "cong" : "tru"}">${k.diem > 0 ? "+" : ""}${k.diem} ${esc(k.muc)}</span>`).join(" ");
+    return `<tr>
+      <td data-nhan="Hạng"><b>${i + 1}</b></td>
+      <td data-nhan="Ngày"><b>${esc(x.duong_lich)}</b><br>
+        <span class="cung-chi">${esc(x.thu)} · ${esc(x.am_lich)} ÂL</span></td>
+      <td data-nhan="Can chi">${esc(x.ngay_can_chi)}<br>
+        <span class="cung-chi">trực ${esc(x.truc)} · ${esc(x.nhi_thap_bat_tu)} · ${esc(x.loai_ngay)}</span></td>
+      <td data-nhan="Điểm"><b style="font-size:17px">${x.diem_ca_nhan}</b>
+        <span class="cung-chi">/100 · nền ${x.diem_chung}</span>
+        <div class="thanh-diem"><i style="width:${x.diem_ca_nhan}%;background:${x.diem_ca_nhan >= 70 ? "var(--cat)" : "var(--vang)"}"></i></div></td>
+      <td data-nhan="Vì sao">${khoan || '<span class="cung-chi">không có khoản cộng trừ riêng</span>'}
+        ${x.ngay_kieng.length ? `<br><span class="loi">phạm ${esc(ds(x.ngay_kieng))}</span>` : ""}</td>
+      <td data-nhan="Giờ tốt">${x.gio_tot.map((g) => esc(g.chi)).join(", ") || "—"}</td>
+    </tr>`;
+  };
+  $("#cn-ket-qua").innerHTML = `
+  <div class="the-tom-tat">
+    ${[["Tuổi", d.tuoi_can_chi], ["Việc", d.viec], ["Khoảng", `${d.tu_ngay} – ${d.den_ngay}`],
+       ["Tổng số ngày", d.tong_so_ngay], ["Loại vì xung tuổi", d.so_chan_xung_tuoi],
+       ["Loại vì ngày kiêng", d.so_chan_ngay_kieng]]
+      .map(([k, v]) => `<div class="o-tom-tat"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join("")}
+  </div>
+  ${d.ghi_chu_viec ? `<p class="goi-y">${esc(d.ghi_chu_viec)}</p>` : ""}
+  ${d.canh_bao_du_lieu ? `<div class="the"><p class="loi">${esc(d.canh_bao_du_lieu)}</p></div>` : ""}
+
+  <div class="the">
+    <h3>${d.ngay_tot.length} ngày tốt nhất</h3>
+    ${d.ngay_tot.length ? `<table class="xep-chong">
+      <thead><tr><th>Hạng</th><th>Ngày</th><th>Can chi</th><th>Điểm</th><th>Vì sao</th><th>Giờ tốt</th></tr></thead>
+      <tbody>${d.ngay_tot.map(dong).join("")}</tbody></table>`
+      : "<p class=\"goi-y\">Không có ngày nào dùng được trong khoảng này. Thử nới rộng khoảng ngày.</p>"}
+  </div>
+
+  <div class="the">
+    <h3>Ngày bị loại (${chan.length})</h3>
+    ${chan.length ? `<table class="xep-chong">
+      <thead><tr><th>Ngày</th><th>Can chi</th><th>Nhóm</th><th>Lý do</th></tr></thead>
+      <tbody>${chan.map((c) => `<tr>
+        <td data-nhan="Ngày">${esc(c.duong_lich)}<br><span class="cung-chi">${esc(c.thu)}</span></td>
+        <td data-nhan="Can chi">${esc(c.ngay_can_chi)}</td>
+        <td data-nhan="Nhóm">${c.nhom.map((n) => `<span class="khoan tru">${esc(n)}</span>`).join(" ")}</td>
+        <td data-nhan="Lý do">${esc(ds(c.ly_do))}</td></tr>`).join("")}</tbody></table>`
+      : "<p class=\"goi-y\">Không có ngày nào bị loại trong khoảng này.</p>"}
+    <p class="goi-y">Hai nhóm bị loại thẳng, không chấm điểm dù trực và tú có đẹp tới đâu:
+      ngày lục xung hoặc thiên khắc địa xung với tuổi;
+      ${d.ngay_kieng_cua_viec.length
+        ? `và ngày ${esc(ds(d.ngay_kieng_cua_viec))} — những ngày lệ cũ không làm việc này.`
+        : "việc này không đặt ngày kiêng nào làm điều kiện loại."}</p>
+  </div>`;
+}
+
+$("#form-cn").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  try {
+    veChonNgay(await api("/api/chonngay", {
+      nam_sinh: $("#cn-sinh").value, gioi_tinh: $("#cn-gt").value,
+      viec: $("#cn-viec").value, tu_ngay: $("#cn-tu").value,
+      den_ngay: $("#cn-den").value, so_luong: 12,
+    }));
+  } catch (err) { baoLoi($("#cn-ket-qua"), err); }
+});
+
 /* ------------------------------ khởi tạo ------------------------------ */
 (function khoiTao() {
   const h = new Date(), iso = h.toISOString().slice(0, 10);
@@ -307,5 +375,13 @@ $("#form-ngay").addEventListener("submit", async (e) => {
   $("#ls-ngay").value = "1990-09-20";
   $("#h-xem").value = h.getFullYear();
   HUONG_8.forEach((x) => $("#pt-huong").insertAdjacentHTML("beforeend", `<option>${x}</option>`));
+  const sau = new Date(h.getTime() + 60 * 864e5).toISOString().slice(0, 10);
+  $("#cn-tu").value = iso;
+  $("#cn-den").value = sau;
+  api("/api/viec", {}).then((d) => d.viec.forEach((v) => {
+    const canh = v.so_tu_khop === 0 ? " (chỉ xét theo Trực)" : "";
+    $("#cn-viec").insertAdjacentHTML("beforeend",
+      `<option value="${v.ma}">${v.ten}${canh}</option>`);
+  })).catch(() => {});
   $("#form-ngay").dispatchEvent(new Event("submit"));
 })();

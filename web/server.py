@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 import sys
 import traceback
-from datetime import date
+from datetime import date, timedelta
 from functools import lru_cache
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
@@ -22,7 +22,7 @@ from urllib.parse import parse_qs, urlparse
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tuvi import han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
 
@@ -163,7 +163,33 @@ def api_sao(q: dict) -> dict:
     return {"sao": load("tu_vi/sao")}
 
 
+def _doc_ngay(s: str | None, mac_dinh: date) -> date:
+    """Nhận 'yyyy-mm-dd' từ ô <input type=date> hoặc 'dd/mm/yyyy' từ dòng lệnh."""
+    if not s:
+        return mac_dinh
+    if "-" in s:
+        nam, thang, ngay = (int(x) for x in s.split("-"))
+    else:
+        ngay, thang, nam = (int(x) for x in s.split("/"))
+    return date(nam, thang, ngay)
+
+
+def api_chonngay(q: dict) -> dict:
+    hom_nay = date.today()
+    tu = _doc_ngay(q.get("tu_ngay"), hom_nay)
+    den = _doc_ngay(q.get("den_ngay"), tu + timedelta(days=60))
+    return chon_ngay.chon_ngay(int(q["nam_sinh"]), tu, den,
+                               q.get("viec") or None,
+                               q.get("gioi_tinh", "nam"),
+                               int(q.get("so_luong", 12)))
+
+
+def api_viec(q: dict) -> dict:
+    return {"viec": chon_ngay.danh_sach_viec()}
+
+
 TUYEN = {"/api/laso": api_laso, "/api/han": api_han,
+         "/api/chonngay": api_chonngay, "/api/viec": api_viec,
          "/api/phongthuy": api_phongthuy, "/api/ngay": api_ngay,
          "/api/phitinh": api_phitinh, "/api/sao": api_sao}
 

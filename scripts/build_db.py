@@ -127,6 +127,10 @@ CREATE TABLE tiet_khi (
   ten TEXT PRIMARY KEY, kinh_do_mat_troi INTEGER, duong_lich TEXT,
   la_tiet_chinh INTEGER, y_nghia TEXT);
 
+DROP TABLE IF EXISTS viec_chon_ngay;
+CREATE TABLE viec_chon_ngay (
+  ma TEXT PRIMARY KEY, ten TEXT, cum_tu TEXT, kieng TEXT, ghi_chu TEXT);
+
 DROP TABLE IF EXISTS chu_de_content;
 CREATE TABLE chu_de_content (
   ma TEXT PRIMARY KEY, tru_cot TEXT, ten TEXT, tan_suat TEXT,
@@ -259,6 +263,11 @@ def build(dest: Path) -> Path:
                     (r["ten"], r["kinh_do_mat_troi"],
                      r["duong_lich_thuong_roi_vao"], int(r["la_tiet_chinh"]),
                      r["y_nghia"]))
+
+    for r in load("lich/viec")["viec"]:
+        con.execute("INSERT INTO viec_chon_ngay VALUES (?,?,?,?,?)",
+                    (r["ma"], r["ten"], j(r["cum_tu"]), j(r["kieng"]),
+                     r["ghi_chu"]))
 
     tax = json.loads((ROOT / "content" / "taxonomy.json").read_text(encoding="utf-8"))
     for tru_cot in tax["tru_cot"]:

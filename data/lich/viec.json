@@ -1,0 +1,206 @@
+{
+ "mo_ta": "Danh mục việc thường phải chọn ngày, kèm các cụm từ dùng để đối chiếu với mục 'nên' và 'kỵ' của 12 Trực và Nhị thập bát tú.",
+ "cach_doi_chieu": "So khớp CHÍNH XÁC từng cụm từ với các phần tử trong 'nen' và 'ky' của lich/truc.json và lich/nhi_thap_bat_tu.json. Cố ý không dùng so khớp chuỗi con, vì 'động thổ' và 'động thổ đào huyệt' là hai việc khác hẳn nhau.",
+ "trong_so": {
+  "truc_nen": 12,
+  "truc_ky": -18,
+  "tu_nen": 12,
+  "tu_ky": -18,
+  "tam_hop": 8,
+  "luc_hop": 8,
+  "trung_chi": -6,
+  "tu_hinh": -10,
+  "luc_hai": -12,
+  "luc_pha": -12,
+  "tuong_hinh": -15,
+  "thang_ky_sao_han": -12,
+  "ghi_chu": "Lục xung và thiên khắc địa xung không tính điểm mà chặn thẳng ngày đó."
+ },
+ "viec": [
+  {
+   "ma": "cuoi_hoi",
+   "ten": "Cưới hỏi",
+   "cum_tu": [
+    "hôn nhân",
+    "cưới hỏi",
+    "kết hôn",
+    "cưới gả",
+    "an sàng"
+   ],
+   "ghi_chu": "Theo lệ cũ còn xét tuổi Kim Lâu của cô dâu; phần đó xem ở tab Xem hạn.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử",
+    "Dương công kỵ nhật"
+   ]
+  },
+  {
+   "ma": "khai_truong",
+   "ten": "Khai trương, mở cửa hàng",
+   "cum_tu": [
+    "khai trương",
+    "mở tiệm"
+   ],
+   "ghi_chu": "Ưu tiên trực Thành và trực Khai.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử",
+    "Dương công kỵ nhật"
+   ]
+  },
+  {
+   "ma": "dong_tho",
+   "ten": "Động thổ, xây nhà",
+   "cum_tu": [
+    "động thổ",
+    "làm nhà",
+    "tạo tác",
+    "xây dựng",
+    "san nền",
+    "dựng cột",
+    "lợp nhà",
+    "xây phòng mới",
+    "sửa chữa"
+   ],
+   "ghi_chu": "Phải xét thêm Kim Lâu, Hoang Ốc, Tam Tai của gia chủ trước khi chọn ngày.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử",
+    "Dương công kỵ nhật"
+   ]
+  },
+  {
+   "ma": "nhap_trach",
+   "ten": "Nhập trạch, dọn về nhà mới",
+   "cum_tu": [
+    "dọn nhà",
+    "di chuyển"
+   ],
+   "ghi_chu": "Thường chọn ngày có trực Thành, Khai, Định và giờ hoàng đạo buổi sáng.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử",
+    "Dương công kỵ nhật"
+   ]
+  },
+  {
+   "ma": "xuat_hanh",
+   "ten": "Xuất hành, đi xa",
+   "cum_tu": [
+    "xuất hành",
+    "xuất hành xa",
+    "đi xa",
+    "đi thuyền",
+    "di chuyển"
+   ],
+   "ghi_chu": "Kiêng nặng ngày Tam nương và Nguyệt kỵ.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử",
+    "Dương công kỵ nhật"
+   ]
+  },
+  {
+   "ma": "ky_ket",
+   "ten": "Ký kết, hợp tác",
+   "cum_tu": [
+    "ký kết",
+    "ký kết hợp đồng",
+    "lập ước",
+    "hòa giải"
+   ],
+   "ghi_chu": "Tránh ngày có trực Phá và trực Bế.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử",
+    "Dương công kỵ nhật"
+   ]
+  },
+  {
+   "ma": "cau_tai",
+   "ten": "Cầu tài, nhập hàng, thu nợ",
+   "cum_tu": [
+    "cầu tài",
+    "nhập kho",
+    "nhập hàng",
+    "mua vào",
+    "thu nợ",
+    "thu hoạch",
+    "mở kho"
+   ],
+   "ghi_chu": "Trực Thu và trực Mãn hợp việc thu về; trực Khai hợp việc mở ra.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử"
+   ]
+  },
+  {
+   "ma": "nhap_hoc",
+   "ten": "Nhập học, thi cử",
+   "cum_tu": [
+    "nhập học",
+    "thi cử",
+    "học nghề"
+   ],
+   "ghi_chu": "Hợp thêm hướng Phục Vị của người đi học.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử"
+   ]
+  },
+  {
+   "ma": "chua_benh",
+   "ten": "Chữa bệnh, phẫu thuật",
+   "cum_tu": [
+    "chữa bệnh",
+    "uống thuốc",
+    "dâng thuốc",
+    "châm cứu",
+    "chữa bệnh nan y"
+   ],
+   "ghi_chu": "Việc cấp cứu thì theo chỉ định y tế, không chờ ngày tốt. Việc này không đặt ngày kiêng nào làm điều kiện chặn: sức khỏe không chờ ngày tốt.",
+   "kieng": []
+  },
+  {
+   "ma": "an_tang",
+   "ten": "An táng, xây mộ",
+   "cum_tu": [
+    "an táng",
+    "xây mộ",
+    "động thổ đào huyệt",
+    "an táng (theo một số sách)",
+    "an táng (đại cát riêng việc này)"
+   ],
+   "ghi_chu": "Nhiều sao tốt cho việc dương lại kỵ việc âm và ngược lại. Chỉ chặn Thọ tử và Dương công kỵ nhật; Tam nương và Nguyệt kỵ chủ yếu kiêng cho việc dương.",
+   "kieng": [
+    "Thọ tử",
+    "Dương công kỵ nhật"
+   ]
+  },
+  {
+   "ma": "nham_chuc",
+   "ten": "Nhậm chức, xin việc",
+   "cum_tu": [
+    "nhậm chức",
+    "cầu quan",
+    "gặp gỡ quý nhân"
+   ],
+   "ghi_chu": "Trực Kiến và trực Thành đều hợp.",
+   "kieng": [
+    "Tam nương",
+    "Nguyệt kỵ",
+    "Thọ tử",
+    "Dương công kỵ nhật"
+   ]
+  }
+ ],
+ "cach_chan": "Ngoài lục xung và thiên khắc địa xung với tuổi, mỗi việc còn có danh sách 'kieng' — những loại ngày xấu mà lệ cũ không làm việc đó, dù trực và tú có đẹp. Ngày phạm sẽ bị loại thay vì chỉ bị trừ điểm."
+}

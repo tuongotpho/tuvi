@@ -5,12 +5,12 @@ thủy, hạn và chọn ngày giờ. Dữ liệu tách khỏi mã, mọi con s�
 được kiểm thử, nên nội dung sinh ra không phải "chém gió" mà bám vào bảng tra gốc.
 
 ```
-data/       25 bộ dữ liệu JSON — tri thức thuần, không lẫn mã
-tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, xem ngày
-web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 4 tab
+data/       26 bộ dữ liệu JSON — tri thức thuần, không lẫn mã
+tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, xem ngày, chọn ngày
+web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 tab
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      27 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      40 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -34,6 +34,9 @@ Bốn tab, tất cả gọi thẳng gói `tuvi` nên số trên màn hình luôn
 - **Phong thủy** — cung phi, bốn hướng tốt, bốn hướng xấu, màu sắc vật phẩm hợp
   mệnh, nguyên tắc bố trí từng khu vực; chọn hướng nhà để chấm luôn hướng đó.
 - **Xem ngày** — trực, nhị thập bát tú, hoàng đạo, giờ tốt giờ xấu, ngày kiêng.
+- **Chọn ngày** — quét một khoảng ngày cho một tuổi cụ thể và một việc cụ thể, loại
+  thẳng ngày xung tuổi và ngày kiêng của việc đó, rồi xếp hạng phần còn lại kèm
+  giải thích từng khoản cộng trừ.
 
 Máy chủ chỉ dùng `http.server` của thư viện chuẩn, không cài thêm gì. API trả JSON
 nên dùng lại được cho ứng dụng khác:
@@ -45,6 +48,8 @@ GET /api/phongthuy?nam_sinh=1990&gioi_tinh=nam&huong=Đông Nam
 GET /api/ngay?ngay=20&thang=9&nam=2026
 GET /api/phitinh?nam=2026
 GET /api/sao?ten=Tử vi
+GET /api/viec
+GET /api/chonngay?nam_sinh=1987&tu_ngay=2026-10-10&den_ngay=2026-11-07&viec=dong_tho
 ```
 
 ## Dùng thử trong 30 giây
@@ -56,24 +61,32 @@ python scripts/tra_cuu.py nha 1990 2027          # Kim Lâu — Hoang Ốc — T
 python scripts/tra_cuu.py phongthuy 1990 nam --huong "Đông Nam"
 python scripts/tra_cuu.py laso 20/09/1990 14 nam # lá số rút gọn
 python scripts/tra_cuu.py phitinh 2026           # cửu cung phi tinh năm
+python scripts/tra_cuu.py viec                   # các việc chọn ngày đang hỗ trợ
+python scripts/tra_cuu.py chonngay 1987 01/10/2026 30/11/2026 --viec dong_tho
 ```
 
 Trong Python:
 
 ```python
-from tuvi import han, la_so, ngay_gio, phong_thuy
+from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy
 
 ngay_gio.xem_ngay(20, 9, 2026)["truc"]                  # 'Kiến'
 han.sao_han(2000, 2024, "nam")["sao"]                   # 'Kế Đô'
 han.tuoi_lam_nha(1990, 2027)["cac_han_pham"]            # ['Hoang Ốc']
 phong_thuy.cung_phi(1990, "nam")["cung_phi"]            # 'Khảm'
 la_so.lap_la_so(20, 9, 1990, 14, gioi_tinh="nam")["cuc"]
+
+# Chọn ngày có lọc xung tuổi
+from datetime import date
+kq = chon_ngay.chon_ngay(1987, date(2026, 10, 10), date(2026, 11, 7),
+                         viec="dong_tho", gioi_tinh="nam")
+kq["ngay_tot"][0]["duong_lich"], kq["so_chan_xung_tuoi"]
 ```
 
 ## Dựng cơ sở dữ liệu SQLite
 
 ```bash
-python scripts/build_db.py          # -> build/tuvi.db, 22 bảng, 930 dòng
+python scripts/build_db.py          # -> build/tuvi.db, 23 bảng, 941 dòng
 sqlite3 build/tuvi.db "SELECT ten, nap_am FROM hoa_giap WHERE hanh='Thổ' LIMIT 5"
 sqlite3 build/tuvi.db "SELECT huong, du_nien FROM du_nien WHERE cung_phi='Khảm'"
 ```
@@ -88,6 +101,7 @@ sqlite3 build/tuvi.db "SELECT huong, du_nien FROM du_nien WHERE cung_phi='Khảm
 | Hạn | `han/sao_han`, `han/tam_tai`, `han/kim_lau`, `han/hoang_oc`, `han/han_khac` | 9 sao cửu diệu với bảng tra nam nữ và cách cúng; tam tai; 4 loại Kim Lâu; 6 cung Hoang Ốc; Thái Tuế, tam hình, lục phá |
 | Phong thủy | `phong_thuy/bat_trach`, `cuu_cung_phi_tinh`, `huong`, `mau_sac_vat_pham`, `bo_tri_khong_gian` | 8 cung phi và ma trận du niên 8×8; 9 sao phi tinh và Vận 9; 8 hướng, 24 sơn; màu và vật phẩm theo nạp âm; nguyên tắc bố trí 6 khu vực |
 | Lịch | `lich/truc`, `nhi_thap_bat_tu`, `tiet_khi`, `ngay_kieng` | 12 Trực, 28 tú, 24 tiết khí, các ngày kiêng dân gian |
+| Chọn ngày | `lich/viec` | 11 việc thường phải chọn ngày, kèm cụm từ đối chiếu với Trực và 28 tú, và danh sách ngày kiêng đủ sức loại ngày |
 
 ## Độ tin cậy
 
@@ -103,9 +117,11 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Nhị thập bát tú | Neo 01/01/1995 (sao Hư) và kiểm chéo: sao Giác luôn rơi vào thứ Năm suốt hơn một năm | khớp |
 | Bát trạch | Ma trận du niên 8×8 phải đối xứng | khớp |
 | Phi tinh năm | 2024 Tam Bích, 2025 Nhị Hắc, 2026 Nhất Bạch | khớp |
+| Quan hệ địa chi | Bảng 12×12 phải đối xứng; kiểm các cặp đã biết | khớp |
+| Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 27 bài kiểm thử
+python -m unittest discover -s tests -v   # 40 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
 ```
 
@@ -132,9 +148,12 @@ mọi con số phải sinh từ hàm tính toán chứ không gõ tay.
   `doanguyen/lasotuvi` (MIT) — dữ liệu sao trong kho này tương thích với nó.
 - Thuật toán âm lịch chính xác trong khoảng 1800–2199.
 - Chưa có phần Tử Bình (bát tự), Kinh Dịch, nhân tướng học.
-- Điểm ngày trong `xem_ngay` chỉ xét trực, tú, hoàng đạo và ngày kiêng chung —
-  **chưa xét xung khắc với tuổi người dùng**, nên một ngày 95 điểm vẫn có thể là
-  ngày xung tuổi. Giao diện có ghi chú nhắc điều này.
+- `xem_ngay` cố ý chỉ chấm ngày một cách chung chung (trực, tú, hoàng đạo, ngày
+  kiêng). Muốn xét tuổi thì dùng `chon_ngay.xem_ngay_theo_tuoi` hoặc
+  `chon_ngay.chon_ngay`; giao diện có ghi chú nhắc điều này ở tab Xem ngày.
+- Bốn việc (nhập trạch, ký kết, chữa bệnh, nhậm chức) chưa có mục nào trong bộ 28
+  tú nên điểm chỉ dựa vào 12 Trực. `validate_data.py` in cảnh báo cho từng việc và
+  giao diện ghi rõ "chỉ xét theo Trực" ngay trong ô chọn việc.
 - Phần luận giải trong dữ liệu là văn bản viết mới, không trích sách có bản quyền.
 
 ## Lưu ý

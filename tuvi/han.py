@@ -2,20 +2,18 @@
 """Xem hạn: sao hạn cửu diệu, Tam tai, Kim Lâu, Hoang Ốc, Thái Tuế."""
 from __future__ import annotations
 
-from .canchi import DIA_CHI, can_chi_nam, tuoi_mu
+from .canchi import DIA_CHI, can_chi_nam, quan_he_chi, tuoi_mu
 from .store import load
 
 HOANG_OC_CUNG = ["Nhất Cát", "Nhì Nghi", "Tam Địa Sát",
                  "Tứ Tấn Tài", "Ngũ Thọ Tử", "Lục Hoang Ốc"]
 
-_LUC_HAI = {"Tý": "Mùi", "Mùi": "Tý", "Sửu": "Ngọ", "Ngọ": "Sửu",
-            "Dần": "Tỵ", "Tỵ": "Dần", "Mão": "Thìn", "Thìn": "Mão",
-            "Thân": "Hợi", "Hợi": "Thân", "Dậu": "Tuất", "Tuất": "Dậu"}
-_LUC_PHA = {"Tý": "Dậu", "Dậu": "Tý", "Ngọ": "Mão", "Mão": "Ngọ",
-            "Thân": "Tỵ", "Tỵ": "Thân", "Dần": "Hợi", "Hợi": "Dần",
-            "Thìn": "Sửu", "Sửu": "Thìn", "Tuất": "Mùi", "Mùi": "Tuất"}
-_TAM_HINH = [{"Dần", "Tỵ", "Thân"}, {"Sửu", "Tuất", "Mùi"}, {"Tý", "Mão"}]
-_TU_HINH = {"Thìn", "Ngọ", "Dậu", "Hợi"}
+# Quan hệ địa chi -> tên dạng phạm Thái Tuế tương ứng.
+_DANG_THAI_TUE = {"Trùng chi": "Bản mệnh Thái Tuế (năm tuổi)",
+                  "Lục xung": "Xung Thái Tuế",
+                  "Tương hình": "Hình Thái Tuế",
+                  "Lục hại": "Hại Thái Tuế",
+                  "Lục phá": "Phá Thái Tuế"}
 
 
 def sao_han(nam_sinh_am: int, nam_xem: int, gioi_tinh: str) -> dict:
@@ -74,22 +72,10 @@ def hoang_oc(tuoi: int) -> dict:
 
 def thai_tue(chi_tuoi: str, chi_nam: str) -> dict:
     """Quan hệ giữa chi tuổi và chi của năm xem (phạm Thái Tuế hay không)."""
-    i, j = DIA_CHI.index(chi_tuoi), DIA_CHI.index(chi_nam)
-    dang = []
-    if i == j:
-        dang.append("Bản mệnh Thái Tuế (năm tuổi)")
-    if (i - j) % 12 == 6:
-        dang.append("Xung Thái Tuế")
-    for nhom in _TAM_HINH:
-        if chi_tuoi in nhom and chi_nam in nhom and chi_tuoi != chi_nam:
-            dang.append("Hình Thái Tuế")
-            break
-    if chi_tuoi == chi_nam and chi_tuoi in _TU_HINH:
+    quan_he = quan_he_chi(chi_tuoi, chi_nam)
+    dang = [_DANG_THAI_TUE[q] for q in quan_he if q in _DANG_THAI_TUE]
+    if "Tự hình" in quan_he:
         dang.append("Tự hình")
-    if _LUC_HAI.get(chi_tuoi) == chi_nam:
-        dang.append("Hại Thái Tuế")
-    if _LUC_PHA.get(chi_tuoi) == chi_nam:
-        dang.append("Phá Thái Tuế")
     ds = load("han/han_khac")["thai_tue"]
     chi_tiet = [d for d in ds["cac_dang"] if d["ten"] in dang]
     return {"pham": bool(dang), "cac_dang": dang, "chi_tiet": chi_tiet,

@@ -7,14 +7,16 @@ from __future__ import annotations
 
 import sys
 import unittest
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tuvi import han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.amlich import lunar_to_solar, solar_to_lunar  # noqa: E402
-from tuvi.canchi import (can_chi_ngay, can_chi_nam, can_chi_thang,  # noqa: E402
-                         chi_gio_tu_gio_phut, luc_thap_hoa_giap)
+from tuvi.canchi import (DIA_CHI, can_chi_ngay, can_chi_nam,  # noqa: E402
+                         can_chi_thang, chi_gio_tu_gio_phut, luc_thap_hoa_giap,
+                         luc_xung, quan_he_chi)
 from tuvi.store import all_datasets, load  # noqa: E402
 
 
@@ -186,6 +188,107 @@ class TestLaSo(unittest.TestCase):
                          {"Hóa Lộc", "Hóa Quyền", "Hóa Khoa", "Hóa Kỵ"})
 
 
+class TestQuanHeChi(unittest.TestCase):
+    def test_luc_xung(self):
+        for a, b in [("Tý", "Ngọ"), ("Sửu", "Mùi"), ("Dần", "Thân"),
+                     ("Mão", "Dậu"), ("Thìn", "Tuất"), ("Tỵ", "Hợi")]:
+            self.assertEqual(luc_xung(a), b)
+            self.assertEqual(luc_xung(b), a)
+
+    def test_doi_xung(self):
+        """Quan hệ giữa hai chi phải như nhau khi nhìn từ hai phía."""
+        for a in DIA_CHI:
+            for b in DIA_CHI:
+                self.assertEqual(sorted(quan_he_chi(a, b)),
+                                 sorted(quan_he_chi(b, a)), f"{a} <-> {b}")
+
+    def test_cac_cap_da_biet(self):
+        self.assertIn("Tam hợp", quan_he_chi("Thân", "Tý"))
+        self.assertIn("Lục hợp", quan_he_chi("Mão", "Tuất"))
+        self.assertIn("Lục xung", quan_he_chi("Mão", "Dậu"))
+        self.assertIn("Lục hại", quan_he_chi("Tý", "Mùi"))
+        self.assertIn("Tương hình", quan_he_chi("Dần", "Tỵ"))
+        # Dần và Hợi vừa lục hợp vừa lục phá — phải nêu cả hai.
+        self.assertEqual(set(quan_he_chi("Dần", "Hợi")), {"Lục hợp", "Lục phá"})
+        self.assertEqual(quan_he_chi("Ngọ", "Ngọ"), ["Trùng chi", "Tự hình"])
+        self.assertEqual(quan_he_chi("Tý", "Tý"), ["Trùng chi"])
+
+    def test_chi_khong_hop_le(self):
+        with self.assertRaises(ValueError):
+            quan_he_chi("Tí", "Ngọ")
+
+
+class TestChonNgay(unittest.TestCase):
+    def test_ngay_xung_tuoi_bi_chan(self):
+        """20/09/2026 chấm 95 điểm chung nhưng là ngày Dậu, xung tuổi Mão."""
+        r = chon_ngay.xem_ngay_theo_tuoi(20, 9, 2026, 1987, "nam")
+        self.assertEqual(r["diem_chung"], 95)
+        self.assertTrue(r["bi_chan"])
+        self.assertEqual(r["diem_ca_nhan"], 0)
+        self.assertIn("xung tuổi", r["nhom_chan"])
+
+    def test_thien_khac_dia_xung(self):
+        """26/10/2026 là ngày Quý Dậu: Quý khắc Đinh, Dậu xung Mão."""
+        r = chon_ngay.xem_ngay_theo_tuoi(26, 10, 2026, 1987, "nam")
+        self.assertTrue(r["bi_chan"])
+        self.assertTrue(any("Thiên khắc địa xung" in x for x in r["ly_do_chan"]))
+
+    def test_ket_qua_khong_chua_ngay_bi_chan(self):
+        r = chon_ngay.chon_ngay(1987, date(2026, 10, 10), date(2026, 11, 7),
+                                "dong_tho", "nam", 20)
+        self.assertTrue(r["ngay_tot"])
+        for x in r["ngay_tot"]:
+            self.assertFalse(x["bi_chan"], x["duong_lich"])
+            self.assertNotIn("Lục xung", x["quan_he_voi_tuoi"])
+            # Không ngày nào trong kết quả được phạm ngày kiêng của việc đó.
+            self.assertFalse(set(x["ngay_kieng"]) & set(r["ngay_kieng_cua_viec"]),
+                             x["duong_lich"])
+        # so_luong=20 lớn hơn số ngày dùng được nên danh sách trả về là đầy đủ:
+        # số ngày dùng được cộng số ngày bị loại phải bằng tổng số ngày quét.
+        self.assertLess(len(r["ngay_tot"]), 20)
+        self.assertEqual(len(r["ngay_tot"]) + r["so_ngay_bi_chan"],
+                         r["tong_so_ngay"])
+
+    def test_xep_hang_giam_dan(self):
+        r = chon_ngay.chon_ngay(1987, date(2026, 10, 10), date(2026, 11, 7),
+                                "cuoi_hoi", "nam", 20)
+        diem = [x["diem_ca_nhan"] for x in r["ngay_tot"]]
+        self.assertEqual(diem, sorted(diem, reverse=True))
+
+    def test_chua_benh_khong_chan_ngay_kieng(self):
+        """Sức khỏe không chờ ngày tốt: việc này chỉ chặn ngày xung tuổi."""
+        r = chon_ngay.chon_ngay(1987, date(2026, 10, 10), date(2026, 11, 7),
+                                "chua_benh", "nam", 40)
+        self.assertEqual(r["so_chan_ngay_kieng"], 0)
+        self.assertEqual(r["ngay_kieng_cua_viec"], [])
+
+    def test_gio_tot_loai_gio_xung_tuoi(self):
+        r = chon_ngay.xem_ngay_theo_tuoi(28, 10, 2026, 1987, "nam")
+        self.assertEqual(r["gio_xung_tuoi"], "Dậu")
+        self.assertNotIn("Dậu", [g["chi"] for g in r["gio_tot"]])
+        for g in r["gio_tot"]:
+            self.assertTrue(g["hoang_dao"])
+
+    def test_cum_tu_viec_deu_co_that(self):
+        """Mọi cụm từ của việc phải khớp chính xác dữ liệu Trực hoặc 28 tú."""
+        kho = set()
+        for r in load("lich/truc"):
+            kho |= set(r["nen"]) | set(r["ky"])
+        for r in load("lich/nhi_thap_bat_tu"):
+            kho |= set(r["nen"]) | set(r["ky"])
+        for v in load("lich/viec")["viec"]:
+            for c in v["cum_tu"]:
+                self.assertIn(c, kho, f"{v['ma']}: {c}")
+
+    def test_viec_khong_ton_tai(self):
+        with self.assertRaises(ValueError):
+            chon_ngay.xem_ngay_theo_tuoi(1, 1, 2026, 1987, "nam", "khong_co")
+
+    def test_khoang_ngay_nguoc(self):
+        with self.assertRaises(ValueError):
+            chon_ngay.chon_ngay(1987, date(2026, 5, 1), date(2026, 4, 1))
+
+
 class TestDuLieu(unittest.TestCase):
     def test_moi_tep_json_doc_duoc(self):
         for ten in all_datasets():
@@ -200,6 +303,7 @@ class TestDuLieu(unittest.TestCase):
         self.assertEqual(len(load("luc_thap_hoa_giap")), 60)
         self.assertEqual(len(load("phong_thuy/bat_trach")["cung"]), 8)
         self.assertEqual(len(load("han/sao_han")["sao"]), 9)
+        self.assertEqual(len(load("lich/viec")["viec"]), 11)
 
     def test_sao_deu_co_y_nghia(self):
         for s in load("tu_vi/sao"):

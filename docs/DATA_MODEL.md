@@ -16,6 +16,8 @@ amlich.py            đổi âm - dương lịch (thuật toán Hồ Ngọc Đ�
 canchi.py            can chi năm/tháng/ngày/giờ, nạp âm, tiết khí
    |
    +-- ngay_gio.py   12 Trực, 28 tú, hoàng đạo, ngày kiêng
+   |      |
+   |      +-- chon_ngay.py  lọc xung tuổi, chấm điểm theo việc
    +-- han.py        sao hạn, tam tai, Kim Lâu, Hoang Ốc, Thái Tuế
    +-- phong_thuy.py cung phi, du niên, phi tinh
    +-- la_so.py      lập lá số tử vi rút gọn
@@ -85,6 +87,42 @@ tháng 1 hoặc đầu tháng 2. Hãy đổi sang năm âm lịch bằng `solar_
 - **`lich/nhi_thap_bat_tu.json`** — 28 tú. Trường `thu_trong_tuan` là bất biến kiểm
   chứng được: vòng 28 tú khớp cứng với thứ trong tuần.
 - **`lich/ngay_kieng.json`** — có mục Sát chủ nhưng cố ý không kèm bảng, kèm cảnh báo.
+- **`lich/viec.json`** — 11 việc phải chọn ngày. Mỗi việc có `cum_tu` (các cụm từ
+  dùng để đối chiếu) và `kieng` (loại ngày xấu đủ sức loại thẳng ngày đó).
+  Đối chiếu dùng so khớp **chính xác**, không dùng chuỗi con: `"động thổ"` và
+  `"động thổ đào huyệt"` là hai việc khác hẳn nhau, so khớp chuỗi con sẽ làm ngày
+  kỵ đào huyệt bị tính nhầm thành ngày kỵ xây nhà. `validate_data.py` bắt buộc mọi
+  cụm từ phải tồn tại trong `lich/truc.json` hoặc `lich/nhi_thap_bat_tu.json`.
+
+## Cách chấm điểm khi chọn ngày
+
+`chon_ngay` không gộp mọi thứ vào một con số mờ mịt: mỗi khoản cộng trừ đều được
+trả về kèm lý do trong `khoan_cong_tru`, để người đọc tự kiểm.
+
+Điểm nền là `diem_tong_hop` của `xem_ngay` (trực, 28 tú, hoàng đạo, ngày kiêng).
+Trên nền đó cộng trừ theo `trong_so` trong `lich/viec.json`:
+
+| Khoản | Điểm |
+|---|---|
+| Trực hợp việc / kỵ việc | +12 / −18 |
+| Sao 28 tú hợp việc / kỵ việc | +12 / −18 |
+| Ngày tam hợp hoặc lục hợp với tuổi | +8 |
+| Ngày trùng chi tuổi | −6 |
+| Tự hình | −10 |
+| Lục hại, lục phá | −12 |
+| Tương hình | −15 |
+| Tháng âm lịch là tháng kỵ của sao hạn năm đó | −12 |
+
+Hai trường hợp **không tính điểm mà loại thẳng**, vì lệ cũ không dùng những ngày
+này dù mọi yếu tố khác có đẹp:
+
+1. Ngày lục xung với chi tuổi, hoặc thiên khắc địa xung (can ngày khắc can tuổi
+   **và** chi ngày xung chi tuổi).
+2. Ngày nằm trong danh sách `kieng` của chính việc đó.
+
+Danh sách `kieng` khác nhau theo việc và điều đó là có chủ ý: việc dương như cưới
+hỏi hay động thổ kiêng cả bốn loại ngày xấu, an táng chỉ kiêng Thọ tử và Dương công
+kỵ nhật, còn chữa bệnh không kiêng ngày nào — sức khỏe không chờ ngày tốt.
 
 ## Bảng SQLite
 

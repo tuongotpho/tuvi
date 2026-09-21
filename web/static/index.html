@@ -16,6 +16,7 @@
     <button class="tab-nut" data-tab="han" role="tab">Xem hạn</button>
     <button class="tab-nut" data-tab="phongthuy" role="tab">Phong thủy</button>
     <button class="tab-nut" data-tab="ngay" role="tab">Xem ngày</button>
+    <button class="tab-nut" data-tab="chonngay" role="tab">Chọn ngày</button>
   </nav>
 </header>
 
@@ -84,6 +85,23 @@
       <button class="nut-chinh" type="submit">Xem ngày</button>
     </form>
     <div id="ngay-ket-qua"></div>
+  </section>
+  <!-- ---------------------------- CHỌN NGÀY ---------------------------- -->
+  <section id="tab-chonngay" class="tab-noi-dung">
+    <form class="bang-nhap" id="form-cn">
+      <div class="truong"><label for="cn-sinh">Năm sinh (âm lịch)</label>
+        <input type="number" id="cn-sinh" min="1900" max="2100" value="1987" required></div>
+      <div class="truong"><label for="cn-gt">Giới tính</label>
+        <select id="cn-gt"><option value="nam">Nam</option><option value="nu">Nữ</option></select></div>
+      <div class="truong"><label for="cn-viec">Việc định làm</label>
+        <select id="cn-viec"><option value="">— chọn việc —</option></select></div>
+      <div class="truong"><label for="cn-tu">Từ ngày</label>
+        <input type="date" id="cn-tu" required></div>
+      <div class="truong"><label for="cn-den">Đến ngày</label>
+        <input type="date" id="cn-den" required></div>
+      <button class="nut-chinh" type="submit">Tìm ngày tốt</button>
+    </form>
+    <div id="cn-ket-qua"></div>
   </section>
 </main>
 
