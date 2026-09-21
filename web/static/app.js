@@ -69,7 +69,7 @@ function veCung(c, laMenh) {
 function veLaSo(d) {
   const am = d.am_lich;
   $("#ls-tom-tat").innerHTML = [
-    ["Âm lịch", `${am.ngay}/${am.thang}/${am.nam} · giờ ${am.gio}`],
+    ["Âm lịch", `${am.ngay}/${am.thang}${am.nhuan ? " nhuận" : ""}/${am.nam} · giờ ${am.gio}`],
     ["Năm sinh", `${d.nam_sinh_can_chi} (${d.con_giap})`],
     ["Bản mệnh", d.menh_nap_am],
     ["Cục", d.cuc],

@@ -96,23 +96,25 @@ def sun_longitude(jdn: float) -> float:
     DL += (0.019993 - 0.000101 * T) * math.sin(dr * 2 * M) + 0.000290 * math.sin(dr * 3 * M)
     L = L0 + DL
     L = L * dr
-    L = L - PI * 2 * int(L / (PI * 2))
+    # Phải là floor chứ không phải int(): trước năm 2000 L là số âm, int()
+    # làm tròn về 0 sẽ cho L âm và kinh độ sai, kéo theo sai tháng nhuận.
+    L = L - PI * 2 * math.floor(L / (PI * 2))
     return L
 
 
 def get_sun_longitude(day_number: int, time_zone: float = TIMEZONE_VN) -> int:
     """Trả về 0..11: cung hoàng đạo (mỗi cung 30 độ) của mặt trời lúc 0h."""
-    return int(sun_longitude(day_number - 0.5 - time_zone / 24) / PI * 6)
+    return math.floor(sun_longitude(day_number - 0.5 - time_zone / 24) / PI * 6)
 
 
 def get_new_moon_day(k: int, time_zone: float = TIMEZONE_VN) -> int:
     """Ngày (số Julius) chứa điểm Sóc thứ k."""
-    return int(new_moon(k) + 0.5 + time_zone / 24)
+    return math.floor(new_moon(k) + 0.5 + time_zone / 24)
 
 
 def get_lunar_month_11(yy: int, time_zone: float = TIMEZONE_VN) -> int:
     off = jd_from_date(31, 12, yy) - 2415021
-    k = int(off / 29.530588853)
+    k = math.floor(off / 29.530588853)
     nm = get_new_moon_day(k, time_zone)
     sun_long = get_sun_longitude(nm, time_zone)
     if sun_long >= 9:
@@ -121,7 +123,7 @@ def get_lunar_month_11(yy: int, time_zone: float = TIMEZONE_VN) -> int:
 
 
 def get_leap_month_offset(a11: int, time_zone: float = TIMEZONE_VN) -> int:
-    k = int((a11 - 2415021.076998695) / 29.530588853 + 0.5)
+    k = math.floor((a11 - 2415021.076998695) / 29.530588853 + 0.5)
     last = 0
     i = 1
     arc = get_sun_longitude(get_new_moon_day(k + i, time_zone), time_zone)
@@ -137,7 +139,7 @@ def get_leap_month_offset(a11: int, time_zone: float = TIMEZONE_VN) -> int:
 def solar_to_lunar(dd: int, mm: int, yy: int, time_zone: float = TIMEZONE_VN) -> LunarDate:
     """Đổi ngày dương lịch sang âm lịch Việt Nam."""
     day_number = jd_from_date(dd, mm, yy)
-    k = int((day_number - 2415021.076998695) / 29.530588853)
+    k = math.floor((day_number - 2415021.076998695) / 29.530588853)
     month_start = get_new_moon_day(k + 1, time_zone)
     if month_start > day_number:
         month_start = get_new_moon_day(k, time_zone)
@@ -150,7 +152,7 @@ def solar_to_lunar(dd: int, mm: int, yy: int, time_zone: float = TIMEZONE_VN) ->
         lunar_year = yy + 1
         b11 = get_lunar_month_11(yy + 1, time_zone)
     lunar_day = day_number - month_start + 1
-    diff = int((month_start - a11) / 29)
+    diff = math.floor((month_start - a11) / 29)
     lunar_leap = False
     lunar_month = diff + 11
     if b11 - a11 > 365:
@@ -176,7 +178,7 @@ def lunar_to_solar(lunar_day: int, lunar_month: int, lunar_year: int,
     else:
         a11 = get_lunar_month_11(lunar_year, time_zone)
         b11 = get_lunar_month_11(lunar_year + 1, time_zone)
-    k = int(0.5 + (a11 - 2415021.076998695) / 29.530588853)
+    k = math.floor(0.5 + (a11 - 2415021.076998695) / 29.530588853)
     off = lunar_month - 11
     if off < 0:
         off += 12

@@ -93,3 +93,4 @@ Khi các trường phái khác nhau, kho này chọn như sau và ghi chú ngay 
 | Vòng Tràng Sinh | Dương nam / Âm nữ an thuận | Phái Thiên Lương: nam thuận, nữ nghịch |
 | Tứ Hóa can Canh | Thái Dương — Vũ Khúc — Thái Âm — Thiên Đồng | Một số phái đổi chỗ Khoa và Kỵ |
 | Sát chủ | Không cung cấp | Mỗi cuốn lịch một bảng |
+| Sinh tháng nhuận | Cả tháng nhuận tính theo số tháng chính khi an Mệnh — Thân | Nửa đầu về tháng trước, nửa sau về tháng sau |

@@ -37,6 +37,47 @@ class TestAmLich(unittest.TestCase):
                 self.assertEqual(tuple(lai), (d, m, y), f"{d}/{m}/{y}")
 
 
+class TestAmLichDoiChieuGoc(unittest.TestCase):
+    """Khóa lỗi int() thay cho floor(): trước năm 2000 kinh độ mặt trời âm,
+    int() làm sai tháng nhuận, lệch nguyên một tháng ở 29% số ngày 1800–1999."""
+
+    MAU = Path(__file__).parent / "fixtures" / "amlich_hongocduc_mau.txt"
+
+    def test_khop_ban_javascript_goc(self):
+        so = 0
+        for dong in self.MAU.read_text(encoding="utf-8").splitlines():
+            if not dong or dong.startswith("#"):
+                continue
+            trai, phai = dong.split("|")
+            d, m, y = (int(x) for x in trai.split("/"))
+            ld, lm, ly, leap = (int(x) for x in phai.split("/"))
+            r = solar_to_lunar(d, m, y)
+            self.assertEqual((r.day, r.month, r.year, r.leap), (ld, lm, ly, bool(leap)), trai)
+            so += 1
+        self.assertGreater(so, 4000)
+
+    def test_tet_1980_2026(self):
+        tet = {1982: (25, 1), 1985: (21, 1), 1987: (29, 1), 1990: (27, 1), 1993: (23, 1),
+               1998: (28, 1), 2000: (5, 2), 2024: (10, 2), 2025: (29, 1), 2026: (17, 2)}
+        for nam, (d, m) in tet.items():
+            s = lunar_to_solar(1, 1, nam)
+            self.assertEqual((s.day, s.month), (d, m), nam)
+
+    def test_ngay_22_8_1987_la_28_7_am(self):
+        # Trước khi sửa cho ra 28/6 — người dùng đối chiếu nhiều lịch đều thấy 28/7.
+        r = solar_to_lunar(22, 8, 1987)
+        self.assertEqual((r.day, r.month, r.year, r.leap), (28, 7, 1987, False))
+
+    def test_thang_nhuan_theo_mui_gio_viet_nam(self):
+        # 1985 nhuận tháng 2 (lịch Việt Nam khác lịch Trung Quốc năm này), 1987 nhuận tháng 7.
+        self.assertTrue(solar_to_lunar(21, 3, 1985).leap)
+        self.assertEqual(solar_to_lunar(21, 3, 1985).month, 2)
+        r = solar_to_lunar(24, 8, 1987)
+        self.assertEqual((r.day, r.month, r.leap), (1, 7, True))
+        # Đổi ngược: tháng nhuận phải quay về đúng ngày dương.
+        self.assertEqual(tuple(lunar_to_solar(1, 7, 1987, True)), (24, 8, 1987))
+
+
 class TestCanChi(unittest.TestCase):
     def test_can_chi_nam(self):
         self.assertEqual(can_chi_nam(2026).ten, "Bính Ngọ")

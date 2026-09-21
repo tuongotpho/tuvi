@@ -11,7 +11,7 @@ web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      60 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      64 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -118,7 +118,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 
 | Phép tính | Cách đối chiếu | Kết quả |
 |---|---|---|
-| Đổi âm — dương lịch | 01/01/2024 = 20/11 Quý Mão; Tết Bính Ngọ = 17/02/2026; đổi xuôi rồi ngược qua các năm 1950–2050 | khớp |
+| Đổi âm — dương lịch | Đối chiếu từng ngày 1800–2199 (146.097 ngày) với bản JavaScript gốc của Hồ Ngọc Đức: khớp 100%; bộ test giữ 4.630 mẫu (mỗi 37 ngày, mọi Tết, mọi tháng nhuận); thêm mốc Tết 1982–2026 và ngày 22/08/1987 = 28/7 Đinh Mão | khớp |
 | Vị trí sao trên lá số | So 15 sao trên 10 lá số với thư viện MIT `doanguyen/lasotuvi` | khớp hoàn toàn |
 | Hoang Ốc | Danh sách 33 tuổi xấu được các trang phong thủy công bố | khớp từng tuổi |
 | Sao hạn cửu diệu | Ví dụ "sinh năm 2000, năm 2024 gặp Kế Đô (nam) / Thái Dương (nữ)" | khớp |
@@ -130,7 +130,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 60 bài kiểm thử
+python -m unittest discover -s tests -v   # 64 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
 ```
 
@@ -206,6 +206,8 @@ mọi con số phải sinh từ hàm tính toán chứ không gõ tay.
 - `tuvi/la_so.py` an 55 sao cốt lõi, chưa an đủ 109 sao. Muốn đủ, dùng
   `doanguyen/lasotuvi` (MIT) — dữ liệu sao trong kho này tương thích với nó.
 - Thuật toán âm lịch chính xác trong khoảng 1800–2199.
+- Sinh vào tháng nhuận: an Mệnh theo số tháng chính (cả tháng nhuận coi là tháng đó); giao
+  diện có ghi chữ "nhuận" cạnh ngày âm. Trường phái chia đôi tháng nhuận chưa hỗ trợ.
 - Chưa có phần Tử Bình (bát tự), Kinh Dịch, nhân tướng học.
 - `xem_ngay` cố ý chỉ chấm ngày một cách chung chung (trực, tú, hoàng đạo, ngày
   kiêng). Muốn xét tuổi thì dùng `chon_ngay.xem_ngay_theo_tuoi` hoặc

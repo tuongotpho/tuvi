@@ -93,9 +93,12 @@ def lap_la_so(ngay: int, thang: int, nam: int, gio: int, phut: int = 0,
     """Lập lá số Tử Vi rút gọn từ ngày giờ sinh."""
     if duong_lich:
         am = solar_to_lunar(ngay, thang, nam)
-        ngay_am, thang_am, nam_am = am.day, am.month, am.year
+        ngay_am, thang_am, nam_am, nhuan = am.day, am.month, am.year, am.leap
     else:
-        ngay_am, thang_am, nam_am = ngay, thang, nam
+        ngay_am, thang_am, nam_am, nhuan = ngay, thang, nam, False
+    # Sinh vào tháng nhuận: an Mệnh theo số tháng của tháng chính (cả tháng
+    # nhuận coi như tháng đó). Một số phái chia nửa đầu về tháng trước, nửa sau
+    # về tháng sau; xem SOURCES.md mục E.
     chi_gio = chi_gio_tu_gio_phut(gio, phut)
     nam_cc = can_chi_nam(nam_am)
     la_nam = gioi_tinh.lower().startswith("nam")
@@ -189,7 +192,7 @@ def lap_la_so(ngay: int, thang: int, nam: int, gio: int, phut: int = 0,
 
     return {
         "am_lich": {"ngay": ngay_am, "thang": thang_am, "nam": nam_am,
-                    "gio": DIA_CHI[chi_gio]},
+                    "nhuan": nhuan, "gio": DIA_CHI[chi_gio]},
         "nam_sinh_can_chi": nam_cc.ten,
         "menh_nap_am": nam_cc.nap_am,
         "gioi_tinh": "Nam" if la_nam else "Nữ",
