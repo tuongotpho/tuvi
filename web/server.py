@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
-from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
+from tuvi.canchi import CON_GIAP, DIA_CHI, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
 from tuvi.luan_giai import (bo_sung_y_nghia_sao, goi_y_cach_cuc,  # noqa: E402
@@ -54,9 +54,22 @@ def api_luangiai(q: dict) -> dict:
     return luan_giai_la_so(ls, nam_xem)
 
 
+def _gio_tu_query(q: dict) -> tuple[int, int]:
+    """Giờ sinh từ query: ``canh=Dậu`` (hoặc chỉ số 0-11) ưu tiên hơn ``gio``/``phut``.
+
+    Giờ Tý (23h-1h) tính theo đúng ngày sinh, không chuyển sang ngày hôm sau,
+    nên canh Tý quy về 0h00 của ngày đã nhập.
+    """
+    canh = (q.get("canh") or "").strip()
+    if canh:
+        idx = int(canh) if canh.isdigit() else DIA_CHI.index(canh.capitalize())
+        return idx * 2, 0
+    return int(q.get("gio", 12)), int(q.get("phut", 0))
+
+
 def _la_so_tu_query(q: dict) -> dict:
     ngay, thang, nam = int(q["ngay"]), int(q["thang"]), int(q["nam"])
-    gio, phut = int(q.get("gio", 12)), int(q.get("phut", 0))
+    gio, phut = _gio_tu_query(q)
     gt = q.get("gioi_tinh", "nam")
     ls = la_so.lap_la_so(ngay, thang, nam, gio, phut, gioi_tinh=gt)
     ls["cac_cung"] = [bo_sung_y_nghia_sao(c) for c in ls["cac_cung"]]

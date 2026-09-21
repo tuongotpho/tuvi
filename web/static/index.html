@@ -26,7 +26,9 @@
     <form class="bang-nhap" id="form-laso">
       <div class="truong"><label for="ls-ngay">Ngày sinh (dương lịch)</label>
         <input type="date" id="ls-ngay" required></div>
-      <div class="truong"><label for="ls-gio">Giờ sinh</label>
+      <div class="truong"><label for="ls-canh">Canh giờ sinh</label>
+        <select id="ls-canh"></select></div>
+      <div class="truong"><label for="ls-gio">Giờ đồng hồ (nếu biết chính xác)</label>
         <input type="time" id="ls-gio" value="12:00" required></div>
       <div class="truong"><label for="ls-gt">Giới tính</label>
         <select id="ls-gt"><option value="nam">Nam</option><option value="nu">Nữ</option></select></div>
@@ -51,8 +53,9 @@
       </div>
       <div id="ls-luan-giai" hidden></div>
     </div>
-    <p class="goi-y" id="ls-goi-y">Nhập ngày giờ sinh để lập lá số. Giờ sinh càng chính xác,
-      cung Mệnh và Cục càng đúng — lệch một canh giờ là lệch cả lá số.</p>
+    <p class="goi-y" id="ls-goi-y">Nhập ngày giờ sinh để lập lá số. Chỉ nhớ canh giờ thì chọn canh,
+      biết giờ đồng hồ thì nhập giờ — hai ô tự khớp nhau; lệch một canh giờ là lệch cả lá số.
+      Sinh từ 23h đến 1h sáng là giờ Tý và <b>tính theo đúng ngày sinh</b>, không chuyển sang ngày hôm sau.</p>
   </section>
 
   <!-- ------------------------------ HẠN -------------------------------- -->

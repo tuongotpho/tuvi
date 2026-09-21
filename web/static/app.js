@@ -41,6 +41,28 @@ manChe.addEventListener("click", dongNganKeo);
 document.addEventListener("keydown", (e) => e.key === "Escape" && dongNganKeo());
 
 /* ------------------------------ lá số ------------------------------ */
+const CHI_GIO = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+const KHUNG_GIO = ["23h–1h", "1h–3h", "3h–5h", "5h–7h", "7h–9h", "9h–11h",
+                   "11h–13h", "13h–15h", "15h–17h", "17h–19h", "19h–21h", "21h–23h"];
+// Giờ đồng hồ -> chỉ số canh (23:00–00:59 là Tý), giống tuvi.canchi.chi_gio_tu_gio_phut.
+const canhTuGio = (gio, phut) => Math.floor(((gio * 60 + phut + 60) % 1440) / 120);
+
+(function dungOCanhGio() {
+  const oCanh = $("#ls-canh"), oGio = $("#ls-gio");
+  oCanh.innerHTML = CHI_GIO.map((c, i) => `<option value="${i}">Giờ ${c} (${KHUNG_GIO[i]})</option>`).join("");
+  const dongBoTuGio = () => {
+    const [g, p] = oGio.value.split(":").map(Number);
+    if (!Number.isNaN(g)) oCanh.value = canhTuGio(g, p || 0);
+  };
+  // Chọn canh: đặt đồng hồ về đầu canh (Tý về 00:00 để giữ nguyên ngày sinh).
+  oCanh.addEventListener("change", () => {
+    const i = Number(oCanh.value);
+    oGio.value = i === 0 ? "00:00" : `${String(i * 2).padStart(2, "0")}:00`;
+  });
+  oGio.addEventListener("input", dongBoTuGio);
+  dongBoTuGio();
+})();
+
 function lopSao(s) {
   if (s.nhom === "Chính tinh") return "chinh-tinh";
   if (s.tinh_chat === "cát") return "cat";

@@ -276,6 +276,28 @@ class TestAnSaoDoiChieuLasotuvi(unittest.TestCase):
         self.assertEqual((vi_tri["Tràng Sinh"] - vi_tri["Dưỡng"]) % 12, buoc % 12)
 
 
+class TestGioSinh(unittest.TestCase):
+    def test_canh_gio_va_gio_dong_ho_cho_cung_la_so(self):
+        # 14:00 = giờ Mùi; nhập theo canh (đầu canh 14h) phải cho lá số y hệt.
+        a = la_so.lap_la_so(20, 9, 1990, 14, 0, gioi_tinh="nam")
+        b = la_so.lap_la_so(20, 9, 1990, DIA_CHI.index("Mùi") * 2, 0, gioi_tinh="nam")
+        self.assertEqual(a, b)
+
+    def test_ranh_gioi_canh_gio(self):
+        from tuvi.canchi import chi_gio_tu_gio_phut
+        self.assertEqual(DIA_CHI[chi_gio_tu_gio_phut(23, 0)], "Tý")
+        self.assertEqual(DIA_CHI[chi_gio_tu_gio_phut(0, 59)], "Tý")
+        self.assertEqual(DIA_CHI[chi_gio_tu_gio_phut(1, 0)], "Sửu")
+        self.assertEqual(DIA_CHI[chi_gio_tu_gio_phut(17, 0)], "Dậu")
+        self.assertEqual(DIA_CHI[chi_gio_tu_gio_phut(22, 59)], "Hợi")
+
+    def test_gio_ty_giu_nguyen_ngay_sinh(self):
+        # 23:30 ngày 20/09/1990 vẫn là ngày 2/8 âm, giờ Tý — không sang ngày 3/8.
+        ls = la_so.lap_la_so(20, 9, 1990, 23, 30, gioi_tinh="nam")
+        self.assertEqual((ls["am_lich"]["ngay"], ls["am_lich"]["gio"]), (2, "Tý"))
+        self.assertEqual(ls, la_so.lap_la_so(20, 9, 1990, 0, 0, gioi_tinh="nam"))
+
+
 class TestQuanHeChi(unittest.TestCase):
     def test_luc_xung(self):
         for a, b in [("Tý", "Ngọ"), ("Sửu", "Mùi"), ("Dần", "Thân"),

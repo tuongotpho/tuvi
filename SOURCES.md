@@ -97,4 +97,5 @@ Khi các trường phái khác nhau, kho này chọn như sau và ghi chú ngay 
 | Phá Toái | Tý Ngọ Mão Dậu tại Tỵ; Dần Thân Tỵ Hợi tại Dậu; Thìn Tuất Sửu Mùi tại Sửu | S-02 đảo hai nhóm đầu |
 | Thiên Giải | Khởi Thân là tháng Giêng, đếm thuận từng cung đến tháng sinh | S-02 đếm nhảy hai cung một tháng |
 | Thai — Dưỡng | Thứ tự Tuyệt — Thai — Dưỡng — Tràng Sinh | S-02 đặt Dưỡng trước Thai |
+| Sinh giờ Tý (23h—1h) | Là giờ Tý của chính ngày sinh, không đổi sang ngày hôm sau | Một số thầy tính từ 23h là ngày mới; phái khác tách Dạ Tý / Sớm Tý |
 | Sinh tháng nhuận | Cả tháng nhuận tính theo số tháng chính khi an Mệnh — Thân | Nửa đầu về tháng trước, nửa sau về tháng sau |

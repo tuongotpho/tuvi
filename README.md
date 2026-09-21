@@ -11,7 +11,7 @@ web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      67 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      70 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -49,6 +49,7 @@ nên dùng lại được cho ứng dụng khác:
 
 ```
 GET /api/laso?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam
+GET /api/laso?ngay=20&thang=9&nam=1990&canh=Mùi&gioi_tinh=nam   # chỉ nhớ canh giờ
 GET /api/luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam&nam_xem=2026
 GET /api/han?nam_sinh=1987&nam_xem=2026&gioi_tinh=nam
 GET /api/phongthuy?nam_sinh=1990&gioi_tinh=nam&huong=Đông Nam
@@ -66,7 +67,8 @@ python scripts/tra_cuu.py ngay 20/09/2026        # ngày tốt xấu, trực, t�
 python scripts/tra_cuu.py han 1990 2026 nam      # sao hạn, tam tai, Thái Tuế, Kim Lâu
 python scripts/tra_cuu.py nha 1990 2027          # Kim Lâu — Hoang Ốc — Tam Tai
 python scripts/tra_cuu.py phongthuy 1990 nam --huong "Đông Nam"
-python scripts/tra_cuu.py laso 20/09/1990 14 nam # lá số rút gọn
+python scripts/tra_cuu.py laso 20/09/1990 14 nam # lá số (giờ đồng hồ)
+python scripts/tra_cuu.py laso 20/09/1990 Mùi nam # lá số (canh giờ)
 python scripts/tra_cuu.py luangiai 20/09/1990 14 nam --nam-xem 2026  # luận giải chi tiết
 python scripts/tra_cuu.py phitinh 2026           # cửu cung phi tinh năm
 python scripts/tra_cuu.py viec                   # các việc chọn ngày đang hỗ trợ
@@ -130,7 +132,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 67 bài kiểm thử
+python -m unittest discover -s tests -v   # 70 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
 ```
 
@@ -206,6 +208,8 @@ mọi con số phải sinh từ hàm tính toán chứ không gõ tay.
 - Lá số an đủ 109 sao và Tuần — Triệt nhưng chưa có tiểu hạn, lưu niên và các sao lưu
   (Lưu Kình, Lưu Đà, Lưu Khốc, Lưu Hư...).
 - Thuật toán âm lịch chính xác trong khoảng 1800–2199.
+- Sinh giờ Tý (23h–1h): tính là giờ Tý của chính ngày sinh, không chuyển sang ngày hôm sau
+  (SOURCES.md mục E). Giao diện, API (`canh=`) và dòng lệnh nhận cả canh giờ lẫn giờ đồng hồ.
 - Sinh vào tháng nhuận: an Mệnh theo số tháng chính (cả tháng nhuận coi là tháng đó); giao
   diện có ghi chữ "nhuận" cạnh ngày âm. Trường phái chia đôi tháng nhuận chưa hỗ trợ.
 - Chưa có phần Tử Bình (bát tự), Kinh Dịch, nhân tướng học.

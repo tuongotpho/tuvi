@@ -114,7 +114,11 @@ def can_chi_gio(can_ngay_idx: int, chi_gio_idx: int) -> CanChi:
 
 
 def chi_gio_tu_gio_phut(hour: int, minute: int = 0) -> int:
-    """Giờ đồng hồ -> chỉ số địa chi của canh giờ (23:00-00:59 là giờ Tý)."""
+    """Giờ đồng hồ -> chỉ số địa chi của canh giờ (23:00-00:59 là giờ Tý).
+
+    Quy ước của kho: sinh 23h-24h vẫn là giờ Tý của CHÍNH ngày đó, không chuyển
+    sang ngày hôm sau (xem SOURCES.md mục E).
+    """
     return int(((hour * 60 + minute + 60) % 1440) // 120)
 
 

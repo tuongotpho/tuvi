@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from tuvi import chon_ngay, han, la_so, luan_giai, ngay_gio, phong_thuy  # noqa: E402
+from tuvi.canchi import DIA_CHI  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
 
 bat_utf8()
@@ -31,6 +32,13 @@ bat_utf8()
 def _ngay(s: str) -> tuple[int, int, int]:
     d, m, y = (int(x) for x in s.replace("-", "/").split("/"))
     return d, m, y
+
+
+def _gio(s: str) -> int:
+    """'14' -> 14; 'Dậu' -> 18 (đầu canh). Giờ Tý quy về 0h, giữ nguyên ngày sinh."""
+    if s.isdigit():
+        return int(s)
+    return DIA_CHI.index(s.strip().capitalize()) * 2
 
 
 def _in(obj) -> None:
@@ -60,12 +68,12 @@ def main() -> int:
 
     s = sub.add_parser("laso", help="Lập lá số tử vi rút gọn")
     s.add_argument("ngay", help="dd/mm/yyyy dương lịch")
-    s.add_argument("gio", type=int, help="giờ sinh 0-23")
+    s.add_argument("gio", help="giờ sinh 0-23 hoặc tên canh giờ (Tý, Sửu... Hợi)")
     s.add_argument("gioi_tinh", choices=["nam", "nu"])
 
     s = sub.add_parser("luangiai", help="Luận giải chi tiết lá số")
     s.add_argument("ngay", help="dd/mm/yyyy dương lịch")
-    s.add_argument("gio", type=int, help="giờ sinh 0-23")
+    s.add_argument("gio", help="giờ sinh 0-23 hoặc tên canh giờ (Tý, Sửu... Hợi)")
     s.add_argument("gioi_tinh", choices=["nam", "nu"])
     s.add_argument("--nam-xem", type=int, default=None,
                    help="năm dương lịch để đánh dấu đại hạn đang đi")
@@ -95,10 +103,10 @@ def main() -> int:
         _in(phong_thuy.ho_so_phong_thuy(a.nam_sinh, a.gioi_tinh, a.huong))
     elif a.lenh == "laso":
         d, m, y = _ngay(a.ngay)
-        _in(la_so.lap_la_so(d, m, y, a.gio, gioi_tinh=a.gioi_tinh))
+        _in(la_so.lap_la_so(d, m, y, _gio(a.gio), gioi_tinh=a.gioi_tinh))
     elif a.lenh == "luangiai":
         d, m, y = _ngay(a.ngay)
-        ls = la_so.lap_la_so(d, m, y, a.gio, gioi_tinh=a.gioi_tinh)
+        ls = la_so.lap_la_so(d, m, y, _gio(a.gio), gioi_tinh=a.gioi_tinh)
         _in(luan_giai.luan_giai_la_so(ls, a.nam_xem))
     elif a.lenh == "phitinh":
         _in(phong_thuy.phi_tinh_nam(a.nam))
