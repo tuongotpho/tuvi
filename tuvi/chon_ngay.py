@@ -16,10 +16,10 @@ from __future__ import annotations
 from datetime import date, timedelta
 
 from .amlich import solar_to_lunar
-from .canchi import (DIA_CHI, can_chi_gio, can_chi_ngay, can_chi_nam,
-                     luc_xung, quan_he_chi, thien_khac_dia_xung)
+from .canchi import (can_chi_ngay, can_chi_nam, luc_xung, quan_he_chi,
+                     thien_khac_dia_xung)
 from .han import sao_han
-from .ngay_gio import KHUNG_GIO, gio_hoang_dao, xem_ngay
+from .ngay_gio import gio_hoang_dao, xem_ngay
 from .store import load
 
 THU_VN = ["Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm",

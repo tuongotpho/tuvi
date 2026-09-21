@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from typing import NamedTuple
 
-from .amlich import (PI, get_sun_longitude, jd_from_date, solar_to_lunar,
-                     sun_longitude)
+from .amlich import PI, solar_to_lunar, sun_longitude
 
 THIEN_CAN = ["Giáp", "Ất", "Bính", "Đinh", "Mậu",
              "Kỷ", "Canh", "Tân", "Nhâm", "Quý"]

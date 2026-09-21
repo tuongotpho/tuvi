@@ -2,7 +2,7 @@
 """Xem hạn: sao hạn cửu diệu, Tam tai, Kim Lâu, Hoang Ốc, Thái Tuế."""
 from __future__ import annotations
 
-from .canchi import DIA_CHI, can_chi_nam, quan_he_chi, tuoi_mu
+from .canchi import can_chi_nam, quan_he_chi, tuoi_mu
 from .store import load
 
 HOANG_OC_CUNG = ["Nhất Cát", "Nhì Nghi", "Tam Địa Sát",
