@@ -15,7 +15,7 @@ import sys
 import traceback
 from datetime import date, timedelta
 from functools import lru_cache
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
@@ -233,9 +233,11 @@ class Handler(SimpleHTTPRequestHandler):
 
 def main() -> int:
     cong = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
-    may_chu = HTTPServer(("0.0.0.0", cong), Handler)
-    print(f"Giao diện tử vi đang chạy tại http://localhost:{cong}")
-    print("Nhấn Ctrl+C để dừng.")
+    # Đa luồng: trình duyệt hay mở sẵn kết nối dự phòng mà chưa gửi yêu cầu,
+    # bản một luồng sẽ kẹt chờ kết nối đó và mọi yêu cầu thật đứng hình theo.
+    may_chu = ThreadingHTTPServer(("0.0.0.0", cong), Handler)
+    print(f"Giao diện tử vi đang chạy tại http://localhost:{cong}", flush=True)
+    print("Nhấn Ctrl+C để dừng.", flush=True)
     try:
         may_chu.serve_forever()
     except KeyboardInterrupt:
