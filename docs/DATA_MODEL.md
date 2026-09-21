@@ -20,7 +20,9 @@ canchi.py            can chi năm/tháng/ngày/giờ, nạp âm, tiết khí
    |      +-- chon_ngay.py  lọc xung tuổi, chấm điểm theo việc
    +-- han.py        sao hạn, tam tai, Kim Lâu, Hoang Ốc, Thái Tuế
    +-- phong_thuy.py cung phi, du niên, phi tinh
-   +-- la_so.py      lập lá số tử vi rút gọn
+   +-- la_so.py      lập lá số tử vi đủ 109 sao, Tuần Triệt
+   +-- luan_giai.py  luận giải, cách cục (bộ đọc quy tắc)
+   +-- kiem_tra.py   kiểm tra đầu vào, LoiDauVao
    |
 store.py             nạp JSON trong data/, có cache
 ```

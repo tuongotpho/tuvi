@@ -1,0 +1,29 @@
+name: Kiểm thử
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  kiem-thu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Kiểm tra mã tĩnh
+        run: |
+          python -m pip install --quiet pyflakes
+          python -m pyflakes tuvi scripts web tests
+      - name: Kiểm tra toàn vẹn dữ liệu
+        run: python scripts/validate_data.py
+      - name: 84 bài kiểm thử (kể cả máy chủ web thật)
+        run: python -m unittest discover -s tests -v
+      - name: Dựng SQLite và kịch bản video (không quay)
+        run: |
+          python scripts/build_db.py
+          python video/lam_video.py --chi-kich-ban han 1987 2026 --thang-am 9

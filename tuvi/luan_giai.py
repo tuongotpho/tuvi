@@ -258,13 +258,7 @@ def _tu_hoa(ls: dict) -> list[dict]:
             cung_theo_sao.setdefault(s["ten"], c)
     ra = []
     for hoa, sao in ls["tu_hoa"].items():
-        c = cung_theo_sao.get(sao)
-        if not c:
-            # Chủ tinh chưa được an trong bản rút gọn (Văn Xương, Tả Phù...).
-            ra.append({"hoa": hoa, "sao": sao, "cung": None, "chi": None,
-                       "chu_ve": None, "nhan_xet": f"{hoa} theo {sao}; sao này "
-                       "chưa được an trong bản rút gọn nên không rõ rơi vào cung nào."})
-            continue
+        c = cung_theo_sao[sao]   # đủ 109 sao nên chủ tinh của Tứ Hóa luôn có mặt
         ra.append({
             "hoa": hoa, "sao": sao, "cung": c["ten_cung"], "chi": c["chi"],
             "chu_ve": c["chu_ve"],

@@ -138,8 +138,11 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 
 ```bash
 python -m unittest discover -s tests -v   # 84 bài kiểm thử
-python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
+python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu
 ```
+
+GitHub Actions (`.github/workflows/kiem-thu.yml`) chạy pyflakes, validate_data, toàn bộ
+kiểm thử, dựng SQLite và kịch bản video trên Python 3.10 và 3.13 mỗi lần push.
 
 Những chỗ các trường phái khác nhau (Kim Lâu, Thiên Khôi — Thiên Việt, vòng Tràng
 Sinh, Tứ Hóa can Canh) đều được ghi chú ngay trong mã và liệt kê ở mục E của
