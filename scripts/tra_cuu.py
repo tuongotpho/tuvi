@@ -23,6 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi.console import bat_utf8  # noqa: E402
+
+bat_utf8()
 
 
 def _ngay(s: str) -> tuple[int, int, int]:

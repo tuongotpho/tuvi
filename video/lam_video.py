@@ -39,6 +39,9 @@ from tuvi.han import ho_so_han  # noqa: E402
 from tuvi.ngay_gio import xem_ngay  # noqa: E402
 from tuvi.phong_thuy import cung_phi, phi_tinh_nam  # noqa: E402
 from video import giong_doc  # noqa: E402
+from tuvi.console import bat_utf8  # noqa: E402
+
+bat_utf8()
 
 MAU = Path(__file__).resolve().parent / "mau_video.html"
 RONG, CAO = 1080, 1920

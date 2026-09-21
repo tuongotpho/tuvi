@@ -19,6 +19,9 @@ from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.canchi import (DIA_CHI, NAP_AM_60, THIEN_CAN, can_chi_nam,  # noqa: E402
                          luc_thap_hoa_giap)
 from tuvi.store import all_datasets, load  # noqa: E402
+from tuvi.console import bat_utf8  # noqa: E402
+
+bat_utf8()
 
 loi: list[str] = []
 canh_bao: list[str] = []

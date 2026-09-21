@@ -25,6 +25,9 @@ sys.path.insert(0, str(ROOT))
 from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
+from tuvi.console import bat_utf8  # noqa: E402
+
+bat_utf8()
 
 STATIC = Path(__file__).resolve().parent / "static"
 

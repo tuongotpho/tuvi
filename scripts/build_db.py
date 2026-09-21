@@ -19,6 +19,9 @@ sys.path.insert(0, str(ROOT))
 
 from tuvi.canchi import CON_GIAP, luc_thap_hoa_giap  # noqa: E402
 from tuvi.store import load  # noqa: E402
+from tuvi.console import bat_utf8  # noqa: E402
+
+bat_utf8()
 
 SCHEMA = """
 DROP TABLE IF EXISTS ngu_hanh;
