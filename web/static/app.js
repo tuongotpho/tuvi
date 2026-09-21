@@ -196,11 +196,32 @@ function veLuanGiai(d) {
     dh.bang.map((h) => `<tr class="${h.hien_tai ? "hien-tai" : ""}"><td>${esc(h.tuoi)}</td><td>${esc(h.cung)} (${esc(h.chi)})</td>
       <td>${esc(h.chinh_tinh.join(" + ") || "—")}</td><td>${esc(h.tu_hoa.join(", ") || "—")}</td></tr>`).join("") + "</tbody></table>";
 
+  const nx = d.nam_xem;
+  const khoiNamXem = nx ? `
+    <div class="lg-phan the"><h3>Năm ${nx.nam_xem} — ${esc(nx.nam_xem_can_chi)}, tuổi mụ ${nx.tuoi_mu}
+      <span class="nhan-tt ${nx.diem >= 2 ? "tot" : nx.diem <= -2 ? "xau" : "vua"}">${dau(nx.diem)}</span></h3>
+      ${nx.nhan_xet.map((t) => `<p>${esc(t)}</p>`).join("")}
+      <div class="luoi">
+        <div><h4>Tiểu hạn</h4><p><b>${esc(nx.tieu_han.ten_cung)}</b> (${esc(nx.tieu_han.chi)}) —
+          ${esc(nx.tieu_han.chinh_tinh.join(" + ") || "vô chính diệu")}${nx.tieu_han.tuan ? " · TUẦN" : ""}${nx.tieu_han.triet ? " · TRIỆT" : ""}<br>
+          <span class="cung-chi">Sao lưu: ${esc(nx.tieu_han.sao_luu.join(", ") || "không")}</span></p></div>
+        ${nx.dai_han ? `<div><h4>Đại hạn ${esc(nx.dai_han.tuoi)}</h4><p><b>${esc(nx.dai_han.ten_cung)}</b> (${esc(nx.dai_han.chi)}) —
+          ${esc(nx.dai_han.chinh_tinh.join(" + ") || "vô chính diệu")}<br>
+          <span class="cung-chi">Sao lưu: ${esc(nx.dai_han.sao_luu.join(", ") || "không")}</span></p></div>` : ""}
+        <div><h4>Lưu Tứ Hóa năm nay</h4><p>${Object.entries(nx.luu_tu_hoa).map(([h, s]) => `${esc(h.replace("Lưu ", ""))} → <b>${esc(s)}</b>`).join(" · ")}</p></div>
+      </div>
+      <h4>Sao lưu rơi vào từng cung</h4>
+      <table class="lg-dai-han"><tbody>${nx.sao_luu_theo_cung.map((c) => `<tr class="${c.ten_cung === nx.tieu_han.ten_cung ? "hien-tai" : ""}">
+        <td>${esc(c.ten_cung)} (${esc(c.chi)})</td><td>${esc(c.sao_luu.map((t) => t.replace("Lưu ", "")).join(", ") || "—")}</td></tr>`).join("")}</tbody></table>
+      <h4>Điểm gợi ý của năm (từng khoản)</h4>${veKhoanDiem(nx.khoan_diem.map((k) => ({ ...k, ly_do: `${k.ly_do} (${k.noi})` })))}
+      <p class="goi-y">${esc(nx.ghi_chu)}</p>
+    </div>` : "";
   const tk = d.thong_ke;
   $("#ls-luan-giai").innerHTML = `
     <div class="lg-phan"><h3>Tổng quan</h3><div class="luoi">${theTongQuan}</div></div>
     <div class="lg-phan the"><h3>Tứ Hóa</h3><ul>${tuHoa}</ul></div>
     <div class="lg-phan the"><h3>Đại hạn</h3>${hienTai}${bangDaiHan}<p class="goi-y">${esc(dh.ghi_chu)}</p></div>
+    ${khoiNamXem}
     <div class="lg-phan"><h3>12 cung theo thứ tự đọc</h3>
       <p class="goi-y">Cung mạnh nhất: <b>${esc(tk.cung_manh_nhat)}</b> · yếu nhất: <b>${esc(tk.cung_yeu_nhat)}</b> ·
         ${tk.so_cung_vo_chinh_dieu} cung vô chính diệu · điểm trung bình ${tk.diem_trung_binh}.</p>

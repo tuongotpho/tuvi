@@ -14,6 +14,7 @@ from functools import lru_cache
 
 from .canchi import tuoi_mu
 from .la_so import chinh_tinh_cung_menh
+from .luu_nien import xem_nam
 from .store import load
 
 # Thứ tự đọc lá số theo lệ thường: Mệnh — Thân — Phúc — rồi các cung còn lại.
@@ -423,6 +424,7 @@ def luan_giai_la_so(ls: dict, nam_xem: int | None = None) -> dict:
         "cach_cuc": goi_y_cach_cuc(ls),
         "cac_cung": cac_cung,
         "dai_han": _dai_han(ls, nam_xem),
+        "nam_xem": xem_nam(ls, nam_xem) if nam_xem else None,
         "thong_ke": {
             "diem_trung_binh": diem_tb,
             "cung_manh_nhat": max(cac_cung, key=lambda c: c["diem"])["ten_cung"],

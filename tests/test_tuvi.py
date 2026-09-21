@@ -413,6 +413,45 @@ class TestKiemTraDauVao(unittest.TestCase):
             chon_ngay.chon_ngay(1987, date(2026, 1, 1), date(2026, 2, 1), viec="khong_co")
 
 
+class TestLuuNien(unittest.TestCase):
+    def test_tieu_han_theo_bang_khoi(self):
+        from tuvi.luu_nien import cung_tieu_han
+        # Đinh Mão 1987 (Hợi Mão Mùi -> khởi Sửu), nam thuận: năm Mão tại Sửu, năm Ngọ tại Thìn.
+        self.assertEqual(DIA_CHI[cung_tieu_han(3, 3, True)], "Sửu")
+        self.assertEqual(DIA_CHI[cung_tieu_han(3, 6, True)], "Thìn")
+        # Nữ đếm nghịch: năm Ngọ lùi 3 cung từ Sửu -> Tuất.
+        self.assertEqual(DIA_CHI[cung_tieu_han(3, 6, False)], "Tuất")
+        # Thân Tý Thìn khởi Tuất; Dần Ngọ Tuất khởi Thìn; Tỵ Dậu Sửu khởi Mùi.
+        self.assertEqual(DIA_CHI[cung_tieu_han(0, 0, True)], "Tuất")
+        self.assertEqual(DIA_CHI[cung_tieu_han(6, 6, True)], "Thìn")
+        self.assertEqual(DIA_CHI[cung_tieu_han(9, 9, True)], "Mùi")
+
+    def test_sao_luu_theo_can_chi_nam_xem(self):
+        from tuvi.luu_nien import sao_luu
+        vt = sao_luu(2026)   # Bính Ngọ
+        self.assertEqual(DIA_CHI[vt["Lưu Thái Tuế"]], "Ngọ")
+        self.assertEqual(DIA_CHI[vt["Lưu Lộc Tồn"]], "Tỵ")        # can Bính
+        self.assertEqual(DIA_CHI[vt["Lưu Kình Dương"]], "Ngọ")
+        self.assertEqual(DIA_CHI[vt["Lưu Thiên Mã"]], "Thân")     # Dần Ngọ Tuất
+        self.assertEqual(DIA_CHI[vt["Lưu Đào Hoa"]], "Mão")
+        self.assertEqual(DIA_CHI[vt["Lưu Bạch Hổ"]], "Dần")       # Thái Tuế + 8
+
+    def test_xem_nam_tren_la_so(self):
+        from tuvi.luu_nien import xem_nam
+        ls = la_so.lap_la_so(22, 8, 1987, 10, gioi_tinh="nam")
+        r = xem_nam(ls, 2026)
+        self.assertEqual((r["tuoi_mu"], r["tieu_han"]["chi"], r["dai_han"]["tuoi"]), (40, "Thìn", "34-43"))
+        self.assertEqual(r["luu_tu_hoa"]["Lưu Hóa Kỵ"], "Liêm Trinh")
+        self.assertEqual(r["diem"], sum(k["diem"] for k in r["khoan_diem"]))
+        self.assertEqual(sum(len(c["sao_luu"]) for c in r["sao_luu_theo_cung"]), len(r["sao_luu"]))
+        lg = luan_giai.luan_giai_la_so(ls, 2026)
+        self.assertEqual(lg["nam_xem"]["tieu_han"]["chi"], "Thìn")
+        self.assertIsNone(luan_giai.luan_giai_la_so(ls)["nam_xem"])
+        from tuvi.kiem_tra import LoiDauVao
+        with self.assertRaises(LoiDauVao):
+            xem_nam(ls, 1980)
+
+
 class TestQuanHeChi(unittest.TestCase):
     def test_luc_xung(self):
         for a, b in [("Tý", "Ngọ"), ("Sửu", "Mùi"), ("Dần", "Thân"),

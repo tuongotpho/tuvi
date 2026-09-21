@@ -11,7 +11,7 @@ web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      84 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      87 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -34,7 +34,9 @@ Năm tab, tất cả gọi thẳng gói `tuvi` nên số trên màn hình luôn 
   nhận ra được từ lá số. Nút **Luận giải chi tiết** mở bản đọc đầy đủ: bản mệnh nạp âm, Cục và
   quan hệ Mệnh — Cục, âm dương thuận/nghịch lý, Thân cư cung nào, Tứ Hóa rơi vào cung nào, 12 cung
   theo thứ tự đọc (chính tinh kèm đắc tính, cát — sát tinh, tam hợp — xung chiếu, vô chính diệu thì
-  mượn sao), bảng 12 đại hạn có đánh dấu hạn đang đi theo năm xem. Mỗi cung có điểm gợi ý kèm
+  mượn sao), bảng 12 đại hạn có đánh dấu hạn đang đi theo năm xem, và mục **Năm xem**: tiểu hạn,
+  đại hạn đang đi, Lưu Tứ Hóa, sao lưu rơi vào từng cung (vòng Lưu Thái Tuế, Lưu Lộc — Kình — Đà,
+  Lưu Khôi Việt, Lưu Mã, Lưu Khốc Hư, Lưu Đào Hồng Hỷ). Mỗi cung có điểm gợi ý kèm
   từng khoản cộng trừ để kiểm lại được; điểm chỉ để xếp thứ tự đáng chú ý.
 - **Xem hạn** — sao chiếu mệnh, tam tai, Thái Tuế và bộ ba xem tuổi làm nhà. Ba tab theo tuổi
   (Xem hạn, Phong thủy, Chọn ngày) nhận ngày sinh dương lịch và tự đổi ra năm âm, vì người
@@ -127,6 +129,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Phép tính | Cách đối chiếu | Kết quả |
 |---|---|---|
 | Đổi âm — dương lịch | Đối chiếu từng ngày 1800–2199 (146.097 ngày) với bản JavaScript gốc của Hồ Ngọc Đức: khớp 100%; bộ test giữ 4.630 mẫu (mỗi 37 ngày, mọi Tết, mọi tháng nhuận); thêm mốc Tết 1982–2026 và ngày 22/08/1987 = 28/7 Đinh Mão | khớp |
+| Tiểu hạn | 3.600 cặp (cung, năm) trên 300 lá số so với `lasotuvi` | khớp 100% |
 | Vị trí sao trên lá số | 99 sao × 60 lá số ngẫu nhiên 1930–2030 so với thư viện MIT `doanguyen/lasotuvi` (bộ mẫu lưu trong `tests/fixtures/`); Tuần — Triệt so cùng lúc. 8 sao khác trường phái và cặp Thai — Dưỡng (thư viện kia đảo) bỏ ra khỏi phép so và ghi ở SOURCES.md mục E | khớp 100% |
 | Hoang Ốc | Danh sách 33 tuổi xấu được các trang phong thủy công bố | khớp từng tuổi |
 | Sao hạn cửu diệu | Ví dụ "sinh năm 2000, năm 2024 gặp Kế Đô (nam) / Thái Dương (nữ)" | khớp |
@@ -139,7 +142,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 84 bài kiểm thử
+python -m unittest discover -s tests -v   # 87 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu
 ```
 
@@ -215,8 +218,9 @@ mọi con số phải sinh từ hàm tính toán chứ không gõ tay.
 
 ## Giới hạn đã biết
 
-- Lá số an đủ 109 sao và Tuần — Triệt nhưng chưa có tiểu hạn, lưu niên và các sao lưu
-  (Lưu Kình, Lưu Đà, Lưu Khốc, Lưu Hư...).
+- Sao lưu mới có bộ thông dụng (Lưu Thái Tuế 12 sao, Lưu Lộc Kình Đà, Lưu Khôi Việt, Lưu Tứ
+  Hóa, Lưu Mã, Lưu Khốc Hư, Lưu Đào Hồng Hỷ); chưa có Lưu Xương Khúc, Lưu Tang Hổ theo phái
+  khác, và chưa xem nguyệt hạn (từng tháng).
 - Thuật toán âm lịch chính xác trong khoảng 1800–2199.
 - Sinh giờ Tý (23h–1h): tính là giờ Tý của chính ngày sinh, không chuyển sang ngày hôm sau
   (SOURCES.md mục E). Giao diện, API (`canh=`) và dòng lệnh nhận cả canh giờ lẫn giờ đồng hồ.
