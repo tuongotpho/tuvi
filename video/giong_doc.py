@@ -19,12 +19,16 @@ import asyncio
 import os
 import ssl
 import subprocess
+import sys
 from pathlib import Path
 
 # Giọng tiếng Việt của Microsoft Edge.
 GIONG_NU = "vi-VN-HoaiMyNeural"
 GIONG_NAM = "vi-VN-NamMinhNeural"
 GIONG_MAC_DINH = GIONG_NU
+SO_LAN_THU = 4          # số lần gọi edge-tts cho một câu trước khi bỏ cuộc
+GIAY_CHO_THU_LAI = 4.0  # nghỉ giữa hai lần thử, nhân dần theo số lần: 4, 8, 12 giây
+GIAY_NGHI_GIUA_CAU = 1.0  # nghỉ giữa hai câu liên tiếp để khỏi bị dịch vụ coi là gọi dồn dập
 
 
 class KhongLongTiengDuoc(RuntimeError):
@@ -94,12 +98,31 @@ def doc_kich_ban(canh: list[dict], thu_muc: Path,
     nap_ca_proxy()
     thu_muc.mkdir(parents=True, exist_ok=True)
 
+    async def doc_co_thu_lai(loi_thoai: str, tep: Path) -> float:
+        # Dịch vụ của Microsoft thỉnh thoảng trả về "NoAudioReceived" cho một
+        # câu hoàn toàn bình thường rồi lần sau lại đọc được. Thử lại vài lần
+        # trước khi chịu thua, để một cú chập chờn không làm cả video câm.
+        loi_cuoi: Exception | None = None
+        for lan in range(SO_LAN_THU):
+            if lan:
+                await asyncio.sleep(GIAY_CHO_THU_LAI * lan)
+            try:
+                return await _doc_mot_canh(loi_thoai, tep, giong, toc_do, cao_do)
+            except Exception as e:  # noqa: BLE001 — mọi lỗi mạng/dịch vụ đều đáng thử lại
+                loi_cuoi = e
+                print(f"  [lồng tiếng] lần {lan + 1}/{SO_LAN_THU} hỏng "
+                      f"({type(e).__name__}), thử lại: {loi_thoai[:40]}…",
+                      file=sys.stderr)
+        assert loi_cuoi is not None
+        raise loi_cuoi
+
     async def chay() -> list[tuple[Path, float]]:
         ra = []
         for i, c in enumerate(canh, 1):
+            if i > 1:
+                await asyncio.sleep(GIAY_NGHI_GIUA_CAU)
             tep = thu_muc / f"canh{i:02d}.mp3"
-            ra.append((tep, await _doc_mot_canh(c["loi_thoai"], tep, giong,
-                                                toc_do, cao_do)))
+            ra.append((tep, await doc_co_thu_lai(c["loi_thoai"], tep)))
         return ra
 
     try:
