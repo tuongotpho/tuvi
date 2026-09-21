@@ -43,7 +43,8 @@
         <span class="cham cat"></span> Cát tinh
         <span class="cham hung"></span> Sát &amp; bại tinh
         <span class="cham trung"></span> Trung tính
-        <em>Bấm vào tên sao để xem ý nghĩa.</em>
+        <label class="truong-ngang"><input type="checkbox" id="ls-du-sao"> Hiện đủ 109 sao</label>
+        <em>Bấm vào tên sao để xem ý nghĩa; nút +N xổ các sao phụ của cung.</em>
       </div>
       <div class="the" id="ls-cach-cuc"></div>
       <div class="hang-nut">
@@ -61,8 +62,8 @@
   <!-- ------------------------------ HẠN -------------------------------- -->
   <section id="tab-han" class="tab-noi-dung">
     <form class="bang-nhap" id="form-han">
-      <div class="truong"><label for="h-sinh">Năm sinh (âm lịch)</label>
-        <input type="number" id="h-sinh" min="1900" max="2100" value="1987" required></div>
+      <div class="truong"><label for="h-sinh">Ngày sinh (dương lịch)</label>
+        <input type="date" id="h-sinh" required></div>
       <div class="truong"><label for="h-xem">Năm xem</label>
         <input type="number" id="h-xem" min="1900" max="2100" required></div>
       <div class="truong"><label for="h-gt">Giới tính</label>
@@ -75,8 +76,8 @@
   <!-- --------------------------- PHONG THỦY ---------------------------- -->
   <section id="tab-phongthuy" class="tab-noi-dung">
     <form class="bang-nhap" id="form-pt">
-      <div class="truong"><label for="pt-sinh">Năm sinh (âm lịch)</label>
-        <input type="number" id="pt-sinh" min="1900" max="2100" value="1990" required></div>
+      <div class="truong"><label for="pt-sinh">Ngày sinh (dương lịch)</label>
+        <input type="date" id="pt-sinh" required></div>
       <div class="truong"><label for="pt-gt">Giới tính</label>
         <select id="pt-gt"><option value="nam">Nam</option><option value="nu">Nữ</option></select></div>
       <div class="truong"><label for="pt-huong">Hướng nhà (tùy chọn)</label>
@@ -98,8 +99,8 @@
   <!-- ---------------------------- CHỌN NGÀY ---------------------------- -->
   <section id="tab-chonngay" class="tab-noi-dung">
     <form class="bang-nhap" id="form-cn">
-      <div class="truong"><label for="cn-sinh">Năm sinh (âm lịch)</label>
-        <input type="number" id="cn-sinh" min="1900" max="2100" value="1987" required></div>
+      <div class="truong"><label for="cn-sinh">Ngày sinh (dương lịch)</label>
+        <input type="date" id="cn-sinh" required></div>
       <div class="truong"><label for="cn-gt">Giới tính</label>
         <select id="cn-gt"><option value="nam">Nam</option><option value="nu">Nữ</option></select></div>
       <div class="truong"><label for="cn-viec">Việc định làm</label>

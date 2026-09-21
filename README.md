@@ -36,7 +36,9 @@ Năm tab, tất cả gọi thẳng gói `tuvi` nên số trên màn hình luôn 
   theo thứ tự đọc (chính tinh kèm đắc tính, cát — sát tinh, tam hợp — xung chiếu, vô chính diệu thì
   mượn sao), bảng 12 đại hạn có đánh dấu hạn đang đi theo năm xem. Mỗi cung có điểm gợi ý kèm
   từng khoản cộng trừ để kiểm lại được; điểm chỉ để xếp thứ tự đáng chú ý.
-- **Xem hạn** — sao chiếu mệnh, tam tai, Thái Tuế và bộ ba xem tuổi làm nhà.
+- **Xem hạn** — sao chiếu mệnh, tam tai, Thái Tuế và bộ ba xem tuổi làm nhà. Ba tab theo tuổi
+  (Xem hạn, Phong thủy, Chọn ngày) nhận ngày sinh dương lịch và tự đổi ra năm âm, vì người
+  sinh tháng 1–2 dương trước Tết hay gõ nhầm năm âm.
 - **Phong thủy** — cung phi, bốn hướng tốt, bốn hướng xấu, màu sắc vật phẩm hợp
   mệnh, nguyên tắc bố trí từng khu vực; chọn hướng nhà để chấm luôn hướng đó.
 - **Xem ngày** — trực, nhị thập bát tú, hoàng đạo, giờ tốt giờ xấu, ngày kiêng.

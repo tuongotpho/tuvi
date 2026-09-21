@@ -131,6 +131,11 @@ input:focus, select:focus { outline: 2px solid var(--nhan); outline-offset: 1px;
 .sao.cat { color: var(--cat); }
 .sao.hung { color: var(--hung); }
 .sao .dt { font-size: 10px; vertical-align: super; color: var(--vang); font-weight: 700; }
+.sao.phu { display: none; }
+.dia-ban.du .sao.phu, .cung.mo .sao.phu { display: inline; }
+.sao.xo { color: var(--chu-mo); border: 1px dashed var(--vien); border-radius: 999px; padding: 0 6px; font-size: 11px; }
+.dia-ban.du .sao.xo { display: none; }
+.cung.mo .sao.xo { opacity: .5; }
 .cung-chan {
   margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--vien);
   font-size: 11px; color: var(--chu-mo); display: flex; justify-content: space-between; gap: 6px;

@@ -70,11 +70,20 @@ function lopSao(s) {
   return "trung";
 }
 
+// Sao luôn hiện trên ô cung; sao còn lại gập vào nút "+N" (bấm để xổ) hoặc bật
+// "Hiện đủ 109 sao" ở chú giải. Chính tinh, Tứ Hóa luôn hiện.
+const SAO_CHINH_YEU = new Set(["Tả Phù", "Hữu Bật", "Văn Xương", "Văn Khúc", "Thiên Khôi", "Thiên Việt",
+  "Kình Dương", "Đà La", "Hỏa Tinh", "Linh Tinh", "Địa Không", "Địa Kiếp", "Lộc Tồn", "Thiên Mã",
+  "Đào Hoa", "Hồng Loan", "Thiên Hình", "Thiên Riêu", "Thiên Không", "Thái Tuế", "Tràng Sinh", "Đế Vượng"]);
+const saoLuonHien = (s) => s.nhom === "Chính tinh" || s.nhom === "Tứ Hóa" || SAO_CHINH_YEU.has(s.ten);
+
 function veCung(c, laMenh) {
+  let an = 0;
   const sao = c.sao.map((s) => {
     const dt = s.dac_tinh ? `<span class="dt" title="${esc(s.dac_tinh)} địa">${DAC_TINH_TAT[s.dac_tinh] || ""}</span>` : "";
-    return `<button class="sao ${lopSao(s)}" data-sao="${esc(s.ten)}">${esc(s.ten)}${dt}</button>`;
-  }).join("");
+    const phu = saoLuonHien(s) ? "" : (an++, " phu");
+    return `<button class="sao ${lopSao(s)}${phu}" data-sao="${esc(s.ten)}">${esc(s.ten)}${dt}</button>`;
+  }).join("") + (an ? `<button class="sao xo" type="button" title="Xem thêm ${an} sao">+${an}</button>` : "");
   return `<div class="cung${laMenh ? " la-menh" : ""}">
     <div class="cung-dau">
       <span class="cung-ten">${esc(c.ten_cung)}</span>
@@ -217,6 +226,7 @@ $("#nut-luan-giai").addEventListener("click", async () => {
 $("#dia-ban").addEventListener("click", async (e) => {
   const nut = e.target.closest(".sao");
   if (!nut) return;
+  if (nut.classList.contains("xo")) { nut.closest(".cung").classList.toggle("mo"); return; }
   try {
     const s = await api("/api/sao", { ten: nut.dataset.sao });
     const dt = Object.entries(s.mieu_vuong_dac_ham || {});
@@ -300,7 +310,7 @@ $("#form-han").addEventListener("submit", async (e) => {
   e.preventDefault();
   try {
     veHan(await api("/api/han", {
-      nam_sinh: $("#h-sinh").value, nam_xem: $("#h-xem").value, gioi_tinh: $("#h-gt").value,
+      ngay_sinh: $("#h-sinh").value, nam_xem: $("#h-xem").value, gioi_tinh: $("#h-gt").value,
     }));
   } catch (err) { baoLoi($("#han-ket-qua"), err); }
 });
@@ -360,7 +370,7 @@ $("#form-pt").addEventListener("submit", async (e) => {
   e.preventDefault();
   try {
     vePhongThuy(await api("/api/phongthuy", {
-      nam_sinh: $("#pt-sinh").value, gioi_tinh: $("#pt-gt").value, huong: $("#pt-huong").value,
+      ngay_sinh: $("#pt-sinh").value, gioi_tinh: $("#pt-gt").value, huong: $("#pt-huong").value,
     }));
   } catch (err) { baoLoi($("#pt-ket-qua"), err); }
 });
@@ -468,7 +478,7 @@ $("#form-cn").addEventListener("submit", async (e) => {
   e.preventDefault();
   try {
     veChonNgay(await api("/api/chonngay", {
-      nam_sinh: $("#cn-sinh").value, gioi_tinh: $("#cn-gt").value,
+      ngay_sinh: $("#cn-sinh").value, gioi_tinh: $("#cn-gt").value,
       viec: $("#cn-viec").value, tu_ngay: $("#cn-tu").value,
       den_ngay: $("#cn-den").value, so_luong: 12,
     }));
@@ -476,6 +486,8 @@ $("#form-cn").addEventListener("submit", async (e) => {
 });
 
 /* ------------------------------ khởi tạo ------------------------------ */
+$("#ls-du-sao").addEventListener("change", (e) => $("#dia-ban").classList.toggle("du", e.target.checked));
+
 (function khoiTao() {
   $("#ls-nam-xem").value = new Date().getFullYear();
   const h = new Date(), iso = h.toISOString().slice(0, 10);

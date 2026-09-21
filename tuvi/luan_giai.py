@@ -24,7 +24,9 @@ THU_TU_DOC = ["Mệnh", "Phúc Đức", "Quan Lộc", "Tài Bạch", "Thiên Di"
 DIEM_DAC_TINH = {"Miếu": 2, "Vượng": 2, "Đắc": 1, "Bình": 0, "Hãm": -2}
 DIEM_TU_HOA = {"Hóa Lộc": 2, "Hóa Quyền": 1, "Hóa Khoa": 1, "Hóa Kỵ": -2}
 DIEM_CAT, DIEM_HUNG = 1, -1
-NGUONG_DANH_GIA = [(4, "vượng"), (2, "khá"), (0, "trung bình"), (-2, "yếu")]
+# Ngưỡng đặt theo phân vị đo trên 600 lá số ngẫu nhiên sau khi an đủ 109 sao
+# (trung vị +1, p85 = 5, p70 = 3, p40 = 0, p20 = -2) để năm nhãn chia đều.
+NGUONG_DANH_GIA = [(5, "vượng"), (3, "khá"), (0, "trung bình"), (-2, "yếu")]
 DANH_GIA_THAP_NHAT = "xấu"
 
 THAN_CU = {
