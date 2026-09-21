@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import chon_ngay, han, la_so, luan_giai, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
 
 bat_utf8()
@@ -63,6 +63,13 @@ def main() -> int:
     s.add_argument("gio", type=int, help="giờ sinh 0-23")
     s.add_argument("gioi_tinh", choices=["nam", "nu"])
 
+    s = sub.add_parser("luangiai", help="Luận giải chi tiết lá số")
+    s.add_argument("ngay", help="dd/mm/yyyy dương lịch")
+    s.add_argument("gio", type=int, help="giờ sinh 0-23")
+    s.add_argument("gioi_tinh", choices=["nam", "nu"])
+    s.add_argument("--nam-xem", type=int, default=None,
+                   help="năm dương lịch để đánh dấu đại hạn đang đi")
+
     s = sub.add_parser("phitinh", help="Cửu cung phi tinh của một năm")
     s.add_argument("nam", type=int)
 
@@ -89,6 +96,10 @@ def main() -> int:
     elif a.lenh == "laso":
         d, m, y = _ngay(a.ngay)
         _in(la_so.lap_la_so(d, m, y, a.gio, gioi_tinh=a.gioi_tinh))
+    elif a.lenh == "luangiai":
+        d, m, y = _ngay(a.ngay)
+        ls = la_so.lap_la_so(d, m, y, a.gio, gioi_tinh=a.gioi_tinh)
+        _in(luan_giai.luan_giai_la_so(ls, a.nam_xem))
     elif a.lenh == "phitinh":
         _in(phong_thuy.phi_tinh_nam(a.nam))
     elif a.lenh == "chonngay":

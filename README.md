@@ -6,12 +6,12 @@ thủy, hạn và chọn ngày giờ. Dữ liệu tách khỏi mã, mọi con s�
 
 ```
 data/       26 bộ dữ liệu JSON — tri thức thuần, không lẫn mã
-tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, xem ngày, chọn ngày
+tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, luận giải, xem ngày, chọn ngày
 web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 tab
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      51 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+tests/      60 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -25,13 +25,17 @@ Riêng khâu xuất tệp video cần thêm hai gói, nêu ở mục cuối.
 python web/server.py          # mở http://localhost:8000
 ```
 
-Bốn tab, tất cả gọi thẳng gói `tuvi` nên số trên màn hình luôn khớp phần đã kiểm thử:
+Năm tab, tất cả gọi thẳng gói `tuvi` nên số trên màn hình luôn khớp phần đã kiểm thử:
 
 - **Lá số** — địa bàn 12 cung theo bố cục truyền thống (Tỵ Ngọ Mùi Thân ở hàng trên,
   thiên bàn ở giữa), tô màu theo chính tinh / cát tinh / sát tinh, hiện đắc tính
   miếu vượng ngay cạnh tên sao, đánh dấu cung Mệnh và cung Thân, kèm đại hạn từng
   cung. Bấm vào tên sao để mở ngăn kéo giải nghĩa. Cuối trang liệt kê cách cục
-  nhận ra được từ lá số.
+  nhận ra được từ lá số. Nút **Luận giải chi tiết** mở bản đọc đầy đủ: bản mệnh nạp âm, Cục và
+  quan hệ Mệnh — Cục, âm dương thuận/nghịch lý, Thân cư cung nào, Tứ Hóa rơi vào cung nào, 12 cung
+  theo thứ tự đọc (chính tinh kèm đắc tính, cát — sát tinh, tam hợp — xung chiếu, vô chính diệu thì
+  mượn sao), bảng 12 đại hạn có đánh dấu hạn đang đi theo năm xem. Mỗi cung có điểm gợi ý kèm
+  từng khoản cộng trừ để kiểm lại được; điểm chỉ để xếp thứ tự đáng chú ý.
 - **Xem hạn** — sao chiếu mệnh, tam tai, Thái Tuế và bộ ba xem tuổi làm nhà.
 - **Phong thủy** — cung phi, bốn hướng tốt, bốn hướng xấu, màu sắc vật phẩm hợp
   mệnh, nguyên tắc bố trí từng khu vực; chọn hướng nhà để chấm luôn hướng đó.
@@ -45,6 +49,7 @@ nên dùng lại được cho ứng dụng khác:
 
 ```
 GET /api/laso?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam
+GET /api/luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam&nam_xem=2026
 GET /api/han?nam_sinh=1987&nam_xem=2026&gioi_tinh=nam
 GET /api/phongthuy?nam_sinh=1990&gioi_tinh=nam&huong=Đông Nam
 GET /api/ngay?ngay=20&thang=9&nam=2026
@@ -62,6 +67,7 @@ python scripts/tra_cuu.py han 1990 2026 nam      # sao hạn, tam tai, Thái Tu�
 python scripts/tra_cuu.py nha 1990 2027          # Kim Lâu — Hoang Ốc — Tam Tai
 python scripts/tra_cuu.py phongthuy 1990 nam --huong "Đông Nam"
 python scripts/tra_cuu.py laso 20/09/1990 14 nam # lá số rút gọn
+python scripts/tra_cuu.py luangiai 20/09/1990 14 nam --nam-xem 2026  # luận giải chi tiết
 python scripts/tra_cuu.py phitinh 2026           # cửu cung phi tinh năm
 python scripts/tra_cuu.py viec                   # các việc chọn ngày đang hỗ trợ
 python scripts/tra_cuu.py chonngay 1987 01/10/2026 30/11/2026 --viec dong_tho
@@ -70,13 +76,14 @@ python scripts/tra_cuu.py chonngay 1987 01/10/2026 30/11/2026 --viec dong_tho
 Trong Python:
 
 ```python
-from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy
+from tuvi import chon_ngay, han, la_so, luan_giai, ngay_gio, phong_thuy
 
 ngay_gio.xem_ngay(20, 9, 2026)["truc"]                  # 'Kiến'
 han.sao_han(2000, 2024, "nam")["sao"]                   # 'Kế Đô'
 han.tuoi_lam_nha(1990, 2027)["cac_han_pham"]            # ['Hoang Ốc']
 phong_thuy.cung_phi(1990, "nam")["cung_phi"]            # 'Khảm'
 la_so.lap_la_so(20, 9, 1990, 14, gioi_tinh="nam")["cuc"]
+luan_giai.luan_giai_la_so(la_so.lap_la_so(20, 9, 1990, 14), 2026)["dai_han"]["hien_tai"]
 
 # Chọn ngày có lọc xung tuổi
 from datetime import date
@@ -123,7 +130,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 51 bài kiểm thử
+python -m unittest discover -s tests -v   # 60 bài kiểm thử
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu, dùng được trong CI
 ```
 

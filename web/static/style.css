@@ -229,3 +229,32 @@ footer {
   .tab-nut { flex: 1; padding: 7px 8px; }
   main { padding: 16px 12px 40px; }
 }
+
+/* ---------------------------- luận giải ---------------------------- */
+.hang-nut { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 14px 0; }
+.truong-ngang { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--chu-mo); font-weight: 600; }
+.truong-ngang input { width: 90px; }
+.lg-phan { margin-top: 14px; }
+.lg-phan h3 { margin: 0 0 10px; font-size: 16px; }
+.lg-phan h4 { margin: 12px 0 6px; font-size: 13.5px; color: var(--chu-mo); text-transform: uppercase; letter-spacing: .04em; }
+.lg-the { display: flex; flex-direction: column; gap: 4px; }
+.lg-the .dau { font-size: 11.5px; color: var(--chu-mo); text-transform: uppercase; letter-spacing: .05em; }
+.lg-the b { font-size: 15px; }
+.lg-the p { margin: 2px 0 0; font-size: 13.5px; }
+.lg-cung { border: 1px solid var(--vien); border-radius: 10px; margin: 8px 0; background: var(--nen-the, transparent); }
+.lg-cung summary { cursor: pointer; padding: 10px 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; list-style: none; }
+.lg-cung summary::-webkit-details-marker { display: none; }
+.lg-cung summary::before { content: "▸"; color: var(--chu-mo); }
+.lg-cung[open] summary::before { content: "▾"; }
+.lg-cung summary b { font-size: 14.5px; }
+.lg-cung summary .cung-chi { margin-left: auto; }
+.lg-cung .than { color: var(--nhan); font-weight: 700; font-size: 11.5px; }
+.lg-than { padding: 0 14px 12px; font-size: 13.5px; }
+.lg-than p { margin: 6px 0; line-height: 1.55; }
+.lg-khoan { font-size: 12.5px; color: var(--chu-mo); }
+.lg-khoan span { display: inline-block; margin: 2px 8px 2px 0; }
+.lg-khoan .duong { color: var(--cat); }
+.lg-khoan .am { color: var(--hung); }
+.nhan-tt.yeu { background: color-mix(in srgb, var(--hung) 10%, transparent); color: var(--hung); opacity: .85; }
+.lg-dai-han td.hien-tai, .lg-dai-han tr.hien-tai td { color: var(--nhan); font-weight: 700; }
+.lg-luu-y { color: var(--chu-mo); font-size: 12.5px; }

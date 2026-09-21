@@ -14,7 +14,6 @@ import json
 import sys
 import traceback
 from datetime import date, timedelta
-from functools import lru_cache
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -26,6 +25,8 @@ from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
+from tuvi.luan_giai import (bo_sung_y_nghia_sao, goi_y_cach_cuc,  # noqa: E402
+                            luan_giai_la_so, tra_sao)
 
 bat_utf8()
 
@@ -38,98 +39,30 @@ BO_CUC = [["Tỵ", "Ngọ", "Mùi", "Thân"],
           ["Dần", "Sửu", "Tý", "Hợi"]]
 
 
-@lru_cache(maxsize=1)
-def _tu_dien_sao() -> dict[str, dict]:
-    """Tra cứu sao theo tên viết thường, vì lá số và dữ liệu viết hoa khác nhau."""
-    return {s["ten"].lower(): s for s in load("tu_vi/sao")}
-
-
-def _bo_sung_sao(cung: dict) -> dict:
-    """Gắn ý nghĩa, tính chất và đặc tính miếu vượng cho từng sao trong cung."""
-    tu_dien = _tu_dien_sao()
-    sao = []
-    for s in cung["sao"]:
-        goc = tu_dien.get(s["ten"].lower(), {})
-        sao.append({
-            **s,
-            "tinh_chat": goc.get("tinh_chat", "trung tính"),
-            "loai": goc.get("loai", ""),
-            "hanh": goc.get("hanh", ""),
-            "y_nghia": goc.get("y_nghia", ""),
-            "dac_tinh": goc.get("mieu_vuong_dac_ham", {}).get(cung["chi"]),
-        })
-    return {**cung, "sao": sao}
-
-
 def api_laso(q: dict) -> dict:
+    ls = _la_so_tu_query(q)
+    theo_chi = {c["chi"]: c for c in ls["cac_cung"]}
+    ls["bo_cuc"] = [[theo_chi.get(o) for o in hang] for hang in BO_CUC]
+    ls["cach_cuc_goi_y"] = goi_y_cach_cuc(ls)
+    return ls
+
+
+def api_luangiai(q: dict) -> dict:
+    """Luận giải chi tiết; cùng tham số với /api/laso, thêm nam_xem (mặc định năm nay)."""
+    ls = _la_so_tu_query(q)
+    nam_xem = int(q.get("nam_xem") or date.today().year)
+    return luan_giai_la_so(ls, nam_xem)
+
+
+def _la_so_tu_query(q: dict) -> dict:
     ngay, thang, nam = int(q["ngay"]), int(q["thang"]), int(q["nam"])
     gio, phut = int(q.get("gio", 12)), int(q.get("phut", 0))
     gt = q.get("gioi_tinh", "nam")
     ls = la_so.lap_la_so(ngay, thang, nam, gio, phut, gioi_tinh=gt)
-    ls["cac_cung"] = [_bo_sung_sao(c) for c in ls["cac_cung"]]
-    theo_chi = {c["chi"]: c for c in ls["cac_cung"]}
-    ls["bo_cuc"] = [[theo_chi.get(o) for o in hang] for hang in BO_CUC]
+    ls["cac_cung"] = [bo_sung_y_nghia_sao(c) for c in ls["cac_cung"]]
     ls["chinh_tinh_menh"] = la_so.chinh_tinh_cung_menh(ls)
-    nam_am = ls["am_lich"]["nam"]
-    ls["con_giap"] = CON_GIAP[can_chi_nam(nam_am).chi_idx]
-    ls["cach_cuc_goi_y"] = _goi_y_cach_cuc(ls)
+    ls["con_giap"] = CON_GIAP[can_chi_nam(ls["am_lich"]["nam"]).chi_idx]
     return ls
-
-
-def _goi_y_cach_cuc(ls: dict) -> list[dict]:
-    """Gợi ý cách cục có thể có, dựa trên chính tinh tại Mệnh và tam hợp Mệnh."""
-    cung = {c["ten_cung"]: c for c in ls["cac_cung"]}
-    menh = cung["Mệnh"]
-    ten_sao = {s["ten"] for s in menh["sao"]}
-    # Tam hợp Mệnh: Mệnh, Quan Lộc, Tài Bạch, cộng cung Thiên Di đối chiếu.
-    hoi = set()
-    for k in ("Mệnh", "Quan Lộc", "Tài Bạch", "Thiên Di"):
-        hoi |= {s["ten"] for s in cung[k]["sao"]}
-    ra = []
-    for c in load("tu_vi/cach_cuc"):
-        t = c["ten"]
-        khop = False
-        if t == "Sát Phá Tham":
-            khop = {"Thất Sát", "Phá Quân", "Tham Lang"} <= hoi
-        elif t == "Cơ Nguyệt Đồng Lương":
-            khop = {"Thiên Cơ", "Thái Âm", "Thiên Đồng", "Thiên Lương"} <= hoi
-        elif t == "Tử Phủ Vũ Tướng":
-            khop = {"Tử Vi", "Thiên Phủ", "Vũ Khúc", "Thiên Tướng"} <= hoi
-        elif t == "Phủ Tướng triều viên":
-            khop = {"Thiên Phủ", "Thiên Tướng"} <= hoi
-        elif t == "Lộc Mã giao trì":
-            khop = {"Lộc Tồn", "Thiên Mã"} <= hoi or {"Hóa Lộc", "Thiên Mã"} <= hoi
-        elif t == "Song Lộc triều viên":
-            khop = {"Lộc Tồn", "Hóa Lộc"} <= hoi
-        elif t == "Tam hóa liên châu":
-            khop = {"Hóa Lộc", "Hóa Quyền", "Hóa Khoa"} <= hoi
-        elif t == "Tham Vũ đồng hành":
-            khop = {"Tham Lang", "Vũ Khúc"} <= hoi
-        elif t == "Mệnh vô chính diệu":
-            khop = not ls["chinh_tinh_menh"]
-        elif t == "Thạch trung ẩn ngọc":
-            khop = "Cự Môn" in ten_sao and menh["chi"] in ("Tý", "Ngọ")
-        elif t == "Mã đầu đới kiếm":
-            khop = "Kình Dương" in ten_sao and menh["chi"] == "Ngọ"
-        elif t == "Hỏa Tham / Linh Tham":
-            khop = "Tham Lang" in ten_sao and bool(
-                {"Hỏa Tinh", "Linh Tinh"} & ten_sao)
-        elif t == "Khôi Việt giáp Mệnh":
-            khop = _giap(ls, menh, {"Thiên Khôi", "Thiên Việt"})
-        elif t == "Xương Khúc giáp Mệnh":
-            khop = _giap(ls, menh, {"Văn Xương", "Văn Khúc"})
-        if khop:
-            ra.append(c)
-    return ra
-
-
-def _giap(ls: dict, menh: dict, cap: set[str]) -> bool:
-    """Hai sao nằm ở hai cung kề trái phải của cung Mệnh."""
-    chi_list = [c["chi"] for c in ls["cac_cung"]]
-    i = chi_list.index(menh["chi"])
-    ben = [ls["cac_cung"][(i - 1) % 12], ls["cac_cung"][(i + 1) % 12]]
-    co = {s["ten"] for c in ben for s in c["sao"]}
-    return cap <= co
 
 
 def api_han(q: dict) -> dict:
@@ -159,7 +92,7 @@ def api_phitinh(q: dict) -> dict:
 def api_sao(q: dict) -> dict:
     ten = (q.get("ten") or "").lower()
     if ten:
-        s = _tu_dien_sao().get(ten)
+        s = tra_sao(ten)
         if not s:
             raise KeyError(f"Không có sao tên {ten}")
         return s
@@ -191,7 +124,7 @@ def api_viec(q: dict) -> dict:
     return {"viec": chon_ngay.danh_sach_viec()}
 
 
-TUYEN = {"/api/laso": api_laso, "/api/han": api_han,
+TUYEN = {"/api/laso": api_laso, "/api/luangiai": api_luangiai, "/api/han": api_han,
          "/api/chonngay": api_chonngay, "/api/viec": api_viec,
          "/api/phongthuy": api_phongthuy, "/api/ngay": api_ngay,
          "/api/phitinh": api_phitinh, "/api/sao": api_sao}

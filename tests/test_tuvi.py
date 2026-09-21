@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import chon_ngay, han, la_so, luan_giai, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.amlich import lunar_to_solar, solar_to_lunar  # noqa: E402
 from tuvi.canchi import (DIA_CHI, can_chi_ngay, can_chi_nam,  # noqa: E402
                          can_chi_thang, chi_gio_tu_gio_phut, luc_thap_hoa_giap,
@@ -457,6 +457,78 @@ class TestDuLieu(unittest.TestCase):
     def test_sao_deu_co_y_nghia(self):
         for s in load("tu_vi/sao"):
             self.assertTrue(s["y_nghia"].strip(), s["ten"])
+
+
+class TestLuanGiai(unittest.TestCase):
+    def _lg(self, d, m, y, g, gt, nam_xem=2026):
+        return luan_giai.luan_giai_la_so(la_so.lap_la_so(d, m, y, g, gioi_tinh=gt), nam_xem)
+
+    def test_du_12_cung_theo_thu_tu_doc(self):
+        lg = self._lg(20, 9, 1990, 14, "nam")
+        ten = [c["ten_cung"] for c in lg["cac_cung"]]
+        self.assertEqual(sorted(ten), sorted(la_so.TEN_CUNG))
+        self.assertEqual(ten[0], "Mệnh")
+        # Thân cư Phúc Đức nên Phúc Đức được đọc ngay sau Mệnh.
+        self.assertEqual(ten[1], "Phúc Đức")
+        self.assertTrue(lg["cac_cung"][1]["la_cung_than"])
+
+    def test_than_cu_menh_khong_lap_cung(self):
+        lg = self._lg(10, 10, 1975, 0, "nam")
+        self.assertEqual(lg["tong_quan"]["than"]["cung"], "Mệnh")
+        self.assertEqual([c["ten_cung"] for c in lg["cac_cung"]], luan_giai.THU_TU_DOC)
+        self.assertTrue(lg["tong_quan"]["than"]["nhan_xet"].startswith("Thân cư Mệnh"))
+
+    def test_diem_bang_tong_cac_khoan(self):
+        for cung in self._lg(15, 3, 1988, 10, "nam")["cac_cung"]:
+            self.assertEqual(cung["diem"], sum(k["diem"] for k in cung["khoan_diem"]), cung["ten_cung"])
+            self.assertIn(cung["danh_gia"], {"vượng", "khá", "trung bình", "yếu", "xấu"})
+
+    def test_quan_he_menh_cuc(self):
+        # 1990 Lộ Bàng Thổ, Thổ ngũ cục -> cùng hành.
+        self.assertEqual(self._lg(20, 9, 1990, 14, "nam")["tong_quan"]["menh_cuc"]["quan_he"],
+                         "Mệnh và Cục cùng hành")
+        # 1975 Đại Khê Thủy, Thổ ngũ cục -> Thổ khắc Thủy: Cục khắc Mệnh.
+        self.assertEqual(self._lg(10, 10, 1975, 0, "nam")["tong_quan"]["menh_cuc"]["quan_he"],
+                         "Cục khắc Mệnh")
+        # 1992 Kiếm Phong Kim, Thủy nhị cục -> Kim sinh Thủy: Mệnh sinh Cục.
+        self.assertEqual(self._lg(5, 7, 1992, 2, "nu")["tong_quan"]["menh_cuc"]["quan_he"],
+                         "Mệnh sinh Cục")
+
+    def test_am_duong_ly_khop_chieu_dai_han(self):
+        self.assertTrue(self._lg(20, 9, 1990, 14, "nam")["tong_quan"]["am_duong"]["thuan_ly"])
+        self.assertFalse(self._lg(1, 1, 1985, 6, "nu")["tong_quan"]["am_duong"]["thuan_ly"])
+
+    def test_vo_chinh_dieu_muon_sao_xung_chieu(self):
+        lg = self._lg(20, 9, 1990, 14, "nam")
+        menh = lg["cac_cung"][0]
+        self.assertTrue(menh["vo_chinh_dieu"])
+        self.assertEqual(menh["muon_chinh_tinh"], menh["xung_chieu"]["chinh_tinh"])
+        self.assertIn("vô chính diệu", menh["luan"])
+        self.assertTrue(any(k["ly_do"].startswith("mượn") for k in menh["khoan_diem"]))
+
+    def test_tu_hoa_roi_dung_cung(self):
+        lg = self._lg(20, 9, 1990, 14, "nam")
+        ls = la_so.lap_la_so(20, 9, 1990, 14, gioi_tinh="nam")
+        for h in lg["tu_hoa"]:
+            cung = next(c for c in ls["cac_cung"] if c["ten_cung"] == h["cung"])
+            self.assertIn(h["sao"], [s["ten"] for s in cung["sao"]])
+            self.assertIn(h["hoa"], [s["ten"] for s in cung["sao"]])
+
+    def test_dai_han_hien_tai_theo_tuoi_mu(self):
+        lg = self._lg(20, 9, 1990, 14, "nam", nam_xem=2026)
+        dh = lg["dai_han"]
+        self.assertEqual(dh["tuoi_mu"], 37)
+        self.assertEqual(dh["hien_tai"]["tuoi"], "35-44")
+        self.assertEqual([h["tu"] for h in dh["bang"]], sorted(h["tu"] for h in dh["bang"]))
+        self.assertEqual(sum(1 for h in dh["bang"] if h["hien_tai"]), 1)
+        # Không truyền năm xem thì không đánh dấu hạn nào.
+        self.assertIsNone(self._lg(20, 9, 1990, 14, "nam", nam_xem=None)["dai_han"]["hien_tai"])
+
+    def test_cach_cuc_khop_voi_api_cu(self):
+        ls = la_so.lap_la_so(20, 9, 1990, 14, gioi_tinh="nam")
+        ten = {c["ten"] for c in luan_giai.goi_y_cach_cuc(ls)}
+        self.assertIn("Mệnh vô chính diệu", ten)
+        self.assertIn("Cơ Nguyệt Đồng Lương", ten)
 
 
 if __name__ == "__main__":

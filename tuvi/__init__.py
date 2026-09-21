@@ -9,12 +9,13 @@ Các mô-đun chính:
     han         sao hạn cửu diệu, tam tai, Kim Lâu, Hoang Ốc, Thái Tuế
     phong_thuy  cung phi bát trạch, du niên tám hướng, cửu cung phi tinh
     la_so       lập lá số tử vi rút gọn
+    luan_giai   luận giải lá số: tổng quan, tứ hóa, 12 cung, đại hạn
     store       nạp dữ liệu JSON trong thư mục data/
 """
-from . import (amlich, canchi, chon_ngay, han, la_so, ngay_gio,  # noqa: F401
-               phong_thuy, store)
+from . import (amlich, canchi, chon_ngay, han, la_so, luan_giai,  # noqa: F401
+               ngay_gio, phong_thuy, store)
 
 __version__ = "1.0.0"
 
-__all__ = ["amlich", "canchi", "chon_ngay", "han", "la_so", "ngay_gio",
-           "phong_thuy", "store"]
+__all__ = ["amlich", "canchi", "chon_ngay", "han", "la_so", "luan_giai",
+           "ngay_gio", "phong_thuy", "store"]

@@ -105,7 +105,90 @@ function veLaSo(d) {
 
   $("#ls-ket-qua").hidden = false;
   $("#ls-goi-y").hidden = true;
+  $("#ls-luan-giai").hidden = true;
+  $("#ls-luan-giai").innerHTML = "";
 }
+
+/* --------------------------- luận giải chi tiết --------------------------- */
+const NHAN_DANH_GIA = { "vượng": "tot", "khá": "tot", "trung bình": "vua", "yếu": "yeu", "xấu": "xau" };
+const dau = (n) => (n > 0 ? "+" + n : String(n));
+
+function veKhoanDiem(khoan) {
+  if (!khoan.length) return '<span class="lg-khoan">Không có sao nào được chấm điểm.</span>';
+  return `<div class="lg-khoan">${khoan.map((k) =>
+    `<span class="${k.diem > 0 ? "duong" : k.diem < 0 ? "am" : ""}">${dau(k.diem)} ${esc(k.ly_do)}</span>`).join("")}</div>`;
+}
+
+function veCungLuan(c, mo) {
+  const nhan = `<span class="nhan-tt ${NHAN_DANH_GIA[c.danh_gia] || "vua"}">${esc(c.danh_gia)} · ${dau(c.diem)}</span>`;
+  const chinh = c.chinh_tinh.length
+    ? c.chinh_tinh.map((s) => `<li><b>${esc(s.ten)}</b>${s.dac_tinh ? ` <span class="cung-chi">(${esc(s.dac_tinh)})</span>` : ""} — ${esc(s.y_nghia)}</li>`).join("")
+    : `<li><i>Vô chính diệu</i>${c.muon_chinh_tinh.length ? ` — mượn ${esc(c.muon_chinh_tinh.join(" + "))} từ cung ${esc(c.xung_chieu.ten_cung)}` : ""}</li>`;
+  const danhSach = (tieuDe, ds) => ds.length
+    ? `<h4>${tieuDe}</h4><ul>${ds.map((s) => `<li><b>${esc(s.ten)}</b> — ${esc(s.y_nghia)}</li>`).join("")}</ul>` : "";
+  return `<details class="lg-cung"${mo ? " open" : ""}>
+    <summary><b>${esc(c.ten_cung)}</b>${c.la_cung_than ? '<span class="than">THÂN</span>' : ""}${nhan}
+      <span class="cung-chi">${esc(c.can)} ${esc(c.chi)} · đại hạn ${esc(c.dai_han)}</span></summary>
+    <div class="lg-than">
+      <p>${esc(c.luan)}</p>
+      <h4>Chính tinh</h4><ul>${chinh}</ul>
+      ${danhSach("Cát tinh", c.cat_tinh)}
+      ${danhSach("Sát tinh, bại tinh", c.sat_tinh)}
+      ${c.trung_tinh.length ? `<h4>Sao khác</h4><p>${esc(c.trung_tinh.join(", "))}</p>` : ""}
+      <h4>Nội dung nên xem ở cung này</h4><p>${esc(c.noi_dung_xem.join(" · "))}</p>
+      <h4>Điểm gợi ý (từng khoản)</h4>${veKhoanDiem(c.khoan_diem)}
+    </div>
+  </details>`;
+}
+
+function veLuanGiai(d) {
+  const tq = d.tong_quan;
+  const theTongQuan = [
+    ["Bản mệnh", `${tq.ban_menh.nap_am} (${tq.ban_menh.hanh})`, tq.ban_menh.y_nghia],
+    ["Tính cách theo hành", tq.ban_menh.hanh, tq.ban_menh.tinh_cach_hanh],
+    ["Cục", tq.cuc.ten, tq.cuc.y_nghia],
+    ["Mệnh — Cục", tq.menh_cuc.quan_he, tq.menh_cuc.nhan_xet],
+    ["Âm dương", tq.am_duong.ten, tq.am_duong.nhan_xet],
+    ["Thân cư", tq.than.cung, tq.than.nhan_xet],
+  ].map(([k, v, p]) => `<div class="the lg-the"><span class="dau">${esc(k)}</span><b>${esc(v)}</b><p>${esc(p)}</p></div>`).join("");
+
+  const tuHoa = d.tu_hoa.map((h) => `<li><b>${esc(h.hoa)}</b> → ${esc(h.sao)}${h.cung ? ` tại <b>${esc(h.cung)}</b>` : ""}: ${esc(h.nhan_xet)}</li>`).join("");
+
+  const dh = d.dai_han;
+  const hienTai = dh.hien_tai
+    ? `<p>Năm ${dh.nam_xem}, tuổi mụ <b>${dh.tuoi_mu}</b>: đang đi đại hạn <b>${esc(dh.hien_tai.tuoi)}</b> tại cung
+       <b>${esc(dh.hien_tai.cung)}</b> (${esc(dh.hien_tai.chi)}) — chính tinh ${esc(dh.hien_tai.chinh_tinh.join(" + ") || "vô chính diệu")}${dh.hien_tai.tu_hoa.length ? `, có ${esc(dh.hien_tai.tu_hoa.join(", "))}` : ""}.</p>`
+    : `<p class="goi-y">Năm ${dh.nam_xem}: tuổi mụ ${dh.tuoi_mu} chưa vào đại hạn nào trong bảng.</p>`;
+  const bangDaiHan = `<table class="lg-dai-han"><thead><tr><th>Tuổi</th><th>Cung</th><th>Chính tinh</th><th>Tứ Hóa</th></tr></thead><tbody>` +
+    dh.bang.map((h) => `<tr class="${h.hien_tai ? "hien-tai" : ""}"><td>${esc(h.tuoi)}</td><td>${esc(h.cung)} (${esc(h.chi)})</td>
+      <td>${esc(h.chinh_tinh.join(" + ") || "—")}</td><td>${esc(h.tu_hoa.join(", ") || "—")}</td></tr>`).join("") + "</tbody></table>";
+
+  const tk = d.thong_ke;
+  $("#ls-luan-giai").innerHTML = `
+    <div class="lg-phan"><h3>Tổng quan</h3><div class="luoi">${theTongQuan}</div></div>
+    <div class="lg-phan the"><h3>Tứ Hóa</h3><ul>${tuHoa}</ul></div>
+    <div class="lg-phan the"><h3>Đại hạn</h3>${hienTai}${bangDaiHan}<p class="goi-y">${esc(dh.ghi_chu)}</p></div>
+    <div class="lg-phan"><h3>12 cung theo thứ tự đọc</h3>
+      <p class="goi-y">Cung mạnh nhất: <b>${esc(tk.cung_manh_nhat)}</b> · yếu nhất: <b>${esc(tk.cung_yeu_nhat)}</b> ·
+        ${tk.so_cung_vo_chinh_dieu} cung vô chính diệu · điểm trung bình ${tk.diem_trung_binh}.</p>
+      ${d.cac_cung.map((c, i) => veCungLuan(c, i === 0)).join("")}
+    </div>
+    <div class="lg-phan the"><h3>Lưu ý</h3><ul class="lg-luu-y">${d.luu_y.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></div>`;
+  $("#ls-luan-giai").hidden = false;
+}
+
+$("#nut-luan-giai").addEventListener("click", async () => {
+  const [nam, thang, ngay] = $("#ls-ngay").value.split("-").map(Number);
+  const [gio, phut] = $("#ls-gio").value.split(":").map(Number);
+  const nut = $("#nut-luan-giai");
+  nut.disabled = true; nut.textContent = "Đang luận giải…";
+  try {
+    veLuanGiai(await api("/api/luangiai", { ngay, thang, nam, gio, phut,
+      gioi_tinh: $("#ls-gt").value, nam_xem: $("#ls-nam-xem").value }));
+    $("#ls-luan-giai").scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (err) { baoLoi($("#ls-luan-giai"), err); $("#ls-luan-giai").hidden = false; }
+  finally { nut.disabled = false; nut.textContent = "Luận giải chi tiết"; }
+});
 
 $("#dia-ban").addEventListener("click", async (e) => {
   const nut = e.target.closest(".sao");
@@ -370,6 +453,7 @@ $("#form-cn").addEventListener("submit", async (e) => {
 
 /* ------------------------------ khởi tạo ------------------------------ */
 (function khoiTao() {
+  $("#ls-nam-xem").value = new Date().getFullYear();
   const h = new Date(), iso = h.toISOString().slice(0, 10);
   $("#n-ngay").value = iso;
   $("#ls-ngay").value = "1990-09-20";
