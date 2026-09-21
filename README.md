@@ -7,6 +7,7 @@ thủy, hạn và chọn ngày giờ. Dữ liệu tách khỏi mã, mọi con s�
 ```
 data/       25 bộ dữ liệu JSON — tri thức thuần, không lẫn mã
 tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, xem ngày
+web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 4 tab
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
 tests/      27 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
@@ -15,6 +16,36 @@ SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
 
 Không phụ thuộc thư viện ngoài. Chỉ cần Python 3.10 trở lên.
+
+## Giao diện web
+
+```bash
+python web/server.py          # mở http://localhost:8000
+```
+
+Bốn tab, tất cả gọi thẳng gói `tuvi` nên số trên màn hình luôn khớp phần đã kiểm thử:
+
+- **Lá số** — địa bàn 12 cung theo bố cục truyền thống (Tỵ Ngọ Mùi Thân ở hàng trên,
+  thiên bàn ở giữa), tô màu theo chính tinh / cát tinh / sát tinh, hiện đắc tính
+  miếu vượng ngay cạnh tên sao, đánh dấu cung Mệnh và cung Thân, kèm đại hạn từng
+  cung. Bấm vào tên sao để mở ngăn kéo giải nghĩa. Cuối trang liệt kê cách cục
+  nhận ra được từ lá số.
+- **Xem hạn** — sao chiếu mệnh, tam tai, Thái Tuế và bộ ba xem tuổi làm nhà.
+- **Phong thủy** — cung phi, bốn hướng tốt, bốn hướng xấu, màu sắc vật phẩm hợp
+  mệnh, nguyên tắc bố trí từng khu vực; chọn hướng nhà để chấm luôn hướng đó.
+- **Xem ngày** — trực, nhị thập bát tú, hoàng đạo, giờ tốt giờ xấu, ngày kiêng.
+
+Máy chủ chỉ dùng `http.server` của thư viện chuẩn, không cài thêm gì. API trả JSON
+nên dùng lại được cho ứng dụng khác:
+
+```
+GET /api/laso?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam
+GET /api/han?nam_sinh=1987&nam_xem=2026&gioi_tinh=nam
+GET /api/phongthuy?nam_sinh=1990&gioi_tinh=nam&huong=Đông Nam
+GET /api/ngay?ngay=20&thang=9&nam=2026
+GET /api/phitinh?nam=2026
+GET /api/sao?ten=Tử vi
+```
 
 ## Dùng thử trong 30 giây
 
@@ -101,6 +132,9 @@ mọi con số phải sinh từ hàm tính toán chứ không gõ tay.
   `doanguyen/lasotuvi` (MIT) — dữ liệu sao trong kho này tương thích với nó.
 - Thuật toán âm lịch chính xác trong khoảng 1800–2199.
 - Chưa có phần Tử Bình (bát tự), Kinh Dịch, nhân tướng học.
+- Điểm ngày trong `xem_ngay` chỉ xét trực, tú, hoàng đạo và ngày kiêng chung —
+  **chưa xét xung khắc với tuổi người dùng**, nên một ngày 95 điểm vẫn có thể là
+  ngày xung tuổi. Giao diện có ghi chú nhắc điều này.
 - Phần luận giải trong dữ liệu là văn bản viết mới, không trích sách có bản quyền.
 
 ## Lưu ý

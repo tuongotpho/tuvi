@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tra cứu tử vi — phong thủy</title>
+<meta name="description" content="Lập lá số tử vi, xem hạn, cung phi bát trạch và ngày giờ tốt xấu.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☯</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="thanh-tren">
+  <div class="hieu">☯ <span>Tra cứu tử vi</span></div>
+  <nav class="tab" role="tablist">
+    <button class="tab-nut dang-chon" data-tab="laso" role="tab">Lá số</button>
+    <button class="tab-nut" data-tab="han" role="tab">Xem hạn</button>
+    <button class="tab-nut" data-tab="phongthuy" role="tab">Phong thủy</button>
+    <button class="tab-nut" data-tab="ngay" role="tab">Xem ngày</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ------------------------------ LÁ SỐ ------------------------------ -->
+  <section id="tab-laso" class="tab-noi-dung dang-chon">
+    <form class="bang-nhap" id="form-laso">
+      <div class="truong"><label for="ls-ngay">Ngày sinh (dương lịch)</label>
+        <input type="date" id="ls-ngay" required></div>
+      <div class="truong"><label for="ls-gio">Giờ sinh</label>
+        <input type="time" id="ls-gio" value="12:00" required></div>
+      <div class="truong"><label for="ls-gt">Giới tính</label>
+        <select id="ls-gt"><option value="nam">Nam</option><option value="nu">Nữ</option></select></div>
+      <button class="nut-chinh" type="submit">Lập lá số</button>
+    </form>
+
+    <div id="ls-ket-qua" hidden>
+      <div class="the-tom-tat" id="ls-tom-tat"></div>
+      <div class="dia-ban" id="dia-ban"></div>
+      <div class="chu-giai">
+        <span class="cham chinh-tinh"></span> Chính tinh
+        <span class="cham cat"></span> Cát tinh
+        <span class="cham hung"></span> Sát &amp; bại tinh
+        <span class="cham trung"></span> Trung tính
+        <em>Bấm vào tên sao để xem ý nghĩa.</em>
+      </div>
+      <div class="the" id="ls-cach-cuc"></div>
+    </div>
+    <p class="goi-y" id="ls-goi-y">Nhập ngày giờ sinh để lập lá số. Giờ sinh càng chính xác,
+      cung Mệnh và Cục càng đúng — lệch một canh giờ là lệch cả lá số.</p>
+  </section>
+
+  <!-- ------------------------------ HẠN -------------------------------- -->
+  <section id="tab-han" class="tab-noi-dung">
+    <form class="bang-nhap" id="form-han">
+      <div class="truong"><label for="h-sinh">Năm sinh (âm lịch)</label>
+        <input type="number" id="h-sinh" min="1900" max="2100" value="1987" required></div>
+      <div class="truong"><label for="h-xem">Năm xem</label>
+        <input type="number" id="h-xem" min="1900" max="2100" required></div>
+      <div class="truong"><label for="h-gt">Giới tính</label>
+        <select id="h-gt"><option value="nam">Nam</option><option value="nu">Nữ</option></select></div>
+      <button class="nut-chinh" type="submit">Xem hạn</button>
+    </form>
+    <div id="han-ket-qua"></div>
+  </section>
+
+  <!-- --------------------------- PHONG THỦY ---------------------------- -->
+  <section id="tab-phongthuy" class="tab-noi-dung">
+    <form class="bang-nhap" id="form-pt">
+      <div class="truong"><label for="pt-sinh">Năm sinh (âm lịch)</label>
+        <input type="number" id="pt-sinh" min="1900" max="2100" value="1990" required></div>
+      <div class="truong"><label for="pt-gt">Giới tính</label>
+        <select id="pt-gt"><option value="nam">Nam</option><option value="nu">Nữ</option></select></div>
+      <div class="truong"><label for="pt-huong">Hướng nhà (tùy chọn)</label>
+        <select id="pt-huong"><option value="">— không xét —</option></select></div>
+      <button class="nut-chinh" type="submit">Xem phong thủy</button>
+    </form>
+    <div id="pt-ket-qua"></div>
+  </section>
+
+  <!-- ---------------------------- XEM NGÀY ----------------------------- -->
+  <section id="tab-ngay" class="tab-noi-dung">
+    <form class="bang-nhap" id="form-ngay">
+      <div class="truong"><label for="n-ngay">Ngày cần xem</label>
+        <input type="date" id="n-ngay" required></div>
+      <button class="nut-chinh" type="submit">Xem ngày</button>
+    </form>
+    <div id="ngay-ket-qua"></div>
+  </section>
+</main>
+
+<aside class="ngan-keo" id="ngan-keo" hidden>
+  <button class="dong" id="dong-ngan-keo" aria-label="Đóng">×</button>
+  <div id="ngan-keo-noi-dung"></div>
+</aside>
+<div class="man-che" id="man-che" hidden></div>
+
+<footer>
+  Dữ liệu và phép tính lấy từ gói <code>tuvi</code> trong kho này — mọi con số đều có
+  kiểm thử đối chiếu. Đây là tri thức văn hóa dân gian, dùng để tham khảo, không phải
+  khoa học dự báo.
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
