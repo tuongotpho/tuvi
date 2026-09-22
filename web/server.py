@@ -237,7 +237,8 @@ def api_hoptuoi(q: dict) -> dict:
         return nam_hop_le(q.get(f"nam_sinh_{hau_to}"), f"Năm sinh người {hau_to.upper()}")
 
     return hop_tuoi.xem_hop_tuoi(nam_cua("a"), q.get("gioi_tinh_a", "nam"),
-                                 nam_cua("b"), q.get("gioi_tinh_b", "nu"))
+                                 nam_cua("b"), q.get("gioi_tinh_b", "nu"),
+                                 muc_dich=q.get("muc_dich", "hon_nhan"))
 
 
 def api_viec(q: dict) -> dict:

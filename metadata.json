@@ -1,6 +1,6 @@
 {
   "name": "Tra cứu tử vi — phong thủy",
-  "description": "Lập lá số tử vi, xem hạn, cung phi bát trạch và ngày giờ tốt xấu.",
+  "description": "Lập lá số tử vi, xem hạn, phong thủy bát trạch, hợp tuổi và ngày giờ tốt xấu.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
