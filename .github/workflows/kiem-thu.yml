@@ -18,7 +18,7 @@ jobs:
       - name: Kiểm tra mã tĩnh
         run: |
           python -m pip install --quiet pyflakes
-          python -m pyflakes app.py tuvi scripts web tests
+          python -m pyflakes tuvi scripts web tests
       - name: Kiểm tra toàn vẹn dữ liệu
         run: python scripts/validate_data.py
       - name: Bộ kiểm thử (kể cả máy chủ web thật)

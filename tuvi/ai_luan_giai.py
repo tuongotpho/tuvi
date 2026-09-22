@@ -18,17 +18,14 @@ import json
 import os
 import urllib.error
 import urllib.request
-from pathlib import Path  # noqa: F401 — dùng trong chú thích kiểu của nap_env
+from pathlib import Path
 
-from .duong_dan import dang_dong_goi, thu_muc_ghi, thu_muc_tai_nguyen
 from .kiem_tra import LoiDauVao
 from .luan_giai import luan_giai_la_so
 
-ROOT = thu_muc_tai_nguyen()
-# Khóa API và cache nằm ở nơi ghi được: cạnh tệp .exe khi đã đóng gói.
-TEP_ENV = thu_muc_ghi() / ".env"
-THU_MUC_CACHE = (thu_muc_ghi() / "cache_ai" if dang_dong_goi()
-                 else thu_muc_ghi() / "build" / "cache_ai")
+ROOT = Path(__file__).resolve().parent.parent
+TEP_ENV = ROOT / ".env"
+THU_MUC_CACHE = ROOT / "build" / "cache_ai"
 TEP_PROMPT = ROOT / "content" / "prompts" / "luan_giai_la_so.md"
 
 MODEL_MAC_DINH = "gemini-2.5-flash"

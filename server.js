@@ -236,26 +236,6 @@ const server = http.createServer(async (req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host || "localhost"}`);
   const pathname = parsedUrl.pathname;
 
-  // Handle POST routes for saving images or opening directories (desktop mode only)
-  if (req.method === "POST") {
-    if (pathname === "/api/luu-anh" || pathname === "/api/mo-thu-muc") {
-      res.writeHead(403, {
-        "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control": "no-store",
-        "X-Content-Type-Options": "nosniff",
-      });
-      return res.end(JSON.stringify({
-        loi: "Chỉ bản ứng dụng để bàn mới ghi tệp ra đĩa được; trên trình duyệt hãy dùng nút tải về.",
-      }));
-    }
-    res.writeHead(404, {
-      "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "no-store",
-      "X-Content-Type-Options": "nosniff",
-    });
-    return res.end(JSON.stringify({ loi: "Không có đường dẫn này." }));
-  }
-
   // Handle API routes
   if (pathname.startsWith("/api/")) {
     await initPyodidePromise;

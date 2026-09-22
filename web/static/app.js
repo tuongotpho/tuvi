@@ -359,34 +359,6 @@ $("#form-ht").addEventListener("submit", async (e) => {
 /* --------------------- xuất lá số ra ảnh / PDF --------------------- */
 const XUAT_GOI_Y = $("#xuat-trang-thai").textContent;
 
-// Cửa sổ WebView2 của bản .exe không tải tệp về được: bấm nút tải là im lặng,
-// không lỗi, không file. Nên hỏi máy chủ xem đang chạy ở đâu; nếu là bản đóng
-// gói thì nhờ chính máy chủ ghi tệp ra đĩa rồi báo đường dẫn.
-let moiTruong = { dong_goi: false, thu_muc_luu: "" };
-api("/api/moi-truong", {}).then((d) => {
-  moiTruong = d;
-  if (d.dong_goi) $("#nut-mo-thu-muc").hidden = false;
-}).catch(() => {});
-
-async function luuQuaMayChu(kieu, du_lieu) {
-  const [nam, thang, ngay] = $("#ls-ngay").value.split("-").map(Number);
-  const [gio, phut] = $("#ls-gio").value.split(":").map(Number);
-  const u = new URL("/api/luu-anh", location.href);
-  Object.entries({ kieu, ngay, thang, nam, gio, phut, gioi_tinh: $("#ls-gt").value })
-    .forEach(([k, v]) => v != null && u.searchParams.set(k, v));
-  const res = await fetch(u, {
-    method: "POST",
-    headers: du_lieu ? { "Content-Type": "image/png" } : {},
-    body: du_lieu || null,
-  });
-  const kq = await res.json();
-  if (!res.ok) throw new Error(kq.loi || "Không ghi được tệp");
-  return kq;
-}
-
-
-// Máy chủ vẽ sẵn ảnh SVG (vector, chữ tiếng Việt đúng dấu). Ở đây chỉ lo ba việc:
-// tải thẳng SVG, đổi SVG sang PNG bằng canvas, và gọi hộp in của trình duyệt.
 function urlAnh(taiVe) {
   const [nam, thang, ngay] = $("#ls-ngay").value.split("-").map(Number);
   const [gio, phut] = $("#ls-gio").value.split(":").map(Number);
@@ -408,31 +380,9 @@ function taiVe(url, ten) {
   document.body.appendChild(a); a.click(); a.remove();
 }
 
-$("#nut-svg").addEventListener("click", async () => {
-  const trangThai = $("#xuat-trang-thai");
-  if (!moiTruong.dong_goi) {
-    taiVe(urlAnh(true).toString(), tenTep("svg"));
-    trangThai.textContent = "Đang tải tệp SVG về máy.";
-    return;
-  }
-  try {
-    const kq = await luuQuaMayChu("svg", null);
-    trangThai.textContent = `Đã lưu ${kq.ten_tep} (${kq.kb} KB) vào ${kq.thu_muc}`;
-  } catch (err) {
-    trangThai.textContent = `Không lưu được SVG: ${err.message}`;
-  }
-});
-
-$("#nut-mo-thu-muc").addEventListener("click", async () => {
-  const trangThai = $("#xuat-trang-thai");
-  try {
-    const res = await fetch(new URL("/api/mo-thu-muc", location.href), { method: "POST" });
-    const kq = await res.json();
-    if (!res.ok) throw new Error(kq.loi);
-    trangThai.textContent = kq.da_mo ? `Đã mở ${kq.thu_muc}` : `Ảnh nằm ở ${kq.thu_muc}`;
-  } catch (err) {
-    trangThai.textContent = `Không mở được thư mục: ${err.message}`;
-  }
+$("#nut-svg").addEventListener("click", () => {
+  taiVe(urlAnh(true).toString(), tenTep("svg"));
+  $("#xuat-trang-thai").textContent = "Đang tải tệp SVG về máy.";
 });
 
 $("#nut-png").addEventListener("click", async () => {
@@ -463,16 +413,10 @@ $("#nut-png").addEventListener("click", async () => {
     ve.drawImage(anh, 0, 0, khung.width, khung.height);
     URL.revokeObjectURL(nguon);
     const png = await new Promise((xong) => khung.toBlob(xong, "image/png"));
-    if (moiTruong.dong_goi) {
-      const kq = await luuQuaMayChu("png", png);
-      trangThai.textContent = `Đã lưu ${kq.ten_tep} (${kq.kb} KB, `
-        + `${khung.width}×${khung.height} điểm ảnh) vào ${kq.thu_muc}`;
-    } else {
-      const urlPng = URL.createObjectURL(png);
-      taiVe(urlPng, tenTep("png"));
-      setTimeout(() => URL.revokeObjectURL(urlPng), 10000);
-      trangThai.textContent = `Đã tải PNG ${khung.width}×${khung.height} điểm ảnh.`;
-    }
+    const urlPng = URL.createObjectURL(png);
+    taiVe(urlPng, tenTep("png"));
+    setTimeout(() => URL.revokeObjectURL(urlPng), 10000);
+    trangThai.textContent = `Đã tải PNG ${khung.width}×${khung.height} điểm ảnh.`;
   } catch (err) {
     trangThai.textContent = `Không xuất được PNG: ${err.message}`;
   } finally {

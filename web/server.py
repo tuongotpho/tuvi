@@ -11,7 +11,6 @@ với phần đã kiểm thử.
 from __future__ import annotations
 
 import json
-import os
 import socket
 import sys
 import threading
@@ -32,7 +31,6 @@ from tuvi import (ai_luan_giai, chon_ngay, han, hop_tuoi,  # noqa: E402
 from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
-from tuvi.duong_dan import dang_dong_goi, thu_muc_ghi, thu_muc_tai_nguyen  # noqa: E402
 from tuvi.kiem_tra import (LoiDauVao, canh_gio_hop_le, gio_phut_hop_le,  # noqa: E402
                            gioi_tinh_hop_le, nam_hop_le, ngay_duong_hop_le,
                            so_nguyen)
@@ -42,7 +40,7 @@ from tuvi.xuat_anh import ve_la_so_svg  # noqa: E402
 
 bat_utf8()
 
-STATIC = thu_muc_tai_nguyen() / "web" / "static"
+STATIC = Path(__file__).resolve().parent / "static"
 GIO_VN = timezone(timedelta(hours=7))
 
 
@@ -66,25 +64,6 @@ def api_luangiai(q: dict) -> dict:
     ls = _la_so_tu_query(q)
     nam_xem = nam_hop_le(q.get("nam_xem") or hom_nay_vn().year, "Năm xem")
     return luan_giai_la_so(ls, nam_xem)
-
-
-# Cửa sổ WebView2 của bản đóng gói KHÔNG có cơ chế tải tệp về như trình duyệt:
-# bấm nút tải là không có gì xảy ra, cũng không báo lỗi. Nên ở bản .exe, máy chủ
-# tự ghi tệp ra đĩa — nó chạy ngay trên máy người dùng. Chỉ bật khi đã đóng gói,
-# vì lúc đó máy chủ chỉ lắng nghe 127.0.0.1; bản web/server.py mở ra cả mạng LAN
-# thì tuyệt đối không cho ghi tệp theo yêu cầu từ ngoài.
-THU_MUC_ANH = thu_muc_ghi() / "anh"
-KIEU_ANH = {"svg": "image/svg+xml", "png": "image/png"}
-CO_TOI_DA = 30 * 1024 * 1024        # chặn yêu cầu ghi tệp quá lớn
-
-
-def cho_phep_luu() -> bool:
-    return dang_dong_goi()
-
-
-def api_moi_truong(q: dict) -> dict:
-    """Cho giao diện biết đang chạy trong app hay trong trình duyệt."""
-    return {"dong_goi": cho_phep_luu(), "thu_muc_luu": str(THU_MUC_ANH)}
 
 
 def _khong_dau(chuoi: str) -> str:
@@ -270,7 +249,7 @@ TUYEN = {"/api/laso": api_laso, "/api/luangiai": api_luangiai, "/api/han": api_h
          "/api/hoptuoi": api_hoptuoi,
          "/api/phongthuy": api_phongthuy, "/api/ngay": api_ngay,
          "/api/phitinh": api_phitinh, "/api/sao": api_sao,
-         "/api/ai-luangiai": api_ai_luangiai, "/api/moi-truong": api_moi_truong}
+         "/api/ai-luangiai": api_ai_luangiai}
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -316,64 +295,6 @@ class Handler(SimpleHTTPRequestHandler):
                 self._json(500, {"loi": "Lỗi máy chủ. Thử lại sau."})
             return
         super().do_GET()
-
-    def do_POST(self):  # noqa: N802
-        """Chỉ có hai việc, và chỉ chạy ở bản đóng gói: ghi ảnh ra đĩa, mở thư mục."""
-        duong_dan = urlparse(self.path).path
-        if duong_dan not in ("/api/luu-anh", "/api/mo-thu-muc"):
-            self._json(404, {"loi": "Không có đường dẫn này."})
-            return
-        if not cho_phep_luu():
-            self._json(403, {"loi": "Chỉ bản ứng dụng để bàn mới ghi tệp ra đĩa được; "
-                                    "trên trình duyệt hãy dùng nút tải về."})
-            return
-        try:
-            if duong_dan == "/api/mo-thu-muc":
-                self._json(200, self._mo_thu_muc())
-            else:
-                q = {k: v[0] for k, v in parse_qs(urlparse(self.path).query).items()}
-                self._json(200, self._luu_anh(q))
-        except LoiDauVao as e:
-            self._json(400, {"loi": str(e)})
-        except OSError as e:
-            self._json(500, {"loi": f"Không ghi được tệp: {e.strerror or e}"})
-        except (KeyError, ValueError, TypeError, OverflowError):
-            self._json(400, {"loi": "Tham số không hợp lệ."})
-        except Exception:  # noqa: BLE001
-            traceback.print_exc()
-            self._json(500, {"loi": "Lỗi máy chủ. Thử lại sau."})
-
-    def _luu_anh(self, q: dict) -> dict:
-        kieu = (q.get("kieu") or "svg").lower()
-        if kieu not in KIEU_ANH:
-            raise LoiDauVao("Chỉ lưu được ảnh svg hoặc png.")
-        svg, ten_svg = api_laso_svg(q)       # cũng là bước kiểm đầu vào
-        ten_tep = ten_svg[:-4] + "." + kieu
-        if kieu == "svg":
-            du_lieu = svg.encode("utf-8")
-        else:
-            # PNG do trình duyệt dựng từ chính ảnh SVG này rồi gửi lên; máy chủ
-            # không có thư viện đồ họa để tự vẽ ra ảnh chấm điểm.
-            co = int(self.headers.get("Content-Length") or 0)
-            if not 0 < co <= CO_TOI_DA:
-                raise LoiDauVao("Thiếu dữ liệu ảnh PNG hoặc ảnh quá lớn.")
-            du_lieu = self.rfile.read(co)
-            if not du_lieu.startswith(b"\x89PNG\r\n\x1a\n"):
-                raise LoiDauVao("Dữ liệu gửi lên không phải ảnh PNG.")
-        THU_MUC_ANH.mkdir(parents=True, exist_ok=True)
-        tep = THU_MUC_ANH / ten_tep
-        tep.write_bytes(du_lieu)
-        return {"duong_dan": str(tep), "thu_muc": str(THU_MUC_ANH),
-                "ten_tep": ten_tep, "kb": round(len(du_lieu) / 1024)}
-
-    def _mo_thu_muc(self) -> dict:
-        THU_MUC_ANH.mkdir(parents=True, exist_ok=True)
-        # startfile chỉ có trên Windows; máy khác thì báo đường dẫn để tự mở.
-        mo = getattr(os, "startfile", None)
-        if mo is None:
-            return {"da_mo": False, "thu_muc": str(THU_MUC_ANH)}
-        mo(str(THU_MUC_ANH))
-        return {"da_mo": True, "thu_muc": str(THU_MUC_ANH)}
 
     def _svg(self, svg: str, ten_tep: str, tai_ve: bool = False) -> None:
         body = svg.encode("utf-8")

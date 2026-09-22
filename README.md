@@ -9,7 +9,7 @@ data/       26 bộ dữ liệu JSON — tri thức thuần, không lẫn mã
 tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, luận giải, xem ngày, chọn ngày, xuất ảnh
 web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 tab
 video/      dựng video dọc cho TikTok từ dữ liệu engine
-app.py      chạy như ứng dụng để bàn (cửa sổ riêng); tuvi.spec + build.bat đóng thành .exe
+server.js   lớp vỏ Node chạy engine Python qua Pyodide (để triển khai nơi chỉ có Node)
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, tra cứu dòng lệnh, tái tạo fixture đối chiếu
 tests/      bộ kiểm thử, trong đó có các mốc đối chiếu với hai bộ mã tử vi độc lập
@@ -18,8 +18,8 @@ SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
 
 Không phụ thuộc thư viện ngoài. Chỉ cần Python 3.10 trở lên.
-Riêng khâu xuất tệp video cần thêm hai gói, nêu ở mục cuối; đóng gói .exe cần thêm
-hai gói nữa, nêu ở mục "Ứng dụng để bàn".
+Riêng khâu xuất tệp video cần thêm hai gói, nêu ở mục cuối. Chạy trên môi trường
+chỉ có Node thì cần thêm `pyodide` — xem mục dưới.
 
 ## Giao diện web
 
@@ -118,16 +118,8 @@ Trong tab **Lá số**, dưới địa bàn có ba nút:
 đắc tính viết nhỏ trên tên sao, Tuần Triệt, cung Thân, đại hạn từng cung và
 thiên bàn ở giữa.
 
-**Trong app `.exe` tệp được ghi thẳng ra thư mục `anh/` cạnh `Tu-Vi.exe`**, không
-phải tải về. Lý do: cửa sổ WebView2 của bản đóng gói không có cơ chế tải tệp như
-trình duyệt — bấm nút tải là im lặng, không báo lỗi, không có tệp. Nên ở bản app,
-chính máy chủ (đang chạy trên máy người dùng) ghi tệp rồi báo đường dẫn, kèm nút
-**Mở thư mục ảnh**. Đường ghi tệp này **chỉ bật ở bản đóng gói**, vì lúc đó máy chủ
-chỉ lắng nghe 127.0.0.1; bản `web/server.py` mở ra cả mạng LAN nên trả 403.
-
 Máy chủ vẽ ảnh bằng **thư viện chuẩn của Python**, không thêm gói nào: chỉ ghép
-chuỗi XML của SVG. Nhờ vậy bản đóng gói `.exe` cũng xuất ảnh được mà không phình
-thêm MB nào. Chữ trong SVG là chữ thật nên tiếng Việt đúng dấu trên mọi máy,
+chuỗi XML của SVG. Chữ trong SVG là chữ thật nên tiếng Việt đúng dấu trên mọi máy,
 không phải nhúng phông. Việc đổi sang PNG làm ngay trong trình duyệt bằng canvas.
 
 Chiều cao ô cung **tự tính theo cung nhiều sao nhất** nên không bao giờ có chữ
@@ -166,51 +158,6 @@ GET /api/ai-luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam&nam_xem=2026
 ```
 
 Model mặc định `gemini-2.5-flash` (đổi bằng `GEMINI_MODEL`). Prompt ≈ 13.000 ký tự.
-
-## Ứng dụng để bàn (.exe, không cần trình duyệt)
-
-```bash
-python app.py                # cửa sổ riêng, cần pywebview
-python app.py --kiem-tra     # bật máy chủ, tự gọi 5 API rồi thoát — không mở cửa sổ
-```
-
-Đóng gói thành tệp chạy độc lập: bấm `build.bat` (hoặc
-`python -m PyInstaller tuvi.spec --noconfirm`). Kết quả ở `dist/Tu-Vi/Tu-Vi.exe`,
-**39 MB**, chép cả thư mục đi máy khác chạy được, không cần cài Python.
-`build.bat` tự chạy `--kiem-tra` trên bản vừa dựng, hỏng là báo ngay.
-
-Vài điều đã tính sẵn:
-
-| Việc | Cách làm |
-|---|---|
-| Cổng mạng | Xin hệ điều hành một cổng trống, không cố định 8000 nên không đụng app khác |
-| Phạm vi | Chỉ lắng nghe `127.0.0.1` — khác `web/server.py` mở ra cả mạng LAN; ngày giờ sinh không ra khỏi máy |
-| Khóa Gemini | Đặt tệp `.env` **cạnh `Tu-Vi.exe`** (không phải trong gói); cache bài AI cũng ghi cạnh đó |
-| Lỗi | Không có cửa sổ đen, mọi thứ in ra vào `tuvi.log` cạnh `Tu-Vi.exe` |
-| Phần video | Cố ý **không** gói: kéo theo Playwright và ffmpeg là phình lên vài trăm MB. Vẫn chạy từ mã nguồn như thường |
-
-Cần hai gói để dựng: `pip install pyinstaller pywebview` (`build.bat` tự cài nếu thiếu).
-Cửa sổ dùng WebView2 — Windows 11 có sẵn.
-
-## Chạy trên môi trường chỉ có Node (AI Studio, Cloud Run)
-
-`server.js` là **lớp vỏ mỏng**, không phải bản viết lại. Nó nạp Pyodide (Python
-biên dịch sang WebAssembly) rồi `import web.server` và gọi thẳng bảng định tuyến
-`server.TUYEN` của Python. Nghĩa là:
-
-* Engine tử vi vẫn là **đúng mã Python** đã có 120 bài kiểm thử, không dịch sang JS.
-* **Thêm API mới vào `TUYEN` trong `web/server.py` là bản web có ngay**, không
-  phải sửa `server.js`.
-* Triển khai được lên container chỉ cài Node, không cần Python trong ảnh hệ điều hành.
-
-```bash
-npm install     # kéo pyodide
-npm start       # hoặc npm run dev — nghe cổng $PORT, mặc định 3000
-```
-
-Đã đối chiếu bản chạy thật với Python tại máy: 10 lá số × 118 mục khớp
-1180/1180; luận giải, xem hạn, phong thủy, xem ngày, chọn ngày trùng khít; ảnh
-SVG giống nhau từng ký tự.
 
 ## Dựng cơ sở dữ liệu SQLite
 
