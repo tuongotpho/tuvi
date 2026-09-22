@@ -13,6 +13,8 @@ from __future__ import annotations
 import json
 import socket
 import sys
+import threading
+import time
 import traceback
 from datetime import date, datetime, timedelta, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -22,7 +24,7 @@ from urllib.parse import parse_qs, urlparse
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tuvi import chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import ai_luan_giai, chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
@@ -62,6 +64,45 @@ def api_luangiai(q: dict) -> dict:
     ls = _la_so_tu_query(q)
     nam_xem = nam_hop_le(q.get("nam_xem") or hom_nay_vn().year, "Năm xem")
     return luan_giai_la_so(ls, nam_xem)
+
+
+# Gọi Gemini tốn tiền và chậm (5–20 giây) nên có hai khóa van: tối đa
+# AI_DONG_THOI lượt cùng lúc, và mỗi địa chỉ IP phải cách nhau AI_GIAY_MOI_IP giây.
+AI_DONG_THOI = 2
+AI_GIAY_MOI_IP = 15
+_ai_van = threading.BoundedSemaphore(AI_DONG_THOI)
+_ai_lan_cuoi: dict[str, float] = {}
+_ai_khoa = threading.Lock()
+
+
+def api_ai_luangiai(q: dict, ip: str = "-") -> dict:
+    """Luận giải bằng Gemini; cùng tham số với /api/luangiai."""
+    if not ai_luan_giai.khoa_api():
+        raise LoiCauHinh("Máy chủ chưa cấu hình GEMINI_API_KEY nên chưa bật được luận giải AI.")
+    # Kiểm đầu vào trước, rồi mới tính lượt: gõ sai ngày không làm mất 15 giây chờ.
+    ls = _la_so_tu_query(q)
+    nam_xem = nam_hop_le(q.get("nam_xem") or hom_nay_vn().year, "Năm xem")
+    with _ai_khoa:
+        bay_gio = time.monotonic()
+        if bay_gio - _ai_lan_cuoi.get(ip, -1e9) < AI_GIAY_MOI_IP:
+            raise LoiQuaTai(f"Mỗi {AI_GIAY_MOI_IP} giây chỉ gọi AI được một lần, đợi chút rồi thử lại.")
+        _ai_lan_cuoi[ip] = bay_gio
+        if len(_ai_lan_cuoi) > 5000:   # không để bảng IP phình mãi
+            _ai_lan_cuoi.clear()
+    if not _ai_van.acquire(timeout=0.5):
+        raise LoiQuaTai("Đang có người khác dùng AI, thử lại sau vài giây.")
+    try:
+        return ai_luan_giai.luan_giai_ai(ls, nam_xem)
+    finally:
+        _ai_van.release()
+
+
+class LoiCauHinh(RuntimeError):
+    """Thiếu cấu hình phía máy chủ (503)."""
+
+
+class LoiQuaTai(RuntimeError):
+    """Gọi dồn dập (429)."""
 
 
 def _gio_tu_query(q: dict) -> tuple[int, int]:
@@ -165,7 +206,8 @@ def api_viec(q: dict) -> dict:
 TUYEN = {"/api/laso": api_laso, "/api/luangiai": api_luangiai, "/api/han": api_han,
          "/api/chonngay": api_chonngay, "/api/viec": api_viec,
          "/api/phongthuy": api_phongthuy, "/api/ngay": api_ngay,
-         "/api/phitinh": api_phitinh, "/api/sao": api_sao}
+         "/api/phitinh": api_phitinh, "/api/sao": api_sao,
+         "/api/ai-luangiai": api_ai_luangiai}
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -178,7 +220,16 @@ class Handler(SimpleHTTPRequestHandler):
             q = {k: v[0] for k, v in
                  parse_qs(urlparse(self.path).query).items()}
             try:
-                self._json(200, TUYEN[duong_dan](q))
+                if duong_dan == "/api/ai-luangiai":
+                    self._json(200, api_ai_luangiai(q, self.client_address[0]))
+                else:
+                    self._json(200, TUYEN[duong_dan](q))
+            except LoiCauHinh as e:
+                self._json(503, {"loi": str(e)})
+            except LoiQuaTai as e:
+                self._json(429, {"loi": str(e)})
+            except ai_luan_giai.LoiGemini as e:
+                self._json(502, {"loi": str(e)})
             except LoiDauVao as e:
                 # Thông báo do chính kho này viết, an toàn để hiện cho người dùng.
                 self._json(400, {"loi": str(e)})
@@ -204,6 +255,10 @@ class Handler(SimpleHTTPRequestHandler):
 
     def end_headers(self):  # noqa: D102 — thêm header chung cho cả file tĩnh
         self.send_header("Referrer-Policy", "no-referrer")
+        if not self.path.startswith("/api/"):
+            # File tĩnh: trình duyệt phải hỏi lại máy chủ mỗi lần (304 nếu chưa đổi),
+            # kẻo cập nhật web xong người dùng vẫn chạy app.js cũ trong cache.
+            self.send_header("Cache-Control", "no-cache")
         super().end_headers()
 
     def log_message(self, fmt, *args):  # chỉ in lỗi, và không in query string

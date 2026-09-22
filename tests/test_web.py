@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import sys
 import threading
 import unittest
@@ -12,6 +13,7 @@ import urllib.error
 import urllib.request
 from http.server import ThreadingHTTPServer
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -108,6 +110,30 @@ class TestMayChuWeb(unittest.TestCase):
             ma, body = self.goi(p)
             self.assertEqual(ma, 404, p)
             self.assertNotIn(b"def do_GET", body)
+
+    def test_ai_khong_co_khoa_tra_503(self):
+        from tuvi import ai_luan_giai
+        with mock.patch.dict(os.environ, {"GEMINI_API_KEY": ""}),              mock.patch.object(ai_luan_giai, "TEP_ENV", Path("/khong/co/.env")):
+            ma, d = self.json("/api/ai-luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam")
+        self.assertEqual(ma, 503)
+        self.assertIn("GEMINI_API_KEY", d["loi"])
+
+    def test_ai_goi_duoc_va_chan_goi_don_dap(self):
+        from tuvi import ai_luan_giai
+        ai_luan_giai._cache_bo_nho.clear()
+        server._ai_lan_cuoi.clear()
+        bai = "## Bài giả" + chr(10) + "Nội dung."
+        gia = lambda prompt, model, khoa, thoi_gian_cho=90: bai  # noqa: E731
+        with mock.patch.dict(os.environ, {"GEMINI_API_KEY": "KHOA-THU"}),              mock.patch.object(ai_luan_giai, "_goi_gemini", gia),              mock.patch.object(ai_luan_giai, "THU_MUC_CACHE", Path(os.devnull)):
+            ma, d = self.json("/api/ai-luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam&nam_xem=2026")
+            self.assertEqual(ma, 200, d)
+            self.assertEqual(d["van_ban"], bai)
+            self.assertFalse(d["tu_cache"])
+            # gọi ngay lần hai từ cùng IP -> 429
+            ma2, d2 = self.json("/api/ai-luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam&nam_xem=2026")
+            self.assertEqual(ma2, 429)
+        ai_luan_giai._cache_bo_nho.clear()
+        server._ai_lan_cuoi.clear()
 
     def test_header_an_toan(self):
         url = f"http://127.0.0.1:{self.cong}/api/viec"

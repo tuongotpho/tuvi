@@ -22,7 +22,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tuvi import chon_ngay, han, la_so, luan_giai, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import (ai_luan_giai, chon_ngay, han, la_so, luan_giai, ngay_gio,  # noqa: E402
+                  phong_thuy)
 from tuvi.canchi import DIA_CHI  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
 
@@ -78,6 +79,14 @@ def main() -> int:
     s.add_argument("--nam-xem", type=int, default=None,
                    help="năm dương lịch để đánh dấu đại hạn đang đi")
 
+    s = sub.add_parser("ai", help="Luận giải bằng Gemini (cần GEMINI_API_KEY)")
+    s.add_argument("ngay", help="dd/mm/yyyy dương lịch")
+    s.add_argument("gio", help="giờ sinh 0-23 hoặc tên canh giờ")
+    s.add_argument("gioi_tinh", choices=["nam", "nu"])
+    s.add_argument("--nam-xem", type=int, default=None)
+    s.add_argument("--model", default=None, help="mặc định lấy GEMINI_MODEL hoặc gemini-2.5-flash")
+    s.add_argument("--chi-prompt", action="store_true", help="chỉ in prompt, không gọi Gemini")
+
     s = sub.add_parser("phitinh", help="Cửu cung phi tinh của một năm")
     s.add_argument("nam", type=int)
 
@@ -108,6 +117,19 @@ def main() -> int:
         d, m, y = _ngay(a.ngay)
         ls = la_so.lap_la_so(d, m, y, _gio(a.gio), gioi_tinh=a.gioi_tinh)
         _in(luan_giai.luan_giai_la_so(ls, a.nam_xem))
+    elif a.lenh == "ai":
+        d, m, y = _ngay(a.ngay)
+        ls = la_so.lap_la_so(d, m, y, _gio(a.gio), gioi_tinh=a.gioi_tinh)
+        if a.chi_prompt:
+            print(ai_luan_giai.dung_prompt(ls, a.nam_xem))
+        else:
+            try:
+                kq = ai_luan_giai.luan_giai_ai(ls, a.nam_xem, a.model)
+            except (ValueError, ai_luan_giai.LoiGemini) as e:
+                print(f"Không luận giải được: {e}", file=sys.stderr)
+                return 1
+            print(f"[{kq['model']}{' · từ cache' if kq['tu_cache'] else ''}]\n")
+            print(kq["van_ban"])
     elif a.lenh == "phitinh":
         _in(phong_thuy.phi_tinh_nam(a.nam))
     elif a.lenh == "chonngay":

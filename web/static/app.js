@@ -140,6 +140,9 @@ function veLaSo(d) {
   $("#ls-goi-y").hidden = true;
   $("#ls-luan-giai").hidden = true;
   $("#ls-luan-giai").innerHTML = "";
+  $("#hang-ai").hidden = true;
+  $("#ls-ai").hidden = true;
+  $("#ls-ai").innerHTML = "";
 }
 
 /* --------------------------- luận giải chi tiết --------------------------- */
@@ -229,7 +232,44 @@ function veLuanGiai(d) {
     </div>
     <div class="lg-phan the"><h3>Lưu ý</h3><ul class="lg-luu-y">${d.luu_y.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></div>`;
   $("#ls-luan-giai").hidden = false;
+  $("#hang-ai").hidden = false;
 }
+
+/* ------------------------- luận giải bằng AI ------------------------- */
+// Markdown tối giản -> HTML, luôn escape trước: ## tiêu đề, - gạch đầu dòng, **đậm**, đoạn văn.
+function mdSangHtml(md) {
+  const dong = esc(md).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").split("\n");
+  let html = "", trongDs = false, doan = [];
+  const xaDoan = () => { if (doan.length) { html += `<p>${doan.join(" ")}</p>`; doan = []; } };
+  const dongDs = () => { if (trongDs) { html += "</ul>"; trongDs = false; } };
+  for (const d of dong) {
+    const t = d.trim();
+    if (/^#{1,6}\s/.test(t)) { xaDoan(); dongDs(); html += `<h4>${t.replace(/^#+\s*/, "")}</h4>`; }
+    else if (/^[-*]\s+/.test(t)) { xaDoan(); if (!trongDs) { html += "<ul>"; trongDs = true; } html += `<li>${t.replace(/^[-*]\s+/, "")}</li>`; }
+    else if (t === "") { xaDoan(); dongDs(); }
+    else doan.push(t);
+  }
+  xaDoan(); dongDs();
+  return html;
+}
+
+$("#nut-ai").addEventListener("click", async () => {
+  const [nam, thang, ngay] = $("#ls-ngay").value.split("-").map(Number);
+  const [gio, phut] = $("#ls-gio").value.split(":").map(Number);
+  const nut = $("#nut-ai"), o = $("#ls-ai");
+  nut.disabled = true; nut.textContent = "Gemini đang viết…";
+  o.hidden = false; o.innerHTML = '<p class="goi-y">Đang gửi số liệu lá số cho Gemini…</p>';
+  try {
+    const kq = await api("/api/ai-luangiai", { ngay, thang, nam, gio, phut,
+      gioi_tinh: $("#ls-gt").value, nam_xem: $("#ls-nam-xem").value });
+    o.innerHTML = `<div class="lg-phan"><h3>Luận giải bằng AI</h3>
+      <p class="goi-y">Bài do ${esc(kq.model)} viết${kq.tu_cache ? " (lấy từ cache)" : ""} trên nền số liệu đã tính ở trên;
+        AI có thể diễn đạt chưa chuẩn — đối chiếu tên sao, cung với lá số khi thấy lạ.</p>
+      <div class="ai-van-ban">${mdSangHtml(kq.van_ban)}</div></div>`;
+    o.scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (err) { baoLoi(o, err); }
+  finally { nut.disabled = false; nut.textContent = "Luận giải bằng AI (Gemini)"; }
+});
 
 $("#nut-luan-giai").addEventListener("click", async () => {
   const [nam, thang, ngay] = $("#ls-ngay").value.split("-").map(Number);

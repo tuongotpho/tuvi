@@ -37,6 +37,7 @@
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+[hidden] { display: none !important; }  /* thuộc tính hidden phải thắng mọi display của lớp */
 body {
   margin: 0; background: var(--nen); color: var(--chu);
   font: 15px/1.6 "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -264,3 +265,6 @@ footer {
 .nhan-tt.yeu { background: color-mix(in srgb, var(--hung) 10%, transparent); color: var(--hung); opacity: .85; }
 .lg-dai-han td.hien-tai, .lg-dai-han tr.hien-tai td { color: var(--nhan); font-weight: 700; }
 .lg-luu-y { color: var(--chu-mo); font-size: 12.5px; }
+.ai-van-ban { line-height: 1.65; font-size: 14.5px; }
+.ai-van-ban h4 { margin: 16px 0 6px; font-size: 15px; color: var(--nhan); text-transform: none; letter-spacing: 0; }
+.ai-van-ban p { margin: 6px 0; }

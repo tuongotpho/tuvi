@@ -102,6 +102,30 @@ kq = chon_ngay.chon_ngay(1987, date(2026, 10, 10), date(2026, 11, 7),
 kq["ngay_tot"][0]["duong_lich"], kq["so_chan_xung_tuoi"]
 ```
 
+## Luận giải bằng AI (Gemini)
+
+Nút **Luận giải bằng AI** dưới phần luận giải gửi *toàn bộ số liệu đã tính* (109 sao theo
+cung, Tứ Hóa, Tuần Triệt, cách cục, đại hạn, tiểu hạn, sao lưu của năm xem) cùng bộ quy tắc
+biên tập trong `content/prompts/luan_giai_la_so.md` cho Gemini viết thành bài. Mô hình chỉ
+viết văn, không được tự an sao hay tính lại ngày — mọi tên sao, cung trong bài phải có trong
+số liệu gửi lên. Cùng một lá số gọi lại lấy từ cache (`build/cache_ai/`), không tốn thêm.
+
+Cần khóa API: sao chép `.env.example` thành `.env` và điền `GEMINI_API_KEY` (lấy tại
+aistudio.google.com/apikey), hoặc đặt biến môi trường. Khóa chỉ nằm ở máy chủ, không bao giờ
+ra trình duyệt; `.env` đã nằm trong `.gitignore`. Máy chủ giới hạn 2 lượt gọi đồng thời và mỗi
+địa chỉ IP 15 giây một lượt. Thiếu khóa thì API trả 503 kèm lý do, phần còn lại của web vẫn chạy.
+
+```bash
+python scripts/tra_cuu.py ai 20/09/1990 14 nam --nam-xem 2026                # gọi Gemini
+python scripts/tra_cuu.py ai 20/09/1990 14 nam --nam-xem 2026 --chi-prompt   # xem prompt, không gọi
+```
+
+```
+GET /api/ai-luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam&nam_xem=2026
+```
+
+Model mặc định `gemini-2.5-flash` (đổi bằng `GEMINI_MODEL`). Prompt ≈ 13.000 ký tự.
+
 ## Dựng cơ sở dữ liệu SQLite
 
 ```bash

@@ -12,12 +12,13 @@ Các mô-đun chính:
     kiem_tra    kiểm tra đầu vào, ngoại lệ LoiDauVao
     luan_giai   luận giải lá số: tổng quan, tứ hóa, 12 cung, đại hạn
     luu_nien    xem một năm: tiểu hạn, đại hạn đang đi, sao lưu
+    ai_luan_giai luận giải bằng Gemini trên nền số liệu đã tính (cần GEMINI_API_KEY)
     store       nạp dữ liệu JSON trong thư mục data/
 """
-from . import (amlich, canchi, chon_ngay, han, kiem_tra, la_so,  # noqa: F401
-               luan_giai, luu_nien, ngay_gio, phong_thuy, store)
+from . import (ai_luan_giai, amlich, canchi, chon_ngay, han, kiem_tra,  # noqa: F401
+               la_so, luan_giai, luu_nien, ngay_gio, phong_thuy, store)
 
 __version__ = "2.0.0"  # 2.x: âm lịch sửa lỗi floor, đủ 109 sao, luận giải, 92 cách cục
 
-__all__ = ["amlich", "canchi", "chon_ngay", "han", "kiem_tra", "la_so",
-           "luan_giai", "luu_nien", "ngay_gio", "phong_thuy", "store"]
+__all__ = ["ai_luan_giai", "amlich", "canchi", "chon_ngay", "han", "kiem_tra",
+           "la_so", "luan_giai", "luu_nien", "ngay_gio", "phong_thuy", "store"]
