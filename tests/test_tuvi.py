@@ -276,6 +276,60 @@ class TestAnSaoDoiChieuLasotuvi(unittest.TestCase):
         self.assertEqual((vi_tri["Tràng Sinh"] - vi_tri["Dưỡng"]) % 12, buoc % 12)
 
 
+class TestAnSaoDoiChieuIztro(unittest.TestCase):
+    """Nguồn đối chiếu ĐỘC LẬP thứ hai: 94 sao × 60 lá số theo SylarLong/iztro (MIT).
+
+    iztro viết bằng JS theo phái Trung Châu, không chung dòng mã với lasotuvi; hai
+    nguồn cùng khớp thì vị trí sao khó sai ngẫu nhiên. Bộ mẫu sinh bằng
+    scripts/sinh_fixture_iztro.js; 5 sao iztro an theo phái khác được bỏ và ghi ở
+    SOURCES.md mục E. Fixture ghi cả ngày dương iztro đổi ra, dùng kiểm luôn amlich.
+    """
+
+    MAU = Path(__file__).parent / "fixtures" / "iztro_mau.json"
+
+    def setUp(self):
+        self.bo = json.loads(self.MAU.read_text(encoding="utf-8"))
+
+    def _la_so(self, m):
+        d, t, n = m["am_lich"]
+        return la_so.lap_la_so(d, t, n, DIA_CHI.index(m["gio"]) * 2, 0,
+                               gioi_tinh=m["gioi_tinh"], duong_lich=False)
+
+    def test_khop_vi_tri_sao(self):
+        so_sao = 0
+        for m in self.bo["la_so"]:
+            ls = self._la_so(m)
+            vi_tri = {s["ten"].lower(): c["chi"] for c in ls["cac_cung"] for s in c["sao"]}
+            for ten, chi in m["sao"].items():
+                self.assertEqual(vi_tri.get(ten), chi, f"{ten} — {m['am_lich']} {m['gio']}")
+                so_sao += 1
+        self.assertEqual(so_sao, 60 * self.bo["so_sao_moi_la_so"])
+
+    def test_khop_menh_than_cuc_tuan_triet(self):
+        for m in self.bo["la_so"]:
+            ls = self._la_so(m)
+            than = next(c["chi"] for c in ls["cac_cung"] if c["la_cung_than"])
+            self.assertEqual(ls["cung_menh"], m["cung_menh"], m["am_lich"])
+            self.assertEqual(than, m["cung_than"], m["am_lich"])
+            self.assertEqual(ls["cuc"].split()[0], m["cuc"], m["am_lich"])
+            self.assertIn(m["tuan"], ls["tuan"], m["am_lich"])
+            self.assertIn(m["triet"], ls["triet"], m["am_lich"])
+
+    # iztro đổi âm -> dương theo lịch Trung Quốc (UTC+8). Điểm sóc tháng 6 âm 1996 rơi
+    # 23h15 ngày 15/7 giờ Việt Nam nhưng đã 0h15 ngày 16/7 giờ Bắc Kinh, nên tháng đó
+    # hai lịch lệch nhau một ngày: kho (đã khớp 100% với Hồ Ngọc Đức) phải ra 12/8/1996,
+    # iztro ra 13/8/1996. Đây là ca duy nhất trong 60 mẫu; ghi rõ để không ai "sửa" theo iztro.
+    LECH_LICH_VIET_TRUNG = {(29, 6, 1996): "1996-8-12"}
+
+    def test_khop_ngay_duong_lich(self):
+        for m in self.bo["la_so"]:
+            d, t, n = m["am_lich"]
+            sd = lunar_to_solar(d, t, n)
+            mong_doi = self.LECH_LICH_VIET_TRUNG.get((d, t, n), m["duong_lich"])
+            self.assertEqual(f"{sd.year}-{sd.month}-{sd.day}", mong_doi, m["am_lich"])
+        self.assertEqual(len(self.LECH_LICH_VIET_TRUNG), 1)
+
+
 class TestGioSinh(unittest.TestCase):
     def test_canh_gio_va_gio_dong_ho_cho_cung_la_so(self):
         # 14:00 = giờ Mùi; nhập theo canh (đầu canh 14h) phải cho lá số y hệt.

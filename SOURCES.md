@@ -11,8 +11,8 @@ một nguồn độc lập, bảng nào chỉ chép tay thì phải ghi rõ là 
 | Mã | Nguồn | Giấy phép | Dùng vào việc gì |
 |---|---|---|---|
 | S-01 | Hồ Ngọc Đức — *Âm lịch Việt Nam*, `informatik.uni-leipzig.de/~duc/amlich/` | Công bố công khai, được cài lại rộng rãi | Thuật toán đổi âm — dương lịch theo múi giờ UTC+7 trong `tuvi/amlich.py` |
-| S-02 | [doanguyen/lasotuvi](https://github.com/doanguyen/lasotuvi) — an sao tử vi bằng Python | MIT | Đối chiếu tự động vị trí 109 sao trong `tuvi/la_so.py` (`tests/fixtures/lasotuvi_mau.json`, 60 lá số); trích danh mục sao và ma trận miếu vượng đắc hãm cho `data/tu_vi/sao.json`. Lưu ý S-02 ghi id 38 là "Quan phù" — thực ra là Quan Phủ vòng Lộc Tồn, kho này đã sửa |
-| S-03 | [SylarLong/iztro](https://github.com/SylarLong/iztro) — thư viện Tử Vi Đẩu Số đa ngôn ngữ | MIT | Tham khảo cấu trúc dữ liệu lá số |
+| S-02 | [doanguyen/lasotuvi](https://github.com/doanguyen/lasotuvi) — an sao tử vi bằng Python | MIT | Đối chiếu tự động vị trí 99 sao × 60 lá số trong `tuvi/la_so.py` (`tests/fixtures/lasotuvi_mau.json`, **tái tạo được** từ gói `lasotuvi==0.1.2` trên PyPI bằng `scripts/sinh_fixture_lasotuvi.py` — kiểm lại 22/09/2026: 5.940/5.940 vị trí khớp); trích danh mục sao và ma trận miếu vượng đắc hãm cho `data/tu_vi/sao.json`. Lưu ý S-02 ghi id 38 là "Quan phù" — thực ra là Quan Phủ vòng Lộc Tồn, kho này đã sửa |
+| S-03 | [SylarLong/iztro](https://github.com/SylarLong/iztro) — thư viện Tử Vi Đẩu Số đa ngôn ngữ (JS, phái Trung Châu) | MIT | **Nguồn đối chiếu độc lập thứ hai**, không chung dòng mã với S-02: 94 sao + Mệnh, Thân, Cục, Tuần, Triệt × 60 lá số (`tests/fixtures/iztro_mau.json`, sinh bằng `scripts/sinh_fixture_iztro.js` với iztro 2.6.1). Những chỗ kho *khác* S-02 (Khôi Việt, Tứ Hóa can Canh, Phá Toái, Thai — Dưỡng) thì iztro *đồng ý với kho*. 5 sao iztro an theo phái khác ghi ở mục E. Lịch âm của iztro là lịch Trung Quốc (UTC+8): trong 60 mẫu có ca 29/6/1996 lệch kho một ngày, kho đúng theo lịch Việt Nam (xem `TestAnSaoDoiChieuIztro`) |
 | S-04 | [airicyu/fortel-ziweidoushu](https://github.com/airicyu/fortel-ziweidoushu) — theo phái Trung Châu | Mã nguồn mở | Tham khảo biến thể trường phái |
 | S-05 | [Renhuai123/ziwei-doushu](https://github.com/Renhuai123/ziwei-doushu) — engine kèm kho cổ tịch và hệ tứ hóa | Mã nguồn mở | Tham khảo hệ tứ hóa và kho cách cục |
 | S-06 | [ruijayfeng/ziwei](https://github.com/ruijayfeng/ziwei) — ZiweiKnows | Mã nguồn mở | Tham khảo cách trình bày kết quả |
@@ -67,20 +67,28 @@ có bản quyền từ chúng; chỉ dùng phần tri thức truyền thống đ
 - *Hiệp Kỷ Biện Phương Thư*
 - *Lịch vạn niên* (nhiều bản lưu hành ở Việt Nam, khác nhau ở bảng Sát chủ)
 
-## D. Những gì KHÔNG tìm được
+## D. Kết quả đối chiếu chéo hai nguồn mã (22/09/2026)
 
-Ghi lại để lần sau khỏi tìm lại:
+Cùng 60 lá số (âm lịch, giờ theo chi, giới tính), so `tuvi/la_so.py` với hai bộ mã
+độc lập nhau:
 
-1. **Không có API miễn phí, ổn định** cho tử vi hoặc lịch vạn niên tiếng Việt.
-   Mọi dịch vụ tìm thấy đều là trang web đóng, không có tài liệu API công khai.
-2. **Không có bộ dữ liệu mở** dạng CSV/JSON cho 109 sao tử vi kèm luận giải tiếng
-   Việt. Phần ý nghĩa trong `data/tu_vi/sao.json` được viết mới cho kho này.
-3. **Bảng Sát chủ** có quá nhiều dị bản mâu thuẫn nên đã chủ động bỏ ra khỏi kho
-   (xem ghi chú trong `data/lich/ngay_kieng.json`).
-4. Trong phiên làm việc dựng kho này, phần lớn tên miền tiếng Việt bị chính sách
-   mạng của môi trường chặn, nên việc đối chiếu dựa vào kết quả tìm kiếm và vào mã
-   nguồn mở tải được từ GitHub. Khi có điều kiện truy cập đầy đủ, nên tra lại trực
-   tiếp các bảng ở mục B.
+| Nguồn | Phạm vi so | Khớp | Lệch | Kết luận |
+|---|---|---|---|---|
+| S-02 lasotuvi 0.1.2 (Python, Việt Nam) | 99 sao + Tuần Triệt | 5.940 / 5.940 | 0 | Fixture tái tạo được, không phải file chép tay |
+| S-03 iztro 2.6.1 (JS, Trung Châu) | 105 mục (sao, Mệnh, Thân, Cục, Tuần, Triệt) | 99 mục khớp 60/60 | 5 sao khác phái + 1 mục ánh xạ sai tên | Toàn bộ 14 chính tinh, Tứ Hóa, Lộc Tồn — Kình Đà, Khôi Việt, Xương Khúc, Tả Hữu, Không Kiếp, ba vòng Tràng Sinh / Bác Sĩ / Thái Tuế khớp cả hai nguồn |
+
+Năm sao lệch với iztro đều là khác trường phái đã tra lại nguồn Việt (mục E), không
+phải lỗi tính. Ca 29/6/1996 lệch ngày dương là do lịch Trung Quốc (UTC+8) khác lịch
+Việt Nam (UTC+7) đúng tháng đó — kho đúng.
+
+Cách chạy lại (không cần cho CI, fixture đã nằm trong kho):
+
+```bash
+pip install --no-deps --target build/lasotuvi lasotuvi==0.1.2
+python scripts/sinh_fixture_lasotuvi.py --kiem-tra
+npm install --no-save iztro@2.6.1
+node scripts/sinh_fixture_iztro.js --kiem-tra
+```
 
 ## E. Trường phái đang dùng
 
@@ -96,6 +104,25 @@ Khi các trường phái khác nhau, kho này chọn như sau và ghi chú ngay 
 | Hỏa Tinh — Linh Tinh tuổi Tỵ Dậu Sửu | Hỏa khởi Mão, Linh khởi Tuất | S-02 khởi Hỏa Tuất, Linh Mão |
 | Phá Toái | Tý Ngọ Mão Dậu tại Tỵ; Dần Thân Tỵ Hợi tại Dậu; Thìn Tuất Sửu Mùi tại Sửu | S-02 đảo hai nhóm đầu |
 | Thiên Giải | Khởi Thân là tháng Giêng, đếm thuận từng cung đến tháng sinh | S-02 đếm nhảy hai cung một tháng |
-| Thai — Dưỡng | Thứ tự Tuyệt — Thai — Dưỡng — Tràng Sinh | S-02 đặt Dưỡng trước Thai |
+| Thai — Dưỡng | Thứ tự Tuyệt — Thai — Dưỡng — Tràng Sinh | S-02 đặt Dưỡng trước Thai (S-03 khớp kho) |
+| Giải Thần | An theo chi năm, đồng cung Phượng Các (S-02 khớp) | S-03 / phái Trung Quốc: an theo tháng sinh, hai tháng một cung (Thân Thân Tuất Tuất Tý Tý…) |
+| Thiên Quý | Từ Văn Khúc kể mùng 1 đếm **nghịch** đến ngày sinh rồi lùi lại một cung (S-02 khớp) | S-03: đếm **thuận** rồi lùi một cung |
+| Thiên Trù can Quý | Tại **Tuất** (S-02 và các nguồn Việt: phongthuythanhhoa.vn, tuvidonga.com) | Khẩu quyết Trung Quốc "Nhâm kê Quý trư đường" → Hợi; S-03 theo đó |
+| Hỏa Tinh — Linh Tinh | Chỉ theo chi năm sinh | S-03 / Trung Châu: theo chi năm **và** giờ sinh, khác kho ở khoảng 40% lá số |
 | Sinh giờ Tý (23h—1h) | Là giờ Tý của chính ngày sinh, không đổi sang ngày hôm sau | Một số thầy tính từ 23h là ngày mới; phái khác tách Dạ Tý / Sớm Tý |
 | Sinh tháng nhuận | Cả tháng nhuận tính theo số tháng chính khi an Mệnh — Thân | Nửa đầu về tháng trước, nửa sau về tháng sau |
+
+## F. Những gì KHÔNG tìm được
+
+Ghi lại để lần sau khỏi tìm lại:
+
+1. **Không có API miễn phí, ổn định** cho tử vi hoặc lịch vạn niên tiếng Việt.
+   Mọi dịch vụ tìm thấy đều là trang web đóng, không có tài liệu API công khai.
+2. **Không có bộ dữ liệu mở** dạng CSV/JSON cho 109 sao tử vi kèm luận giải tiếng
+   Việt. Phần ý nghĩa trong `data/tu_vi/sao.json` được viết mới cho kho này.
+3. **Bảng Sát chủ** có quá nhiều dị bản mâu thuẫn nên đã chủ động bỏ ra khỏi kho
+   (xem ghi chú trong `data/lich/ngay_kieng.json`).
+4. Trong phiên làm việc dựng kho này, phần lớn tên miền tiếng Việt bị chính sách
+   mạng của môi trường chặn, nên việc đối chiếu dựa vào kết quả tìm kiếm và vào mã
+   nguồn mở tải được từ GitHub. Khi có điều kiện truy cập đầy đủ, nên tra lại trực
+   tiếp các bảng ở mục B.

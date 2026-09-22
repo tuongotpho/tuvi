@@ -10,8 +10,8 @@ tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, lu�
 web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 tab
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
-scripts/    dựng SQLite, kiểm tra dữ liệu, công cụ tra cứu dòng lệnh
-tests/      87 bài kiểm thử, trong đó có các mốc đối chiếu với nguồn ngoài
+scripts/    dựng SQLite, kiểm tra dữ liệu, tra cứu dòng lệnh, tái tạo fixture đối chiếu
+tests/      bộ kiểm thử, trong đó có các mốc đối chiếu với hai bộ mã tử vi độc lập
 docs/       mô hình dữ liệu
 SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
@@ -154,7 +154,8 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 |---|---|---|
 | Đổi âm — dương lịch | Đối chiếu từng ngày 1800–2199 (146.097 ngày) với bản JavaScript gốc của Hồ Ngọc Đức: khớp 100%; bộ test giữ 4.630 mẫu (mỗi 37 ngày, mọi Tết, mọi tháng nhuận); thêm mốc Tết 1982–2026 và ngày 22/08/1987 = 28/7 Đinh Mão | khớp |
 | Tiểu hạn | 3.600 cặp (cung, năm) trên 300 lá số so với `lasotuvi` | khớp 100% |
-| Vị trí sao trên lá số | 99 sao × 60 lá số ngẫu nhiên 1930–2030 so với thư viện MIT `doanguyen/lasotuvi` (bộ mẫu lưu trong `tests/fixtures/`); Tuần — Triệt so cùng lúc. 8 sao khác trường phái và cặp Thai — Dưỡng (thư viện kia đảo) bỏ ra khỏi phép so và ghi ở SOURCES.md mục E | khớp 100% |
+| Vị trí sao trên lá số | 99 sao × 60 lá số ngẫu nhiên 1930–2030 so với thư viện MIT `doanguyen/lasotuvi` (bộ mẫu trong `tests/fixtures/`, tái tạo được bằng `scripts/sinh_fixture_lasotuvi.py`); Tuần — Triệt so cùng lúc. 8 sao khác trường phái và cặp Thai — Dưỡng (thư viện kia đảo) bỏ ra khỏi phép so và ghi ở SOURCES.md mục E | khớp 100% |
+| Vị trí sao — nguồn độc lập thứ hai | Cùng 60 lá số so với thư viện MIT `SylarLong/iztro` (JS, phái Trung Châu, không chung mã với lasotuvi): 94 sao + Mệnh, Thân, Cục, Tuần, Triệt (fixture sinh bằng `scripts/sinh_fixture_iztro.js`). 5 sao iztro an theo phái khác bỏ ra và ghi ở SOURCES.md mục E; ca 29/6/1996 lệch ngày dương do lịch Trung Quốc UTC+8 khác lịch Việt Nam | khớp 100% |
 | Hoang Ốc | Danh sách 33 tuổi xấu được các trang phong thủy công bố | khớp từng tuổi |
 | Sao hạn cửu diệu | Ví dụ "sinh năm 2000, năm 2024 gặp Kế Đô (nam) / Thái Dương (nữ)" | khớp |
 | 12 Trực | 01/01/2024 là trực Kiến | khớp |
@@ -166,7 +167,7 @@ Mỗi phép tính đều có ít nhất một mốc đối chiếu độc lập,
 | Lọc xung tuổi | Ngày 20/09/2026 đạt 95 điểm chung vẫn bị loại với tuổi Đinh Mão 1987; kết quả chọn ngày không bao giờ chứa ngày đã loại | khớp |
 
 ```bash
-python -m unittest discover -s tests -v   # 87 bài kiểm thử
+python -m unittest discover -s tests -v   # bộ kiểm thử (CI báo số bài)
 python scripts/validate_data.py           # kiểm tra toàn vẹn dữ liệu
 ```
 

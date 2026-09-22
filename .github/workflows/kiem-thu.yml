@@ -21,7 +21,7 @@ jobs:
           python -m pyflakes tuvi scripts web tests
       - name: Kiểm tra toàn vẹn dữ liệu
         run: python scripts/validate_data.py
-      - name: 87 bài kiểm thử (kể cả máy chủ web thật)
+      - name: Bộ kiểm thử (kể cả máy chủ web thật)
         run: python -m unittest discover -s tests -v
       - name: Dựng SQLite và kịch bản video (không quay)
         run: |
