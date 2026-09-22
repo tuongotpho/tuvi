@@ -236,6 +236,126 @@ function veLuanGiai(d) {
   $("#hang-ai").hidden = false;
 }
 
+/* -------------------------- bộ chọn ngày sinh -------------------------- */
+// Ô <input type="date"> của trình duyệt hiện ngày theo vùng máy — máy đặt tiếng
+// Anh là ra "08/22/1987", người Việt đọc dễ nhầm ngày với tháng. Nó cũng bắt
+// người dùng bấm lùi từng tháng để về năm 1987, rất cực với ngày sinh.
+//
+// Nên thay bằng ba ô Ngày · Tháng · Năm: gõ thẳng năm là xong. Ô gốc được giữ
+// lại (ẩn đi) nên mọi chỗ đang đọc .value dạng yyyy-mm-dd vẫn chạy y nguyên.
+const THANG_AM_DUONG = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+  "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
+
+function soNgayTrongThang(thang, nam) {
+  return new Date(nam, thang, 0).getDate();   // ngày 0 của tháng sau = ngày cuối tháng này
+}
+
+function nangCapONgay(o) {
+  const nhom = document.createElement("div");
+  nhom.className = "chon-ngay";
+  const oNgay = document.createElement("select");
+  const oThang = document.createElement("select");
+  const oNam = document.createElement("input");
+  oNam.type = "number";
+  oNam.min = o.min ? o.min.slice(0, 4) : 1900;
+  oNam.max = o.max ? o.max.slice(0, 4) : 2199;
+  oNam.placeholder = "Năm";
+  oNam.inputMode = "numeric";
+  oNam.className = "o-nam";
+  oNgay.className = "o-ngay";
+  oThang.className = "o-thang";
+  THANG_AM_DUONG.forEach((t, i) => oThang.add(new Option(t, i + 1)));
+  [oNgay, oThang, oNam].forEach((x) => {
+    x.setAttribute("aria-label", x === oNgay ? "Ngày" : x === oThang ? "Tháng" : "Năm");
+    nhom.appendChild(x);
+  });
+  o.after(nhom);
+  o.type = "hidden";
+  // Ba ô cạnh nhau cần rộng hơn một ô đơn, nếu không "Tháng 9" bị cắt cụt.
+  o.closest(".truong")?.classList.add("truong-ngay");
+
+  function veLaiNgay(giu) {
+    const nam = Number(oNam.value) || new Date().getFullYear();
+    const soNgay = soNgayTrongThang(Number(oThang.value) || 1, nam);
+    const cu = giu ?? (Number(oNgay.value) || 1);
+    oNgay.innerHTML = "";
+    for (let i = 1; i <= soNgay; i++) oNgay.add(new Option(i, i));
+    // 31/3 đổi sang tháng 2 thì kẹp về 28 hoặc 29, không để rỗng.
+    oNgay.value = Math.min(cu, soNgay);
+  }
+
+  function docTuO() {
+    const [nam, thang, ngay] = (o.value || "").split("-").map(Number);
+    if (!nam) { veLaiNgay(); return; }
+    oNam.value = nam; oThang.value = thang; veLaiNgay(ngay);
+  }
+
+  function ghiVaoO() {
+    const nam = Number(oNam.value);
+    if (!nam || nam < Number(oNam.min) || nam > Number(oNam.max)) { o.value = ""; return; }
+    const thang = String(oThang.value).padStart(2, "0");
+    const ngay = String(oNgay.value).padStart(2, "0");
+    o.value = `${nam}-${thang}-${ngay}`;
+    o.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  oThang.addEventListener("change", () => { veLaiNgay(); ghiVaoO(); });
+  oNam.addEventListener("input", () => { veLaiNgay(); ghiVaoO(); });
+  oNgay.addEventListener("change", ghiVaoO);
+  // Các chỗ khác trong app đặt sẵn giá trị mặc định rồi mới gọi; nghe "change"
+  // để ba ô luôn khớp với ô ẩn dù ai đặt giá trị.
+  o.addEventListener("dat-gia-tri", docTuO);
+  docTuO();
+}
+
+$$('input[type="date"]').forEach(nangCapONgay);
+
+// Đặt giá trị cho ô ngày từ mã: dùng hàm này thay cho gán .value trực tiếp,
+// để ba ô hiển thị cập nhật theo.
+function datNgay(o, giaTri) {
+  o.value = giaTri;
+  o.dispatchEvent(new Event("dat-gia-tri"));
+}
+
+/* ------------------------------ hợp tuổi ------------------------------ */
+function veHopTuoi(d) {
+  const nguoi = (n, nhan) => `<div class="o-tom-tat"><span>${nhan}</span>
+    <b>${esc(n.can_chi)} (${esc(n.con_giap)})</b>
+    <span>${esc(n.nap_am)} · cung ${esc(n.cung_phi)} · ${esc(n.nhom_bat_trach)}</span></div>`;
+  const hang = (m) => `<tr>
+    <td data-nhan="Xét về"><b>${esc(m.muc)}</b></td>
+    <td data-nhan="Kết quả">${esc(m.ket_qua)}</td>
+    <td data-nhan="Tính chất"><span class="nhan-tt ${m.tinh_chat === "xấu" ? "xau"
+      : m.tinh_chat === "tốt" ? "tot" : "vua"}">${esc(m.tinh_chat)}</span></td>
+    <td data-nhan="Điểm">${m.diem > 0 ? "+" : ""}${m.diem}</td>
+    <td data-nhan="Giải thích">${esc(m.giai_thich)}</td></tr>`;
+  $("#ht-ket-qua").innerHTML = `
+    <div class="the-tom-tat">${nguoi(d.nguoi_a, "Người thứ nhất")}${nguoi(d.nguoi_b, "Người thứ hai")}
+      <div class="o-tom-tat"><span>Chênh lệch</span><b>${d.chenh_lech_tuoi} tuổi</b></div>
+      <div class="o-tom-tat"><span>Kết luận</span>
+        <b class="ht-${d.diem >= 4 ? "tot" : d.diem >= 0 ? "vua" : "xau"}">${esc(d.danh_gia)}</b>
+        <span>${d.diem > 0 ? "+" : ""}${d.diem} điểm — ${esc(d.nhan_xet)}</span></div>
+    </div>
+    ${d.canh_bao.map((c) => `<div class="the canh-bao"><b>⚠ ${esc(c.ten)}</b>
+        <p>${esc(c.giai_thich)}</p></div>`).join("")}
+    <div class="the"><h3>Bốn mặt đã xét</h3>
+      <table class="xep-chong"><thead><tr><th>Xét về</th><th>Kết quả</th><th>Tính chất</th>
+        <th>Điểm</th><th>Giải thích</th></tr></thead>
+        <tbody>${d.muc_xet.map(hang).join("")}</tbody></table></div>
+    <div class="the"><h3>Lưu ý</h3><ul class="lg-luu-y">
+      ${d.luu_y.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
+}
+
+$("#form-ht").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  try {
+    veHopTuoi(await api("/api/hoptuoi", {
+      ngay_sinh_a: $("#ht-sinh-a").value, gioi_tinh_a: $("#ht-gt-a").value,
+      ngay_sinh_b: $("#ht-sinh-b").value, gioi_tinh_b: $("#ht-gt-b").value,
+    }));
+  } catch (err) { baoLoi($("#ht-ket-qua"), err); }
+});
+
 /* --------------------- xuất lá số ra ảnh / PDF --------------------- */
 const XUAT_GOI_Y = $("#xuat-trang-thai").textContent;
 
@@ -710,13 +830,13 @@ $("#ls-du-sao").addEventListener("change", (e) => $("#dia-ban").classList.toggle
 (function khoiTao() {
   $("#ls-nam-xem").value = new Date().getFullYear();
   const h = new Date(), iso = h.toISOString().slice(0, 10);
-  $("#n-ngay").value = iso;
-  $("#ls-ngay").value = "1990-09-20";
+  datNgay($("#n-ngay"), iso);
+  datNgay($("#ls-ngay"), "1990-09-20");
   $("#h-xem").value = h.getFullYear();
   HUONG_8.forEach((x) => $("#pt-huong").insertAdjacentHTML("beforeend", `<option>${x}</option>`));
   const sau = new Date(h.getTime() + 60 * 864e5).toISOString().slice(0, 10);
-  $("#cn-tu").value = iso;
-  $("#cn-den").value = sau;
+  datNgay($("#cn-tu"), iso);
+  datNgay($("#cn-den"), sau);
   api("/api/viec", {}).then((d) => d.viec.forEach((v) => {
     const canh = v.so_tu_khop === 0 ? " (chỉ xét theo Trực)" : "";
     $("#cn-viec").insertAdjacentHTML("beforeend",

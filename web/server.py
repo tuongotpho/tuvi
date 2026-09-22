@@ -27,7 +27,8 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tuvi import ai_luan_giai, chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
+from tuvi import (ai_luan_giai, chon_ngay, han, hop_tuoi,  # noqa: E402
+                  la_so, ngay_gio, phong_thuy)
 from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
@@ -242,12 +243,31 @@ def api_chonngay(q: dict) -> dict:
                                          1, chon_ngay.SO_LUONG_TOI_DA))
 
 
+def api_hoptuoi(q: dict) -> dict:
+    """Xem tuổi hai người có hợp nhau không.
+
+    Nhận năm sinh âm lịch (``nam_sinh_a``) hoặc ngày sinh dương lịch
+    (``ngay_sinh_a=yyyy-mm-dd``) — dùng ngày dương thì máy tự đổi, tránh chuyện
+    người sinh trước Tết bị tính nhầm sang năm âm sau.
+    """
+    def nam_cua(hau_to: str) -> int:
+        ngay_sinh = q.get(f"ngay_sinh_{hau_to}")
+        if ngay_sinh:
+            d = _doc_ngay(ngay_sinh, hom_nay_vn())
+            return la_so.solar_to_lunar(d.day, d.month, d.year).year
+        return nam_hop_le(q.get(f"nam_sinh_{hau_to}"), f"Năm sinh người {hau_to.upper()}")
+
+    return hop_tuoi.xem_hop_tuoi(nam_cua("a"), q.get("gioi_tinh_a", "nam"),
+                                 nam_cua("b"), q.get("gioi_tinh_b", "nu"))
+
+
 def api_viec(q: dict) -> dict:
     return {"viec": chon_ngay.danh_sach_viec()}
 
 
 TUYEN = {"/api/laso": api_laso, "/api/luangiai": api_luangiai, "/api/han": api_han,
          "/api/chonngay": api_chonngay, "/api/viec": api_viec,
+         "/api/hoptuoi": api_hoptuoi,
          "/api/phongthuy": api_phongthuy, "/api/ngay": api_ngay,
          "/api/phitinh": api_phitinh, "/api/sao": api_sao,
          "/api/ai-luangiai": api_ai_luangiai, "/api/moi-truong": api_moi_truong}

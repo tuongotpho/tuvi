@@ -296,3 +296,39 @@ footer {
 .ai-van-ban { line-height: 1.65; font-size: 14.5px; }
 .ai-van-ban h4 { margin: 16px 0 6px; font-size: 15px; color: var(--nhan); text-transform: none; letter-spacing: 0; }
 .ai-van-ban p { margin: 6px 0; }
+
+/* ---------------------------- hợp tuổi ---------------------------- */
+.ht-tot { color: var(--cat); }
+.ht-vua { color: var(--vang); }
+.ht-xau { color: var(--hung); }
+.the.canh-bao { border-color: var(--hung); background: var(--nhan-nhat); }
+.the.canh-bao p { margin: 6px 0 0; font-size: 14px; }
+
+/* ------------------------- bộ chọn ngày sinh ------------------------- */
+/* Ba ô Ngày · Tháng · Năm gộp trong một khung, nhìn như một ô duy nhất. */
+/* Ô chứa bộ chọn ngày phải rộng hơn ô thường — ba điều khiển nằm cạnh nhau. */
+.truong.truong-ngay { flex: 1 1 262px; }
+
+.chon-ngay {
+  display: flex; align-items: stretch;
+  border: 1px solid var(--vien); border-radius: 8px;
+  background: var(--nen); overflow: hidden;
+}
+.chon-ngay:focus-within { outline: 2px solid var(--nhan); outline-offset: 1px; }
+.chon-ngay > * {
+  font: inherit; border: 0; background: none; color: var(--chu);
+  padding: 9px 6px; min-width: 0; border-radius: 0;
+}
+.chon-ngay > *:focus { outline: none; }
+.chon-ngay > * + * { border-left: 1px solid var(--vien); }
+.chon-ngay .o-ngay { flex: 0 0 68px; text-align: center; }
+.chon-ngay .o-thang { flex: 1 1 auto; min-width: 92px; }
+.chon-ngay .o-nam { flex: 0 0 82px; text-align: center; }
+/* Bỏ mũi tên tăng giảm của ô số: gõ năm nhanh hơn bấm 40 lần. */
+.chon-ngay .o-nam::-webkit-outer-spin-button,
+.chon-ngay .o-nam::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.chon-ngay .o-nam { -moz-appearance: textfield; appearance: textfield; }
+@media (max-width: 520px) {
+  .chon-ngay .o-ngay { flex-basis: 58px; }
+  .chon-ngay .o-nam { flex-basis: 72px; }
+}

@@ -19,6 +19,7 @@
     <button class="tab-nut" data-tab="phongthuy" role="tab">Phong thủy</button>
     <button class="tab-nut" data-tab="ngay" role="tab">Xem ngày</button>
     <button class="tab-nut" data-tab="chonngay" role="tab">Chọn ngày</button>
+    <button class="tab-nut" data-tab="hoptuoi" role="tab">Hợp tuổi</button>
   </nav>
 </header>
 
@@ -127,6 +128,23 @@
       <button class="nut-chinh" type="submit">Tìm ngày tốt</button>
     </form>
     <div id="cn-ket-qua"></div>
+  </section>
+  <!-- ---------------------------- HỢP TUỔI ---------------------------- -->
+  <section id="tab-hoptuoi" class="tab-noi-dung">
+    <form class="bang-nhap" id="form-ht">
+      <div class="truong"><label for="ht-sinh-a">Người thứ nhất — ngày sinh</label>
+        <input type="date" id="ht-sinh-a" required></div>
+      <div class="truong"><label for="ht-gt-a">Giới tính</label>
+        <select id="ht-gt-a"><option value="nam">Nam</option><option value="nu">Nữ</option></select></div>
+      <div class="truong"><label for="ht-sinh-b">Người thứ hai — ngày sinh</label>
+        <input type="date" id="ht-sinh-b" required></div>
+      <div class="truong"><label for="ht-gt-b">Giới tính</label>
+        <select id="ht-gt-b"><option value="nu">Nữ</option><option value="nam">Nam</option></select></div>
+      <button class="nut-chinh" type="submit">Xem hợp tuổi</button>
+    </form>
+    <p class="goi-y">Nhập ngày sinh dương lịch, máy tự đổi ra năm âm — ai sinh tháng 1–2
+      trước Tết sẽ được tính về năm âm trước đó, khỏi nhầm tuổi.</p>
+    <div id="ht-ket-qua"></div>
   </section>
 </main>
 
