@@ -192,6 +192,26 @@ Vài điều đã tính sẵn:
 Cần hai gói để dựng: `pip install pyinstaller pywebview` (`build.bat` tự cài nếu thiếu).
 Cửa sổ dùng WebView2 — Windows 11 có sẵn.
 
+## Chạy trên môi trường chỉ có Node (AI Studio, Cloud Run)
+
+`server.js` là **lớp vỏ mỏng**, không phải bản viết lại. Nó nạp Pyodide (Python
+biên dịch sang WebAssembly) rồi `import web.server` và gọi thẳng bảng định tuyến
+`server.TUYEN` của Python. Nghĩa là:
+
+* Engine tử vi vẫn là **đúng mã Python** đã có 120 bài kiểm thử, không dịch sang JS.
+* **Thêm API mới vào `TUYEN` trong `web/server.py` là bản web có ngay**, không
+  phải sửa `server.js`.
+* Triển khai được lên container chỉ cài Node, không cần Python trong ảnh hệ điều hành.
+
+```bash
+npm install     # kéo pyodide
+npm start       # hoặc npm run dev — nghe cổng $PORT, mặc định 3000
+```
+
+Đã đối chiếu bản chạy thật với Python tại máy: 10 lá số × 118 mục khớp
+1180/1180; luận giải, xem hạn, phong thủy, xem ngày, chọn ngày trùng khít; ảnh
+SVG giống nhau từng ký tự.
+
 ## Dựng cơ sở dữ liệu SQLite
 
 ```bash
