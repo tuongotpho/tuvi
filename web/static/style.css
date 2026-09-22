@@ -1,4 +1,9 @@
 :root {
+  /* Báo cho trình duyệt biết đang là nền sáng hay tối, để những thứ DO TRÌNH
+     DUYỆT tự vẽ cũng đổi màu theo: biểu tượng lịch trong ô ngày, đồng hồ trong ô
+     giờ, mũi tên ô chọn, thanh cuộn. Thiếu dòng này thì ở nền tối các biểu tượng
+     đó vẫn màu đen, trùng nền, nhìn như bị mờ mất. */
+  color-scheme: light;
   --nen: #f7f4ee;
   --nen-the: #fffdf8;
   --vien: #e0d8c8;
@@ -15,6 +20,7 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --nen: #14120f;
     --nen-the: #1d1a16;
     --vien: #342f27;
@@ -30,6 +36,7 @@
   }
 }
 :root[data-theme="dark"] {
+  color-scheme: dark;
   --nen: #14120f; --nen-the: #1d1a16; --vien: #342f27; --chu: #ece5d8;
   --chu-mo: #a49a88; --nhan: #d98a7a; --nhan-nhat: #33211d; --cat: #79c79a;
   --hung: #e58b7f; --trung: #a49a88; --vang: #d9b25c;
@@ -79,7 +86,9 @@ main { max-width: 1120px; margin: 0 auto; padding: 20px 16px 60px; }
   border-radius: var(--bo-goc); padding: 16px; box-shadow: var(--bong);
   margin-bottom: 20px;
 }
-.truong { display: flex; flex-direction: column; gap: 5px; flex: 1 1 150px; min-width: 0; }
+/* 170px chứ không phải 150px: ô "Canh giờ sinh" có mục dài nhất là
+   "Giờ Ngọ (11h–13h)"; để hẹp hơn là cụt mất dấu đóng ngoặc. */
+.truong { display: flex; flex-direction: column; gap: 5px; flex: 1 1 170px; min-width: 0; }
 .truong label { font-size: 12.5px; color: var(--chu-mo); font-weight: 600; letter-spacing: .02em; }
 input, select {
   font: inherit; padding: 9px 11px; border: 1px solid var(--vien);
@@ -113,22 +122,28 @@ input:focus, select:focus { outline: 2px solid var(--nhan); outline-offset: 1px;
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 6px; margin-bottom: 14px;
 }
+/* Cỡ chữ và lề trong ô cung co theo bề ngang cửa sổ (clamp = kẹp giữa nhỏ nhất
+   và to nhất). Để cố định 13px thì trên cửa sổ app hẹp hơn trình duyệt, tên sao
+   không đủ chỗ và bị cắt; co lại thì lưới 4×4 truyền thống vẫn giữ nguyên mà
+   chữ vẫn đủ. Không bao giờ nhỏ hơn mức đọc được. */
 .cung {
   background: var(--nen-the); border: 1px solid var(--vien);
-  border-radius: 8px; padding: 8px; min-height: 148px;
-  display: flex; flex-direction: column; font-size: 13px;
+  border-radius: 8px; padding: clamp(6px, .62vw, 9px);
+  min-height: clamp(116px, 13vw, 150px);
+  display: flex; flex-direction: column; font-size: clamp(11.5px, 1vw, 13px);
+  min-width: 0; overflow-wrap: anywhere;
 }
 .cung.la-menh { border-color: var(--nhan); box-shadow: 0 0 0 1px var(--nhan) inset; }
-.cung-dau { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 5px; }
-.cung-ten { font-weight: 700; color: var(--nhan); font-size: 13.5px; }
-.cung-chi { font-size: 11.5px; color: var(--chu-mo); }
-.cung-sao { display: flex; flex-wrap: wrap; gap: 3px 7px; align-content: flex-start; flex: 1; }
+.cung-dau { display: flex; justify-content: space-between; align-items: baseline; gap: 5px; margin-bottom: 4px; min-width: 0; }
+.cung-ten { font-weight: 700; color: var(--nhan); font-size: clamp(12px, 1.05vw, 13.5px); }
+.cung-chi { font-size: clamp(10.5px, .9vw, 11.5px); color: var(--chu-mo); white-space: nowrap; }
+.cung-sao { display: flex; flex-wrap: wrap; gap: 2px clamp(4px, .5vw, 7px); align-content: flex-start; flex: 1; min-width: 0; }
 .sao {
   cursor: pointer; border: 0; background: none; padding: 0; font: inherit;
-  font-size: 12.5px; color: var(--trung); border-bottom: 1px dotted transparent;
+  font-size: clamp(11px, .97vw, 12.5px); color: var(--trung); border-bottom: 1px dotted transparent;
 }
 .sao:hover { border-bottom-color: currentColor; }
-.sao.chinh-tinh { font-weight: 700; font-size: 13.5px; color: var(--chu); }
+.sao.chinh-tinh { font-weight: 700; font-size: clamp(11.8px, 1.05vw, 13.5px); color: var(--chu); }
 .sao.cat { color: var(--cat); }
 .sao.hung { color: var(--hung); }
 .sao .dt { font-size: 10px; vertical-align: super; color: var(--vang); font-weight: 700; }
@@ -139,7 +154,8 @@ input:focus, select:focus { outline: 2px solid var(--nhan); outline-offset: 1px;
 .cung.mo .sao.xo { opacity: .5; }
 .cung-chan {
   margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--vien);
-  font-size: 11px; color: var(--chu-mo); display: flex; justify-content: space-between; gap: 6px;
+  font-size: clamp(10px, .85vw, 11px); color: var(--chu-mo); display: flex;
+  justify-content: space-between; gap: 6px; white-space: nowrap;
 }
 .nhan-than { color: var(--nhan); font-weight: 700; }
 .nhan-tuan { color: var(--hung); font-weight: 700; letter-spacing: .04em; }
