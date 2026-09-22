@@ -316,8 +316,16 @@ footer {
 }
 .chon-ngay:focus-within { outline: 2px solid var(--nhan); outline-offset: 1px; }
 .chon-ngay > * {
-  font: inherit; border: 0; background: none; color: var(--chu);
+  font: inherit; border: 0; color: var(--chu);
   padding: 9px 6px; min-width: 0; border-radius: 0;
+  /* Nền phải ghi rõ màu, KHÔNG dùng "none": bảng xổ của ô chọn được trình duyệt
+     vẽ theo nền của chính ô đó, để trong suốt thì danh sách ngày và tháng hiện
+     ra màu sáng chói trên nền tối. */
+  background-color: var(--nen);
+}
+/* Từng dòng trong bảng xổ cũng phải đặt màu — vài trình duyệt không thừa kế. */
+.chon-ngay option, select option {
+  background-color: var(--nen-the); color: var(--chu);
 }
 .chon-ngay > *:focus { outline: none; }
 .chon-ngay > * + * { border-left: 1px solid var(--vien); }
