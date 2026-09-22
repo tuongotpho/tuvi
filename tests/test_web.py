@@ -48,6 +48,17 @@ class TestMayChuWeb(unittest.TestCase):
         ma, body = self.goi(duong_dan)
         return ma, json.loads(body)
 
+    def post(self, duong_dan: str, than: bytes | None = None, kieu: str | None = None):
+        url = f"http://127.0.0.1:{self.cong}{duong_dan}"
+        req = urllib.request.Request(url, data=than or b"", method="POST")
+        if kieu:
+            req.add_header("Content-Type", kieu)
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return r.status, json.loads(r.read())
+        except urllib.error.HTTPError as e:
+            return e.code, json.loads(e.read())
+
     def tho(self, duong_dan: str):
         """Như goi() nhưng giữ cả header — cần cho ảnh SVG, không phải JSON."""
         url = f"http://127.0.0.1:{self.cong}{duong_dan}"
@@ -143,7 +154,27 @@ class TestMayChuWeb(unittest.TestCase):
         ma, than = self.tho("/api/laso.svg?ngay=32&thang=11&nam=1987&gio=20&gioi_tinh=nu")
         self.assertEqual(ma, 400)
 
+    def test_khong_dong_goi_thi_cam_ghi_tep(self):
+        """Bản chạy từ mã nguồn mở cổng ra cả mạng LAN nên tuyệt đối không cho
+        ghi tệp theo yêu cầu từ ngoài; chỉ bản .exe (chỉ nghe 127.0.0.1) mới bật."""
+        for duong_dan in ("/api/luu-anh?kieu=svg&ngay=27&thang=11&nam=1987"
+                          "&gio=20&gioi_tinh=nu", "/api/mo-thu-muc"):
+            ma, d = self.post(duong_dan)
+            self.assertEqual(ma, 403, duong_dan)
+            self.assertIn("ứng dụng để bàn", d["loi"])
+
+    def test_post_duong_dan_la_tra_404(self):
+        ma, _ = self.post("/api/khong-co-that")
+        self.assertEqual(ma, 404)
+
+    def test_moi_truong_bao_dung_che_do(self):
+        ma, d = self.json("/api/moi-truong")
+        self.assertEqual(ma, 200)
+        self.assertFalse(d["dong_goi"])   # đang chạy từ mã nguồn
+        self.assertTrue(d["thu_muc_luu"])
+
     def test_ai_khong_co_khoa_tra_503(self):
+
 
         from tuvi import ai_luan_giai
         with mock.patch.dict(os.environ, {"GEMINI_API_KEY": ""}),              mock.patch.object(ai_luan_giai, "TEP_ENV", Path("/khong/co/.env")):

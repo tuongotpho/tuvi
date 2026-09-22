@@ -118,6 +118,13 @@ Trong tab **Lá số**, dưới địa bàn có ba nút:
 đắc tính viết nhỏ trên tên sao, Tuần Triệt, cung Thân, đại hạn từng cung và
 thiên bàn ở giữa.
 
+**Trong app `.exe` tệp được ghi thẳng ra thư mục `anh/` cạnh `Tu-Vi.exe`**, không
+phải tải về. Lý do: cửa sổ WebView2 của bản đóng gói không có cơ chế tải tệp như
+trình duyệt — bấm nút tải là im lặng, không báo lỗi, không có tệp. Nên ở bản app,
+chính máy chủ (đang chạy trên máy người dùng) ghi tệp rồi báo đường dẫn, kèm nút
+**Mở thư mục ảnh**. Đường ghi tệp này **chỉ bật ở bản đóng gói**, vì lúc đó máy chủ
+chỉ lắng nghe 127.0.0.1; bản `web/server.py` mở ra cả mạng LAN nên trả 403.
+
 Máy chủ vẽ ảnh bằng **thư viện chuẩn của Python**, không thêm gói nào: chỉ ghép
 chuỗi XML của SVG. Nhờ vậy bản đóng gói `.exe` cũng xuất ảnh được mà không phình
 thêm MB nào. Chữ trong SVG là chữ thật nên tiếng Việt đúng dấu trên mọi máy,

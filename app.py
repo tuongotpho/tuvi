@@ -27,7 +27,8 @@ if str(GOC) not in sys.path:
     sys.path.insert(0, str(GOC))
 
 from tuvi.console import bat_utf8  # noqa: E402
-from tuvi.duong_dan import thu_muc_ghi, thu_muc_tai_nguyen  # noqa: E402
+from tuvi.duong_dan import (dang_dong_goi, thu_muc_ghi,  # noqa: E402
+                            thu_muc_tai_nguyen)
 
 TEN_APP = "Tử Vi"
 
@@ -75,6 +76,26 @@ def cho_may_chu(cong: int, han: float = 20.0) -> bool:
     return False
 
 
+def _png_ti_hon() -> bytes:
+    """Một ảnh PNG 1x1 hợp lệ, dựng bằng thư viện chuẩn.
+
+    Dùng để thử đúng đường mà nút "Tải ảnh PNG" đi trong app: trình duyệt dựng
+    PNG từ ảnh SVG rồi gửi lên cho máy chủ ghi ra đĩa. Không có phép thử này thì
+    đường PNG chỉ bấm tay mới biết hỏng.
+    """
+    import struct
+    import zlib
+
+    def khoi(ten: bytes, than: bytes) -> bytes:
+        return (struct.pack(">I", len(than)) + ten + than
+                + struct.pack(">I", zlib.crc32(ten + than) & 0xFFFFFFFF))
+
+    ihdr = struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0)
+    return (b"\x89PNG\r\n\x1a\n" + khoi(b"IHDR", ihdr)
+            + khoi(b"IDAT", zlib.compress(b"\x00\xff\xff\xff"))
+            + khoi(b"IEND", b""))
+
+
 def kiem_tra(cong: int) -> int:
     """Tự gọi vài API để chắc chắn bản đóng gói vẫn đọc được data/ và web/static/."""
     goc = f"http://127.0.0.1:{cong}"
@@ -93,6 +114,28 @@ def kiem_tra(cong: int) -> int:
          lambda t: t.lstrip().startswith("<svg") and t.count("<text") > 150),
     ]
     hong = 0
+    # Ghi tệp ra đĩa: chỉ bản đóng gói mới bật, và đây chính là đường mà nút
+    # "Tải ảnh" dùng trong app (cửa sổ WebView2 không tải tệp về được).
+    if dang_dong_goi():
+        tham = "&ngay=27&thang=11&nam=1987&gio=20&gioi_tinh=nu"
+        for kieu, than, co_toi_thieu in (("svg", None, 5000),
+                                         ("png", _png_ti_hon(), 60)):
+            try:
+                req = urllib.request.Request(f"{goc}/api/luu-anh?kieu={kieu}{tham}",
+                                             data=than, method="POST")
+                if than:
+                    req.add_header("Content-Type", "image/png")
+                with urllib.request.urlopen(req, timeout=20) as r:
+                    kq = json.loads(r.read().decode("utf-8"))
+                tep = Path(kq["duong_dan"])
+                ok = tep.is_file() and tep.stat().st_size >= co_toi_thieu
+                print(f"  {'ĐẠT ' if ok else 'HỎNG'} ghi {kieu.upper()} ra "
+                      f"{kq['duong_dan']}")
+                hong += not ok
+            except Exception as e:  # noqa: BLE001
+                print(f"  HỎNG ghi {kieu.upper()} ra đĩa -> {e}")
+                hong += 1
+
     for duong_dan, kiem in phep_thu:
         try:
             with urllib.request.urlopen(goc + duong_dan, timeout=20) as r:
