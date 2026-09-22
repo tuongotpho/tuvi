@@ -22,12 +22,14 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from tuvi import ai_luan_giai, chon_ngay, han, la_so, ngay_gio, phong_thuy  # noqa: E402
 from tuvi.canchi import CON_GIAP, can_chi_nam  # noqa: E402
 from tuvi.store import load  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
+from tuvi.duong_dan import thu_muc_tai_nguyen  # noqa: E402
 from tuvi.kiem_tra import (LoiDauVao, canh_gio_hop_le, gio_phut_hop_le,  # noqa: E402
                            gioi_tinh_hop_le, nam_hop_le, ngay_duong_hop_le,
                            so_nguyen)
@@ -36,7 +38,7 @@ from tuvi.luan_giai import (bo_sung_y_nghia_sao, goi_y_cach_cuc,  # noqa: E402
 
 bat_utf8()
 
-STATIC = Path(__file__).resolve().parent / "static"
+STATIC = thu_muc_tai_nguyen() / "web" / "static"
 GIO_VN = timezone(timedelta(hours=7))
 
 

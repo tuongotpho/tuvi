@@ -9,6 +9,7 @@ data/       26 bộ dữ liệu JSON — tri thức thuần, không lẫn mã
 tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, luận giải, xem ngày, chọn ngày
 web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 tab
 video/      dựng video dọc cho TikTok từ dữ liệu engine
+app.py      chạy như ứng dụng để bàn (cửa sổ riêng); tuvi.spec + build.bat đóng thành .exe
 content/    phân loại chủ đề, mẫu bài, prompt cho mô hình ngôn ngữ
 scripts/    dựng SQLite, kiểm tra dữ liệu, tra cứu dòng lệnh, tái tạo fixture đối chiếu
 tests/      bộ kiểm thử, trong đó có các mốc đối chiếu với hai bộ mã tử vi độc lập
@@ -17,7 +18,8 @@ SOURCES.md  danh mục nguồn và tình trạng đối chiếu từng bảng
 ```
 
 Không phụ thuộc thư viện ngoài. Chỉ cần Python 3.10 trở lên.
-Riêng khâu xuất tệp video cần thêm hai gói, nêu ở mục cuối.
+Riêng khâu xuất tệp video cần thêm hai gói, nêu ở mục cuối; đóng gói .exe cần thêm
+hai gói nữa, nêu ở mục "Ứng dụng để bàn".
 
 ## Giao diện web
 
@@ -125,6 +127,31 @@ GET /api/ai-luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam&nam_xem=2026
 ```
 
 Model mặc định `gemini-2.5-flash` (đổi bằng `GEMINI_MODEL`). Prompt ≈ 13.000 ký tự.
+
+## Ứng dụng để bàn (.exe, không cần trình duyệt)
+
+```bash
+python app.py                # cửa sổ riêng, cần pywebview
+python app.py --kiem-tra     # bật máy chủ, tự gọi 5 API rồi thoát — không mở cửa sổ
+```
+
+Đóng gói thành tệp chạy độc lập: bấm `build.bat` (hoặc
+`python -m PyInstaller tuvi.spec --noconfirm`). Kết quả ở `dist/Tu-Vi/Tu-Vi.exe`,
+**39 MB**, chép cả thư mục đi máy khác chạy được, không cần cài Python.
+`build.bat` tự chạy `--kiem-tra` trên bản vừa dựng, hỏng là báo ngay.
+
+Vài điều đã tính sẵn:
+
+| Việc | Cách làm |
+|---|---|
+| Cổng mạng | Xin hệ điều hành một cổng trống, không cố định 8000 nên không đụng app khác |
+| Phạm vi | Chỉ lắng nghe `127.0.0.1` — khác `web/server.py` mở ra cả mạng LAN; ngày giờ sinh không ra khỏi máy |
+| Khóa Gemini | Đặt tệp `.env` **cạnh `Tu-Vi.exe`** (không phải trong gói); cache bài AI cũng ghi cạnh đó |
+| Lỗi | Không có cửa sổ đen, mọi thứ in ra vào `tuvi.log` cạnh `Tu-Vi.exe` |
+| Phần video | Cố ý **không** gói: kéo theo Playwright và ffmpeg là phình lên vài trăm MB. Vẫn chạy từ mã nguồn như thường |
+
+Cần hai gói để dựng: `pip install pyinstaller pywebview` (`build.bat` tự cài nếu thiếu).
+Cửa sổ dùng WebView2 — Windows 11 có sẵn.
 
 ## Dựng cơ sở dữ liệu SQLite
 
