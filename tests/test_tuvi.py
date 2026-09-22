@@ -755,6 +755,47 @@ class TestLongTieng(unittest.TestCase):
 
 
 class TestDuLieu(unittest.TestCase):
+    def test_luc_cat_tinh_deu_la_cat(self):
+        """Sáu sao cát phải cùng mang tính chất "cát".
+
+        Trước đây Tả Phù và Hữu Bật bị để "trung tính" trong khi bốn sao còn lại
+        để "cát". Kho tự mâu thuẫn: data/tu_vi/cach_cuc.json coi "Tả Hữu đồng
+        cung" và "Tả Hữu củng Mệnh" là cách TỐT, nhưng phần luận giải lại không
+        đếm hai sao đó vào cát tinh, nên cung Mệnh có đủ Tả Hữu vẫn bị chấm là
+        "hung nhiều hơn cát". Chính người dùng đọc luận giải mới phát hiện.
+        """
+        tinh_chat = {s["ten"].lower(): s["tinh_chat"] for s in load("tu_vi/sao")}
+        for ten in ("tả phù", "hữu bật", "văn xương", "văn khúc",
+                    "thiên khôi", "thiên việt"):
+            self.assertEqual(tinh_chat.get(ten), "cát", ten)
+
+    # Sao hung vẫn được phép nằm trong một cách TỐT khi đủ bộ mới thành đẹp —
+    # luật tử vi đúng là như vậy, và kho ghi rõ lý do ngay trong phần luận giải
+    # của cách đó. Mỗi ngoại lệ phải được kể tên ở đây, để cách mới thêm sau này
+    # không lặng lẽ kéo theo một sao hung mà không ai để ý.
+    HUNG_TRONG_CACH_TOT = {("Tứ Linh hội Mệnh", "Bạch Hổ"),
+                           ("Tứ Linh hội Mệnh", "Hoa Cái")}
+
+    def test_cach_cuc_va_tinh_chat_sao_khong_mau_thuan(self):
+        """Sao nào được cách cục TỐT gọi tên thì không được mang tính chất hung."""
+        tinh_chat = {s["ten"].lower(): s["tinh_chat"] for s in load("tu_vi/sao")}
+        ngoai_le = set()
+        for cach in load("tu_vi/cach_cuc"):
+            if cach["tinh_chat"] != "tốt":
+                continue
+            for ten in cach.get("quy_tac", {}).get("co_du", []):
+                if tinh_chat.get(ten.lower()) != "hung":
+                    continue
+                cap = (cach["ten"], ten)
+                self.assertIn(cap, self.HUNG_TRONG_CACH_TOT,
+                              f"{ten} là sao hung nhưng nằm trong cách tốt "
+                              f"{cach['ten']}; nếu đúng luật thì khai báo ngoại lệ, "
+                              f"nếu sai thì sửa tính chất sao")
+                self.assertIn("đủ bộ", cach["luan_giai"], cach["ten"])
+                ngoai_le.add(cap)
+        self.assertEqual(ngoai_le, self.HUNG_TRONG_CACH_TOT,
+                         "có ngoại lệ khai báo thừa, cách cục đã đổi rồi")
+
     def test_moi_tep_json_doc_duoc(self):
         for ten in all_datasets():
             self.assertIsNotNone(load(ten), ten)
