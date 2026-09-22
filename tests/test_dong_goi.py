@@ -8,6 +8,7 @@ sys._MEIPASS, không cần dựng thật.
 from __future__ import annotations
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -29,7 +30,18 @@ class TestDuongDan(unittest.TestCase):
     def test_khi_dong_goi_doc_va_ghi_tach_doi(self):
         # Tài nguyên đọc từ thư mục giải nén tạm, nhưng ghi phải ra cạnh .exe:
         # thư mục tạm bị xóa khi thoát, lại hay nằm trong Program Files (chặn ghi).
-        tam, canh_exe = Path("C:/tam/_MEI123"), Path("D:/App/Tu-Vi")
+        #
+        # Dùng thư mục tạm thật chứ đừng viết "D:/App": trên Linux đó không phải
+        # đường dẫn tuyệt đối nên .resolve() nối nó vào thư mục hiện hành, máy
+        # Windows xanh mà CI đỏ — đã dính một lần.
+        with tempfile.TemporaryDirectory() as goc_tam:
+            tam = Path(goc_tam) / "_MEI123"
+            canh_exe = Path(goc_tam) / "Tu-Vi"
+            tam.mkdir()
+            canh_exe.mkdir()
+            self._kiem_tach_doi(tam, canh_exe)
+
+    def _kiem_tach_doi(self, tam: Path, canh_exe: Path) -> None:
         with mock.patch.object(sys, "frozen", True, create=True), \
              mock.patch.object(sys, "_MEIPASS", str(tam), create=True), \
              mock.patch.object(sys, "executable", str(canh_exe / "Tu-Vi.exe")):
