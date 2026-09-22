@@ -22,8 +22,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tuvi import (ai_luan_giai, chon_ngay, han, la_so, luan_giai, ngay_gio,  # noqa: E402
-                  phong_thuy)
+from tuvi import (ai_luan_giai, chon_ngay, han, la_so, luan_giai,  # noqa: E402
+                  ngay_gio, phong_thuy, xuat_anh)
 from tuvi.canchi import DIA_CHI  # noqa: E402
 from tuvi.console import bat_utf8  # noqa: E402
 
@@ -79,6 +79,14 @@ def main() -> int:
     s.add_argument("--nam-xem", type=int, default=None,
                    help="năm dương lịch để đánh dấu đại hạn đang đi")
 
+    s = sub.add_parser("anh", help="Vẽ lá số ra tệp ảnh SVG")
+    s.add_argument("ngay", help="dd/mm/yyyy dương lịch")
+    s.add_argument("gio", help="giờ sinh 0-23 hoặc tên canh giờ")
+    s.add_argument("gioi_tinh", choices=["nam", "nu"])
+    s.add_argument("--ra", default=None,
+                   help="tệp ghi ra, mặc định la-so-<ngày>-<giới tính>.svg tại thư mục hiện hành")
+    s.add_argument("--tieu-de", default=None, help="tiêu đề in trên đầu ảnh")
+
     s = sub.add_parser("ai", help="Luận giải bằng Gemini (cần GEMINI_API_KEY)")
     s.add_argument("ngay", help="dd/mm/yyyy dương lịch")
     s.add_argument("gio", help="giờ sinh 0-23 hoặc tên canh giờ")
@@ -117,6 +125,16 @@ def main() -> int:
         d, m, y = _ngay(a.ngay)
         ls = la_so.lap_la_so(d, m, y, _gio(a.gio), gioi_tinh=a.gioi_tinh)
         _in(luan_giai.luan_giai_la_so(ls, a.nam_xem))
+    elif a.lenh == "anh":
+        d, m, y = _ngay(a.ngay)
+        ls = la_so.lap_la_so(d, m, y, _gio(a.gio), gioi_tinh=a.gioi_tinh)
+        ls["chinh_tinh_menh"] = la_so.chinh_tinh_cung_menh(ls)
+        tieu_de = a.tieu_de or (f"Lá số {d:02d}/{m:02d}/{y} · {ls['gioi_tinh'].lower()}"
+                                f" · giờ {ls['am_lich']['gio']}")
+        ra = Path(a.ra or f"la-so-{y}{m:02d}{d:02d}-{a.gioi_tinh}.svg")
+        ra.write_text(xuat_anh.ve_la_so_svg(ls, tieu_de), encoding="utf-8")
+        print(f"Đã ghi {ra} ({ra.stat().st_size // 1024} KB). "
+              f"Mở bằng trình duyệt rồi Ctrl+P để lưu thành PDF.")
     elif a.lenh == "ai":
         d, m, y = _ngay(a.ngay)
         ls = la_so.lap_la_so(d, m, y, _gio(a.gio), gioi_tinh=a.gioi_tinh)

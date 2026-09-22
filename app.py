@@ -88,6 +88,9 @@ def kiem_tra(cong: int) -> int:
         ("/api/han?nam_sinh=1987&nam_xem=2026&gioi_tinh=nam",
          lambda t: bool(json.loads(t)["sao_han"])),
         ("/api/phongthuy?nam_sinh=1987&gioi_tinh=nam", lambda t: bool(json.loads(t)["cung_phi"])),
+        # Ảnh lá số: bản đóng gói vẽ được thì mới có nút tải ảnh / in PDF.
+        ("/api/laso.svg?ngay=27&thang=11&nam=1987&gio=20&gioi_tinh=nu",
+         lambda t: t.lstrip().startswith("<svg") and t.count("<text") > 150),
     ]
     hong = 0
     for duong_dan, kiem in phep_thu:

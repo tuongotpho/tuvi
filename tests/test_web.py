@@ -48,6 +48,17 @@ class TestMayChuWeb(unittest.TestCase):
         ma, body = self.goi(duong_dan)
         return ma, json.loads(body)
 
+    def tho(self, duong_dan: str):
+        """Như goi() nhưng giữ cả header — cần cho ảnh SVG, không phải JSON."""
+        url = f"http://127.0.0.1:{self.cong}{duong_dan}"
+        try:
+            with urllib.request.urlopen(url, timeout=30) as r:
+                return r.status, {"noi_dung": r.read().decode("utf-8"),
+                                  "kieu": r.headers.get("Content-Type", ""),
+                                  "dinh_kem": r.headers.get("Content-Disposition", "")}
+        except urllib.error.HTTPError as e:
+            return e.code, {"noi_dung": e.read().decode("utf-8"), "kieu": "", "dinh_kem": ""}
+
     # ---- đầu vào đúng ----
     def test_cac_api_tra_200(self):
         for p in ["/api/laso?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam",
@@ -111,7 +122,29 @@ class TestMayChuWeb(unittest.TestCase):
             self.assertEqual(ma, 404, p)
             self.assertNotIn(b"def do_GET", body)
 
+    def test_anh_svg_tra_dung_kieu_va_noi_dung(self):
+        ma, than = self.tho("/api/laso.svg?ngay=27&thang=11&nam=1987&gio=20&gioi_tinh=nu")
+        self.assertEqual(ma, 200)
+        self.assertIn("image/svg+xml", than["kieu"])
+        self.assertTrue(than["noi_dung"].lstrip().startswith("<svg"))
+        self.assertIn("Mệnh", than["noi_dung"])
+        self.assertNotIn("attachment", than.get("dinh_kem", ""))
+
+    def test_anh_svg_tai_ve_co_ten_tep(self):
+        ma, than = self.tho("/api/laso.svg?ngay=27&thang=11&nam=1987&gio=20"
+                            "&gioi_tinh=nu&tai_ve=1")
+        self.assertEqual(ma, 200)
+        # Tên tệp phải bỏ dấu: header HTTP chỉ nhận latin-1, để nguyên "tuất"
+        # là máy chủ ném UnicodeEncodeError và ngắt kết nối.
+        self.assertIn('filename="la-so-19871127-tuat.svg"', than["dinh_kem"])
+        self.assertTrue(than["dinh_kem"].isascii(), than["dinh_kem"])
+
+    def test_anh_svg_sai_ngay_tra_400(self):
+        ma, than = self.tho("/api/laso.svg?ngay=32&thang=11&nam=1987&gio=20&gioi_tinh=nu")
+        self.assertEqual(ma, 400)
+
     def test_ai_khong_co_khoa_tra_503(self):
+
         from tuvi import ai_luan_giai
         with mock.patch.dict(os.environ, {"GEMINI_API_KEY": ""}),              mock.patch.object(ai_luan_giai, "TEP_ENV", Path("/khong/co/.env")):
             ma, d = self.json("/api/ai-luangiai?ngay=20&thang=9&nam=1990&gio=14&gioi_tinh=nam")

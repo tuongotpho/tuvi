@@ -100,6 +100,14 @@ _TRIET = {"Giáp": 8, "Kỷ": 8, "Ất": 6, "Canh": 6, "Bính": 4, "Tân": 4,
           "Đinh": 2, "Nhâm": 2, "Mậu": 0, "Quý": 0}
 
 
+# Bố cục địa bàn truyền thống: 4x4, 12 cung vây quanh, giữa 2x2 là thiên bàn.
+# Đặt ở đây để máy chủ web và bộ vẽ ảnh dùng chung một bảng, không chép hai nơi.
+BO_CUC_DIA_BAN = [["Tỵ", "Ngọ", "Mùi", "Thân"],
+                  ["Thìn", None, None, "Dậu"],
+                  ["Mão", None, None, "Tuất"],
+                  ["Dần", "Sửu", "Tý", "Hợi"]]
+
+
 def _vi_tri_tu_vi(cuc: int, ngay: int) -> int:
     """Vị trí Tử Vi (chỉ số địa chi) theo số Cục và ngày sinh âm lịch."""
     boi = cuc

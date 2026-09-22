@@ -6,7 +6,7 @@ thủy, hạn và chọn ngày giờ. Dữ liệu tách khỏi mã, mọi con s�
 
 ```
 data/       26 bộ dữ liệu JSON — tri thức thuần, không lẫn mã
-tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, luận giải, xem ngày, chọn ngày
+tuvi/       gói Python: lịch âm, can chi, hạn, phong thủy, lá số, luận giải, xem ngày, chọn ngày, xuất ảnh
 web/        giao diện web: máy chủ thư viện chuẩn + trang tra cứu 5 tab
 video/      dựng video dọc cho TikTok từ dữ liệu engine
 app.py      chạy như ứng dụng để bàn (cửa sổ riêng); tuvi.spec + build.bat đóng thành .exe
@@ -102,6 +102,38 @@ from datetime import date
 kq = chon_ngay.chon_ngay(1987, date(2026, 10, 10), date(2026, 11, 7),
                          viec="dong_tho", gioi_tinh="nam")
 kq["ngay_tot"][0]["duong_lich"], kq["so_chan_xung_tuoi"]
+```
+
+## Xuất lá số ra ảnh và PDF
+
+Trong tab **Lá số**, dưới địa bàn có ba nút:
+
+| Nút | Ra cái gì | Dùng khi nào |
+|---|---|---|
+| **Tải ảnh PNG** | ảnh chấm điểm 2480×2356 (gấp đôi cho màn hình nét) | gửi Zalo, Messenger, chèn vào tài liệu |
+| **Tải ảnh SVG** | ảnh vector, khoảng 20 KB | phóng to bao nhiêu cũng nét, in khổ lớn, sửa được bằng phần mềm vẽ |
+| **In / Lưu PDF** | mở hộp in với riêng lá số | chọn máy in là "Lưu thành PDF" để ra tệp PDF |
+
+Ảnh gồm đủ 12 cung, 109 sao (tô màu theo cát — hung — chính tinh — Tứ Hóa),
+đắc tính viết nhỏ trên tên sao, Tuần Triệt, cung Thân, đại hạn từng cung và
+thiên bàn ở giữa.
+
+Máy chủ vẽ ảnh bằng **thư viện chuẩn của Python**, không thêm gói nào: chỉ ghép
+chuỗi XML của SVG. Nhờ vậy bản đóng gói `.exe` cũng xuất ảnh được mà không phình
+thêm MB nào. Chữ trong SVG là chữ thật nên tiếng Việt đúng dấu trên mọi máy,
+không phải nhúng phông. Việc đổi sang PNG làm ngay trong trình duyệt bằng canvas.
+
+Chiều cao ô cung **tự tính theo cung nhiều sao nhất** nên không bao giờ có chữ
+bị cắt; `tests/test_xuat_anh.py` đo lại từng đoạn chữ trong ảnh để chặn lỗi này.
+
+```bash
+python scripts/tra_cuu.py anh 27/11/1987 Tuất nu            # ra tệp .svg
+python scripts/tra_cuu.py anh 20/09/1990 14 nam --ra ls.svg
+```
+
+```
+GET /api/laso.svg?ngay=27&thang=11&nam=1987&gio=20&gioi_tinh=nu
+GET /api/laso.svg?...&tai_ve=1     # kèm header tải xuống
 ```
 
 ## Luận giải bằng AI (Gemini)

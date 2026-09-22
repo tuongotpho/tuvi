@@ -16,6 +16,7 @@ import sys
 import threading
 import time
 import traceback
+import unicodedata
 from datetime import date, datetime, timedelta, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -35,6 +36,7 @@ from tuvi.kiem_tra import (LoiDauVao, canh_gio_hop_le, gio_phut_hop_le,  # noqa:
                            so_nguyen)
 from tuvi.luan_giai import (bo_sung_y_nghia_sao, goi_y_cach_cuc,  # noqa: E402
                             luan_giai_la_so, tra_sao)
+from tuvi.xuat_anh import ve_la_so_svg  # noqa: E402
 
 bat_utf8()
 
@@ -46,11 +48,7 @@ def hom_nay_vn() -> date:
     """Ngày hôm nay theo giờ Việt Nam, không phụ thuộc múi giờ máy chủ."""
     return datetime.now(GIO_VN).date()
 
-# Bố cục địa bàn truyền thống: 4x4, 12 cung vây quanh, giữa là thiên bàn.
-BO_CUC = [["Tỵ", "Ngọ", "Mùi", "Thân"],
-          ["Thìn", None, None, "Dậu"],
-          ["Mão", None, None, "Tuất"],
-          ["Dần", "Sửu", "Tý", "Hợi"]]
+BO_CUC = la_so.BO_CUC_DIA_BAN   # bố cục 4x4, định nghĩa trong tuvi/la_so.py
 
 
 def api_laso(q: dict) -> dict:
@@ -66,6 +64,29 @@ def api_luangiai(q: dict) -> dict:
     ls = _la_so_tu_query(q)
     nam_xem = nam_hop_le(q.get("nam_xem") or hom_nay_vn().year, "Năm xem")
     return luan_giai_la_so(ls, nam_xem)
+
+
+def _khong_dau(chuoi: str) -> str:
+    """Bỏ dấu tiếng Việt, còn lại chữ ASCII thường, số và dấu nối.
+
+    Tên tệp đi trong header HTTP mà header chỉ nhận bảng mã latin-1, nên
+    "la-so-19871127-tuất.svg" làm máy chủ ném UnicodeEncodeError và ngắt kết nối
+    giữa chừng — đã dính một lần, có bài kiểm chặn lại.
+    """
+    thay = unicodedata.normalize("NFD", chuoi.replace("đ", "d").replace("Đ", "D"))
+    thay = "".join(c for c in thay if not unicodedata.combining(c)).lower()
+    return "".join(c if c.isalnum() or c in "-_." else "-" for c in thay)
+
+
+def api_laso_svg(q: dict) -> tuple[str, str]:
+    """Lá số vẽ thành ảnh SVG. Trả về (chuỗi SVG, tên tệp gợi ý khi tải về)."""
+    ls = _la_so_tu_query(q)
+    am = ls["am_lich"]
+    d = ngay_duong_hop_le(q.get("ngay"), q.get("thang"), q.get("nam"))
+    tieu_de = (f'Lá số {d.day:02d}/{d.month:02d}/{d.year} · {ls["gioi_tinh"].lower()}'
+               f' · giờ {am["gio"]}')
+    ten_tep = _khong_dau(f'la-so-{d.year}{d.month:02d}{d.day:02d}-{am["gio"]}.svg')
+    return ve_la_so_svg(ls, tieu_de), ten_tep
 
 
 # Gọi Gemini tốn tiền và chậm (5–20 giây) nên có hai khóa van: tối đa
@@ -218,6 +239,17 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):  # noqa: N802
         duong_dan = urlparse(self.path).path
+        if duong_dan == "/api/laso.svg":
+            q = {k: v[0] for k, v in parse_qs(urlparse(self.path).query).items()}
+            try:
+                svg, ten_tep = api_laso_svg(q)
+            except LoiDauVao as e:
+                self._json(400, {"loi": str(e)})
+            except (KeyError, ValueError, TypeError, OverflowError):
+                self._json(400, {"loi": "Tham số không hợp lệ."})
+            else:
+                self._svg(svg, ten_tep, tai_ve=q.get("tai_ve") == "1")
+            return
         if duong_dan in TUYEN:
             q = {k: v[0] for k, v in
                  parse_qs(urlparse(self.path).query).items()}
@@ -244,6 +276,20 @@ class Handler(SimpleHTTPRequestHandler):
                 self._json(500, {"loi": "Lỗi máy chủ. Thử lại sau."})
             return
         super().do_GET()
+
+    def _svg(self, svg: str, ten_tep: str, tai_ve: bool = False) -> None:
+        body = svg.encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "image/svg+xml; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        if tai_ve:
+            # Tên tệp chỉ gồm chữ số và dấu nối do máy tự đặt, không lấy từ người
+            # dùng, nên không có nguy cơ chèn ký tự lạ vào header.
+            self.send_header("Content-Disposition", f'attachment; filename="{ten_tep}"')
+        self.end_headers()
+        self.wfile.write(body)
 
     def _json(self, ma: int, obj) -> None:
         body = json.dumps(obj, ensure_ascii=False).encode("utf-8")

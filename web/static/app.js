@@ -137,6 +137,7 @@ function veLaSo(d) {
       : "<p class=\"goi-y\">Lá số này không khớp cách cục nào trong bộ 92 cách đang có.</p>");
 
   $("#ls-ket-qua").hidden = false;
+  $("#xuat-trang-thai").textContent = XUAT_GOI_Y;
   $("#ls-goi-y").hidden = true;
   $("#ls-luan-giai").hidden = true;
   $("#ls-luan-giai").innerHTML = "";
@@ -234,6 +235,108 @@ function veLuanGiai(d) {
   $("#ls-luan-giai").hidden = false;
   $("#hang-ai").hidden = false;
 }
+
+/* --------------------- xuất lá số ra ảnh / PDF --------------------- */
+const XUAT_GOI_Y = $("#xuat-trang-thai").textContent;
+
+// Máy chủ vẽ sẵn ảnh SVG (vector, chữ tiếng Việt đúng dấu). Ở đây chỉ lo ba việc:
+// tải thẳng SVG, đổi SVG sang PNG bằng canvas, và gọi hộp in của trình duyệt.
+function urlAnh(taiVe) {
+  const [nam, thang, ngay] = $("#ls-ngay").value.split("-").map(Number);
+  const [gio, phut] = $("#ls-gio").value.split(":").map(Number);
+  const u = new URL("/api/laso.svg", location.href);
+  Object.entries({ ngay, thang, nam, gio, phut, gioi_tinh: $("#ls-gt").value,
+                   tai_ve: taiVe ? 1 : "" })
+    .forEach(([k, v]) => v !== "" && v != null && u.searchParams.set(k, v));
+  return u;
+}
+
+function tenTep(duoi) {
+  const [nam, thang, ngay] = $("#ls-ngay").value.split("-");
+  return `la-so-${nam}${thang}${ngay}-${$("#ls-gt").value}.${duoi}`;
+}
+
+function taiVe(url, ten) {
+  const a = document.createElement("a");
+  a.href = url; a.download = ten;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+$("#nut-svg").addEventListener("click", () => {
+  taiVe(urlAnh(true).toString(), tenTep("svg"));
+});
+
+$("#nut-png").addEventListener("click", async () => {
+  const nut = $("#nut-png"), trangThai = $("#xuat-trang-thai");
+  const chuCu = nut.textContent;
+  nut.disabled = true; nut.textContent = "Đang dựng ảnh…";
+  try {
+    const res = await fetch(urlAnh(false));
+    if (!res.ok) throw new Error((await res.json()).loi || "Không lấy được ảnh");
+    const svg = await res.text();
+    // Vẽ SVG lên canvas rồi xuất PNG. Nhân 2 cho ảnh nét trên màn hình mật độ cao.
+    const ti = 2;
+    const co = svg.match(/width="(\d+)" height="(\d+)"/);
+    const [w, h] = [Number(co[1]), Number(co[2])];
+    const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+    const nguon = URL.createObjectURL(blob);
+    const anh = new Image();
+    await new Promise((xong, hong) => {
+      anh.onload = xong;
+      anh.onerror = () => hong(new Error("Trình duyệt không đọc được ảnh SVG"));
+      anh.src = nguon;
+    });
+    const khung = document.createElement("canvas");
+    khung.width = w * ti; khung.height = h * ti;
+    const ve = khung.getContext("2d");
+    ve.fillStyle = "#ffffff";
+    ve.fillRect(0, 0, khung.width, khung.height);
+    ve.drawImage(anh, 0, 0, khung.width, khung.height);
+    URL.revokeObjectURL(nguon);
+    const png = await new Promise((xong) => khung.toBlob(xong, "image/png"));
+    const urlPng = URL.createObjectURL(png);
+    taiVe(urlPng, tenTep("png"));
+    setTimeout(() => URL.revokeObjectURL(urlPng), 10000);
+    trangThai.textContent = `Đã tải PNG ${khung.width}×${khung.height} điểm ảnh.`;
+  } catch (err) {
+    trangThai.textContent = `Không xuất được PNG: ${err.message}`;
+  } finally {
+    nut.disabled = false; nut.textContent = chuCu;
+  }
+});
+
+$("#nut-in").addEventListener("click", async () => {
+  const nut = $("#nut-in"), trangThai = $("#xuat-trang-thai");
+  nut.disabled = true;
+  try {
+    const res = await fetch(urlAnh(false));
+    if (!res.ok) throw new Error((await res.json()).loi || "Không lấy được ảnh");
+    const svg = await res.text();
+    // In từ một khung riêng: trang in chỉ có đúng lá số, không dính thanh tab,
+    // biểu mẫu hay phần luận giải.
+    let khung = $("#khung-in");
+    if (!khung) {
+      khung = document.createElement("iframe");
+      khung.id = "khung-in";
+      document.body.appendChild(khung);
+    }
+    const tai = new Promise((xong) => { khung.onload = xong; });
+    khung.srcdoc = `<!doctype html><html lang="vi"><head><meta charset="utf-8">
+      <title>${esc(tenTep("pdf"))}</title>
+      <style>@page{size:A4 landscape;margin:8mm}
+        html,body{margin:0;padding:0}
+        svg{width:100%;height:auto;display:block}</style></head>
+      <body>${svg}</body></html>`;
+    await tai;
+    khung.contentWindow.focus();
+    khung.contentWindow.print();
+    trangThai.textContent = 'Trong hộp in, chọn máy in là "Lưu thành PDF" (Save as PDF) để ra tệp PDF.';
+  } catch (err) {
+    trangThai.textContent = `Không in được: ${err.message}`;
+  } finally {
+    nut.disabled = false;
+  }
+});
 
 /* ------------------------- luận giải bằng AI ------------------------- */
 // Markdown tối giản -> HTML, luôn escape trước: ## tiêu đề, - gạch đầu dòng, **đậm**, đoạn văn.

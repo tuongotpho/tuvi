@@ -101,6 +101,18 @@ input:focus, select:focus { outline: 2px solid var(--nhan); outline-offset: 1px;
 }
 .nut-chinh:hover { filter: brightness(1.08); }
 
+/* Nút phụ: viền nhạt, dùng cho các việc không phải hành động chính của trang. */
+.nut-phu {
+  font: inherit; font-weight: 600; padding: 9px 16px; cursor: pointer;
+  border: 1px solid var(--vien); border-radius: 8px;
+  background: var(--nen-the); color: var(--chu); flex: 0 0 auto;
+}
+.nut-phu:hover:not(:disabled) { border-color: var(--nhan); color: var(--nhan); }
+.nut-phu:disabled, .nut-chinh:disabled { opacity: .55; cursor: progress; }
+
+/* Khung dùng riêng cho lệnh in: không được chiếm chỗ trên trang. */
+#khung-in { position: absolute; width: 0; height: 0; border: 0; visibility: hidden; }
+
 /* ---------- thẻ ---------- */
 .the {
   background: var(--nen-the); border: 1px solid var(--vien);
