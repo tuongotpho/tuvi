@@ -366,3 +366,42 @@ footer {
 
 /* Từng dòng trong bảng xổ phải đặt màu — vài trình duyệt không thừa kế. */
 select option { background-color: var(--nen-the); color: var(--chu); }
+
+/* ---------------------------- lịch tháng (tab Xem ngày) ---------------------------- */
+.lich-thang .lt-dau { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.lich-thang .lt-dau b { font-size: 16px; }
+.lich-thang .lt-dau .nut-phu { padding: 4px 14px; font-size: 18px; line-height: 1.2; }
+.lt-luoi { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.lt-thu { text-align: center; font-size: 11.5px; font-weight: 600; color: var(--chu-mo); padding: 2px 0; }
+.lt-thu:last-of-type { color: var(--hung); }
+.lt-o {
+  position: relative; min-height: 58px; padding: 5px 6px 6px; text-align: left;
+  display: flex; flex-direction: column; gap: 1px;
+  font: inherit; color: var(--chu); background: var(--nen); cursor: pointer;
+  border: 1px solid var(--vien); border-top: 3px solid var(--vien); border-radius: 8px;
+}
+.lt-o.rong { visibility: hidden; }
+.lt-o.hd { border-top-color: var(--cat); }
+.lt-o:hover { border-color: var(--nhan); }
+.lt-o.chon { outline: 2px solid var(--nhan); outline-offset: 1px; background: var(--nhan-nhat); }
+.lt-duong { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.lt-o.cn .lt-duong { color: var(--hung); }
+.lt-am { font-size: 11.5px; color: var(--chu-mo); font-variant-numeric: tabular-nums; }
+.lt-ghi { font-size: 10.5px; line-height: 1.2; color: var(--nhan); font-weight: 600;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lt-ky, .lt-cham { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
+.lt-o .lt-ky { position: absolute; top: 7px; right: 7px; }
+.lt-ky { background: var(--hung); }
+.lt-cham { width: 14px; height: 3px; border-radius: 2px; background: var(--vien); vertical-align: middle; }
+.lt-cham.hd { background: var(--cat); }
+.lt-chu-thich { margin: 10px 0 0; max-width: none; font-size: 12.5px; }
+.ds-sao { padding-left: 1.1em; }
+.ds-sao li { margin: .35em 0; }
+.han-tu { color: var(--chu-mo); font-size: 12.5px; }
+@media (max-width: 520px) {
+  .lt-luoi { gap: 2px; }
+  .lt-o { min-height: 48px; padding: 3px 3px 4px; border-radius: 6px; }
+  .lt-duong { font-size: 14px; }
+  .lt-ghi { display: none; }
+  .lt-o .lt-ky { top: 4px; right: 4px; width: 6px; height: 6px; }
+}

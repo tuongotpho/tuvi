@@ -45,7 +45,10 @@ Năm tab, tất cả gọi thẳng gói `tuvi` nên số trên màn hình luôn 
   sinh tháng 1–2 dương trước Tết hay gõ nhầm năm âm.
 - **Phong thủy** — cung phi, bốn hướng tốt, bốn hướng xấu, màu sắc vật phẩm hợp
   mệnh, nguyên tắc bố trí từng khu vực; chọn hướng nhà để chấm luôn hướng đó.
-- **Xem ngày** — trực, nhị thập bát tú, hoàng đạo, giờ tốt giờ xấu, ngày kiêng.
+- **Xem ngày** — lịch tháng; can chi ngày/tháng/năm, tiết khí kèm thời khắc giao tiết; trực, nhị thập
+  bát tú, hoàng đạo, ngũ hành ngày, tuổi hợp/xung; 33 sao Ngọc Hạp đã đối chiếu; giờ hoàng đạo và giờ
+  xuất hành Lý Thuần Phong; Khổng Minh lục diệu; hướng Hỷ thần, Tài thần, Hạc thần; Bành Tổ bách kỵ;
+  ngày kiêng. Mọi mục đối chiếu hai nguồn độc lập (SOURCES.md mục H).
 - **Chọn ngày** — quét một khoảng ngày cho một tuổi cụ thể và một việc cụ thể, loại
   thẳng ngày xung tuổi và ngày kiêng của việc đó, rồi xếp hạng phần còn lại kèm
   giải thích từng khoản cộng trừ.
@@ -176,7 +179,7 @@ sqlite3 build/tuvi.db "SELECT huong, du_nien FROM du_nien WHERE cung_phi='Khảm
 | Tử vi | `tu_vi/sao`, `tu_vi/cung`, `tu_vi/cuc`, `tu_vi/cach_cuc` | 109 sao kèm ngũ hành, loại sao, ý nghĩa và bảng miếu vượng đắc hãm; 12 cung chức; 5 cục; 92 cách cục kèm quy tắc nhận diện máy đọc được |
 | Hạn | `han/sao_han`, `han/tam_tai`, `han/kim_lau`, `han/hoang_oc`, `han/han_khac` | 9 sao cửu diệu với bảng tra nam nữ và cách cúng; tam tai; 4 loại Kim Lâu; 6 cung Hoang Ốc; Thái Tuế, tam hình, lục phá |
 | Phong thủy | `phong_thuy/bat_trach`, `cuu_cung_phi_tinh`, `huong`, `mau_sac_vat_pham`, `bo_tri_khong_gian` | 8 cung phi và ma trận du niên 8×8; 9 sao phi tinh và Vận 9; 8 hướng, 24 sơn; màu và vật phẩm theo nạp âm; nguyên tắc bố trí 6 khu vực |
-| Lịch | `lich/truc`, `nhi_thap_bat_tu`, `tiet_khi`, `ngay_kieng` | 12 Trực, 28 tú, 24 tiết khí, các ngày kiêng dân gian |
+| Lịch | `lich/truc`, `nhi_thap_bat_tu`, `tiet_khi`, `ngay_kieng`, `ngoc_hap`, `banh_to`, `luc_dieu`, `huong_xuat_hanh`, `vsop87d_trai_dat` | 12 Trực, 28 tú, 24 tiết khí, ngày kiêng, 33 sao Ngọc Hạp, Bành Tổ bách kỵ, lục diệu, hướng xuất hành, hệ số VSOP87 tính tiết khí |
 | Chọn ngày | `lich/viec` | 11 việc thường phải chọn ngày, kèm cụm từ đối chiếu với Trực và 28 tú, và danh sách ngày kiêng đủ sức loại ngày |
 
 ## Độ tin cậy

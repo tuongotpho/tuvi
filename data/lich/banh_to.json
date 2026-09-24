@@ -1,0 +1,29 @@
+{
+ "mo_ta": "Bành Tổ bách kỵ nhật: mỗi can và mỗi chi của ngày có một việc nên tránh. Âm Hán Việt theo bản lưu hành ở Việt Nam; chữ Hán và dị bản đối chiếu với lunar-javascript (SOURCES.md mục H). Phần nghĩa dịch sát chữ Hán, không thêm lời bình.",
+ "can": [
+  {"ten": "Giáp", "han_viet": "Giáp bất khai thương, tài vật hao vong", "han_tu": "甲不开仓财物耗亡", "di_ban": "甲不开仓财物耗散", "nghia": "Ngày Giáp không mở kho, tiền của hao mất."},
+  {"ten": "Ất", "han_viet": "Ất bất tài thực, thiên chu bất trưởng", "han_tu": "乙不栽植千株不长", "nghia": "Ngày Ất không trồng cây, nghìn gốc chẳng lớn."},
+  {"ten": "Bính", "han_viet": "Bính bất tu táo, tất kiến hỏa ương", "han_tu": "丙不修灶必见火殃", "di_ban": "丙不修灶必见灾殃", "nghia": "Ngày Bính không sửa bếp, ắt gặp họa lửa."},
+  {"ten": "Đinh", "han_viet": "Đinh bất thế đầu, đầu chủ sinh sang", "han_tu": "丁不剃头头主生疮", "di_ban": "丁不剃头头必生疮", "nghia": "Ngày Đinh không cạo đầu, đầu dễ sinh mụn nhọt."},
+  {"ten": "Mậu", "han_viet": "Mậu bất thụ điền, điền chủ bất tường", "han_tu": "戊不受田田主不祥", "nghia": "Ngày Mậu không nhận ruộng đất, chủ ruộng chẳng lành."},
+  {"ten": "Kỷ", "han_viet": "Kỷ bất phá khoán, nhị chủ tịnh vong", "han_tu": "己不破券二主并亡", "di_ban": "己不破券二比并亡", "nghia": "Ngày Kỷ không hủy khế ước, hai bên đều thiệt."},
+  {"ten": "Canh", "han_viet": "Canh bất kinh lạc, chức cơ hư trướng", "han_tu": "庚不经络织机虚张", "nghia": "Ngày Canh không mắc sợi dệt, khung cửi dựng không."},
+  {"ten": "Tân", "han_viet": "Tân bất hợp tương, chủ nhân bất thường", "han_tu": "辛不合酱主人不尝", "nghia": "Ngày Tân không làm tương, chủ nhà không được nếm."},
+  {"ten": "Nhâm", "han_viet": "Nhâm bất ương thủy, nan canh đê phòng", "han_tu": "壬不泱水更难提防", "nghia": "Ngày Nhâm không tháo nước, khó bề giữ đê."},
+  {"ten": "Quý", "han_viet": "Quý bất từ tụng, lý nhược địch cường", "han_tu": "癸不词讼理弱敌强", "nghia": "Ngày Quý không kiện tụng, lý mình yếu, đối phương mạnh."}
+ ],
+ "chi": [
+  {"ten": "Tý", "han_viet": "Tý bất vấn bốc, tự nhạ tai ương", "han_tu": "子不问卜自惹祸殃", "nghia": "Ngày Tý không xem bói, tự rước tai họa."},
+  {"ten": "Sửu", "han_viet": "Sửu bất quan đới, chủ bất hoàn hương", "han_tu": "丑不冠带主不还乡", "nghia": "Ngày Sửu không làm lễ đội mũ đai, người đó khó về quê."},
+  {"ten": "Dần", "han_viet": "Dần bất tế tự, quỷ thần bất thường", "han_tu": "寅不祭祀神鬼不尝", "nghia": "Ngày Dần không cúng tế, quỷ thần không hưởng lễ (尝 là nếm, hưởng)."},
+  {"ten": "Mão", "han_viet": "Mão bất xuyên tỉnh, tuyền thủy bất hương", "han_tu": "卯不穿井水泉不香", "nghia": "Ngày Mão không đào giếng, nước giếng không ngọt."},
+  {"ten": "Thìn", "han_viet": "Thìn bất khốc khấp, tất chủ trùng tang", "han_tu": "辰不哭泣必主重丧", "nghia": "Ngày Thìn không khóc lóc, dễ có tang chồng tang."},
+  {"ten": "Tỵ", "han_viet": "Tỵ bất viễn hành, tài vật phục tàng", "han_tu": "巳不远行财物伏藏", "nghia": "Ngày Tỵ không đi xa, tiền của bị giấu mất."},
+  {"ten": "Ngọ", "han_viet": "Ngọ bất thiêm cái, thất chủ canh trương", "han_tu": "午不苫盖屋主更张", "nghia": "Ngày Ngọ không lợp mái, chủ nhà phải làm lại."},
+  {"ten": "Mùi", "han_viet": "Mùi bất phục dược, độc khí nhập tràng", "han_tu": "未不服药毒气入肠", "nghia": "Ngày Mùi không uống thuốc, độc khí vào ruột."},
+  {"ten": "Thân", "han_viet": "Thân bất an sàng, quỷ túy nhập phòng", "han_tu": "申不安床鬼祟入房", "nghia": "Ngày Thân không kê giường, ma quỷ vào phòng."},
+  {"ten": "Dậu", "han_viet": "Dậu bất hội khách, tân chủ hữu thương", "han_tu": "酉不会客宾主有伤", "di_ban": "酉不会客醉坐颠狂", "nghia": "Ngày Dậu không tiếp khách, chủ lẫn khách đều bị tổn hại."},
+  {"ten": "Tuất", "han_viet": "Tuất bất cật khuyển, tác quái thượng sàng", "han_tu": "戌不吃犬作怪上床", "nghia": "Ngày Tuất không ăn thịt chó, ma quái lên giường."},
+  {"ten": "Hợi", "han_viet": "Hợi bất giá thú, tất chủ phân trương", "han_tu": "亥不嫁娶必主分张", "di_ban": "亥不嫁娶不利新郎", "nghia": "Ngày Hợi không cưới gả, ắt chia lìa."}
+ ]
+}

@@ -181,7 +181,12 @@ def api_ngay(q: dict) -> dict:
     hom_nay = hom_nay_vn()
     d = ngay_duong_hop_le(q.get("ngay", hom_nay.day), q.get("thang", hom_nay.month),
                           q.get("nam", hom_nay.year))
-    return ngay_gio.xem_ngay(d.day, d.month, d.year)
+    return ngay_gio.chi_tiet_ngay(d.day, d.month, d.year)
+
+
+def api_lich_thang(q: dict) -> dict:
+    hom_nay = hom_nay_vn()
+    return ngay_gio.lich_thang(q.get("thang") or hom_nay.month, q.get("nam") or hom_nay.year)
 
 
 def api_phitinh(q: dict) -> dict:
@@ -249,6 +254,7 @@ TUYEN = {"/api/laso": api_laso, "/api/luangiai": api_luangiai, "/api/han": api_h
          "/api/chonngay": api_chonngay, "/api/viec": api_viec,
          "/api/hoptuoi": api_hoptuoi,
          "/api/phongthuy": api_phongthuy, "/api/ngay": api_ngay,
+         "/api/lichthang": api_lich_thang,
          "/api/phitinh": api_phitinh, "/api/sao": api_sao,
          "/api/ai-luangiai": api_ai_luangiai}
 

@@ -845,45 +845,170 @@ $("#form-pt").addEventListener("submit", async (e) => {
 });
 
 /* ----------------------------- xem ngày ----------------------------- */
+const lopTC = (tc) => (tc === "tốt" ? "tot" : tc === "xấu" ? "xau" : "vua");
+const nhanTC = (tc) => `<span class="nhan-tt ${lopTC(tc)}">${esc(tc)}</span>`;
+
 function veNgay(d) {
   const mau = d.diem_tong_hop >= 70 ? "var(--cat)" : d.diem_tong_hop >= 45 ? "var(--vang)" : "var(--hung)";
-  const gio = (ds_) => ds_.map((g) => `<li><b>${esc(g.can_chi)}</b> — ${esc(g.khung_gio)}</li>`).join("");
+  const am = d.am;
+  const amLich = `${am.ngay}/${am.thang}${am.nhuan ? " nhuận" : ""} năm ${d.nam_can_chi}`;
+  const tiet = d.tiet_chi_tiet;
+  const t = d.tuoi;
+  const dsTuoi = (x) => (x.length ? esc(x.join(", ")) : "—");
+  const h = d.huong_xuat_hanh;
+  const kieng = [...d.ngay_kieng.filter((x) => x !== "Thọ tử"),
+    ...(d.tho_tu.length ? [`Thọ tử (${d.tho_tu.join("; ")})`] : [])];
+  const sao = (ds_, tc) => ds_.length
+    ? `<ul class="ds-sao">${ds_.map((s) => `<li><b>${esc(s.ten)}</b> <span class="han-tu">${esc(s.han_tu)}</span>
+        — ${esc(s.y_nghia)}</li>`).join("")}</ul>`
+    : `<p class="goi-y">Không có sao ${tc} nào trong 33 sao đã đối chiếu.</p>`;
+  const hd = new Set(d.gio_hoang_dao.map((g) => g.chi));
+  const canChiGio = Object.fromEntries([...d.gio_hoang_dao, ...d.gio_hac_dao].map((g) => [g.chi, g.can_chi]));
+  const bt = (r) => `<p><b>${esc(r.han_viet)}</b> <span class="han-tu">${esc(r.han_tu)}</span><br>${esc(r.nghia)}</p>`;
+
   $("#ngay-ket-qua").innerHTML = `
   <div class="the-tom-tat">
-    ${[["Dương lịch", d.duong_lich], ["Âm lịch", d.am_lich], ["Ngày", d.ngay_can_chi],
-       ["Tiết khí", d.tiet_khi], ["Loại ngày", d.loai_ngay], ["Thần trực nhật", d.than_truc_nhat]]
+    ${[["Dương lịch", `${d.thu}, ${d.duong_lich}`],
+       ["Âm lịch", amLich],
+       ["Tháng âm", `${d.thang_can_chi} (tháng ${am.so_ngay_thang === 30 ? "đủ 30" : "thiếu 29"} ngày)`],
+       ["Ngày", `${d.ngay_can_chi} — ${d.nap_am_ngay}`],
+       ["Tiết khí", `${tiet.ten} (từ ${tiet.bat_dau})`],
+       ["Nhằm ngày", `${d.than_truc_nhat} ${d.loai_ngay.toLowerCase()}`]]
       .map(([k, v]) => `<div class="o-tom-tat"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join("")}
   </div>
-  <div class="the">
-    <h3>Điểm tổng hợp ${d.diem_tong_hop}/100</h3>
-    <div class="thanh-diem"><i style="width:${d.diem_tong_hop}%;background:${mau}"></i></div>
-    <p class="goi-y">Điểm này chỉ xét trực, nhị thập bát tú, hoàng đạo và ngày kiêng chung —
-      chưa xét xung khắc với tuổi người dùng.</p>
-    ${d.ngay_kieng.length ? `<p class="loi">Ngày này phạm: ${esc(ds(d.ngay_kieng))}</p>` : ""}
+  ${kieng.length ? `<div class="the canh-bao"><b>⚠ Ngày này phạm: ${esc(kieng.join(" · "))}</b>
+    <p>Dân gian kiêng các việc lớn (cưới hỏi, khởi công, xuất hành xa) vào những ngày này.</p></div>` : ""}
+  <div class="luoi">
+    <div class="the">
+      <h3>Tuổi hợp và xung với ngày</h3>
+      <p><b>Tam hợp:</b> ${dsTuoi(t.tam_hop)}<br><b>Lục hợp:</b> ${dsTuoi(t.luc_hop)}</p>
+      <p><b>Xung:</b> ${dsTuoi(t.xung)}<br><b>Hình:</b> ${dsTuoi(t.hinh)}<br>
+        <b>Hại:</b> ${dsTuoi(t.hai)}<br><b>Phá:</b> ${dsTuoi(t.pha)}</p>
+      <p class="goi-y">Xét theo địa chi năm sinh của người xem.</p>
+    </div>
+    <div class="the">
+      <h3>Ngũ hành ngày: ${esc(d.ngu_hanh_ngay.ten)} ${nhanTC(d.ngu_hanh_ngay.tinh_chat)}</h3>
+      <p>Can ${esc(d.ngay_can_chi.split(" ")[0])} hành ${esc(d.ngu_hanh_ngay.hanh_can)}, chi
+        ${esc(d.ngay_can_chi.split(" ")[1])} hành ${esc(d.ngu_hanh_ngay.hanh_chi)}: ${esc(d.ngu_hanh_ngay.quan_he.toLowerCase())}.</p>
+      <p class="goi-y">Can sinh chi là Bảo nhật, chi sinh can là Nghĩa nhật, can khắc chi là Chế nhật,
+        chi khắc can là Phạt nhật, cùng hành là Chuyên nhật.</p>
+    </div>
+    <div class="the">
+      <h3>Khổng Minh lục diệu: ${esc(d.luc_dieu.ten)} ${nhanTC(d.luc_dieu.tinh_chat)}</h3>
+      <p>${esc(d.luc_dieu.y_nghia)}</p>
+    </div>
   </div>
   <div class="luoi">
     <div class="the">
-      <h3>Trực ${esc(d.truc)} <span class="nhan-tt ${d.truc_y_nghia.tinh_chat === "tốt" ? "tot" : d.truc_y_nghia.tinh_chat === "xấu" ? "xau" : "vua"}">${esc(d.truc_y_nghia.tinh_chat)}</span></h3>
+      <h3>Trực ${esc(d.truc)} ${nhanTC(d.truc_y_nghia.tinh_chat)}</h3>
       <p>${esc(d.truc_y_nghia.tom_tat)}</p>
       <p><b>Nên:</b> ${esc(ds(d.truc_y_nghia.nen))}</p>
       <p><b>Kỵ:</b> ${esc(ds(d.truc_y_nghia.ky))}</p>
     </div>
     <div class="the">
-      <h3>Sao ${esc(d.tu_y_nghia.ten_day_du || d.nhi_thap_bat_tu)} <span class="nhan-tt ${d.tu_y_nghia.tinh_chat === "tốt" ? "tot" : d.tu_y_nghia.tinh_chat === "xấu" ? "xau" : "vua"}">${esc(d.tu_y_nghia.tinh_chat)}</span></h3>
+      <h3>Sao ${esc(d.tu_y_nghia.ten_day_du || d.nhi_thap_bat_tu)} ${nhanTC(d.tu_y_nghia.tinh_chat)}</h3>
       <p>${esc(d.tu_y_nghia.mo_ta)}</p>
       <p><b>Nên:</b> ${esc(ds(d.tu_y_nghia.nen))}</p>
       <p><b>Kỵ:</b> ${esc(ds(d.tu_y_nghia.ky))}</p>
     </div>
-    <div class="the"><h3>Giờ hoàng đạo</h3><ul>${gio(d.gio_hoang_dao)}</ul></div>
-    <div class="the"><h3>Giờ hắc đạo</h3><ul>${gio(d.gio_hac_dao)}</ul></div>
+  </div>
+  <div class="luoi">
+    <div class="the"><h3>Sao tốt (Ngọc Hạp Thông Thư)</h3>${sao(d.ngoc_hap.tot, "tốt")}</div>
+    <div class="the"><h3>Sao xấu (Ngọc Hạp Thông Thư)</h3>${sao(d.ngoc_hap.xau, "xấu")}</div>
+  </div>
+  <div class="the">
+    <h3>Giờ trong ngày</h3>
+    <table class="xep-chong">
+      <thead><tr><th>Giờ</th><th>Hoàng đạo</th><th>Xuất hành (Lý Thuần Phong)</th><th>Ý nghĩa</th></tr></thead>
+      <tbody>${d.gio_xuat_hanh.map((g) => `<tr>
+        <td data-nhan="Giờ"><b>${esc(canChiGio[g.chi])}</b> ${esc(g.khung_gio)}</td>
+        <td data-nhan="Hoàng đạo">${hd.has(g.chi) ? '<span class="nhan-tt tot">hoàng đạo</span>'
+          : '<span class="nhan-tt xau">hắc đạo</span>'}</td>
+        <td data-nhan="Xuất hành">${esc(g.ten)} ${nhanTC(g.tinh_chat)}</td>
+        <td data-nhan="Ý nghĩa">${esc(g.y_nghia)}</td></tr>`).join("")}</tbody>
+    </table>
+  </div>
+  <div class="luoi">
+    <div class="the">
+      <h3>Hướng xuất hành</h3>
+      <p><b>Hỷ thần (đón):</b> ${esc(h.hy_than)}</p>
+      <p><b>Tài thần (đón):</b> ${esc(h.tai_than.join(" hoặc "))}
+        ${h.tai_than_chua_thong_nhat ? '<br><span class="goi-y">Các sách Việt ghi khác nhau cho can này.</span>' : ""}</p>
+      <p><b>Hạc thần (tránh):</b> ${h.hac_than === "Trên trời" ? "ở trên trời — không phải tránh hướng nào" : esc(h.hac_than)}</p>
+    </div>
+    <div class="the">
+      <h3>Bành Tổ bách kỵ</h3>
+      ${bt(d.banh_to.can)}${bt(d.banh_to.chi)}
+    </div>
+    <div class="the">
+      <h3>Tiết khí</h3>
+      <p><b>${esc(tiet.ten)}</b> bắt đầu lúc ${esc(tiet.bat_dau)}.</p>
+      <p>Tiết kế tiếp: <b>${esc(tiet.ke_tiep)}</b> lúc ${esc(tiet.ke_tiep_bat_dau)}.</p>
+      <p class="goi-y">Giờ Việt Nam; sai lệch dưới một phút.</p>
+    </div>
+  </div>
+  <div class="the">
+    <h3>Điểm tổng hợp ${d.diem_tong_hop}/100</h3>
+    <div class="thanh-diem"><i style="width:${d.diem_tong_hop}%;background:${mau}"></i></div>
+    <p class="goi-y">Điểm quy ước của app, chỉ xét trực, nhị thập bát tú, hoàng đạo và các ngày kỵ ở trên —
+      không xét tuổi người xem. Muốn chọn ngày theo tuổi, dùng tab Chọn ngày.</p>
   </div>`;
 }
+
+/* ---------------------------- lịch tháng ---------------------------- */
+let lichDangXem = null;   // {thang, nam} đang vẽ
+
+async function veLichThang(thang, nam, chon) {
+  const d = await api("/api/lichthang", { thang, nam });
+  lichDangXem = { thang: d.thang, nam: d.nam };
+  const dau = d.ngay[0].thu;                    // 0 = thứ Hai
+  const o = [];
+  for (let i = 0; i < dau; i++) o.push('<div class="lt-o rong"></div>');
+  for (const x of d.ngay) {
+    const iso = `${d.nam}-${String(d.thang).padStart(2, "0")}-${String(x.ngay).padStart(2, "0")}`;
+    const amNgay = x.am.ngay === 1 || x.ngay === 1 ? `${x.am.ngay}/${x.am.thang}${x.am.nhuan ? "n" : ""}` : x.am.ngay;
+    const ghi = [...x.le, ...(x.tiet ? [x.tiet] : [])];
+    o.push(`<button type="button" class="lt-o${x.hoang_dao ? " hd" : ""}${iso === chon ? " chon" : ""}${x.thu === 6 ? " cn" : ""}"
+      data-ngay="${iso}" title="${esc(`${x.can_chi} — ${x.than} ${x.hoang_dao ? "hoàng đạo" : "hắc đạo"}`
+        + (x.kieng.length ? ` — phạm ${x.kieng.join(", ")}` : ""))}">
+      <span class="lt-duong">${x.ngay}</span><span class="lt-am">${esc(amNgay)}</span>
+      ${x.kieng.length ? '<i class="lt-ky" aria-label="ngày kỵ"></i>' : ""}
+      ${ghi.length ? `<span class="lt-ghi">${esc(ghi[0])}</span>` : ""}</button>`);
+  }
+  $("#ngay-lich-thang").innerHTML = `<div class="the lich-thang">
+    <div class="lt-dau">
+      <button type="button" class="nut-phu" data-buoc="-1" aria-label="Tháng trước">‹</button>
+      <b>Tháng ${d.thang} năm ${d.nam}</b>
+      <button type="button" class="nut-phu" data-buoc="1" aria-label="Tháng sau">›</button>
+    </div>
+    <div class="lt-luoi">${["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map((t) => `<span class="lt-thu">${t}</span>`).join("")}
+      ${o.join("")}</div>
+    <p class="goi-y lt-chu-thich"><i class="lt-cham hd"></i> hoàng đạo · <i class="lt-cham"></i> hắc đạo ·
+      <i class="lt-ky"></i> ngày kỵ (Tam nương, Nguyệt kỵ, Dương công, Thọ tử) · số nhỏ là ngày âm lịch</p>
+  </div>`;
+}
+
+$("#ngay-lich-thang").addEventListener("click", async (e) => {
+  const nut = e.target.closest("button");
+  if (!nut) return;
+  if (nut.dataset.buoc) {
+    const t = new Date(lichDangXem.nam, lichDangXem.thang - 1 + Number(nut.dataset.buoc), 1);
+    try { await veLichThang(t.getMonth() + 1, t.getFullYear(), $("#n-ngay").value); }
+    catch (err) { baoLoi($("#ngay-lich-thang"), err); }
+  } else if (nut.dataset.ngay) {
+    datNgay($("#n-ngay"), nut.dataset.ngay);
+    $("#form-ngay").requestSubmit();
+  }
+});
 
 $("#form-ngay").addEventListener("submit", async (e) => {
   e.preventDefault();
   const [nam, thang, ngay] = $("#n-ngay").value.split("-").map(Number);
-  try { veNgay(await api("/api/ngay", { ngay, thang, nam })); }
-  catch (err) { baoLoi($("#ngay-ket-qua"), err); }
+  try {
+    const [chiTiet] = await Promise.all([api("/api/ngay", { ngay, thang, nam }),
+      veLichThang(thang, nam, $("#n-ngay").value)]);
+    veNgay(chiTiet);
+  } catch (err) { baoLoi($("#ngay-ket-qua"), err); }
 });
 
 

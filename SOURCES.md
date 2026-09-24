@@ -156,3 +156,40 @@ Commit `9c9552d` (AI Studio) thêm nhiều nội dung cho tab Hợp tuổi. Từ
 | Hóa giải lục xung "đeo linh vật", hóa giải lục hại, "Tứ hành xung… có thể còn là nhị hợp hoặc vô hại" | Không có nguồn; câu cuối còn sai (trong nhóm tứ hành xung có nhiều cặp hình, hại, phá) |
 | Thang điểm 10, "tỉ lệ hợp %", xếp loại "Thứ Cát" | Số tự đặt, trông như xác suất nhưng không phải; "Thứ Cát" (cát hạng hai) lại được gắn cho điểm âm |
 | Năm sinh con cố định 2026–2031, nhãn "Cầu nối vàng… hóa giải hoàn toàn" | Năm viết cứng; lời hứa "hoàn toàn" không có nguồn. Nay lấy năm hiện tại |
+
+## H. Xem ngày — đối chiếu toàn bộ (25/09/2026)
+
+Hai nguồn đối chiếu bằng máy, lưu thành fixture để kiểm lại được:
+
+| Mã | Nguồn | Dùng để |
+|---|---|---|
+| S-04 | [xemlicham.com](https://www.xemlicham.com) — 730 ngày 2025–2026 (`tests/fixtures/xemlicham_2025_2026.json.gz`, `scripts/tai_xemlicham.py`) | Lịch vạn niên tiếng Việt: can chi, trực, 28 tú, giờ hoàng đạo, ngày kỵ, Ngọc Hạp, hướng xuất hành, Bành Tổ |
+| S-05 | [lunar-javascript](https://github.com/6tail/lunar-javascript) 1.7.7, MIT (`tests/fixtures/lunarjs_2025_2026.json.gz`, `scripts/sinh_fixture_lunarjs.cjs`) | Hoàng lịch theo Hiệp Kỷ Biện Phương Thư; thời khắc 24 tiết khí 1900–2100 |
+| S-06 | [astronomia](https://github.com/commenthol/astronomia) 4.2.0, MIT — hệ số VSOP87D (`data/lich/vsop87d_trai_dat.json`, `scripts/tao_vsop87.mjs`) | Vị trí mặt trời chính xác để tính tiết khí |
+
+**Kết quả** (`tests/test_xem_ngay.py`):
+
+| Mục | Kết quả | Ghi chú |
+|---|---|---|
+| Tiết khí | 4.824/4.824 mốc 1900–2100 đúng ngày; thời khắc lệch S-05 tối đa 32 giây; USNO 2025 lệch < 1 phút | **Sửa lỗi cũ:** từng lấy kinh độ mặt trời lúc 0h bằng công thức gần đúng của âm lịch, nên mọi ngày giao tiết bị tính trễ 1 ngày — 24 ngày/năm sai tên tiết, ~12 ngày/năm sai Trực |
+| 12 Trực | 730/730 khớp S-05 | Ngày giao tiết lệnh thì trực lặp lại. S-04 tự mâu thuẫn ở ngày giao tiết (lúc lặp đúng ngày, lúc trễ 1–2 ngày) nên không dùng làm chuẩn cho mục này |
+| 28 tú, giờ hoàng đạo | 720/720 khớp cả S-04 và S-05 | |
+| Thần trực nhật (hoàng/hắc đạo) | 681/681 ngày S-04 có ghi tên đều khớp | Việt Nam an theo **tháng âm lịch**; S-05 (Trung Hoa) theo tháng tiết, lệch 140 ngày — giữ cách Việt |
+| Ngũ hành ngày (Bảo/Nghĩa/Chế/Phạt/Chuyên) | 60/60 can chi khớp S-04 | |
+| Tuổi hợp/xung/hại/phá | 720/720 khớp S-04 | Không so mục "hình": S-04 ghi cả cặp không có trong tam hình/tự hình (vd. ngày Ngọ "hình Dậu") |
+| Hỷ thần | 10/10 can khớp S-04, S-05 và bài của [dongphuonglyso](http://dongphuonglyso.blogspot.com/2016/01/quy-luat-tinh-phuong-vi-hy-than-tai.html) | ancotnam.vn, dnulib.edu.vn chép sai (đảo Ất Canh / Bính Tân) |
+| Tài thần | 8/10 can các nguồn Việt thống nhất; **Mậu** (Bắc hay Nam) và **Quý** (Tây Bắc hay Tây) các nguồn ghi khác nhau → app ghi cả hai và nói rõ | Bảng Tài thần của Trung Hoa (S-05) khác hẳn — không dùng |
+| Hạc thần | 60/60 khớp S-04 và dongphuonglyso | Lên trời 16 ngày Quý Tỵ – Mậu Thân |
+| Bành Tổ bách kỵ | 22/22 vế "kiêng gì" khớp S-04 và S-05 | Vế hậu quả có dị bản ở 6 câu (ghi trong `data/lich/banh_to.json`). S-04 dịch sai câu ngày Dần: 神鬼不尝 là "quỷ thần không hưởng lễ", không phải "không bình thường" |
+| Khổng Minh lục diệu, giờ Lý Thuần Phong | Theo ví dụ tính tay của [lichvannien365](https://lichvannien365.com/phuong-phap-tinh-ngay-gio-theo-khong-minh-luc-dieu.html) (25/8 là Lưu Liên, giờ Tị là Đại An) và [tuvikhoahoc](https://tuvikhoahoc.vn/khong-minh-luc-dieu-A71098256.html) (23/7 là Tiểu Cát): mùng 1 tháng Giêng khởi Đại An | **S-04 lệch một ô ở mọi ngày** (720/720) — có bài kiểm ghi lại |
+| Ngọc Hạp Thông Thư | Giữ 33 sao có **cùng tên và cùng bảng an** ở S-04 và S-05 (khớp S-04 từng ngày) | Thiên Đức theo khẩu quyết Tam Mệnh Thông Hội ("正丁二申宫…"). S-04 sai 2 chỗ: Thiên Đức Hợp tháng 2 ghi Tý (đúng là Tỵ — hợp của Thân) và Thiên Xá (đánh dấu tràn lan, bỏ trống tháng 5 và 11; đúng là Mậu Dần / Giáp Ngọ / Mậu Thân / Giáp Tý theo mùa, khớp S-05) |
+| Ngày kỵ | Tam nương, Dương công khớp S-04; Dương công khớp bảng 杨公忌 của S-05 (có 1/7 và 29/7) | S-04 ghi Dương công tháng Chạp là 22 — sai quy luật, đúng là 19. "Nguyệt kỵ" của S-04 là quy tắc khác hẳn (theo chi), kho giữ 5/14/23 âm lịch |
+| Thọ tử | Hai cách cùng lưu hành, app ghi rõ phạm theo cách nào | Cách phổ thông theo can chi (tháng Giêng Bính Tuất…) khớp [tuvivanso](https://tuvivanso.com/xem-ngay/ngay-tho-tu/) và [thanglongdaoquan](https://thanglongdaoquan.vn/ngay-tho-tu/) 12/12 tháng; cách Ngọc Hạp theo chi khớp S-04 |
+
+**Không đưa vào app:**
+
+- **66 sao Ngọc Hạp còn lại** (Tiểu Hao, Đại Hao, Thiên Tặc, Ngũ Hư, Cô Thần, Quả Tú, Âm/Dương Thác…): tên và bảng an giữa hai nguồn mâu thuẫn (vd. bảng web gọi "Cô Thần" trùng khít bảng Thiên Hỷ) hoặc chỉ có một nguồn.
+- **"Tuổi kỵ theo nạp âm"** (vd. "ngày Nhâm Dần kỵ Bính Thân, Canh Thân"): mỗi nguồn một quy tắc — S-04 liệt kê 2 tuổi (có ngày Mậu Tuất lại "kỵ Giáp Ngọ" dù Ngọ Tuất tam hợp), ngaydep.com 3 tuổi, S-05 1 tuổi. App chỉ hiện con giáp xung/hợp, phần mọi nguồn thống nhất.
+- **Kim thần thất sát, Trùng tang, Trùng phục, Sát chủ** trong mục ngày kỵ của S-04: chưa tìm được nguồn thứ hai khớp.
+
+**Quy ước:** giờ Việt Nam UTC+7 cho mọi mốc (âm lịch, tiết khí); Ngọc Hạp và 12 thần hoàng đạo an theo tháng âm lịch, tháng nhuận theo số tháng chính; Trực theo tháng tiết.

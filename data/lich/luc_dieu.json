@@ -1,0 +1,11 @@
+{
+ "mo_ta": "Khổng Minh lục diệu (tiểu lục nhâm) — dùng xem ngày và giờ xuất hành (giờ theo Lý Thuần Phong). Mùng 1 tháng Giêng khởi Đại An; mỗi tháng lùi khởi sang ô kế, mỗi ngày tiến một ô: chỉ số ngày = (tháng âm + ngày âm - 2) mod 6. Giờ Tý đứng ở ô của ngày, mỗi canh giờ tiến một ô. Tháng nhuận tính theo số tháng chính. Nguồn và ví dụ đối chiếu: SOURCES.md mục H.",
+ "thu_tu": [
+  {"ten": "Đại An", "tinh_chat": "tốt", "y_nghia": "Mọi việc yên ổn, cầu tài nên đi hướng Tây Nam; nhà cửa bình an, người đi đường được yên."},
+  {"ten": "Lưu Liên", "tinh_chat": "xấu", "y_nghia": "Mưu việc khó thành, cầu tài mờ mịt, việc chậm trễ dây dưa; kiện tụng nên hoãn."},
+  {"ten": "Tốc Hỷ", "tinh_chat": "tốt", "y_nghia": "Tin vui sắp tới, cầu tài nên đi hướng Nam; gặp gỡ, đi lại nhiều may mắn."},
+  {"ten": "Xích Khẩu", "tinh_chat": "xấu", "y_nghia": "Dễ cãi cọ, thị phi, miệng tiếng; hội họp, tranh luận, việc quan nên tránh."},
+  {"ten": "Tiểu Cát", "tinh_chat": "tốt", "y_nghia": "Rất tốt lành, đi thường gặp may; buôn bán có lời, trong nhà hòa thuận."},
+  {"ten": "Không Vong", "tinh_chat": "xấu", "y_nghia": "Cầu tài không lợi, việc hay trái ý; đi xa dễ gặp trắc trở."}
+ ]
+}

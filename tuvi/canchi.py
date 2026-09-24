@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import NamedTuple
 
-from .amlich import PI, solar_to_lunar, sun_longitude
+from .amlich import solar_to_lunar
 
 THIEN_CAN = ["Giáp", "Ất", "Bính", "Đinh", "Mậu",
              "Kỷ", "Canh", "Tân", "Nhâm", "Quý"]
@@ -145,20 +145,26 @@ def luc_thap_hoa_giap() -> list[dict]:
 
 
 def tiet_khi_cua_ngay(jd: int) -> str:
-    """Tiết khí đang có hiệu lực trong ngày (theo kinh độ mặt trời lúc 0h)."""
-    deg = sun_longitude(jd - 0.5 - 7 / 24) / PI * 180
-    return TIET_KHI[int(deg // 15) % 24]
+    """Tiết khí có hiệu lực trong ngày; ngày có thời khắc giao tiết thuộc tiết mới.
+
+    Từng lấy kinh độ mặt trời lúc 0h bằng công thức gần đúng của âm lịch, nên
+    mọi ngày giao tiết đều bị tính trễ một ngày (kéo theo sai Trực). Nay tính
+    bằng tuvi/thien_van.py, khớp thời khắc tiết khí chuẩn tới dưới một phút.
+    """
+    from .thien_van import muc_tiet_cuoi_ngay
+    return TIET_KHI[muc_tiet_cuoi_ngay(jd)]
 
 
 def chi_thang_theo_tiet(jd: int) -> int:
     """Nguyệt kiến (địa chi của tháng tiết lệnh) — mốc để tính 12 Trực.
 
     Tháng tiết bắt đầu ở các tiết chính: Lập xuân -> tháng Dần, Kinh trập ->
-    tháng Mão, Thanh minh -> tháng Thìn, ...
+    tháng Mão, Thanh minh -> tháng Thìn, ... Ngày giao tiết đã thuộc tháng mới,
+    nên Trực của ngày đó lặp lại Trực hôm trước ("trực trùng").
     """
-    deg = sun_longitude(jd - 0.5 - 7 / 24) / PI * 180
-    # 315 độ (Lập xuân) ứng với tháng Dần (chi index 2)
-    return int(((deg - 315) % 360) // 30 + 2) % 12
+    from .thien_van import muc_tiet_cuoi_ngay
+    # Mỗi tháng tiết gồm 2 tiết; Lập xuân (chỉ số 21) mở đầu tháng Dần (chi 2).
+    return ((muc_tiet_cuoi_ngay(jd) - 21) % 24 // 2 + 2) % 12
 
 
 def tuoi_mu(lunar_year_sinh: int, lunar_year_xem: int) -> int:

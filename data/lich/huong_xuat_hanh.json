@@ -1,0 +1,28 @@
+{
+ "mo_ta": "Hướng xuất hành theo can chi của ngày: Hỷ thần và Tài thần nên đón, Hạc thần nên tránh. Nguồn: SOURCES.md mục H.",
+ "hy_than": {
+  "cach_tinh": "Theo can ngày; hai can cách nhau 5 dùng chung một hướng.",
+  "bang": {"Giáp": "Đông Bắc", "Kỷ": "Đông Bắc", "Ất": "Tây Bắc", "Canh": "Tây Bắc", "Bính": "Tây Nam", "Tân": "Tây Nam",
+           "Đinh": "Chính Nam", "Nhâm": "Chính Nam", "Mậu": "Đông Nam", "Quý": "Đông Nam"}
+ },
+ "tai_than": {
+  "cach_tinh": "Theo can ngày, bảng lưu hành ở Việt Nam (khác bảng Tài thần của Trung Quốc). Can Mậu và Quý các sách Việt ghi khác nhau nên ghi cả hai hướng.",
+  "bang": {"Giáp": ["Đông Nam"], "Ất": ["Đông Nam"], "Bính": ["Chính Đông"], "Đinh": ["Chính Đông"],
+           "Mậu": ["Chính Bắc", "Chính Nam"], "Kỷ": ["Chính Nam"], "Canh": ["Tây Nam"], "Tân": ["Tây Nam"],
+           "Nhâm": ["Chính Tây"], "Quý": ["Tây Bắc", "Chính Tây"]}
+ },
+ "hac_than": {
+  "cach_tinh": "Theo vị trí ngày trong Lục thập hoa giáp (Giáp Tý = 1). Hạc thần lên trời 16 ngày (Quý Tỵ 30 tới Mậu Thân 45), 44 ngày còn lại ở tám hướng, luân phiên 6 và 5 ngày.",
+  "chu_ky": [
+   {"tu": 46, "so_ngay": 6, "huong": "Đông Bắc"},
+   {"tu": 52, "so_ngay": 5, "huong": "Chính Đông"},
+   {"tu": 57, "so_ngay": 6, "huong": "Đông Nam"},
+   {"tu": 3, "so_ngay": 5, "huong": "Chính Nam"},
+   {"tu": 8, "so_ngay": 6, "huong": "Tây Nam"},
+   {"tu": 14, "so_ngay": 5, "huong": "Chính Tây"},
+   {"tu": 19, "so_ngay": 6, "huong": "Tây Bắc"},
+   {"tu": 25, "so_ngay": 5, "huong": "Chính Bắc"},
+   {"tu": 30, "so_ngay": 16, "huong": "Trên trời"}
+  ]
+ }
+}
