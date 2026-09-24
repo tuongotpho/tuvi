@@ -321,202 +321,58 @@ function datNgay(o, giaTri) {
 function veHopTuoi(d) {
   const nguoi = (n, nhan) => `<div class="o-tom-tat"><span>${nhan} (${n.gioi_tinh === "nam" ? "Nam" : "Nữ"})</span>
     <b>${esc(n.can_chi)} (${esc(n.con_giap)})</b>
-    <span>Mệnh: ${esc(n.nap_am)} (${esc(n.hanh)})</span>
-    <span>Cung phi: ${esc(n.cung_phi)} (${esc(n.nhom_bat_trach)}) · Cung sinh: ${esc(n.cung_sinh || "—")}</span></div>`;
-
+    <span>${esc(n.nap_am)} · cung ${esc(n.cung_phi)} · ${esc(n.nhom_bat_trach)}</span></div>`;
   const hang = (m) => `<tr>
     <td data-nhan="Xét về"><b>${esc(m.muc)}</b></td>
-    <td data-nhan="Kết quả"><b>${esc(m.ket_qua)}</b></td>
+    <td data-nhan="Kết quả">${esc(m.ket_qua)}</td>
     <td data-nhan="Tính chất"><span class="nhan-tt ${m.tinh_chat === "xấu" ? "xau"
       : m.tinh_chat === "tốt" ? "tot" : "vua"}">${esc(m.tinh_chat)}</span></td>
     <td data-nhan="Điểm">${m.diem > 0 ? "+" : ""}${m.diem}</td>
     <td data-nhan="Giải thích">${esc(m.giai_thich)}</td></tr>`;
 
-  const mauTienTrinh = d.diem_10 >= 7.5 ? "var(--cat)" : d.diem_10 >= 5.0 ? "var(--vang)" : "var(--hung)";
+  // Cao Ly Đầu Hình: lời xưa chép nguyên văn, không chấm điểm.
+  const cl = d.cao_ly_dau_hinh;
+  const htmlCaoLy = cl ? `<div class="the">
+      <h3>Cao Ly Đầu Hình — chồng can ${esc(cl.can_chong)}, vợ chi ${esc(cl.chi_vo)}</h3>
+      <p class="goi-y">Lối xem "Nam dụng Can, Nữ dụng Chi": can năm sinh của chồng phối với
+        chi năm sinh của vợ. Lời xưa chép nguyên văn, không tính vào điểm.</p>
+      <div class="caoly-tho">${esc(cl.loi)}</div></div>` : "";
 
-  // Phần Cao Ly Đầu Hình
-  let htmlCaoLy = "";
-  if (d.cao_ly_dau_hinh) {
-    const cl = d.cao_ly_dau_hinh;
-    htmlCaoLy = `
-    <div class="the">
-      <h3>Duyên nợ tiền định: Cao Ly Đầu Hình (Chồng can ${esc(cl.can_chong)} — Vợ chi ${esc(cl.chi_vo)})</h3>
-      <p class="goi-y">Phép xem cổ truyền trích từ <i>Diễn Cầm Tam Thế</i> và <i>Ngọc Hạp Thông Thư</i>, phối hợp Thiên can của chồng và Địa chi của vợ để nghiệm duyên nợ, gia đạo và con cái.</p>
-      <div class="caoly-khung">
-        <div class="caoly-danh-hieu">
-          <span>Cách cục: <b>${esc(cl.danh_hieu)}</b></span>
-          <span class="nhan-tt ${cl.danh_gia.includes("Tốt") || cl.danh_gia.includes("Cát") ? "tot" : cl.danh_gia.includes("Xấu") || cl.danh_gia.includes("Khắc") ? "xau" : "vua"}">${esc(cl.danh_gia)}</span>
-        </div>
-        <div class="caoly-tho">${esc(cl.tho)}</div>
-        <div class="caoly-luan"><b>Luận giải:</b> ${esc(cl.luan)}</div>
-      </div>
-    </div>`;
-  }
-
-  // Cẩm nang hóa giải (Hôn nhân & Gia đạo)
-  let htmlHoaGiai = "";
-  if (d.hoa_giai) {
-    const hg = d.hoa_giai;
-    const mucHoaGiai = [...(hg.menh || []), ...(hg.cung || []), ...(hg.dia_chi || [])];
-    htmlHoaGiai = `
-    <div class="the">
-      <h3>Cẩm nang phong thủy &amp; Hóa giải xung khắc</h3>
-      <p class="goi-y">Cổ nhân có câu: <i>"Đức năng thắng số — Vợ chồng đồng lòng tát biển Đông cũng cạn"</i>. Mọi xung khắc đều có cách điều hòa thông qua ngũ hành cầu nối, phong thủy Bát Trạch và đạo lý nhân tâm.</p>
-      <div class="hoa-giai-khung">
-        ${mucHoaGiai.map((h) => `<div class="hoa-giai-item">
-          <h4>${esc(h.tieu_de)}</h4>
-          <p>${esc(h.noi_dung)}</p>
-        </div>`).join("")}
-      </div>
-      ${hg.dao_ly && hg.dao_ly.length ? `
-        <h4 style="margin:16px 0 8px;font-size:14px;color:var(--nhan)">Đạo lý gia đạo bền vững:</h4>
-        <ul class="lg-luu-y">${hg.dao_ly.map((dl) => `<li>${esc(dl)}</li>`).join("")}</ul>
-      ` : ""}
-    </div>`;
-  }
-
-  // Gợi ý năm sinh con (nếu hôn nhân)
-  let htmlSinhCon = "";
-  if (d.sinh_con_goi_y && d.sinh_con_goi_y.length) {
-    htmlSinhCon = `
-    <div class="the">
-      <h3>Gợi ý năm sinh con hóa giải &amp; Tăng vượng khí (2026 – 2031)</h3>
-      <p class="goi-y">Con cái là lộc trời cho, đồng thời mệnh của con có thể đóng vai trò <b>Hành cầu nối</b> hóa giải xung khắc giữa bố mẹ, mang lại phúc lộc và sự êm ấm cho cả gia đình.</p>
+  // Hành trung gian và năm sinh con (chỉ khi xem hôn nhân một nam một nữ).
+  const tg = d.hanh_trung_gian;
+  const htmlSinhCon = d.sinh_con_goi_y ? `<div class="the">
+      <h3>Năm sinh con (${d.sinh_con_goi_y.length} năm tới)</h3>
+      <p class="goi-y">${tg ? `Hai mệnh khắc nhau. ${esc(tg.giai_thich)}`
+        : "Hai mệnh không khắc nhau nên không cần hành trung gian."}
+        Bảng dưới liệt kê mệnh và chi của từng năm so với bố và mẹ; điểm chỉ để xếp thứ tự.</p>
       <table class="xep-chong">
-        <thead>
-          <tr><th>Năm</th><th>Can Chi</th><th>Mệnh ngũ hành</th><th>Đánh giá</th><th>Giải thích tương sinh tương khắc</th></tr>
-        </thead>
-        <tbody>
-          ${d.sinh_con_goi_y.map((c) => `<tr>
-            <td data-nhan="Năm"><b>${c.nam}</b></td>
-            <td data-nhan="Can Chi"><b>${esc(c.can_chi)}</b> (${esc(c.con_giap)})</td>
-            <td data-nhan="Mệnh">${esc(c.nap_am)} (<b>${esc(c.hanh)}</b>)</td>
-            <td data-nhan="Đánh giá">
-              ${c.la_cau_noi ? '<span class="badge-cau-noi">★ Cầu nối vàng</span> ' : ""}
-              <span class="nhan-tt ${c.diem_tong >= 4 ? "tot" : c.diem_tong >= 1 ? "vua" : "xau"}">${esc(c.danh_gia)}</span>
-            </td>
-            <td data-nhan="Giải thích">${esc(c.giai_thich)}</td>
-          </tr>`).join("")}
-        </tbody>
-      </table>
-    </div>`;
-  }
-
-  // Phân tích làm ăn & Kinh doanh (nếu muc_dich === "lam_an")
-  let htmlLamAn = "";
-  if (d.muc_dich === "lam_an" && d.lam_an) {
-    const la = d.lam_an;
-    htmlLamAn = `
-    <div class="the">
-      <h3>Phân tích hợp tác kinh doanh &amp; Tài lộc</h3>
-      <div class="hoa-giai-khung">
-        ${la.quy_nhan && la.quy_nhan.length ? `
-          <div class="hoa-giai-item">
-            <h4>★ Thiên Ất Quý Nhân</h4>
-            <p>${la.quy_nhan.map(esc).join("<br>")}</p>
-          </div>` : ""}
-        ${la.thien_loc && la.thien_loc.length ? `
-          <div class="hoa-giai-item">
-            <h4>💰 Thiên Lộc (Lộc Tồn)</h4>
-            <p>${la.thien_loc.map(esc).join("<br>")}</p>
-          </div>` : ""}
-        ${la.thien_ma && la.thien_ma.length ? `
-          <div class="hoa-giai-item">
-            <h4>🐎 Thiên Mã (Tiên phong mở cõi)</h4>
-            <p>${la.thien_ma.map(esc).join("<br>")}</p>
-          </div>` : ""}
-      </div>
-
-      <h4 style="margin:16px 0 8px;font-size:14px;color:var(--nhan)">Phân định vai trò điều hành đề xuất:</h4>
-      <div class="vai-tro-hop-tac">
-        <div class="vai-tro-o">
-          <h4>${esc(d.nguoi_a.can_chi)} (${esc(d.nguoi_a.con_giap)})</h4>
-          <p>${esc(la.phan_vai.nguoi_a)}</p>
-        </div>
-        <div class="vai-tro-o">
-          <h4>${esc(d.nguoi_b.can_chi)} (${esc(d.nguoi_b.con_giap)})</h4>
-          <p>${esc(la.phan_vai.nguoi_b)}</p>
-        </div>
-      </div>
-
-      <h4 style="margin:16px 0 8px;font-size:14px;color:var(--nhan)">Nguyên tắc hợp tác bền vững:</h4>
-      <ul class="lg-luu-y">
-        ${la.loi_khuyen.map((lk) => `<li>${esc(lk)}</li>`).join("")}
-      </ul>
-    </div>`;
-  }
-
-  // Bảng phân biệt Cung Phi và Cung Sinh
-  let htmlCungSoSanh = "";
-  if (d.chi_tiet && d.chi_tiet.so_sanh_cung) {
-    const sc = d.chi_tiet.so_sanh_cung;
-    htmlCungSoSanh = `
-    <div class="the">
-      <h3>Phân biệt Cung Phi Bát Trạch &amp; Cung Sinh Lữ Tài</h3>
-      <p class="goi-y">${esc(sc.giai_thich)}</p>
-      <table>
-        <thead>
-          <tr><th>Người</th><th>Cung Phi (theo Giới tính)</th><th>Cung Sinh (theo Lục thập hoa giáp)</th><th>Ứng dụng chính</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><b>${esc(d.nguoi_a.can_chi)}</b> (${d.nguoi_a.gioi_tinh === "nam" ? "Nam" : "Nữ"})</td>
-            <td><b>Cung ${esc(sc.nguoi_a.cung_phi)}</b></td>
-            <td><b>Cung ${esc(sc.nguoi_a.cung_sinh)}</b></td>
-            <td rowspan="2"><b>Cung Phi</b> định hướng nhà, hướng bếp, phối hôn Bát Trạch.<br><b>Cung Sinh</b> định cốt cách nạp âm ngũ hành.</td>
-          </tr>
-          <tr>
-            <td><b>${esc(d.nguoi_b.can_chi)}</b> (${d.nguoi_b.gioi_tinh === "nam" ? "Nam" : "Nữ"})</td>
-            <td><b>Cung ${esc(sc.nguoi_b.cung_phi)}</b></td>
-            <td><b>Cung ${esc(sc.nguoi_b.cung_sinh)}</b></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>`;
-  }
+        <thead><tr><th>Năm</th><th>Can chi</th><th>Mệnh</th><th>Điểm</th><th>Lý do</th></tr></thead>
+        <tbody>${d.sinh_con_goi_y.map((c) => `<tr>
+          <td data-nhan="Năm"><b>${c.nam}</b></td>
+          <td data-nhan="Can chi">${esc(c.can_chi)}</td>
+          <td data-nhan="Mệnh">${esc(c.nap_am)} (${esc(c.hanh)})${c.la_hanh_trung_gian
+            ? ' <span class="nhan-tt tot">hành trung gian</span>' : ""}</td>
+          <td data-nhan="Điểm">${c.diem > 0 ? "+" : ""}${c.diem}</td>
+          <td data-nhan="Lý do">${c.ly_do.map(esc).join("; ")}</td></tr>`).join("")}
+        </tbody></table></div>` : "";
 
   $("#ht-ket-qua").innerHTML = `
-    <div class="the-tom-tat">
-      ${nguoi(d.nguoi_a, "Người thứ nhất")}
-      ${nguoi(d.nguoi_b, "Người thứ hai")}
+    <div class="the-tom-tat">${nguoi(d.nguoi_a, "Người thứ nhất")}${nguoi(d.nguoi_b, "Người thứ hai")}
       <div class="o-tom-tat"><span>Chênh lệch</span><b>${d.chenh_lech_tuoi} tuổi</b></div>
-      <div class="o-tom-tat" style="flex:1 1 240px">
-        <span>Độ hòa hợp tổng quát</span>
-        <div class="ht-diem-hop">
-          <b class="ht-diem-so ht-${d.diem >= 4 ? "tot" : d.diem >= 0 ? "vua" : "xau"}">${d.diem_10}/10</b>
-          <span class="ht-ti-le">(${d.ti_le_hop}% · ${d.diem > 0 ? "+" : ""}${d.diem} điểm phong tục)</span>
-        </div>
-        <div class="thanh-diem"><i style="width:${d.ti_le_hop}%;background:${mauTienTrinh}"></i></div>
-        <b style="display:block;margin-top:4px" class="ht-${d.diem >= 4 ? "tot" : d.diem >= 0 ? "vua" : "xau"}">${esc(d.xep_loai)}</b>
-        <span style="font-size:12.5px;color:var(--chu-mo)">${esc(d.nhan_xet)}</span>
-      </div>
+      <div class="o-tom-tat"><span>Kết luận</span>
+        <b class="ht-${d.diem >= 4 ? "tot" : d.diem >= 0 ? "vua" : "xau"}">${esc(d.danh_gia)}</b>
+        <span>${d.diem > 0 ? "+" : ""}${d.diem} điểm — ${esc(d.nhan_xet)}</span></div>
     </div>
-
     ${d.canh_bao.map((c) => `<div class="the canh-bao"><b>⚠ ${esc(c.ten)}</b>
         <p>${esc(c.giai_thich)}</p></div>`).join("")}
-
-    <div class="the">
-      <h3>Bốn mặt trụ cột đã xét (Bản mệnh, Thiên can, Địa chi, Cung phi)</h3>
-      <table class="xep-chong">
-        <thead>
-          <tr><th>Xét về</th><th>Kết quả</th><th>Tính chất</th><th>Điểm</th><th>Giải thích chuyên sâu</th></tr>
-        </thead>
-        <tbody>${d.muc_xet.map(hang).join("")}</tbody>
-      </table>
-    </div>
-
+    <div class="the"><h3>Bốn mặt đã xét</h3>
+      <table class="xep-chong"><thead><tr><th>Xét về</th><th>Kết quả</th><th>Tính chất</th>
+        <th>Điểm</th><th>Giải thích</th></tr></thead>
+        <tbody>${d.muc_xet.map(hang).join("")}</tbody></table></div>
     ${htmlCaoLy}
-    ${htmlCungSoSanh}
-    ${d.muc_dich === "lam_an" ? htmlLamAn : ""}
-    ${htmlHoaGiai}
-    ${d.muc_dich === "hon_nhan" ? htmlSinhCon : ""}
-
-    <div class="the">
-      <h3>Lời khuyên &amp; Nguyên tắc chiêm nghiệm</h3>
-      <ul class="lg-luu-y">
-        ${d.luu_y.map((x) => `<li>${esc(x)}</li>`).join("")}
-      </ul>
-    </div>`;
+    ${htmlSinhCon}
+    <div class="the"><h3>Lưu ý</h3><ul class="lg-luu-y">
+      ${d.luu_y.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
 }
 
 $("#form-ht").addEventListener("submit", async (e) => {

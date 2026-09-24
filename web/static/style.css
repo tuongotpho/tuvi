@@ -304,51 +304,13 @@ footer {
 .the.canh-bao { border-color: var(--hung); background: var(--nhan-nhat); }
 .the.canh-bao p { margin: 6px 0 0; font-size: 14px; }
 
-.ht-diem-hop { display: flex; align-items: baseline; gap: 8px; margin: 6px 0; }
-.ht-diem-so { font-size: 28px; font-weight: 700; line-height: 1; }
-.ht-ti-le { font-size: 14px; color: var(--chu-mo); font-weight: 500; }
-.caoly-khung {
-  background: color-mix(in srgb, var(--nhan) 4%, var(--nen-the));
-  border: 1px solid color-mix(in srgb, var(--nhan) 25%, var(--vien));
-  border-radius: var(--bo-goc); padding: 16px; margin: 12px 0;
-}
-.caoly-danh-hieu { font-size: 18px; font-weight: 700; color: var(--nhan); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* Lời Cao Ly Đầu Hình: giữ nguyên chỗ xuống dòng của thơ. */
 .caoly-tho {
   font-style: italic; font-size: 14.5px; line-height: 1.8;
-  margin: 10px 0 14px; padding: 12px 18px;
+  margin: 10px 0 4px; padding: 12px 18px;
   background: var(--nen); border-left: 3px solid var(--nhan);
   border-radius: 0 8px 8px 0; white-space: pre-line; color: var(--chu);
 }
-.caoly-luan { font-size: 14.5px; line-height: 1.65; margin: 0; }
-.hoa-giai-khung {
-  display: flex; flex-direction: column; gap: 12px; margin-top: 10px;
-}
-.hoa-giai-item {
-  border: 1px solid var(--vien); border-radius: 8px;
-  padding: 12px 14px; background: var(--nen);
-}
-.hoa-giai-item h4 { margin: 0 0 6px; font-size: 14.5px; color: var(--nhan); }
-.hoa-giai-item p { margin: 0; font-size: 13.5px; line-height: 1.55; }
-.badge-cau-noi {
-  display: inline-block; background: #b08422; color: #fff;
-  font-size: 11.5px; font-weight: 700; padding: 2px 8px;
-  border-radius: 999px; letter-spacing: .02em; vertical-align: middle;
-}
-.badge-tot {
-  display: inline-block; background: var(--cat); color: #fff;
-  font-size: 11.5px; font-weight: 600; padding: 2px 8px;
-  border-radius: 999px;
-}
-.vai-tro-hop-tac {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 14px; margin: 12px 0;
-}
-.vai-tro-o {
-  border: 1px solid var(--vien); border-radius: 8px;
-  padding: 14px; background: var(--nen);
-}
-.vai-tro-o h4 { margin: 0 0 6px; font-size: 14px; color: var(--nhan); }
-.vai-tro-o p { margin: 0; font-size: 13.5px; line-height: 1.55; }
 
 /* ------------------------- bộ chọn ngày sinh ------------------------- */
 /* Ba ô Ngày · Tháng · Năm gộp trong một khung, nhìn như một ô duy nhất. */

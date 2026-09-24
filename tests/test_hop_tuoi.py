@@ -132,75 +132,89 @@ class TestHopTuoi(unittest.TestCase):
                 self.assertIn(kq["danh_gia"],
                               {"rất hợp", "hợp", "bình thường", "ít hợp", "khắc"})
 
-    def test_cao_ly_dau_hinh(self):
-        """Kiểm tra phương pháp Cao Ly Đầu Hình (Can chồng - Chi vợ)."""
-        # Giáp Tý (1984 nam) lấy Ất Sửu (1985 nữ) -> Can Giáp lấy Chi Sửu
-        kq = xem_hop_tuoi(1984, "nam", 1985, "nu")
-        self.assertIsNotNone(kq["cao_ly_dau_hinh"])
-        cl = kq["cao_ly_dau_hinh"]
-        self.assertEqual(cl["can_chong"], "Giáp")
-        self.assertEqual(cl["chi_vo"], "Sửu")
-        self.assertTrue(len(cl["tho"]) > 0)
-        self.assertTrue(len(cl["luan"]) > 0)
-        self.assertIn("danh_hieu", cl)
-        self.assertIn("danh_gia", cl)
+    # ---- phần thêm 23/09/2026, đã rà lại theo nguồn (SOURCES.md mục G) ----
 
-    def test_ngu_hop_thien_can(self):
-        """Giáp Kỷ hóa Thổ: ngũ hợp thiên can mang lại điểm cộng và đánh giá tốt."""
-        # 1984 Giáp Tý nam, 1989 Kỷ Tỵ nữ
-        kq = xem_hop_tuoi(1984, "nam", 1989, "nu")
-        tc = _muc(kq, "Thiên can")
-        self.assertIn("Ngũ hợp", tc["ket_qua"])
-        self.assertEqual(tc["tinh_chat"], "tốt")
+    def test_ngu_hop_thien_can_theo_tam_menh_thong_hoi(self):
+        # Giáp Tý 1984 + Kỷ Tỵ 1989: Giáp Kỷ hợp hóa Thổ, "Trung Chính chi hợp".
+        m = _muc(xem_hop_tuoi(1984, "nam", 1989, "nu"), "Thiên can")
+        self.assertEqual(m["ket_qua"], "Ngũ hợp hóa Thổ")
+        self.assertEqual(m["tinh_chat"], "tốt")
+        self.assertIn("Trung Chính", m["giai_thich"])
+        # Hai cặp mà bản 23/09 gọi sai tên ("Nhân Thọ", "Đa Lễ").
+        self.assertIn("Dâm Nặc", _muc(xem_hop_tuoi(1987, "nam", 1992, "nu"),
+                                      "Thiên can")["giai_thich"])      # Đinh Nhâm
+        self.assertIn("Vô Tình", _muc(xem_hop_tuoi(1988, "nam", 1993, "nu"),
+                                      "Thiên can")["giai_thich"])      # Mậu Quý
 
-    def test_hoa_giai_toan_dien(self):
-        """Kiểm tra cẩm nang hóa giải ngũ hành, Bát trạch và địa chi."""
-        # 1984 Giáp Tý (Hải Trung Kim, Cung Đoài nam) và 1990 Canh Ngọ (Lộ Bàng Thổ, Cung Cấn nữ)
-        kq = xem_hop_tuoi(1984, "nam", 1990, "nu")
-        self.assertIn("hoa_giai", kq)
-        hg = kq["hoa_giai"]
-        self.assertIn("menh", hg)
-        self.assertIn("cung", hg)
-        self.assertIn("dao_ly", hg)
+    def test_tu_xung_thien_can(self):
+        m = _muc(xem_hop_tuoi(1984, "nam", 1990, "nu"), "Thiên can")   # Giáp — Canh
+        self.assertEqual(m["ket_qua"], "Can xung")
+        self.assertEqual(m["diem"], -2)
+        # Mậu (Thổ) khắc Nhâm (Thủy) nhưng không nằm trong tứ xung.
+        self.assertEqual(_muc(xem_hop_tuoi(1988, "nam", 1992, "nu"),
+                              "Thiên can")["ket_qua"], "Can khắc")
 
-        # Cặp khắc: 1984 (Kim) và 1987 (Hỏa)
-        kq_khac = xem_hop_tuoi(1984, "nam", 1987, "nu")
-        cau_noi = kq_khac["hoa_giai"]["cau_noi"]
-        self.assertTrue(cau_noi["can_hoa_giai"])
-        self.assertEqual(cau_noi["hanh_cau_noi"], "Thổ")  # Hỏa sinh Thổ, Thổ sinh Kim
+    def test_nap_am_khong_so_chi_la_ghi_chu(self):
+        # Đinh Mão 1987 Lư Trung Hỏa khắc Nhâm Thân 1992 Kiếm Phong Kim.
+        m = _muc(xem_hop_tuoi(1992, "nam", 1987, "nu"), "Bản mệnh")
+        self.assertIn("Kiếm Phong Kim không sợ Hỏa", m["giai_thich"])
+        self.assertEqual(m["diem"], -3)          # không đổi điểm
+        # Hải Trung Kim 1984 gặp Hỏa: không có ghi chú.
+        m = _muc(xem_hop_tuoi(1984, "nam", 1987, "nu"), "Bản mệnh")
+        self.assertNotIn("không sợ", m["giai_thich"])
 
-    def test_xem_lam_an_kinh_doanh(self):
-        """Kiểm tra phân tích Quý Nhân, Lộc Tồn, phân vai quản trị."""
-        kq = xem_hop_tuoi(1984, "nam", 1985, "nam", muc_dich="lam_an")
-        self.assertIn("lam_an", kq)
-        la = kq["lam_an"]
-        self.assertIn("quy_nhan", la)
-        self.assertIn("thien_loc", la)
-        self.assertIn("phan_vai", la)
-        self.assertIn("loi_khuyen", la)
-        # Giáp có Quý Nhân tại Sửu -> 1985 là Ất Sửu
-        self.assertTrue(any("Quý Nhân" in s for s in la["quy_nhan"]))
+    def test_cao_ly_chep_nguyen_van(self):
+        # Quý Mùi 2003 nam + Ất Dậu 2005 nữ -> chồng can Quý, vợ chi Dậu.
+        for kq in (xem_hop_tuoi(2003, "nam", 2005, "nu"),
+                   xem_hop_tuoi(2005, "nu", 2003, "nam")):
+            cl = kq["cao_ly_dau_hinh"]
+            self.assertEqual((cl["can_chong"], cl["chi_vo"]), ("Quý", "Dậu"))
+            self.assertIn("chung cuộc phải gặp nạn", cl["loi"])
 
-    def test_goi_y_sinh_con(self):
-        """Kiểm tra gợi ý 6 năm sinh con với vai trò cầu nối hòa hợp."""
-        kq = xem_hop_tuoi(1984, "nam", 1987, "nu")
-        self.assertIn("sinh_con_goi_y", kq)
-        sc = kq["sinh_con_goi_y"]
-        self.assertEqual(len(sc), 6)
-        for nam_con in sc:
-            self.assertIn("nam", nam_con)
-            self.assertIn("can_chi", nam_con)
-            self.assertIn("hanh", nam_con)
-            self.assertIn("danh_gia", nam_con)
+    def test_cao_ly_du_120_cap_co_doi_chieu(self):
+        from tuvi.store import load
+        bo = load("hop_tuoi/cao_ly_dau_hinh")
+        cap = {(c["can_chong"], c["chi_vo"]) for c in bo["cap"]}
+        self.assertEqual(len(bo["cap"]), 120)
+        self.assertEqual(len(cap), 120)
+        self.assertTrue(all(c["loi"].strip() for c in bo["cap"]))
+        khop = [c for c in bo["cap"] if c["doi_chieu"] == "khớp kabala"]
+        self.assertGreaterEqual(len(khop), 119)
 
-    def test_thang_diem_chuan_hoa(self):
-        """Thang điểm 10 và tỉ lệ % hợp tuổi."""
-        kq = xem_hop_tuoi(1987, "nam", 1990, "nu")
-        self.assertIn("diem_10", kq)
-        self.assertIn("ti_le_hop", kq)
-        self.assertIn("xep_loai", kq)
-        self.assertTrue(1.0 <= kq["diem_10"] <= 10.0)
-        self.assertTrue(10 <= kq["ti_le_hop"] <= 100)
+    def test_khong_cao_ly_khi_lam_an_hoac_cung_gioi(self):
+        for kq in (xem_hop_tuoi(1984, "nam", 1985, "nu", muc_dich="lam_an"),
+                   xem_hop_tuoi(1984, "nam", 1985, "nam")):
+            self.assertIsNone(kq["cao_ly_dau_hinh"])
+            self.assertIsNone(kq["sinh_con_goi_y"])
+
+    def test_muc_dich_sai(self):
+        with self.assertRaises(LoiDauVao):
+            xem_hop_tuoi(1984, "nam", 1985, "nu", muc_dich="xyz")
+
+    def test_hanh_trung_gian(self):
+        from tuvi.hop_tuoi import hanh_trung_gian
+        # Hỏa khắc Kim -> Thổ (Hỏa sinh Thổ, Thổ sinh Kim), chiều nào cũng vậy.
+        self.assertEqual(hanh_trung_gian("Kim", "Hỏa")["hanh"], "Thổ")
+        self.assertEqual(hanh_trung_gian("Hỏa", "Kim")["hanh"], "Thổ")
+        self.assertEqual(hanh_trung_gian("Kim", "Mộc")["hanh"], "Thủy")
+        self.assertIsNone(hanh_trung_gian("Kim", "Thủy"))       # tương sinh
+        self.assertIsNone(hanh_trung_gian("Kim", "Kim"))
+
+    def test_nam_sinh_con(self):
+        from tuvi.hop_tuoi import _menh, goi_y_nam_sinh_con
+        bo, me = _menh(1984), _menh(1987)            # Kim — Hỏa khắc nhau
+        ds = goi_y_nam_sinh_con(bo, me, nam_dau=2026)
+        self.assertEqual(sorted(c["nam"] for c in ds), list(range(2026, 2032)))
+        # 2028 Mậu Thân, 2029 Kỷ Dậu là Đại Trạch Thổ — hành trung gian, xếp đầu.
+        self.assertEqual([c["nam"] for c in ds[:2]], [2028, 2029])
+        self.assertTrue(all(c["la_hanh_trung_gian"] == (c["hanh"] == "Thổ") for c in ds))
+        # Chiều khắc phải đúng: 2030 Thoa Xuyến Kim — Hỏa của mẹ khắc Kim của con.
+        nam_2030 = next(c for c in ds if c["nam"] == 2030)
+        self.assertIn("mệnh mẹ (Hỏa) khắc mệnh con (Kim)", nam_2030["ly_do"])
+        # Năm bắt đầu mặc định là năm hiện tại, không viết cứng.
+        from datetime import date
+        self.assertEqual(min(c["nam"] for c in goi_y_nam_sinh_con(bo, me)),
+                         date.today().year)
 
 
 if __name__ == "__main__":

@@ -126,3 +126,33 @@ Ghi lại để lần sau khỏi tìm lại:
    mạng của môi trường chặn, nên việc đối chiếu dựa vào kết quả tìm kiếm và vào mã
    nguồn mở tải được từ GitHub. Khi có điều kiện truy cập đầy đủ, nên tra lại trực
    tiếp các bảng ở mục B.
+
+## G. Xem hợp tuổi — rà lại phần thêm ngày 23/09/2026 (rà 24/09/2026)
+
+Commit `9c9552d` (AI Studio) thêm nhiều nội dung cho tab Hợp tuổi. Từng khẳng định
+đã được đối chiếu; cái nào sai hoặc không tìm được nguồn thì đã bỏ.
+
+**Giữ lại (có nguồn):**
+
+| Nội dung | Nguồn | Ghi chú |
+|---|---|---|
+| Cao Ly Đầu Hình — 120 lời "Nam dụng Can, Nữ dụng Chi" | [xemtuong.net](https://xemtuong.net/caolydauhinh/) (chép), [giadinh.kabala.vn](https://giadinh.kabala.vn/vochong/caolydauhinh/) (đối chiếu) | 119/120 cặp khớp từng chữ giữa hai trang. Cặp Nhâm–Thìn: trang kabala trả nhầm lời của Giáp–Thìn, nên chỉ có một nguồn; lời trên xemtuong tự ghi "Chồng chữ Nhâm cưới vợ tuổi Thìn". Tái tạo bằng `scripts/tai_cao_ly_dau_hinh.py`. Kho không chấm điểm phần này |
+| Ngũ hợp thiên can và tên gọi | Tam Mệnh Thông Hội, mục "Luận thập can hợp" ([ctext](https://ctext.org/wiki.pl?if=gb&res=532360), [douban](https://www.douban.com/note/872484995/)) | Giáp Kỷ Trung Chính, Ất Canh Nhân Nghĩa, Bính Tân Uy Chế, **Đinh Nhâm Dâm Nặc, Mậu Quý Vô Tình** |
+| Tứ xung thiên can: Giáp Canh, Ất Tân, Bính Nhâm, Đinh Quý | [sohu](https://www.sohu.com/a/820430356_100084723), [163.com](https://c.m.163.com/news/a/HGLS7IBU0553JRPR.html) | Mậu Kỷ không xung |
+| Nạp âm "không sợ" hành khắc mình: Kiếm Phong Kim–Hỏa; Thiên Hà Thủy, Đại Hải Thủy–Thổ; Thiên Thượng Hỏa, Tích Lịch Hỏa–Thủy | [lyso.vn](https://lyso.vn/tong-hop/sinh-khac-cua-ngu-hanh-nap-am-tiep-theo-bai-2-t38279/), [a-site.cn](https://www.a-site.cn/article/1847598.html), [tuvikhoahoc.vn](https://tuvikhoahoc.vn/kiem-phong-kim), [tramhuongthuanchay.com](https://tramhuongthuanchay.com/n3761/menh-thien-thuong-hoa-menh-hoa-manh-nhat-khong-can-moc-de-tuong-sinh-cung-khong-bi-thuy-khac-che.html) | Chỉ giữ nạp âm có ít nhất hai nguồn. Chỉ là ghi chú, **không đổi điểm** — Tam Mệnh Thông Hội mục "Luận nạp âm thủ tượng" không có quy tắc này |
+| Hành trung gian khi hai mệnh khắc (A khắc B → A sinh C, C sinh B) và chọn năm sinh con mang hành đó | [lichviet.app](https://lichviet.app/xem-tuoi-vo-chong-tot-xau-qua-ngu-hanh) | Điểm xếp năm sinh con là quy ước của kho |
+
+**Đã bỏ:**
+
+| Nội dung bản 23/09 | Vì sao bỏ |
+|---|---|
+| 120 "cách cục" Cao Ly kèm thơ, luận, đánh giá, điểm | **Tự viết, không phải văn xưa.** So với hai trang tra cứu thì khác hoàn toàn (vd. Quý–Dậu: bản gốc có "chung cuộc phải gặp nạn", bản AI chỉ toàn lời khen). Đánh giá lệch: 102/120 cặp "tốt" hoặc "rất tốt", không cặp nào xấu. Thay bằng lời gốc ở trên |
+| Tên ngũ hợp "Nhân Thọ" (Đinh Nhâm), "Đa Lễ" (Mậu Quý) và câu diễn giải từng cặp | Sai tên so với Tam Mệnh Thông Hội; lời diễn giải tự viết |
+| "Thiên Thượng Hỏa gặp Thổ không bị ngăn trở"; "Sa Trung Kim gặp Hỏa thành khí" | Gán nhầm nhóm (Thiên Thượng Hỏa là chuyện gặp Thủy). Sa Trung Kim thì các nguồn nói ngược nhau |
+| "Chồng sinh vợ là thuận lý âm dương", "vợ sinh chồng vượng phu", "vợ khắc chồng là nghịch lý, vợ nên nhu thuận" | Nguồn ngược nhau: [giangphongthuy.com](https://giangphongthuy.com/menh-vo-menh-chong-the-nao-la-hop-the-nao-la-xung-khac/) cho chồng sinh vợ là "bình thường", lichviet.app lại gọi chồng Kim vợ Thủy là "hòa hợp"; lichviet.app coi chồng Kim vợ Mộc là khắc chứ không "thuận". Lời khuyên cho vợ là tự thêm |
+| "Cung sinh" (công thức hai năm liền nhau chung một cung, nam nữ như nhau) | Không tìm được nguồn cho công thức; các nguồn Việt chỉ dùng cung phi theo giới tính |
+| Phần "làm ăn": Quý Nhân, Lộc Tồn, Thiên Mã chéo giữa hai người; chia vai theo ngũ hành | Các trang Việt xem tuổi làm ăn ([reatimes](https://reatimes.vn/cach-tu-xem-tuoi-hop-nhau-trong-lam-an-kinh-doanh-20234319.htm), [tuvi.vn](https://tuvi.vn/xem-tuoi-lam-an)) chỉ dùng mệnh, can chi, cung. Bảng tra Quý Nhân, Lộc Tồn thì đúng (trùng bảng lõi) nhưng cách dùng chéo không có nguồn; chia vai là tự nghĩ ra. Ô "Mục đích xem" vẫn giữ: chọn làm ăn thì chỉ xét bốn mặt, bỏ phần riêng của vợ chồng |
+| Hóa giải Bát trạch áp vào tuổi vợ chồng, và câu "Phục Vị an Họa Hại" | Sách Bát Trạch Minh Cảnh chỉ có ba câu (Sinh Khí giáng Ngũ Quỷ, Thiên Y chế Tuyệt Mệnh, Diên Niên áp Lục Sát), dùng cho **hướng cửa – hướng bếp của nhà**, không phải cho hai tuổi. Câu thứ tư không có |
+| Hóa giải lục xung "đeo linh vật", hóa giải lục hại, "Tứ hành xung… có thể còn là nhị hợp hoặc vô hại" | Không có nguồn; câu cuối còn sai (trong nhóm tứ hành xung có nhiều cặp hình, hại, phá) |
+| Thang điểm 10, "tỉ lệ hợp %", xếp loại "Thứ Cát" | Số tự đặt, trông như xác suất nhưng không phải; "Thứ Cát" (cát hạng hai) lại được gắn cho điểm âm |
+| Năm sinh con cố định 2026–2031, nhãn "Cầu nối vàng… hóa giải hoàn toàn" | Năm viết cứng; lời hứa "hoàn toàn" không có nguồn. Nay lấy năm hiện tại |

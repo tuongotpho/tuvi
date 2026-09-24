@@ -1,0 +1,730 @@
+{
+ "mo_ta": "Cao Ly Đầu Hình — xem duyên vợ chồng theo lối 'Nam dụng Can, Nữ dụng Chi': can năm sinh của chồng phối với chi năm sinh của vợ. Lời xưa chép nguyên văn, kho không viết lại và không tự chấm điểm.",
+ "nguon": [
+  "https://xemtuong.net/caolydauhinh/ (nguồn chép)",
+  "https://giadinh.kabala.vn/vochong/caolydauhinh/ (nguồn đối chiếu)"
+ ],
+ "cach_tao": "scripts/tai_cao_ly_dau_hinh.py",
+ "cap": [
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Tý",
+   "loi": "Thì vợ chồng điều hòa, ăn ở cùng nhau như cặp chim Cưu, con trống kêu một tiếng thì con mái kêu theo rập ràng. Ví như bà Thái Tỷ vợ của Châu Văn Vương. (Quan quan thư cưu, tại hà chi châu.Yểu điệu thục nữ quân tử hảo cầu. Sâm si hạnh thới tả hữu mao chi).\nTình nồng thắm muôn vàn âu yếm,\nNghĩa vợ chồng khắn khít mến thương.\nKhoa danh rạng rỡ môn đường,\nĐầy nhà con thảo dâu hiền về sau.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Sửu",
+   "loi": "Thì dầu có công danh cũng lận đận, không bền, và người vợ thường bị sản nạn. Có con không nhờ, sợ e người vợ sẽ chết trước.\nVợ chết trước, chồng sầu chất ngất\nLỡ sang ngang, lỡ nối nhịp cầu.\nĐã nợ ái ân đành sống gượng,\nNgười còn kẻ mất dở dang nhau.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Dần",
+   "loi": "Thì dầu có công danh cũng lận đận, không bền, và người vợ thường bị sản nạn. Có con không nhờ, sợ e người vợ sẽ chết trước.\nVợ chết trước, chồng sầu chất ngất,\nLỡ sang ngang, lỡ nối nhịp cầu.\nĐã nợ ái ân đành sống gượng,\nNgười còn kẻ mất dở dang nhau",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Mão",
+   "loi": "Thì cũng như thuyền trôi ngược, như lá vàng sắp gặp tiết thu sang úa rụng. Sợ e người chồng sẽ chết trước. Phải ăn ở cho có đạo nghĩa mới bền. Có câu:'' Nhơn từ giã thọ, hung bạo giã vong''.\nTình tan nát, vợ chồng cách bức,\nVết thương đau, thiếu phụ khóc chồng.\nNước trong khôn rửa lệ sầu,\nTrăng thu in bóng, não nùng cô đơn !",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Thìn",
+   "loi": "Thì dầu có tiền của cũng khi hiệp khi tan, như hoa nở rồi lại héo. Người vợ bệnh hoạn liên miên. Phải lấy đức mới ăn ở đời được.\nBuồn muốn đem xuân trả lại trời,\nMất tiền chẳng tiếc, tiếc người trẻ trung\nThương nhau tan nát cõi lòng,\nNgày xuân mòn mõi, má hồng kém phai.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Tỵ",
+   "loi": "Thì cũng như người đi trễ xe, tính một đường mà làm một nẻo. Làm ăn khi thành khi bại, về sau e người vợ sẽ chết trước. Nhưng đức hạnh thì 40 tuổi sẽ phát đạt thịnh vượng.\nGặp nhau buổi tiết thu năm ấy,\nThu nay về nào thấy bóng em.\nEm đi, đi mãi chẳng về,\nThu về,anh mãi ủ ê dạ sầu.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Ngọ",
+   "loi": "Thì khó nuôi con được vẹn tòan. Người chồng phải có vợ lẻ mới được yên vui.\nXuân có hoa mai, cần hoa cúc,\nTấm lòng yêu, yêu cả và hai.\nNăm tháng càng ngày lưu luyến mãi,\nTrăm năm một Phụng đôi Loan hiệp bầy",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Mùi",
+   "loi": "Thường bị phá sản, vợ chồng cắn đắng, cũng như người đi đường xa mà mặt trời đã chen lặn.\nVợ chồng cắn đắng không hòa,\nKhi thì vui vẻ, khi tan nát lòng,\nLắm khi cầm của không bền,\nKhi ăn chẳng hết, khi bòn chẳng ra.\nLấy đức mới giữ nghiệp nhà.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Thân",
+   "loi": "Thường cãi vả, ít được đầm ấm. Dời đổi chỗ ăn ở đôi ba lần mới yên .\nNào khi hẹn ngọc thề vàng,\nNào ngờ kim mã ngọc đường về aià\nNgàn mây ẩn bóng tà dương,\nTủi thân lắm lúc, nản đường chỉ kim.\nBền lòng gắng chí cho hay,\nĐừng cho dang dỡ mảnh tình năm xưa!\nKhuyên đừng ngựa lọc xe lừa,\nCó ngày gió rước, trăng đưa ngỡ ngàng!\nTuy Hay Cãi Vả, Nhưng Chung Sống Đến Ngày Răng Long Tóc Bạc",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Dậu",
+   "loi": "Thì tốt lắm, cũng như Vương Bội lúc thơ sanh đã vào nơi Đằêng Vương Các, khoa danh rạng rỡ. Con cháu vui vẻ, sum vầy.\nNgắm trăng đôi lứa yêu đương,\nDưới trăng thỏ thẻ niềm tây canh dài.\nSương khuya thấm ướt tóc mai,\nNương trăng vui vẻ hòa hài lứa đôi.\nTrăm năm tạc một lời nguyền,\nHôn con, nhìn vợ vui vầy mến thương.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Tuất",
+   "loi": "Thì tốt lắm, cũng như Vương Bội lúc thơ sanh đã vào nơi Đằêng Vương Các, khoa danh rạng rỡ. Con cháu sum vầy.\nNgắm trăng đôi lứa yêu đương,\nDưới trăng thỏ thẻ niềm tây canh dài.\nSương khuya thấm ướt tóc mai,\nNương trăng vui vẻ hòa hài lứa đôi.\nTrăm năm tạc một lời nguyền,\nHôn con, nhìn vợ vui vầy mến thương.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Giáp",
+   "chi_vo": "Hợi",
+   "loi": "Tuy tâm đầu ý hiệp nhưng người vợ thường hay bệnh hoạn: dẫu có công danh rạng rỡ, song e gặp bước thăng trầm không lường được. Phải ăn ở cho có ân đức thì khá.\nVóc ngà tươi thắm kém phai,\nMá hồng nhợt nhạt, tóc dài cũng thưa.\nThủy chung một mối tình chung\nVàng phai đá nát vẫn còn thương nhau.\nĐừng cho trăng tủi, hoa sầu,\nTrăm năm giữ một nhịp cầu mà thôi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Tý",
+   "loi": "Thì vợ chồng phù hợp an vui, có con, có của, vinh hiển gia đình.\nNghiêng vai tựa cửa thơ song,\nGió xuân thoang thoảng hương lòng nở nang.\nBóng nàng dưới ánh trăng tàn,\nChập chờn ẩn hiện như hình tiên nga.\nDịu dàng bóng liễu thướt tha,\nMùi hương ngây ngất dễ say lòng người.\nVợ chồng xứng lứa vừa đôi!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Sửu",
+   "loi": "Thì rất tốt, cũng như trăng thu tỏ rạng. Phú quý giàu sang, sanh trai đầu lòng thì tốt hơn sanh gái. Vợ chồng chung sống đến chuỗi ngày răng long tóc bạc.\nBiển tình vẫn sóng yên gió lặng,\nĐã yêu nhau nên nghĩa vợ chồng.\nTrăm năm sắt đá tâm đồng,\nKhi ngâm ngợi nguyệt khi cười cợt hoa.\nSum vinh con cháu đầy nhà,\nTrở về vận cuối, cửa nhà thêm vui",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Dần",
+   "loi": "Thì rất tốt, cũng như trăng thu tỏ rạng. Phú quý giàu sang, sanh trai đầu lòng thì tốt hơn sanh gái. Vợ chồng chung sống đến chuỗi ngày răng long tóc bạc.\nBiển tình vẫn sóng yên gió lặng,\nĐã yêu nhau nên nghĩa vợ chồng.\nTrăm năm sắt đá tâm đồng,\nKhi ngâm ngợi nguyệt khi cười cợt hoa.\nSum vinh con cháu đầy nhà,\nTrở về vận cuối, cửa nhà thêm vui.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Mão",
+   "loi": "Chồng chữ Ất mà cưới vợ tuổi Mão thì vợ chồng thường ăn ở bất hòa, khi hiệp khi tan.\nCó những lúc buồn sa nước mắt,\nCó những hồi son sắt yêu đương.\nChẳng qua là nợ trái oan,\nLấy thân mà trả nợ tình cho xong.\nAi ơi giữ chí cho bền,\nXin đừng than oán trách trời sao nên.\nKiếp này nợ trả cho xong,\nĐừng làm cho nặng nợ chồng kiếp sau.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Thìn",
+   "loi": "Thì rất tốt, cũng như Lưu Lang vào động Thiên Thai gặp vợ tiên. Hay như Vương\nSong Phước gặp nàng Huệ Khôi trăm năm gắn bó.\nLam Điền gieo ngược đã thành song,\nLoan phụng nên duyên đẹp chữ đồng.\nThiên lý tương phùng do nguyệt lão,\nBá niên thanh khí hiệp may rồng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Tỵ",
+   "loi": "Thì rất tốt, cũng như Lưu Lang vào động Thiên Thai gặp vợ tiên. Hay như Vương\nSong Phước gặp nàng Huệ Khôi trăm năm gắn bó.\nLam Điền gieo ngược đã thành song,\nLoan phụng nên duyên đẹp chữ đồng.\nThiên lý tương phùng do nguyệt lão,\nBá niên thanh khí hiệp may rồng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Ngọ",
+   "loi": "Thì cũng như đi đêm mà gặp lúc trăng mờ. Cơ nghiệp sụp đổ, công danh lỡ dở.\nKhông xa nhau thì cũng có kẻ còn người mất.\nCảnh góa bụa nỗi sầu chất ngất,\nKẻ khuất người còn, dạ thắt chia phôi.\nLắm cơn khi tủi khi hờn,\nLòng thương chỉ có bóng đèn thâm u!\nTừ đây hai nẻo cách xa,\nGần nhau chỉ có những hồi chiêm bao!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Mùi",
+   "loi": "Thì thật tốt, cũng như cá ở Long môn hóa rồng. Sanh con đặng khoa danh rạng rỡ; vinh hiển hậu lai.\n\"Long môn sanh quý tử.\"\n\"Hổ huyệt xuất công hầu.\"\nChâu, Trần nầy có Châu, Trần nào hơnà\nTrăm năm chẳng lỗi nhịp đờn,\nCùng hòa một khúc hương lòng thắm tươi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Thân",
+   "loi": "Thì vợ chồng rất toại nguyện, danh phận rỡ ràng. Tuy có người ganh tỵ, nhưng cũng được bình an. Sanh con cái tuy có tài hay, song thường trắc trở khoa danh.\nVợ chồng hay tranh cãi, nhưng chung sống đến già.\nCây khô nghe sấm nức chồi,\nĐạo chồng nghĩa vợ, giận rồi lại thương.\nTrăm năm vẹn đạo can thường,\nTuy không xướng họa, nhưng thông cảm nhiều.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Dậu",
+   "loi": "Thì cũng như thuyền đi ngược gió, tuy làm ăn cố gắng song không có kết quả, chừng nữa đời chồng vợ sẽ phân ly.\nDương cầm sớm đứt đường tơ,\nĐứt dây lỡ dở, khó ngăn mạch sầu.\nVóc mai gầy vỏ tuyết sương,\nNgàn thu như chiếc cánh buồm bơ vơ!\nBước đi âu cũng ngại ngùng,\nDừng chân đứng lại ngẫm mình lẻ đôi!\n*\nTrách ai làm bát bể, hột cơm rơi,\nDĩa nghiêng cà đổ, rã rời duyên ta.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Tuất",
+   "loi": "Thì làm ăn rất vất vả, công danh chẳng tọai. Nửa chừng người vợ sẽ chết trước.\nTừ đây vắng bóng vợ hiền,\nNgười thì đủ cặp, anh thì lẻ đôi.\nChợ đời tan hợp không chừng,\nĐã buồn chợ sớm, vui chi chợ chiều.\nThương nhau xin chứng lòng thành,\nSầu vương ghi mãi trong lòng tâm tan!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Ất",
+   "chi_vo": "Hợi",
+   "loi": "Thì làm ăn rất vất vả, công danh chẳng toại. Nửa chừng người vợ sẽ chết trước.\nTừ đây vắng bóng vợ hiền,\nNgười thì đủ cặp, anh thì lẻ đôi.\nChợ đời tan hợp không chừng,\nĐã buồn chợ sớm, vui chi chợ chiều.\nThương nhau xin chứng lòng thành,\nSầu vương ghi mãi trong lòng tâm tan!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Tý",
+   "loi": "Thì ăn ở mặc dầu có con cái, và vợ chồng yêu thương nồng nhiệt, nhưng người vợ sẽ chết trước.\nNiềm tâm sự đầy vơi nhỏ lệ!\nĐời trăm năm những ngỡ tọai lòng.\nThời gian để hận khó nguôi,\nLứa đôi dang dỡ ngậm ngùi tuổi xanh!\nMuốn sang thế giới vô hình,\nNước non cõi ấy gặp người bạn xưa!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Sửu",
+   "loi": "Thì làm ăn được khá giả, hết con bỉ cực đến hồi vinh sang. Phải có con đỡ đầu mới khá. Ngưới vợ e phải mang bệnh tật, và dời đổi chổ ở đôi ba nơi mới yên.\nPhải tu thân tích đức mới được trường thọ.\nTrăng còn có khi tròn khi khuyết,\nTình đôi ta chỉ biết thủy chung.\nNgàn năm mây ẩn bóng trăng lòng,\nNước trong trăng dọi, chứng lòng sắt son.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Dần",
+   "loi": "Chồng chữ Bính mà vợ tuổi Dần thì lúc đầu ăn ở đầm ấm, sau e phải phân ly. Phải ăn ở có đạo nghĩa thì mới tốt về sau.\nBình hương để lở nhịp cầu,\nCòn đâu trong đẹp, như trăng đêm rằm.\nThề duyên sớm đã phụ phàng,\nNon sông, trăng nước, bẽ bàng vì aià\nNgắm trăng chỉ biết thở dài ,\nNước trong trăng lặn, buồn trăng hỡi buồn!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Mão",
+   "loi": "Thì chẳng khác nào chim mắc bẫy, én lạc đàn, ghe cạn nước và phải chia lìa trong lúc nữa đời. Chồng chết trước vợ.\nCảnh ly hận, trăng khuya gíó sớm,\nLòng cảm thương khoảng vắng đêm trường.\nNão nồng tâm sự thê lương,\nĐường đời mưa gió, sớm chiều vắng anh!\nNgẫm suy muôn dặm cõi đời,\nBước đi một bước, ngậm ngùi cho thân!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Thìn",
+   "loi": "Thì chẳng khác nào chim mắc bẫy, én lạc đàn, ghe cạn nước và phải chia lìa trong lúc nữa đời. Chồng chết trước vợ.\nCảnh ly hận, trăng khuya gíó sớm,\nLòng cảm thương khoảng vắng đêm trường.\nNão nồng tâm sự thê lương,\nĐường đời mưa gíó, sớm chiều vắng anh!\nNgẫm suy muôn dặm cõi đời,\nBước đi một bước, ngậm ngùi cho thân!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Tỵ",
+   "loi": "Thì rất tâm đầu ý hiệp, có tiền của khá giả, sanh con cái đều đủ, hưởng phước thanh nhàn, sống lâu.\nTình ân ái mặn nồng đầm ấm,\nSánh vai nhau ngắm cảnh nhìn trăng.\nNhững đêm ngồi mãi dưới trăng,\nYêu nhau tha thiết sợ Hằng Nga ghen!\nLòng sung sướng đùa mây giởn gió,\nSống dai đến tuổi bạc đầu còn thương.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Ngọ",
+   "loi": "Thì chẳng khác gì cây gặp mùa Xuân, đâm chồi mọc rể. Sanh con cái đều đủ gái trai, nhưng số nữa chừng thì chồng chết trước.\nNửa chừng vắng bóng chốn trần ai,\nEm ở, anh đi chẳng đoái hoài.\nCó phải dương gian nhiều cực khổ,\nMà anh vội trơà chốn diêâm đàià\nLưu luyến xót thương, em kể lể,\nLạnh lùng anh ở chốn dạ đài.\nTrăm năm muốn dứt tình thêm bận,\nMãi mãi lòng em giữ thủy chung.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Mùi",
+   "loi": "Cũng như cây gặp đất tốt nẩy chồi. Làm ăn thạnh phát, của cải rất giàu sang. Vợ chồng thường tranh cãi, nhưng vẫn chung sống đến già.\nLòng son để nhóm lửa phiền,\nGiọt châu lã chã dễ hoen má hồng.\nSố trời định thường hay tranh cãi,\nHết giận rồi thì càng lại yêu nhau.\nKhi vui kể hết đuôi đầu,\nKhi buồn thì lại cau mày cắn răng.\nNhưng rốt cuộc sống dai trăm tuổi,\nCó căn cơ con cái đủ đông.\nYêu nhau nên phải chiều lòng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Thân",
+   "loi": "Thì vợ chồng buổi đầu keo sơn gắn bó, nhưng nữa chừng lại bình vỡ gương tan. Âu cũng là tiền nhân hậu quả, việc trả nợ ái ân tái hôn đời sau thì mới được đầm ấm và sang giàu.\nMây xanh dọi nước trong xanh,\nTrách ai lỗi hẹn lời nguyền ba sinh.\nNon nước hỡi ai nguyền năm trước!\nLỗi lời thề vội tách sang ngang.\nThề xưa thôi đã phụ phàng,\nNon sông hoa gấm, lở làng bởi aià",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Dậu",
+   "loi": "Thì cũng như chim én lạc bầy. Đường công danh trắc trở. Cảnh gia đình suy sụp.\nKhông sanh được con trai, vợ chồng buồn phiền, anh em lãnh đạm. Phải ăn ở có đạo đức mới khá.\nCảnh hiu quạnh, vợ chồng than thở,\nBuổi cơ hàn như lúc sum vinh.\nÂu là cũng nợ ba sinh,\nLúc vinh, cơn nhục như hình nam kha.\nMạng đã thế, ta đành chịu vậy,\nTình đôi ta trước cũng như sau,\nYêu nhau phải chịu chua cay cuộc đời.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Tuất",
+   "loi": "Thì cũng như chim én lạc bầy. Đường công danh trắc trở. Cảnh gia đình suy sụp.\nKhông sanh được con trai, vợ chồng buồn phiền, anh em lãnh đạm. Phải ăn ở có đạo đức mới khá.\nCảnh hiu quạnh, vợ chồng than thở,\nBuổi cơ hàn như lúc sum vinh.\nÂu là cũng nợ ba sinh,\nLúc vinh, cơn nhục như hình nam kha.\nMạng đã thế, ta đành chịu vậy,\nTình đôi ta trước cũng như sau,\nYêu nhau phải chịu chua cay cuộc đời.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Bính",
+   "chi_vo": "Hợi",
+   "loi": "Trước tiên phải chịu cảnh cơ hàn, sau mới khá giả, yên vui; con cháu đông đủ.\nPhải bền chí và cố gắng thì sau mới vinh hiển.\nTạ với ơn trên, tận với tình,\nVợ chồng chung sống nếp hy sinh.\nVì nhà bẩn chật, vì con dại,\nCực khổ cũng cam tận với tình.\nGiao long núp dưới gầm cầu,\nChờ khi gặp gió lẫy lừng tung mây.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Tý",
+   "loi": "Chồng chữ Đinh mà cưới vợ tuổi Tý thì lúc đầu cực khổ nghèo thiếu, chừng gần 30 tuổi sẽ phát đạt, giàu sang. Con cái sum vầy nên danh phận. Ăn ở ân đức mới được khá.\nĐời lắm lúc trêu cay ngậm đắng,\nCơn nguy nàn mới rõ lòng nhau.\nTrăm năm tạc dạ ghi xương,\nDẫu mòn bia đá dám sai tấc lòng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Sửu",
+   "loi": "Thì lúc đầu cực khổ nghèo thiếu, chừng gần 30 tuổi sẽ phát đạt, giàu sang. Con cái sum vầy nên danh phận. Ăn ở ân đức mới được khá.\nĐời lắm lúc trêu cay ngậm đắng,\nCơn nguy nàn mới rõ lòng nhau.\nTrăm năm tạc dạ ghi xương,\nDẫu mòn bia đá dám sai tấc lòng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Dần",
+   "loi": "Lúc đầu thì vui vẻ, yêu thương, rồi sau vì hoàn cảnh có lúc phải phân ly nhau, khi tan khi hợp, bằng không thì người vợ phải chết trước. Ăn ở có ân đức, tu hành thì sống lâu.\nNon cao thẳm ngất lòng sầu,\nTình xưa ai vẽ lên màu thê lương!\nTình xưa càng nghĩ càng thương,\nBiết bao khoảng vắng đêm trường khóc nhau.\nGối nghiêng tầm tả giọt châu,\nMàn hoa chăn gối thêm sầu chứa chan.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Mão",
+   "loi": "Thì cũng như sự tích Bùi Hàng gặp vợ tiên là nàng Vân Anh, kết thành đôi lứa.\nTrăm năm gắn bó mối tâm đồng,\nCũng như trong mộng kết thành lứa đôi.\nTrăm năm duyên nợ thề nguyền,\nCàng vui càng thắm, càng nồng tình yêu.\nSớm sanh trai gái nối dòng,\nCũng như xuân đến đượm nhuần hoa tươi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Thìn",
+   "loi": "Thì rất tốt, cũng như đôi chim nhạn đủ cặp trong tiết Thu sang. Sanh trai nên danh phận.\nĐời son trẻ đến ngày tóc bạc,\nĐạo vợ chồng son sắt thủy chung.\nCó những lúc bên màn dưới trướng,\nCon hầu cha nghe những lời khuyên.\nQuây quần đông đảo một nhà,\nVợ con chầu chực nghe lời dạy răn.\nTrăm năm giữ vững đạo hằng,\nNhư chim liền cánh, như cây giao cành!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Tỵ",
+   "loi": "Thì rất tốt. Có con cái đầy đủù, công danh rạng rỡ, vợ chồng chung hưởng tài lộc đến già.\nDuyên hội ngộ, tơ tình muôn kiếp,\nQuả tim nồng khắn khít trăm năm.\nCanh khuya gió lộng đèn chong,\nNhỏ to tâm sự mặn nồng mến thương.\nNhững khi dạo cảnh đêm dài,\nYêu nhau đôi lứa nhìn trăng mỉm cười.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Ngọ",
+   "loi": "Thì rất tốt, vợ chồng chung sống đến già, con cái đông đảo cảnh nhà thạnh phát.\nXuân sang, duyên đẹp, đẹp hơn hoa,\nMột tấm tình yêu mãi đến già.\nNăm, tháng ngày càng vui vẻ lạ,\nSanh con trai gái, cháu đầy nhà.\n*\nDuyên chỉ thắm tơ tình muôn kiếp,\nNghĩa phu thê trọn đạo ở đời.\nTừ tuổi xanh cho đến niên cao.\nVợ chồng hòa thuận, cháu con sum vầy.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Mùi",
+   "loi": "Thì vợ chồng có lúc phân ly, sau rồi sum hiệp vì hoàn cảnh gây nên.\nTim rạn nứt, bao giờ lành lại,\nKhóc hờn duyên than thở lâm ly!\nPhận bèo đau khổ thiếu chi,\nChán vạn người khổ, riêng gì phận ta.\n*\nDuyên đã khiến mối tơ lại nối,\nĐã xa nhau rồi lại gặp nhau.\nNgậm ngùi chi xiết đau thương,\nBa sinh là nợ cũng đành phôi pha.\nTrăm năm chồng vợ hiệp hòa.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Thân",
+   "loi": "Thì rất tốt. Người chồng có công danh sáng chói, rực rỡ gia môn. Người vợ sanh con đầy đủ. Từ tuổi trẻ đến già, vợ chồng được chung hưởng phú quí.\nMột tấm tình yêu dệt gấm hoa,\nThương nhau gầy dựng cửa nên nhà.\nTrăm năm gắn bó tình chung thủy,\nKết mối đồng tâm rất đậm đà.\n*\nSuối biếc non xanh dệt chỉ hồng\nThương nhau gắn bó mảnh tâm đồng.\nBa sinh nghĩa nặng lòng non tạc,\nChín khúc tơ vương dệt chữ đồng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Dậu",
+   "loi": "Thì lúc đầu làm ăn có thành có bại, vợ chồng nên kiên tâm trì chí, chừng 30 tuổi sẽ phát đạt giàu sang. Vợ chồng chung sống đến già, con cái đông đảo.\nLều tranh đôi mái tóc xanh,\nYêu nhau nồng thắm, mối tình thủy chung.\nNhững khi gió gác trăng sân,\nMá đào ẩn dưới mày xanh một nhà.\nAnh nguyền giữ vẹn lời thề,\nTrăm năm giữ một lời nguyền mà thôi.\nRa công gắng sức tài bồi,\nHết cơn lao khổ, tới ngày hiển vinh.\nĐừng nên giông tố bất bình.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Tuất",
+   "loi": "Thì lúc đầu làm ăn có thành có bại, vợ chồng nên kiên tâm trì chí, chừng 30 tuổi sẽ phát đạt giàu sang. Vợ chồng chung sống đến già, con cái đông đảo.\nLều tranh đôi mái tóc xanh,\nYêu nhau nồng thắm, mối tình thủy chung.\nNhững khi gió gác trăng sân,\nMá đào ẩn dưới mày xanh một nhà.\nAnh nguyền giữ vẹn lời thề,\nTrăm năm giữ một lời nguyền mà thôi.\nRa công gắng sức tài bồi,\nHết cơn lao khổ, tới ngày hiển vinh.\nĐừng nên giông tố bất bình.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Đinh",
+   "chi_vo": "Hợi",
+   "loi": "Thì rất phù hợp, như cá gặp nước. Công danh toại nguyện, lắm của nhiều con, vợ chồng chung sống từ lúc tuổi xanh cho đến ngày răng long tóc bạc. Danh phận rạng rỡ.\nHoa đào phơi phới nép tình anh,\nDan díu thêm hương lúc tuổi xanh.\nLác đác hoa cài so sắc trắng,\nLà đà liễu rũ lá xanh xanh.\nXuân về muôn thắm trời cao vút,\nGiá thoảng hương lòng khó vẽ tranh.\nCây cỏ mơ màng cơn gió lốc !\nTang bồng mây nước, một trời thanh.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Tý",
+   "loi": "Thì rất tốt, cũng như vườn xuân hoa nở. Trăm năm gắn bó mối tâm đồng, sanh con trai gái vẹn toàn, gia đình hưng thạnh. Vợ chồng chung sống đến già, an nhàn phú quý.\nSuối biếc non xanh, cuộn chỉ hồng,\nTơ duyên gắn bó mảnh tâm đồng.\nBa sinh hương lửa ngàn thu nặng,\nChín chữ tơ vương kết giải đồng.\nVàng đá hẹn nhau bền tuế nguyệt,\nLửa hương nồng thắm sánh non sông.\nMàn loan chung bóng đêm hè vắng,\nTrạc trạc tào khang nghĩa mặn nồng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Sửu",
+   "loi": "Thì cuộc làm ăn thường trở ngại; có lúc yên ổn, có cơn nghèo khổ, nhưng cũng chung sống đến già, song vợ chồng hay tranh cãi.\nUất hận chua cay ngán ngẫm đời,\nTủi hờn trĩu nặng cánh hoa mai.\nNhìn đời như nước trôi muôn ngã,\nChạnh thấy lòng ai lạnh não nề.\nThôi đã phôi pha đường dĩ vãng,\nĐây đã vườn xưa tự thuở nào.\nCắn răng cam chịu mùi chua chát,\nĐể khỏi sầu vương, khỏi bẻ bàng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Dần",
+   "loi": "Thì cuộc làm ăn thường trở ngại; có lúc yên ổn, có cơn nghèo khổ, nhưng cũng chung sống đến già, song vợ chồng hay tranh cãi.\nUất hận chua cay ngán ngẫm đời,\nTủi hờn trĩu nặng cánh hoa mai.\nNhìn đời như nước trôi muôn ngã,\nChạnh thấy lòng ai lạnh não nề.\nThôi đã phôi pha đường dĩ vãng,\nĐây đã vườn xưa tự thuở nào.\nCắn răng cam chịu mùi chua chát,\nĐể khỏi sầu vương, khỏi bẻ bàng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Mão",
+   "loi": "Thì rất xấu. Làm ăn thất bại nhiều phen, lắm khi gian nan cực khổ; dời đổi chỗ ăn ở đôi ba lần mới yên. Chung cuộc được khá giả. Chí công mài sắt, có ngày nên kim.\nCó những lúc cười sa nước mắt,\nCó những hồi cơ cực lầm than.\nCho hay là nợ trái oan,\nTrả rồi thì hết, yên bề gia cang.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Thìn",
+   "loi": "Chồng chữ Mậu mà cưới vợ tuổi Thìn, thì lúc đầu vui vẻ, sau lại buồn phiền. Có lúc nhục, có lúc vinh. Phải ăn ở cho có ân đức, về sau sẽ khá.\nMùa xuân năm ấy hiệp nhau,\nQuyên ca những tiếng biệt ly não nùng!\nHoa tàn mấy độ thu đông,\nNào đâu những lúc nhạc lòng năm xưaà\nLạnh lẽo giữa ngày sương giá lạnh,\nTro tàn gợi lại mảnh than hồng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Tỵ",
+   "loi": "Thì được trường thọ. Có con gái khó cậy nhờ. Trước vinh hiển, sau chịu cơ hàn.\nPhải tu thân mới yên lúc tuổi già. Có con thì không có của, có của thì lại không có con.\nĐời thường có lắm lần vinh nhục,\nNhư cuộc cờ lúc được, cơn thua.\nBôn ba âu cũng số phần,\nMiễn cho trọn nghĩa đá vàng thủy chung.\nLồng đèn khi xách khi treo,\nVợ chồng khi khó khi nghèo có nhau.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Ngọ",
+   "loi": "Thì rất tốt. Vợ chồng hòa thuận từ lúc tuổi xanh đến ngày đầu bạc. Hưởng được thanh nhàn. Sanh gái nhiều hơn trai. Tuổi già nhờ con.\nĐêm thong thả bầu trời vắng lặng,\nNgắm hoa xuân, nhẹ chuốc chén vàng.\nBụi đời tràn ngập thời gian,\nCuộà vui chuốc chén, mộng đời chóng qua.\nNgười đối cảnh dưới hiên trăng dội,\nCảnh trêu người, gió thổi cát bay.\nVui nầy liệu có ai hay,\nVới đêm trăng gió, vợ chồng thảnh thơi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Mùi",
+   "loi": "Chồng chữ Mậu mà cưới vợ tuổi Mùi thì là duyên trời định. Vợ chồng hòa thuận từ lúc xuân xanh cho đến tuổi trăng tàn bóng xế, ân ái mặn nồng, tiền bạc dư giả, sanh con trai và con gái nên danh phận.\nMến nhau vì tấm tình yêu,\nThương nhau vì nghĩa duyên trời định phân.\nDuyên ngâu dễ gặp bạn lòng,\nTuy hòa xướng ít, mà thông cảm nhiều.\nMặc đời dầu dãi phong sương,\nTình thương chẳng để mơ theo cuộc đời.\nLòng xuân chẳng bợn thể tình,\nNgâm câu phu xướng phụ tùy xứng đôi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Thân",
+   "loi": "Chồng chữ Mậu mà cưới vợ tuổi Thân thì là duyên trời định. Vợ chồng hòa thuận từ lúc xuân xanh cho đến tuổi trăng tàn bóng xế, ân ái mặn nồng, tiền bạc dư giả, sanh con trai và con gái nên danh phận.\nMến nhau vì tấm tình yêu,\nThương nhau vì nghĩa duyên trời định phân.\nDuyên ngâu dễ gặp bạn lòng,\nTuy hòa xướng ít, mà thông cảm nhiều.\nMặc đời dầu dãi phong sương,\nTình thương chẳng để mơ theo cuộc đời.\nLòng xuân chẳng bợn thể tình,\nNgâm câu phu xướng phụ tùy xứng đôi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Dậu",
+   "loi": "Thì nữa chừng phân ly, có đời vợ sau thì được đầm ấm bền duyên và có con cái đông đủ. Gia đạo vui vầy, làm ăn thanh phát.\nPhụng loan tan vỡ mối tình đầu,\nBạn cũ nhớ chăng, lụy thảm sầu.\nKhắp cả người ta đều có bạn,\nDễ gì tìm được bạn xưa đâu!\nCảnh chiều mưa gió cậy aià\nTơ loan chắp mối xuân thừa đủ đôi.\nChợ đời kẻ ngược người xuôi,\nTuy hòa duyên mới, não nồng bạn xưa!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Tuất",
+   "loi": "Do nơi tiền định gặp nhau rồi yêu nhau, vợ chồng ăn ở thuận hòa, trăm năm gắn bó, sanh con trai và gái vẹn toàn. Vợ chồng kết tóc đến già.\nTim em trao gởi tình anh,\nTuổi thơ tha thiết tâm tình đôi ta.\nYêu từ hoa nở độ nào,\nGiờ đây mai nở trên cành chứng tri.\nĐừng cho lỡ mối duyên lành,\nKhơi niềm hạnh phúc, bây giờ là đây.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Mậu",
+   "chi_vo": "Hợi",
+   "loi": "Chồng chữ Mậu mà cưới vợ tuổi Hợi thì sống theo nghề nông, làm ruộng, làm vườn thì rất hạp. Tình nghĩa vợ chồng không bền, sợ e nữa đời người vợ chết trước.\nPhải ăn ở có đạo đức tu hành mới sống lâu sanh con cái đều đủ.\nTỉnh, mơ như mộng giấc hoàng lương,\nCảm bấy tình ta, cắt đọan trường.\nVóc liễu hình mai còn gợi nhớ,\nPhải chăng trời đất buộc tang thươngà\n*\nMở mảnh gương soi tìm lại bóng,\nXếp tàn áo lạnh để dành hơi.\nNỗi niềm chia cách tình thêm bận,\nMãi nhớ người xưa, dạ chẳng khuây.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Tý",
+   "loi": "Cũng như rồng mây tương hội, cá nước duyên ưa, vợ chồng tương đắc. Sanh con đầu lòng khó nuôi. Chỗ ăn ở dời đổi đôi ba lần. Phải tu tâm dưỡng tính mới yên, bằng không thì người vợ sẽ bị nạn chết truớc.\nNăm canh lệ sầu vơi nước mắt,\nTuổi trẻ trung mất vợ khó khuây.\nNỗi đau đớn riêng đây tha thiết,\nKhóc òa lên cho thấu trời xanh.\nTrời làm chi, hỡi trời ơi!\nNỡ đem sanh tử, não người thế gian!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Sửu",
+   "loi": "Cũng như rồng mây tương hội, cá nước duyên ưa, vợ chồng tương đắc. Sanh con đầu lòng khó nuôi. Chỗ ăn ở dời đổi đôi ba lần. Phải tu tâm dưỡng tính mới yên, bằng không thì người vợ sẽ bị nạn chết truớc.\nNăm canh lệ sầu vơi nước mắt,\nTuổi trẻ trung mất vợ khó khuây.\nNỗi đau đớn riêng đây tha thiết,\nKhóc òa lên cho thấu trời xanh.\nTrời làm chi, hỡi trời ơi!\nNỡ đem sanh tử, não người thế gian!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Dần",
+   "loi": "Chỉ ăn ở cùng nhau một khoảng thời gian rồi phân ly. Sau rồi sẽ có vợ khác mới có con cái. Tuổi già chỉ có người con trai mà thôi.\nDuyên kỳ ngộ, tơ tình muôn kiếp,\nĐời trăm năm được mấy vui vầy.\nĐêm khuya trăng giải dọi sân,\nBóng trăng soi biết dạ sầu phân ly.\nDưới trăng giọt lệ canh dài,\nDở dang duyên nợ, ngậm ngùi chia ly!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Mão",
+   "loi": "Chỉ ăn ở cùng nhau một khoảng thời gian rồi phân ly. Sau rồi sẽ có vợ khác mới có con cái. Tuổi già chỉ có người con trai mà thôi.\nDuyên kỳ ngộ, tơ tình muôn kiếp,\nĐời trăm năm được mấy vui vầy.\nĐêm khuya trăng giải dọi sân,\nBóng trăng soi biết dạ sầu phân ly.\nDưới trăng giọt lệ canh dài,\nDở dang duyên nợ, ngậm ngùi chia ly!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Thìn",
+   "loi": "Số người chồng phải có vợ lẻ, tuy vậy mà người chồng sẽ trở về với vợ lớn. Người vợ tái hợp sanh đủ con trai và con gái, vợ chồng chung sống đến già, làm ăn thịnh vượng.\nGiờ lặng lẽ, âm thầm qua ngày tháng\nChạnh niềm xưa hối tiếc mộng yêu thương.\nÁnh thời gian đi mãi không ngừng,\nNgày phiêu lãng tình xưa còn ghi gắn.\nXóa bỏ hết những ngày tuyệt vọng.\nĐời đôi ta còn chứa động lòng thương.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Tỵ",
+   "loi": "Số người đàn ông phải có vợ lẻ, tuy vậy mà người đàn ông sẽ trở về với vợ lớn.\nVợ tái hợp sanh đủ con trai và con gái, vợ chồng chung sống đến già, làm ăn thịnh vượng.\nGiờ lặng lẽ, âm thầm qua ngày tháng\nChạnh niềm xưa hối tiếc mộng yêu thương.\nÁnh thời gian đi mãi không ngừng,\nNgày phiêu lãng tình xưa còn ghi gắn.\nXóa bỏ hết những ngày tuyệt vọng.\nĐời đôi ta còn chứa động lòng thương.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Ngọ",
+   "loi": "Vợ chồng ăn ở tâm đầu ý hiệp, thỏa chí ước ao, nhưng vì hoàn cảnh mà chồng phải có vợ thứ. Vợ sau ăn ở cũng hòa thuận và có con nên danh phận.\nVườn xuân hoa trỗ như mơ,\nXin chi gặp gỡ bạn đời tri ân.\nCùng nhau thông cảm mến thương,.\nCho hoa thêm thắm, cho tình thêm hương.\nThân ngà ẩn bóng trăng trong,\nThướt tha vóc liễu, dịu dàng hình mai.\nTrăm năm duyên phận hòa hài,\nCát đằng núp bóng tùng quân trọn đời.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Mùi",
+   "loi": "Thì rất tốt, làm ăn cũng có khi thịnh khi suy, nhưng chung cuộc rồi vợ chồng được sống lâu và sang giàu, con cái đông đủ. Hào con có người phát quan.\nMột cành hoa mai, một mối tình,\nGiữ lòng trinh trắng, khóa xuân tiêu.\nPhấn hương những phút cùng chung hưởng,\nMột mảnh tình chung kết giải đồng.\n*\nTrăm năm danh tiếng lẫy lừng,\nHưởng mùi chung định một đời phong lưu.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Thân",
+   "loi": "Thì rất tốt, làm ăn cũng có khi thịnh khi suy, nhưng chung cuộc rồi vợ chồng được sống lâu và sang giàu, con cái đông đủ. Hào con có người phát quan.\nMột cành hoa mai, một mối tình,\nGiữ lòng trinh trắng, khóa xuân tiêu.\nPhấn hương những phút cùng chung hưởng,\nMột mảnh tình chung kết giải đồng.\n*\nTrăm năm danh tiếng lẫy lừng,\nHưởng mùi chung định một đời phong lưu.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Dậu",
+   "loi": "Nữa chừng rồi vợ chồng phải phân ly vì cung mạng xung khắc. Phải tu tâm dưỡng tính mới yên tuổi già.\nNhững đêm mưa nhẹ gió lay,\nLá rơi gió thổi xạt xào tâm tư.\nCô thân vơ vẩn hồn mơ,\nNhớ thương, thương nhớ não nùng cô đơn.\nBuồn dâng tràn ngập tim côi,\nLòng riêng, riêng nặng nhớ ngày hân hoan.\nThuở yêu đương đá vàng hứa hẹn,\nNào, một tấm tình, một dạ sắt son,\nNgày nay bình vỡ gương tan,\nHỡi ai lỗi đạo can thường nhớ chăngà",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Tuất",
+   "loi": "Thì rất khổ nhọc trong buổi đầu, làm ăn thất bại, chừng 30 tuổi trở lên mới khá.\nCo ùcon nhiều, nhưng không được hiếu hạnh. Vợ chồng chung sống đến già (trước cực khổ, sau sang giàu)\nCảnh sa sút, khi buồn khi tủi,\nGắng cùng nhau trọn đạo gia tề.\nNhững đêm mưa gió thảm thê,\nNhững ngày nắng cháy da phồng quản chi.\nMiễn là trọn đạo phu thê,\nTrăm năm biển hẹn non thề thủy chung.\n* Xuân thu ngày tháng trôi qua,\nTấm lòng son sắt mặc dầu gió mưa.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Kỷ",
+   "chi_vo": "Hợi",
+   "loi": "Thì ăn ở tâm dầu ý hiệp, nhưng làm ăn có khi thành bại vô chừng, có của phụ ấm cũng hết. Chừng 30 tuổi trở lên mới yên. Vợ chồng chung sống đến già.\nĐạo chồng vợ tình thâm nghĩa trọn,.\nChữ nhơn luân chung nhịp sắt cầm..\nChữ chung tình ôm ấp mộng cao thâm,\nQuyết níu lấy đôi tâm hồn như một.\nTrong dĩ vãng đạo nhơn luân đà cao tột,\nHiện tại nầy ta cố gắng để noi theo.\nNợ ái ân tạo hóa đã sắp bày,\nNên phải sống cho vẹn niềm kim cái.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Tý",
+   "loi": "Chồng chữ Canh cưới vợ tuổi Tý thì rất tốt. Trăm năm phu xướng phụ tùy, làm ăn thạnh phát. Sanh trai gái đều đủ. Tuổi càng cao càng hưởng hạnh phước.\nBổn phận gái tề gia tần tảo,\nThờ tổ tiên trọn đạo dâu con.\nGiữ gìn đức hạnh tiết trinh,\nChữ \"Tùng\" phận gái thật là đảm đang.\nTrăm năm tạc một chữ đồng,\nTóc xanh đến tuổi bạc đầu còn thương.\n*\nCó những lúc trăng khuya gió sớm,\nNhìn đàn con lẫm liệt nên người.\nNhìn nhau mỉm miệng vui cười,\nVợ chồng thỏa chí tạ ơn Phật Trời",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Sửu",
+   "loi": "Thì rất xung khắc, tuy có con cái đều đủ, nhưng không cậy nhờ. Người chồng sẽ chết trước vợ.\nCung đàn đã dứt đường tơ,\nĐứt dây dường ấy chứa chan mạch sầu.\nNgày xanh đã dở dang nhau,\nTuổi xanh nghĩ buổi bạc đầu lệ rơi!\nVóc mai gầy võ tuyết sương,\nTừ đây chiếc bách cánh buồm bơ vơ!\nNgại ngùng gió sớm mưa khuya,\nCon côi, mẹ góa tảo tần sớm trưa,\n*\nTrời đất bao la ngày tháng rộng,\nMãi mãi lòng này giữ thủy chung.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Dần",
+   "loi": "Thì rất xung khắc, tuy có con cái đều đủ, nhưng không cậy nhờ. Người chồng sẽ chết trước vợ.\nCung đàn đã dứt đường tơ,\nĐứt dây dường ấy chứa chan mạch sầu.\nNgày xanh đã dở dang nhau,\nTuổi xanh nghĩ buổi bạc đầu lệ rơi!\nVóc mai gầy võ tuyết sương,\nTừ đây chiếc bách cánh buồm bơ vơ!\nNgại ngùng gió sớm mưa khuya,\nCon côi, mẹ góa tảo tần sớm trưa.\n*\nTrờiđất bao la ngày tháng rộng,\nMãi mãi lòng này giữ thủy chung.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Mão",
+   "loi": "Chồng chữ Canh và vợ tuổi Mẹo thì rất tốt. Có con cái đều thông minh. Vợ chồng hòa thuận, nhưng gặp phận xấu lối 31, 33 tuổi rồi thì cảnh nhà êm dẹp vinh hiển.\nVợ chồng có số thọ nhân.\nThần tiên phảng phất cảnh như đây.\nNặng nợ tình chung cũng như vầy.\nChén rượu cuộc cờ tuy thế cuộc.\nKhai hoa kết quả thỏa lòng đây,\nVốn thân đã nặng tình chung thủy.\nNửa bước phong trần lúc tỉnh say.\nDở túi càn khôn gieo giống Lạc.\nTrăm năm gắn bó mảnh tâm Hồng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Thìn",
+   "loi": "Thì làm ăn thường trở ngại. Có con cái đều đủ, người chồng không được chung tình. Người vợ phải ăn ở có đạo đức mới được. Sợ e người vợ phải chết trước.\nNghĩ về lối cũ mà thương,\nSông quanh mấy khúc, đọan trường mà đau.\nNon cao chất ngất dạ sầu,\nCảnh xưa ai vẽ đọan sầu thê lương.\nNỗi niềm lệ ứa đôi dòng ,\nTrăm năm nát một tấm lòng từ đây.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Tỵ",
+   "loi": "Thì làm ăn thường trở ngại. Có con cái đều đủ, người chồng không được chung tình. Người vợ phải ăn ở có đạo đức mới được. Sợ e người vợ phải chết trước.\nNghĩ về lối cũ mà thương.\nSông quanh mấy khúc, đọan trường mà đau,\nNon cao chất ngất dạ sầu,\nCảnh xưa ai vẽ đọan sầu thê lương.\nNỗi niềm lệ ứa đôâi dòng ,\nTrăm năm nát một tấm lòng từ đây!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Ngọ",
+   "loi": "Thì cũng như ngựa chạy đường dài, gà gáy sáng. Giàu sang thình lình. Phải ăn ở có đạo đức mới giữ vững sản nghiệp. Vợ chồng chung sống đến già, con cái có đều đủ. Người vợ chết trước chồng.\nThấm thoát ngày xanh đến bạc đầu,\nNgày về cõi thọ, nghĩ âu lo.\nTrăm năm ai giữ thân này mãi,\nChạnh nghĩa tào khang, nghĩ thảm sầu.\n*\nHớn hở hồn nàng về âm cảnh,\nNgậm ngùi anh ở lại dương gian.\nHẹn nhau tái ngộ chờ kiếp khác,\nLưu luyến lòng anh, lụy nhỏ tràn.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Mùi",
+   "loi": "Thì buổi đầu khắn khít yêu đương nồng nhiệt, nhưng nữa chừng phải phân ly nhau, mặc dầu có con cái. Chung cuộc người chồng sẽ tái hôn, làm ăn thạnh phát đến già. Có số thọ mạng.\nTình lỡ dở nữa đường đứt gánh,\nNẻo chia ly cám cảnh khó nguôi.\nKể từ độ vợ chồng kết tóc,\nBao nhiêu năm như nước canh bèo.\nThả lòng như nước xuôi trôi,\nLinh đinh âu cũng nợ đời trả vay.\n*\nThu xưa cười, Thu nầy lại khóc!\nMăng khóc em, không mấy mà già.\nBạn xưa khuât bóng đã qua,\nCây buồn gió lặng cỏ hoa ngậm ngùi!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Thân",
+   "loi": "Thì buổi đầu khắn khít yêu đương nồng nhiệt, nhưng nữa chừng phải phân ly nhau, mặc dầu có con cái. Chung cuộc người chồng sẽ tái hôn, làm ăn thạnh phát đến già. Có số thọ mạng.\nTình lỡ dở nữa đường đứt gánh, thoát ngày xanh đến bạc đầu, thoát ngày xanh đến bạc đầu,\nNẻo chia ly cám cảnh khó nguôi.\nKể từ độ vợ chồng kết tóc,\nBao nhiêu năm như nước canh bèo.\nThả lòng như nước xuôi trôi,\nLinh đinh âu cũng nợ đời trả vay.\n*\nThu xưa cười, Thu nầy lại khóc!\nMăng khóc em, không mấy mà già.\nBạn xưa khuât bóng đã qua,\nCây buồn gió lặng cỏ hoa ngậm ngùi!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Dậu",
+   "loi": "Thì buổi đầu vợ chồng vui vẻ mặn nồng, nữa chừng chồng vợ lại chia cách phân ly.\nTuy có con cũng không được nhờ cậy.\nLòng tơ rướm máu vì đâu,\nNỗi niềm tâm sự gối đầu cánh tay.\nChuỗi ngày chua chát giấc mơ,\nTương tư rỉ máu phủ mờ vết thương.\nNiềm đau thấm thấu can trường,\nBèo mây tan vỡ, đọan trường nhớ thương.\n*\nTình thương muốn dứt lòng thêm bận,\nMãi mãi bên mình dạ chẳng khuây.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Tuất",
+   "loi": "Thì rất xung khắc, chồng vợ khó ăn ở cho đến chung cuộc được, hào con sẽ có bệnh tật. Có đời vợ sau sẽ có con nên danh phận. Tuy có con chồng vợ cũng không được nhờ cậy.\nDuyên đã bén, ngỡ tròn chung thủy,\nTình trăm năm kẻ ngược người xuôi.\nNgậm ngùi thay nẻo chia phôi,\nBước đi một bước, tủi thầm biệt ly.\n*\nLỡ nhịp ái ân đành lỗi hẹn,\nTình ta chỉ có bấy nhiêu thôi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Canh",
+   "chi_vo": "Hợi",
+   "loi": "Chồng chữ Canh mà cưới vợ tuổi Hợi thì cũng như cây già trổ hoa. Từ 30 tuổi, gia đình gặp tai biến. Tuy có con đủ trai gái, nhưng thất bại, khi lâm chung sẽ không thấy mặt các con. Người vợ đầu tiên sẽ bị bệnh chết trước. Có vợ sau được yên vui.\nKể từ độ đào tơ gá nghĩa,\nBao nhiêu năm, mặt nước cánh bèo.\nĐã đành theo ngọn thủy triều,\nChia tay nhau cũng bởi lòng hóa công.\n*\nNgười xưa khuất, nước mắt sa,\nLệ lòng lai láng, muôn ngàn nhớ thương.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Tý",
+   "loi": "Thì rất khắc kỵ, cho nên hào con không được tốt, hữu sanh vô dưỡng. Vợ chồng tuy yêu nhau, nhưng cũng gặp nhiều tai họa, thường hay lo buồn.\nĐêm thanh vắng vợ chồng than thở,\nCảnh nguy nan cơ cực đến đều.\nDẫu cho may rủi đến đâu,\nCũng đem vàng đá mà liều với thân.\n*\nSong thưa, thiếu phụ thờ ơ,\nMột làn gió thoảng bơ phờ vóc mai.\nAi đem gieo mối hận hoài,\nMột trời thu để đôi người sầu thu.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Sửu",
+   "loi": "Thì vợ chồng rất đầm ấm, tuy làm ăn có lúc thạnh lúc suy, nhưng từ 30 tuổi thì phát đạt. Con cái khó nuôi. Vợ chồng chung sống đến già.\nTrăm năm một tấm lòng mong ước,\nĐạo vợ chồng, số định tác thành.\nLều tranh đôi mái tóc xanh,\nYêu nhau như một, tấm lòng thủy chung.\nTìm em gởi trọn tình anh,\nTháng ngày bao quản cuộc đời nắng mưa.\nNhững khi rượu sớm trà trưa,\nVui câu phu xướng phụ tùy sánh vai.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Dần",
+   "loi": "Thì vợ chồng rất đầm ấm, tuy làm ăn có lúc thạnh lúc suy, nhưng từ 30 tuổi thì phát đạt. Con cái khó nuôi. Vợ chồng chung sống đến già.\nTrăm năm một tấm lòng mong ước,\nĐạo vợ chồng, số định tác thành.\nLều tranh đôi mái tóc xanh,\nYêu nhau như một, tấm lòng thủy chung.\nTìm em gởi trọn tình anh,\nTháng ngày bao quản cuộc đời nắng mưa.\nNhững khi rượu sớm trà trưa,\nVui câu phu xướng phụ tùy sánh vai.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Mão",
+   "loi": "Thì vợ chồng rất tương đắc êm đẹp như trăng thu. Tuy có lúc nghèo khó buổi đầu, về sau thì phú quý. Sanh con trai gái đều đủ, sẽ có một người thành đạt. Vợ chồng chung sống đến già. Có số thọ nhân.\nĐêm trăng sáng, bầu trời quang đãng,\nĐạo vợ chồng tha thiết như băng.\nTrăm năm trọn vẹn đạo hằng,\nTình chồng nghĩa vợ như trăng đêm rằm..\n* Duyên niên ta gặp nhau đây,\nTháng năm vui hưởng trong vòng nhân sinh.\nỞ cho trọn đạo ân tình,\nĐẹp đôi chung thủy, vẹn câu đạo tùng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Thìn",
+   "loi": "Thì rất tốt. Cung mạng tương sanh, vợ chồng làm ăn thạnh phát. Sanh con trai gái đầy đủ. Như người chồng là người có học vấn thì sau nầy công danh rực rỡ. Vợ chồng chung sống đến già.\nTình nồng thắm do nơi nguyệt lão,\nSánh vai nhau trọn đạo vợ chồng.\nTrăm năm một tấm lòng son,\nDẫu mòn bia đá, dám sai tấc lòng.\nTừ tuổi xanh cho đến niên cao,\nVợ chồng chung hưởng tuổi trời ấm no.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Tỵ",
+   "loi": "Thì rất tốt. Cung mạng tương sanh, vợ chồng làm ăn thạnh phát. Sanh con trai gái đầy đủ. Như người chồng là người có học vấn thì sau nầy công danh rực rỡ. Vợ chồng chung sống đến già.\nTình nồng thắm do nơi nguyệt lão,\nSánh vai nhau trọn đạo vợ chồng.\nTrăm năm một tấm lòng son,\nDẫu mòn bia đá, dám sai tấc lòng.\nTừ tuổi xanh cho đến niên cao,\nVợ chồng chung hưởng tuổi trời ấm no.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Ngọ",
+   "loi": "Chồng chữ Tân mà cưới vợ tuổi Ngọ thì rất tốt, ăn ở cùng nhau rất thuận hòa.\nSanh con cái đông đủ, có số thọ sang. Chỉ e người chồng có thêm vợ lẻ.\nLứa đôi hội ngộ nhau đây,\nChớ phai duyên thắm, chớ phai chữ đồng.\nTrăm năm vui đẹp duyên nồng,\nĐể cho vẹn mối chỉ hồng thắm tươi.\n*\nNhư xuân muôn tía ngàn hồng,\nNhư sen mùa hạ nở hoa trong hồ.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Mùi",
+   "loi": "Thì có con cái đông đủ, hào con trai phát đạt công danh. Tiểu vận 31 tuổi gặp tai ách. Vợ chồng chung sống đến già. Nhưng người vợ thường hay đau ốm.\nTrăng, nước có vơi, đầy, tròn, khuyết,\nTình đôi ta chỉ biết thủy chung.\nNgàn sao ẩn bóng trăng trong,\nGió xao sóng gợn, chứng lòng sắt son.\nThề duyên chớ để bất bằng,\nChữ tình trong đẹp như trăng nước nầy.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Thân",
+   "loi": "Thì có con cái đông đủ, hào con trai phát đạt công danh. Tiểu vận 31 tuổi gặp tai ách. Vợ chồng chung sống đến già. Nhưng người vợ thường hay đau ốm.\nTrăng, nước có vơi, đầy, tròn, khuyết,\nTình đôi ta chỉ biết thủy chung.\nNgàn sao ẩn bóng trăng trong,\nGió xao sóng gợn, chứng lòng sắt son.\nThề duyên chớ để bất bằng,\nChữ tình trong đẹp như trăng nước nầy.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Dậu",
+   "loi": "Thì vợ chồng rất hòa thuận, người chồng sẽ làm nên sự nghiệp, chung hưởng đến già. Vợ chồng có số thọ nhàn, song khó nuôi con.\nVợ chồng hòa thuận, yên vui,\nTrong vinh hoa vẫn hai bàn tay không.\nTình đầm ấm hoa chiều trăng sớm,\nMỗi một mùa vẻ đẹp thiếu chi,\nNắm tay dìu dắt, âm thầm mến yêu.\nĐào tơ sen ngó từ khi,\nNgây thơ đôi lứa, chung tình trăm năm.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Tuất",
+   "loi": "Thì vợ chộng được êm đẹp buổi ban đầu, sau hay tranh cãi. Tuy vậy, sanh con cái đầy đủ. Sợ e người vợ phải chết trước.\nNào hay duyên đẹp ứa đôi ta,\nMột buổi chia lìa, dạ xót xa.\nKẻ ở, người đi, tình lỡ dở,\nNgậm ngùi duyên nợ, lệ chan hòa.\n*\nAo nước trăm năm còn tưởng nhơ, ù\nCảnh chiều mưa gió cậy ai đâyà",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Tân",
+   "chi_vo": "Hợi",
+   "loi": "Thì vợ chồng được êm đẹp buổi ban đầu, sau hay tranh cãi. Tuy vậy, sanh con cái đầy đủ. Sợ e người vợ phải chết trước.\nNào hay duyên đẹp lứa đôi ta,\nMột buổi chia lìa, dạ xót xa.\nKẻ ở, người đi, tình lỡ dở,\nNgậm ngùi duyên nợ, lệ chan hòa.\n*\nAo nước trăm năm còn tưởng nhơ, ù\nCảnh chiều mưa gió cậy ai đâyà",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Tý",
+   "loi": "Thì rất tốt về hậu lai. Buổi đầu gặp nhiều tai ách. Vợ chồng chung sống đến già.\nCó số thọ nhàn. Nên giữ lòng nhân hậu, hiếu đạo thì tốt bền.\nNhịp cầu đã bắt, tuổi ngây thơ,\nĐã mấy thu qua vẫn đợi chờ.\nGió thổi lá vàng rơi lã chã.\nNăm canh đôi lứa mối tình mơ.\n*\nNước trong ẩn bóng niềm thương,\nĐường đời hiểm trở, tình trường thiết tha.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Sửu",
+   "loi": "Thì vợ chồng hòa thuận. Con cái tuy đông, nhưng thường bệnh tật và khó nuôi.\nChung cuộc vợ chồng được sống dai, song hiu quạnh.\nTuổi già hiu quạnh một mình,\nChuyện cũ như gợi nỗi niềm năm xưa.\nBạn bè cũ,bây giờ đâu vắngà\nNhững lời xưa văng vẳng đêm thanh.\nBâng khuâng non nước một mình,\nNhớ hồi chuyện cũ, nhớ người tri âm.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Dần",
+   "loi": "Thì vợ chồng hòa thuận. Con cái tuy đông, nhưng thường bệnh tật và khó nuôi.\nChung cuộc vợ chồng được sống dai, song hiu quạnh.\nTuổi già hiu quạnh một mình,\nChuyện cũ như gợi nỗi niềm năm xưa.\nBạn bè cũ, bây giờ đâu vắngà\nNhững lời xưa văng vẳng đêm thanh.\nBâng khuâng non nước một mình,\nNhớ hồi chuyện cũ, nhớ người tri âm.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Mão",
+   "loi": "Thì thường bất lợi. Tuy có con cái đông, song tuổi già thường chịu cảnh cực nhọc. Người vợ thường đau ốm bệnh hoạn. Phải tu thân mới yên gia đạo.\nGió thu hiu hắt , nỗi cô đơn,\nRả rích thêm chi giọng dế hờn.\nNước chảy xuôi dòng theo bọt trắng,\nLá vàng lìa cánh nhuộm dòng trong.\nLạnh lùng đêm vắng, mưa hòa gió,\nMan mác lòng đơn, mộng lẫn sầu.\nMấy độ sen tàn, nhìn cúc thắm,\nLời ta than thở, mộng cô đơn!",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Thìn",
+   "loi": "Chồng chữ Nhâm cưới vợ tuổi Thìn thì lúc đầu đầm ấm, về sau phải phân ly, mặc dầu có con cái đông đủ.\nÔn lại chuyện xưa, chạnh nhớ nhau,\nNon nước xa khơi, biết tìm đâu.\nTrời xa, đất rộng, bao nhiêu hận,\nNăm, tháng còn dài giọt lệ sầu.\n*\nNhững khi ngắm cảnh thêm sầu,\nCòn tình chăng nữa, cũng là lụy thôi!",
+   "doi_chieu": "chỉ có xemtuong (trang kabala trả nhầm cặp)"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Tỵ",
+   "loi": "Thì vợ chồng thường gặp nhiều trở ngại buổi ban đầu. Con cháu có đều đủ. Vợ chồng không được hòa vui, nhưng chung sống đến già.\nGió thu về, thê lương dạ ủ,\nNước dòng sâu khố tả mạch sầu.\nBi ca luống bận lòng đau,\nTrăng thu bỡ ngỡ, gió thu lạnh lùng.\nBởi số kiếp phải sao chịu vậy,\nBóng thời gian đưa đẩy cho qua.\nTình chung hòa với đạo nhà,\nTrăm năm giữ vững mảnh tình thiết tha.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Ngọ",
+   "loi": "Thì thường hay bất hòa. Khoảng trung niên thường gặp tai ách. Sanh con trai gái đều đủ. Tuy có của mà không được sung sướng. Sợ e người vợ sẽ chết trước. Nên tu nhân tích đức may qua khỏi.\nAi có biết mối tình lỡ dở.\nDuyên kiếp nầy đã dở dang nhau.\nNỗi đau như muối xát lòng,\nNgày xanh chỉ để má hồng phôi pha.\nXót thương chỉ hận trời qua,\nNiềm thương khó gởi suối vàng biết nhau.\nTrăm năm còn bận dạ sầu.\nDầu ai hơn nữa, dạ sầu phân vânà",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Mùi",
+   "loi": "Thì sanh con trai gái đều đủ và nên danh phận. Vợ chồng thường bị khẩu thiệt, nhưng vợ chồng cũng chung sống đến già.\nKể từ tuổi tơ hồng vương vấn.\nĐạo vợ chồng chung hưởng tháng ngày.\nTấc lòng đâu dám đơn sai,\nLòng chàng ý thiếp, tâm đồng họa hai.\nSách đèn, cơm áo bấy nay,\nVì con tiêu hết chua cay cuộc đời.\nTrăm năm giữ vẹn một lời,\nDầu thay mái tóc, dám lơi tấm lòng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Thân",
+   "loi": "Thì thường trở ngại bước công danh. Tuy vậy từ 30 tuổi trở lên sẽ phát đạt. Có con cái khó nuôi. Người vợ phải kiên chí thì tuổi già mới được phú quí, phong lưu. Người vợ chung sống đến tuổi cao và thọ nhàn.\nĐạo vợ chồng ở đời trọn kiếp,\nTình đôi ta chỉ biết thủy chung.\nĐêm khuya ánh nguyệt dòm song,\nBóng trăng soi biết tấm lòng sắt son",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Dậu",
+   "loi": "Thì gặp cảnh khó khăn, công danh lỡ dở, có con không nhờ. Sợ e vợ chồng phải phân ly. Phải lấy ân đức mà ăn ở với nhau mới tốt.\nĐào tơ sen ngó từ lâu.\nNgây thơ những ngỡ bạc đầu có nhau.\nUyên ương chia rẽ lòng đau.\nLạc bầy chắp cánh, thẹn ngày tuổi xuân.\nTình xưa lai láng âm thầm.\nBến xưa nghĩ lại, ngậm ngùi tuổi xanh.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Tuất",
+   "loi": "Vợ chồng tương đắc, ăn ở cùng nhau đến già. Con cái đều đủ. Hậu vận làm nên. Số trường thọ.\nThề xưa giữ vẹn đạo hằng,\nNguyện trăm năm một tấm lòng thủy chung.\nNgâm câu phu xướng phụ tùy.\nChồng hòa vợ thuận cửa nhà vẻ vang.\nTrăm năm hưởng phúc thanh nhàn,\nKhi ngâm bóng nguyệt, khi cười hoa tươi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Nhâm",
+   "chi_vo": "Hợi",
+   "loi": "Vợ chồng tương đắc, ăn ở cùng nhau đến già. Con cái đều đủ. Hậu vận làm nên. Số trường thọ.\nThề xưa giữ vẹn đạo hằng,\nNguyện trăm năm một tấm lòng thủy chung.\nNgâm câu phu xướng phụ tùy.\nChồng hòa vợ thuận cửa nhà vẻ vang.\nTrăm năm hưởng phúc thanh nhàn,\nKhi ngâm bóng nguyệt, khi cười hoa tươi.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Tý",
+   "loi": "Thì rất thuận hòa. Sanh con trai gái đông đủ. Gặp năm Tuất và năm Hợi sẽ có sự thay đổi chỗ ăn ở, và phát đạt thạnh cường.\nTuổi thơ đôi lứa yêu thương,\nNhư trăng mới mọc, như hoa đương nồng.\nCùng nhau sát cánh sớm trưa,\nBữa ăn, giấc ngủ cũng chờ đợi nhau.\nTình khắn khít chẳng rời một bước,\nĐạo cang thường trước cũng như sau.\nTừ tuổi xanh cho đến niên cao,\nQuanh mình tận hưởng chuỗi ngày ấm no.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Sửu",
+   "loi": "Thì rất tốt, cũng như trăng mùa Thu tỏ rạng. Vợ chồng ăn ở hòa thuận. Sanh con trái gái đều đủ. Sau nầy, có người con sẽ phát đạt giàu sang.\nKể từ độ se tơ kết tóc,\nTình đôi ta êm ấm, mến thương.\nTrăm năm vẹn đạo cang thường ,\nDẫu thay mái tóc, dạ còn thương nhau.\nSống chung đến tuổi bạc đầu,\nTrăng thu chung bóng, nắng xuân ấm lòng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Dần",
+   "loi": "Thì rất tốt, cũng như trăng mùa Thu tỏ rạng. Vợ chồng ăn ở hòa thuận. Sanh con trái gái đều đủ. Sau nầy, có người con sẽ phát đạt giàu sang.\nKể từ độ se tơ kết tóc,\nTình đôi ta êm ấm, mến thương.\nTrăm năm vẹn đạo cang thường ,\nDẫu thay mái tóc, dạ còn thương nhau.\nSống chung đến tuổi bạc đầu,\nTrăng thu chung bóng, nắng xuân ấm lòng.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Mão",
+   "loi": "Cũng như hoa cỏ gặp mùa Xuân tươi thắm. Nhưng nữa đời phải chịu cảnh ly biệt.\nPhải ăn ở có đạo đức mới tốt. Sanh con đều đủ. Tuổi già sung sướng.\nGió phảng phất bên màn trước cửa,\nNhững đêm thanh, ngắm cảnh nhìn trăng.\nTrăm năm nắm giữ đạo hằng,\nCho hương thêm thắm, cho tình thủy chung.\nTrăm năm vẹn giữ câu tùng,\nĐèn khuya chung bóng, đem dài sánh vai.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Thìn",
+   "loi": "Chồng chữ Quý và vợ tuổi Thìn thì rất tốt. Sanh con trai gái đều đủ. Chừng tuổi già thì phải chịu cảnh cơ hàn, nhưng được trường thọ.\nDẫu nghèo nhưng chẳng phàn nàn,\nTrong vinh hoa có, hai bàn tay không.\nBuồn chi cho phải bận lòng,\nVợ chồng chung sống, khó nghèo có nhau.\nTrăm năm ghi gắn tấm lòng,\nDẫu phai mái tóc, dạ còn thương nhau.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Tỵ",
+   "loi": "Chồng chữ Quý và vợ tuổi Tỵ thì rất tốt. Sanh con trai gái đều đủ. Chừng tuổi già thì phải chịu cảnh cơ hàn, nhưng được trường thọ.\nDẫu nghèo nhưng chẳng phàn nàn,\nTrong vinh hoa có, hai bàn tay không.\nBuồn chi cho phải bận lòng,\nVợ chồng chung sống, khó nghèo có nhau.\nTrăm năm ghi gắn tấm lòng,\nDẫu phai mái tóc, dạ còn thương nhau",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Ngọ",
+   "loi": "Chồng chữ Quý và vợ tuổi Ngọ thì rất tốt. Công danh phát đạt. Sanh con cái đều đủ và ngoan hiền. Vợ chồng chung hưởng đến già.\nTrăm năm một mảnh tình kim cải,\nSông sâu còn đó, non thề còn kia.\nTấm tình chỉ biết thủy chung,\nTrời trong, sông rộng chứng lòng sắt son.\nNước, mây phong vị êm đềm,\nVợ chồng, con cháu vui tuổi già.\nPhận gái vẹn đạo tề gia.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Mùi",
+   "loi": "Mặc dù vợ chồng sanh con trai gái đều đủ, có công danh, nhưng nữa chừng cũng lở dỡ. Vợ chồng nữa đời phải phân ly.\nCó những lúc đoàn viên đông đủ,\nCó những hồi phân rẽ chia ly.\nNước non cây cỏ buồn hiu,\nCuộc trăm năm một giấc nồng chiêm bao!\nCó đâu thiên vị người nào,\nCũng vì số phận thiên tào xử phân.\nMạng căn âu cũng số phần.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Thân",
+   "loi": "Mặc dù vợ chồng sanh con trai gái đều đủ, có công danh, nhưng nữa chừng cũng lở dỡ. Vợ chồng nữa đời phải phân ly.\nCó những lúc đoàn viên đông đủ,\nCó những hồi phân rẽ chia ly.\nNước non cây cỏ buồn hiu,\nCuộc trăm năm một giấc nồng chiêm bao!\nCó đâu thiên vị người nào,\nCũng vì số phận thiên tào xử phân.\nMạng căn âu cũng số phần.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Dậu",
+   "loi": "Thì rất tốt. Trăm năm gắn bó, nối tóc đến già nhưng chung cuộc phải gặp nạn. Nếu ăn ở có đạo đức thì qua khỏi. Sanh con cái và mạnh khỏe.\nDuyên chỉ thắm tơ tình vương vấn,\nĐạo vợ chồng trọn chữ thủy chung.\nTrăm năm kết dãi tâm đồng,\nĐầy nhà con thảo dâu hiền hậu lai.\nTrăm năm duyên nợ hòa hài.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Tuất",
+   "loi": "Thì việc làm ăn thường thất bại. Người vợ hay bệnh hoạn. Số có công danh, nhưnng nữa đời gặp phải tai ách. Phát đạt muộn. Vợ chồng chung sống đến già.\nNgười trăm tuổi khi nghèo khi khá,\nCũng như trăng khi khuyết khi tròn.\nAi ơi! Giữ tấm lòng son,\nĐừng cho lay chuyển tấm lòng đôi ta.\nVợ chồng chung sống đến già,\nHết lao khổ đến ngày thảnh thơi.\nRăng long chung hưởng tuổi trời.",
+   "doi_chieu": "khớp kabala"
+  },
+  {
+   "can_chong": "Quý",
+   "chi_vo": "Hợi",
+   "loi": "Thì việc làm ăn thường thất bại. Người vợ hay bệnh hoạn. Số có công danh, nhưnng nữa đời gặp phải tai ách. Phát đạt muộn. Vợ chồng chung sống đến già.\nNgười trăm tuổi khi nghèo khi khá,\nCũng như trăng khi khuyết khi tròn.\nAi ơi! Giữ tấm lòng son,\nĐừng cho lay chuyển tấm lòng đôi ta.\nVợ chồng chung sống đến già,\nHết lao khổ đến ngày thảnh thơi.\nRăng long chung hưởng tuổi trời.",
+   "doi_chieu": "khớp kabala"
+  }
+ ]
+}
