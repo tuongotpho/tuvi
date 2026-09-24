@@ -312,39 +312,57 @@ footer {
   border-radius: 0 8px 8px 0; white-space: pre-line; color: var(--chu);
 }
 
-/* ------------------------- bộ chọn ngày sinh ------------------------- */
-/* Ba ô Ngày · Tháng · Năm gộp trong một khung, nhìn như một ô duy nhất. */
-/* Ô chứa bộ chọn ngày phải rộng hơn ô thường — ba điều khiển nằm cạnh nhau. */
-.truong.truong-ngay { flex: 1 1 262px; }
-
-.chon-ngay {
-  display: flex; align-items: stretch;
-  border: 1px solid var(--vien); border-radius: 8px;
-  background: var(--nen); overflow: hidden;
+/* ----------------------------- ô chọn ngày ----------------------------- */
+/* Ô chữ "ngày/tháng/năm" + nút lịch; bấm vào mở bảng lịch xổ xuống. */
+.o-lich { position: relative; }
+.o-lich-chu { padding-right: 40px; }
+.nut-lich {
+  position: absolute; top: 0; right: 0; height: 100%; width: 38px;
+  display: grid; place-items: center; border: 0; background: none;
+  color: var(--chu-mo); cursor: pointer; border-radius: 0 8px 8px 0;
 }
-.chon-ngay:focus-within { outline: 2px solid var(--nhan); outline-offset: 1px; }
-.chon-ngay > * {
-  font: inherit; border: 0; color: var(--chu);
-  padding: 9px 6px; min-width: 0; border-radius: 0;
-  /* Nền phải ghi rõ màu, KHÔNG dùng "none": bảng xổ của ô chọn được trình duyệt
-     vẽ theo nền của chính ô đó, để trong suốt thì danh sách ngày và tháng hiện
-     ra màu sáng chói trên nền tối. */
+.nut-lich:hover { color: var(--nhan); }
+
+.lich {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: 30;
+  width: 296px; max-width: calc(100vw - 32px);
+  background: var(--nen-the); border: 1px solid var(--vien);
+  border-radius: var(--bo-goc); box-shadow: var(--bong), 0 10px 30px rgba(0, 0, 0, .18);
+  padding: 10px;
+}
+.lich[hidden] { display: none; }
+.lich.canh-phai { left: auto; right: 0; }
+.lich button { font: inherit; color: var(--chu); background: none; border: 0; cursor: pointer; }
+.lich-dau { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+.lich-dau select {
+  padding: 6px 8px; width: auto; flex: 1 1 auto;
+  /* Nền phải ghi rõ màu: bảng xổ của ô chọn được trình duyệt vẽ theo nền của
+     chính ô đó, để trong suốt thì danh sách hiện ra màu sáng chói trên nền tối. */
   background-color: var(--nen);
 }
-/* Từng dòng trong bảng xổ cũng phải đặt màu — vài trình duyệt không thừa kế. */
-.chon-ngay option, select option {
-  background-color: var(--nen-the); color: var(--chu);
+.lich-dau .lich-nam { flex: 0 0 82px; }
+.lich .lich-lui, .lich .lich-toi {
+  flex: 0 0 32px; height: 32px; border-radius: 8px; font-size: 20px; line-height: 1;
 }
-.chon-ngay > *:focus { outline: none; }
-.chon-ngay > * + * { border-left: 1px solid var(--vien); }
-.chon-ngay .o-ngay { flex: 0 0 68px; text-align: center; }
-.chon-ngay .o-thang { flex: 1 1 auto; min-width: 92px; }
-.chon-ngay .o-nam { flex: 0 0 82px; text-align: center; }
-/* Bỏ mũi tên tăng giảm của ô số: gõ năm nhanh hơn bấm 40 lần. */
-.chon-ngay .o-nam::-webkit-outer-spin-button,
-.chon-ngay .o-nam::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.chon-ngay .o-nam { -moz-appearance: textfield; appearance: textfield; }
-@media (max-width: 520px) {
-  .chon-ngay .o-ngay { flex-basis: 58px; }
-  .chon-ngay .o-nam { flex-basis: 72px; }
+.lich .lich-lui:hover, .lich .lich-toi:hover { background: var(--nhan-nhat); }
+.lich-thu, .lich-ngay { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.lich-thu span {
+  text-align: center; font-size: 11.5px; font-weight: 600; color: var(--chu-mo); padding: 4px 0;
 }
+.lich-thu span:last-child, .lich-ngay > :nth-child(7n) { color: var(--hung); }
+.lich .lich-ngay button {
+  height: 36px; border-radius: 8px; font-size: 14px; font-variant-numeric: tabular-nums;
+}
+.lich-ngay button:hover { background: var(--nhan-nhat); }
+.lich-ngay button:focus-visible { outline: 2px solid var(--nhan); outline-offset: -2px; }
+.lich-ngay button.hom-nay { box-shadow: inset 0 0 0 1px var(--nhan); }
+.lich-ngay button.chon { background: var(--nhan); color: #fff; font-weight: 700; }
+.lich-chan {
+  display: flex; justify-content: space-between; margin-top: 8px;
+  padding-top: 8px; border-top: 1px solid var(--vien);
+}
+.lich .lich-chan button { padding: 6px 10px; border-radius: 8px; font-size: 13.5px; color: var(--nhan); font-weight: 600; }
+.lich-chan button:hover { background: var(--nhan-nhat); }
+
+/* Từng dòng trong bảng xổ phải đặt màu — vài trình duyệt không thừa kế. */
+select option { background-color: var(--nen-the); color: var(--chu); }

@@ -236,82 +236,221 @@ function veLuanGiai(d) {
   $("#hang-ai").hidden = false;
 }
 
-/* -------------------------- bộ chọn ngày sinh -------------------------- */
-// Ô <input type="date"> của trình duyệt hiện ngày theo vùng máy — máy đặt tiếng
-// Anh là ra "08/22/1987", người Việt đọc dễ nhầm ngày với tháng. Nó cũng bắt
-// người dùng bấm lùi từng tháng để về năm 1987, rất cực với ngày sinh.
+/* ---------------------------- ô chọn ngày ---------------------------- */
+// Ô <input type="date"> gốc của trình duyệt hiện ngày theo vùng máy — máy đặt
+// tiếng Anh là ra "08/22/1987", người Việt đọc dễ nhầm ngày với tháng.
 //
-// Nên thay bằng ba ô Ngày · Tháng · Năm: gõ thẳng năm là xong. Ô gốc được giữ
-// lại (ẩn đi) nên mọi chỗ đang đọc .value dạng yyyy-mm-dd vẫn chạy y nguyên.
-const THANG_AM_DUONG = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+// Nên thay bằng ô chữ luôn hiện "ngày/tháng/năm", bấm vào thì mở một bảng lịch
+// tiếng Việt (tuần bắt đầu thứ Hai) có ô chọn tháng và năm để nhảy nhanh về năm
+// sinh xa. Vẫn gõ tay được. Ô gốc được giữ lại (ẩn đi) nên mọi chỗ đang đọc
+// .value dạng yyyy-mm-dd vẫn chạy y nguyên.
+const TEN_THANG = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
   "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
+const THU = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
 
-function soNgayTrongThang(thang, nam) {
-  return new Date(nam, thang, 0).getDate();   // ngày 0 của tháng sau = ngày cuối tháng này
+const hai = (n) => String(n).padStart(2, "0");
+const isoCua = (d) => `${d.getFullYear()}-${hai(d.getMonth() + 1)}-${hai(d.getDate())}`;
+const chuCua = (d) => `${hai(d.getDate())}/${hai(d.getMonth() + 1)}/${d.getFullYear()}`;
+function tuIso(s) {
+  const [y, m, d] = (s || "").split("-").map(Number);
+  return y ? new Date(y, m - 1, d) : null;
+}
+// Nhận "22/8/1987", "22-08-1987", "22.8.1987"; sai ngày (31/2) thì trả null.
+function docChuNgay(s) {
+  const m = s.trim().match(/^(\d{1,2})\D+(\d{1,2})\D+(\d{4})$/);
+  if (!m) return null;
+  const d = new Date(+m[3], +m[2] - 1, +m[1]);
+  return d.getDate() === +m[1] && d.getMonth() === +m[2] - 1 ? d : null;
 }
 
 function nangCapONgay(o) {
-  const nhom = document.createElement("div");
-  nhom.className = "chon-ngay";
-  const oNgay = document.createElement("select");
-  const oThang = document.createElement("select");
-  const oNam = document.createElement("input");
-  oNam.type = "number";
-  oNam.min = o.min ? o.min.slice(0, 4) : 1900;
-  oNam.max = o.max ? o.max.slice(0, 4) : 2199;
-  oNam.placeholder = "Năm";
-  oNam.inputMode = "numeric";
-  oNam.className = "o-nam";
-  oNgay.className = "o-ngay";
-  oThang.className = "o-thang";
-  THANG_AM_DUONG.forEach((t, i) => oThang.add(new Option(t, i + 1)));
-  [oNgay, oThang, oNam].forEach((x) => {
-    x.setAttribute("aria-label", x === oNgay ? "Ngày" : x === oThang ? "Tháng" : "Năm");
-    nhom.appendChild(x);
-  });
-  o.after(nhom);
+  const namMin = o.min ? +o.min.slice(0, 4) : 1900;
+  const namMax = o.max ? +o.max.slice(0, 4) : 2199;
+  const trongKhoang = (d) => d.getFullYear() >= namMin && d.getFullYear() <= namMax;
+
+  const khung = document.createElement("div");
+  khung.className = "o-lich";
+  const chu = document.createElement("input");
+  chu.type = "text";
+  chu.className = "o-lich-chu";
+  chu.placeholder = "ngày/tháng/năm";
+  chu.inputMode = "numeric";
+  chu.autocomplete = "off";
+  chu.required = o.required;
+  if (o.id) {   // nhãn <label for=...> trỏ sang ô chữ mới
+    chu.id = o.id + "-chu";
+    document.querySelector(`label[for="${o.id}"]`)?.setAttribute("for", chu.id);
+  }
+  const nut = document.createElement("button");
+  nut.type = "button";
+  nut.className = "nut-lich";
+  nut.setAttribute("aria-label", "Mở lịch");
+  nut.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"
+    fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>`;
+  const bang = document.createElement("div");
+  bang.className = "lich";
+  bang.hidden = true;
+  bang.setAttribute("role", "dialog");
+  bang.setAttribute("aria-label", "Chọn ngày");
+  khung.append(chu, nut, bang);
+  o.after(khung);
   o.type = "hidden";
-  // Ba ô cạnh nhau cần rộng hơn một ô đơn, nếu không "Tháng 9" bị cắt cụt.
-  o.closest(".truong")?.classList.add("truong-ngay");
+  o.required = false;
 
-  function veLaiNgay(giu) {
-    const nam = Number(oNam.value) || new Date().getFullYear();
-    const soNgay = soNgayTrongThang(Number(oThang.value) || 1, nam);
-    const cu = giu ?? (Number(oNgay.value) || 1);
-    oNgay.innerHTML = "";
-    for (let i = 1; i <= soNgay; i++) oNgay.add(new Option(i, i));
-    // 31/3 đổi sang tháng 2 thì kẹp về 28 hoặc 29, không để rỗng.
-    oNgay.value = Math.min(cu, soNgay);
-  }
+  let dangXem = new Date();   // tháng đang hiện trên bảng lịch
+  let tro = null;             // ngày đang được trỏ bằng bàn phím
 
-  function docTuO() {
-    const [nam, thang, ngay] = (o.value || "").split("-").map(Number);
-    if (!nam) { veLaiNgay(); return; }
-    oNam.value = nam; oThang.value = thang; veLaiNgay(ngay);
-  }
-
-  function ghiVaoO() {
-    const nam = Number(oNam.value);
-    if (!nam || nam < Number(oNam.min) || nam > Number(oNam.max)) { o.value = ""; return; }
-    const thang = String(oThang.value).padStart(2, "0");
-    const ngay = String(oNgay.value).padStart(2, "0");
-    o.value = `${nam}-${thang}-${ngay}`;
+  function ghi(d) {
+    o.value = isoCua(d);
+    chu.value = chuCua(d);
+    chu.setCustomValidity("");
     o.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
-  oThang.addEventListener("change", () => { veLaiNgay(); ghiVaoO(); });
-  oNam.addEventListener("input", () => { veLaiNgay(); ghiVaoO(); });
-  oNgay.addEventListener("change", ghiVaoO);
-  // Các chỗ khác trong app đặt sẵn giá trị mặc định rồi mới gọi; nghe "change"
-  // để ba ô luôn khớp với ô ẩn dù ai đặt giá trị.
-  o.addEventListener("dat-gia-tri", docTuO);
-  docTuO();
+  // Vẽ lại bảng lịch của tháng đang xem; trả về nút ngày đang được trỏ.
+  function ve() {
+    const nam = dangXem.getFullYear(), thang = dangXem.getMonth();
+    const chon = o.value, homNay = isoCua(new Date());
+    const dau = (new Date(nam, thang, 1).getDay() + 6) % 7;   // thứ Hai = 0
+    const soNgay = new Date(nam, thang + 1, 0).getDate();
+    let oNgay = "";
+    for (let i = 0; i < dau; i++) oNgay += "<span></span>";
+    for (let n = 1; n <= soNgay; n++) {
+      const iso = `${nam}-${hai(thang + 1)}-${hai(n)}`;
+      const lop = [iso === chon && "chon", iso === homNay && "hom-nay"].filter(Boolean).join(" ");
+      oNgay += `<button type="button" data-ngay="${n}" class="${lop}" tabindex="-1"
+        aria-label="${n} ${TEN_THANG[thang].toLowerCase()} năm ${nam}">${n}</button>`;
+    }
+    let namOpt = "";
+    for (let y = namMin; y <= namMax; y++) namOpt += `<option${y === nam ? " selected" : ""}>${y}</option>`;
+    bang.innerHTML = `
+      <div class="lich-dau">
+        <button type="button" class="lich-lui" aria-label="Tháng trước">‹</button>
+        <select class="lich-thang" aria-label="Tháng">${TEN_THANG.map((t, i) =>
+          `<option value="${i}"${i === thang ? " selected" : ""}>${t}</option>`).join("")}</select>
+        <select class="lich-nam" aria-label="Năm">${namOpt}</select>
+        <button type="button" class="lich-toi" aria-label="Tháng sau">›</button>
+      </div>
+      <div class="lich-thu">${THU.map((t) => `<span>${t}</span>`).join("")}</div>
+      <div class="lich-ngay">${oNgay}</div>
+      <div class="lich-chan">
+        <button type="button" class="lich-hom-nay">Hôm nay</button>
+        <button type="button" class="lich-dong">Đóng</button>
+      </div>`;
+    const cungThang = chon.startsWith(`${nam}-${hai(thang + 1)}-`);
+    const ngayTro = tro && tro.getMonth() === thang && tro.getFullYear() === nam
+      ? tro.getDate() : (cungThang ? Number(chon.slice(8)) : 1);
+    const nutTro = bang.querySelector(`[data-ngay="${ngayTro}"]`);
+    nutTro.tabIndex = 0;
+    return nutTro;
+  }
+
+  function doiThang(buoc) {
+    const d = new Date(dangXem.getFullYear(), dangXem.getMonth() + buoc, 1);
+    if (!trongKhoang(d)) return;
+    dangXem = d; tro = null; ve();
+  }
+
+  function mo() {
+    if (!bang.hidden) return;
+    dangXem = tuIso(o.value) || new Date();
+    tro = null;
+    ve();
+    bang.hidden = false;
+    // Sát mép phải màn hình thì canh bảng theo mép phải của ô.
+    bang.classList.remove("canh-phai");
+    if (bang.getBoundingClientRect().right > document.documentElement.clientWidth - 8) {
+      bang.classList.add("canh-phai");
+    }
+    bang.scrollIntoView({ block: "nearest" });
+  }
+
+  function dong(traVe = true) {
+    if (bang.hidden) return;
+    bang.hidden = true;
+    if (traVe) chu.focus();
+  }
+
+  chu.addEventListener("click", mo);
+  nut.addEventListener("click", () => (bang.hidden ? mo() : dong()));
+  chu.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault(); mo(); bang.querySelector('.lich-ngay [tabindex="0"]')?.focus();
+    } else if (e.key === "Escape") dong();
+  });
+  // Gõ tay: đúng dạng thì nhận ngay, sai thì trình duyệt báo khi bấm Xem.
+  chu.addEventListener("input", () => {
+    const d = docChuNgay(chu.value);
+    if (d && trongKhoang(d)) {
+      o.value = isoCua(d);
+      chu.setCustomValidity("");
+      o.dispatchEvent(new Event("change", { bubbles: true }));
+      if (!bang.hidden) { dangXem = d; ve(); }
+    } else {
+      o.value = "";
+      chu.setCustomValidity(chu.value
+        ? `Gõ theo dạng ngày/tháng/năm, năm từ ${namMin} đến ${namMax}.` : "");
+    }
+  });
+  // Rời ô thì viết lại cho gọn: "5/8/1987" thành "05/08/1987".
+  chu.addEventListener("blur", () => { const d = tuIso(o.value); if (d) chu.value = chuCua(d); });
+
+  bang.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    if (b.dataset.ngay) {
+      ghi(new Date(dangXem.getFullYear(), dangXem.getMonth(), +b.dataset.ngay));
+      dong();
+    } else if (b.classList.contains("lich-lui")) doiThang(-1);
+    else if (b.classList.contains("lich-toi")) doiThang(1);
+    else if (b.classList.contains("lich-hom-nay")) { ghi(new Date()); dong(); }
+    else if (b.classList.contains("lich-dong")) dong();
+  });
+  bang.addEventListener("change", (e) => {
+    if (!e.target.matches(".lich-thang, .lich-nam")) return;
+    const laThang = e.target.matches(".lich-thang");
+    dangXem = new Date(+bang.querySelector(".lich-nam").value,
+      +bang.querySelector(".lich-thang").value, 1);
+    tro = null;
+    ve();
+    bang.querySelector(laThang ? ".lich-thang" : ".lich-nam").focus();
+  });
+  // Mũi tên đi từng ngày / từng tuần, PageUp/PageDown sang tháng, Enter để chọn.
+  bang.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { e.preventDefault(); dong(); return; }
+    const b = e.target.closest(".lich-ngay button");
+    if (!b) return;
+    const buoc = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[e.key];
+    const thang = { PageUp: -1, PageDown: 1 }[e.key];
+    if (!buoc && !thang) return;
+    e.preventDefault();
+    const y = dangXem.getFullYear(), m = dangXem.getMonth(), n = +b.dataset.ngay;
+    const moi = buoc ? new Date(y, m, n + buoc) : new Date(y, m + thang, 1);
+    if (!trongKhoang(moi)) return;
+    tro = moi;
+    dangXem = new Date(moi.getFullYear(), moi.getMonth(), 1);
+    ve().focus();
+  });
+  // Bấm ra ngoài hoặc chuyển tiêu điểm đi chỗ khác thì đóng.
+  document.addEventListener("pointerdown", (e) => { if (!khung.contains(e.target)) dong(false); });
+  khung.addEventListener("focusout", (e) => {
+    if (e.relatedTarget && !khung.contains(e.relatedTarget)) dong(false);
+  });
+
+  // Các chỗ khác trong app đặt giá trị bằng datNgay(); nghe sự kiện này để ô
+  // chữ luôn khớp với ô ẩn dù ai đặt giá trị.
+  o.addEventListener("dat-gia-tri", () => {
+    const d = tuIso(o.value);
+    chu.value = d ? chuCua(d) : "";
+    chu.setCustomValidity("");
+  });
 }
 
 $$('input[type="date"]').forEach(nangCapONgay);
 
 // Đặt giá trị cho ô ngày từ mã: dùng hàm này thay cho gán .value trực tiếp,
-// để ba ô hiển thị cập nhật theo.
+// để ô chữ hiển thị cập nhật theo.
 function datNgay(o, giaTri) {
   o.value = giaTri;
   o.dispatchEvent(new Event("dat-gia-tri"));
