@@ -89,6 +89,23 @@ def get_ai_prompt(query_json):
   pyodideInstance = py;
   console.log("Pyodide ready!");
 })();
+// Nạp Pyodide hỏng thì ghi lại lỗi chứ không để "unhandled rejection" làm sập
+// cả tiến trình Node — sập là trình duyệt chỉ thấy "Failed to fetch".
+let pyodideLoi = null;
+initPyodidePromise.catch((err) => {
+  pyodideLoi = err;
+  console.error("Pyodide init failed:", err);
+});
+
+function traJson(res, status, obj) {
+  if (res.headersSent) return res.end();
+  res.writeHead(status, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Cache-Control": "no-store",
+    "X-Content-Type-Options": "nosniff",
+  });
+  return res.end(JSON.stringify(obj));
+}
 
 async function handleAiLuanGiai(query, clientIp, res) {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -238,13 +255,22 @@ const server = http.createServer(async (req, res) => {
 
   // Handle API routes
   if (pathname.startsWith("/api/")) {
-    await initPyodidePromise;
+    try {
+      await initPyodidePromise;
+    } catch {
+      return traJson(res, 503, { loi: "Máy chủ chưa nạp xong bộ tính toán, thử lại sau ít phút." });
+    }
 
     const query = Object.fromEntries(parsedUrl.searchParams.entries());
 
     if (pathname === "/api/ai-luangiai") {
       const clientIp = (req.headers["x-forwarded-for"] || req.socket.remoteAddress || "127.0.0.1").toString().split(",")[0].trim();
-      return handleAiLuanGiai(query, clientIp, res);
+      try {
+        return await handleAiLuanGiai(query, clientIp, res);
+      } catch (err) {
+        console.error("AI error:", err);
+        return traJson(res, 500, { loi: "Lỗi máy chủ. Thử lại sau." });
+      }
     }
 
     try {
@@ -284,8 +310,10 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Serve static files from web/static
+  // So "/" TRƯỚC khi normalize: trên Windows path.normalize("/") ra "\\" nên
+  // trang chủ từng bị 404 khi chạy thử trên máy.
   const safePath = path.normalize(pathname).replace(/^(\.\.[/\\])+/, "");
-  const targetFile = safePath === "/" ? "index.html" : safePath.replace(/^\//, "");
+  const targetFile = pathname === "/" ? "index.html" : safePath.replace(/^[/\\]/, "");
   const filePath = path.join(STATIC_DIR, targetFile);
 
   // Prevent directory traversal

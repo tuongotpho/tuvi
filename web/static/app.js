@@ -9,13 +9,30 @@ const ds = (v) => Array.isArray(v) ? v.join(", ") : (v ?? "");
 const HUONG_8 = ["Bắc", "Đông Bắc", "Đông", "Đông Nam", "Nam", "Tây Nam", "Tây", "Tây Bắc"];
 const DAC_TINH_TAT = { "Miếu": "M", "Vượng": "V", "Đắc": "Đ", "Bình": "B", "Hãm": "H" };
 
+// Máy chủ trên Cloud Run tắt khi vắng người, lúc bật lại phải nạp Pyodide mất vài
+// giây; trong lúc đó trình duyệt có thể báo "Failed to fetch" hoặc nhận trang lỗi
+// 502/503 không phải JSON. Nên thử lại vài lần rồi mới báo lỗi, bằng tiếng Việt.
+const LOI_KET_NOI = "Không kết nối được máy chủ — có thể máy chủ đang khởi động lại. "
+  + "Đợi vài giây rồi bấm lại.";
+const doi = (ms) => new Promise((r) => setTimeout(r, ms));
+
 async function api(duongDan, tham) {
   const u = new URL(duongDan, location.href);
   Object.entries(tham).forEach(([k, v]) => v !== "" && v != null && u.searchParams.set(k, v));
-  const res = await fetch(u);
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.loi || "Không lấy được dữ liệu");
-  return data;
+  for (let lan = 0; ; lan++) {
+    let res;
+    try {
+      res = await fetch(u);
+    } catch {   // mất mạng, máy chủ đang bật lại: fetch ném lỗi chứ không trả mã
+      if (lan < 2) { await doi(1500 * (lan + 1)); continue; }
+      throw new Error(LOI_KET_NOI);
+    }
+    const data = await res.json().catch(() => null);
+    if (res.ok && data) return data;
+    if (data?.loi) throw new Error(data.loi);   // lỗi do dữ liệu nhập: báo ngay, không thử lại
+    if (res.status >= 500 && lan < 2) { await doi(1500 * (lan + 1)); continue; }
+    throw new Error(res.status >= 500 ? LOI_KET_NOI : "Không lấy được dữ liệu");
+  }
 }
 
 function baoLoi(o, e) {
@@ -942,12 +959,14 @@ $("#ls-du-sao").addEventListener("change", (e) => $("#dia-ban").classList.toggle
 
 (function khoiTao() {
   $("#ls-nam-xem").value = new Date().getFullYear();
-  const h = new Date(), iso = h.toISOString().slice(0, 10);
+  // Lấy ngày theo giờ máy người dùng; toISOString() là giờ UTC, trước 7h sáng
+  // ở Việt Nam nó còn là ngày hôm qua.
+  const h = new Date(), iso = isoCua(h);
   datNgay($("#n-ngay"), iso);
   datNgay($("#ls-ngay"), "1990-09-20");
   $("#h-xem").value = h.getFullYear();
   HUONG_8.forEach((x) => $("#pt-huong").insertAdjacentHTML("beforeend", `<option>${x}</option>`));
-  const sau = new Date(h.getTime() + 60 * 864e5).toISOString().slice(0, 10);
+  const sau = isoCua(new Date(h.getFullYear(), h.getMonth(), h.getDate() + 60));
   datNgay($("#cn-tu"), iso);
   datNgay($("#cn-den"), sau);
   datNgay($("#ht-sinh-a"), "1990-09-20");
